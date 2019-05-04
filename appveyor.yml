@@ -1,3 +1,13 @@
 version: 1.0.{build}
+before_build:
+- ps: nuget restore ./SportsBetting/SportsBetting.sln
 build:
+  project: ./SportsBetting/SportsBetting.sln
   verbosity: minimal
+notifications:
+- provider: Email
+  to:
+  - itplamen@gmail.com
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
