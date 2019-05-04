@@ -53,9 +53,11 @@
   <ItemGroup>
     <Compile Include="Contracts\Factories\IObjectFactory.cs" />
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
+    <Compile Include="Contracts\Services\IWebPagesService.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WebPagesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
