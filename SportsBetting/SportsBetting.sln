@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoCContainer", "IoCContaine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.IoCContainer.Packages", "IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj", "{70DB083C-EF76-4E14-BD46-7B04C10DE804}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.IoCContainer", "IoCContainer\SportsBetting.IoCContainer\SportsBetting.IoCContainer.csproj", "{54135F4C-8A05-4018-8240-6E0CC17EDF91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{70DB083C-EF76-4E14-BD46-7B04C10DE804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70DB083C-EF76-4E14-BD46-7B04C10DE804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70DB083C-EF76-4E14-BD46-7B04C10DE804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54135F4C-8A05-4018-8240-6E0CC17EDF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54135F4C-8A05-4018-8240-6E0CC17EDF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54135F4C-8A05-4018-8240-6E0CC17EDF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54135F4C-8A05-4018-8240-6E0CC17EDF91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{22F744B0-D455-4FF8-91CD-34D72D1ED206} = {C26131BB-8DB4-433B-B39F-DE27742E1774}
 		{9B990381-DFA6-4CBF-B4A4-2461DC0CCA2A} = {C26131BB-8DB4-433B-B39F-DE27742E1774}
 		{70DB083C-EF76-4E14-BD46-7B04C10DE804} = {25B91A96-131E-41CE-B403-51A85A90FAD9}
+		{54135F4C-8A05-4018-8240-6E0CC17EDF91} = {25B91A96-131E-41CE-B403-51A85A90FAD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {268FD570-3112-4B6E-8255-B4566ED2CDCC}
