@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XPaths\ContainerXPaths.cs" />
+    <Compile Include="XPaths\OddXPaths.cs" />
+    <Compile Include="XPaths\TeamXPaths.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
