@@ -2,4 +2,4 @@
 
 ## Build status
 
-[![Build status](https://ci.appveyor.com/api/projects/status/x71wm2k7pgjr777k?svg=true)](https://ci.appveyor.com/project/itplamen/xmlfeedconsumer)
+[![Build status](https://ci.appveyor.com/api/projects/status/0ilqmb15uiv1nyh1?svg=true)](https://ci.appveyor.com/project/itplamen/sportsbetting)
