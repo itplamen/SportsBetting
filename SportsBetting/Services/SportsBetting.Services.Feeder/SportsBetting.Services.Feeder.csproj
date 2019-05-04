@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Factories\IObjectFactory.cs" />
+    <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />
+    <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
