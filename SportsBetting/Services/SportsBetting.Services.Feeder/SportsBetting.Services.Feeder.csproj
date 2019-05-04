@@ -44,10 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Factories\IObjectFactory.cs" />
+    <Compile Include="Factories\ObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Models\SportsBetting.Feeder.Models.csproj">
+      <Project>{9D9669F4-7D03-4142-A6DB-55FE1140E04B}</Project>
+      <Name>SportsBetting.Feeder.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
