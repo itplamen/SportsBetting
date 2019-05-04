@@ -53,16 +53,22 @@
   <ItemGroup>
     <Compile Include="Contracts\Factories\IObjectFactory.cs" />
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
+    <Compile Include="Contracts\Services\IHtmlService.cs" />
     <Compile Include="Contracts\Services\IWebPagesService.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HtmlService.cs" />
     <Compile Include="Services\WebPagesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Common\SportsBetting.Feeder.Common.csproj">
+      <Project>{8D2113B2-AE21-480A-8D75-C017C747DE5A}</Project>
+      <Name>SportsBetting.Feeder.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Models\SportsBetting.Feeder.Models.csproj">
       <Project>{9D9669F4-7D03-4142-A6DB-55FE1140E04B}</Project>
       <Name>SportsBetting.Feeder.Models</Name>
