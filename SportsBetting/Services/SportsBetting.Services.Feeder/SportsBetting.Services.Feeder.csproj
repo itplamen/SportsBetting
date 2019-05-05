@@ -55,6 +55,7 @@
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
     <Compile Include="Contracts\Providers\IMarketsProvider.cs" />
     <Compile Include="Contracts\Providers\IOddsProvider.cs" />
+    <Compile Include="Contracts\Providers\ITeamsProvider.cs" />
     <Compile Include="Contracts\Services\IHtmlService.cs" />
     <Compile Include="Contracts\Services\IWebPagesService.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Providers\Odds\ThreeWayOddsProvider.cs" />
     <Compile Include="Providers\Odds\TotalLineOddsProvider.cs" />
     <Compile Include="Providers\Odds\TwoWayOddsProvider.cs" />
+    <Compile Include="Providers\Teams\TeamsProvider.cs" />
     <Compile Include="Services\HtmlService.cs" />
     <Compile Include="Services\WebPagesService.cs" />
   </ItemGroup>
