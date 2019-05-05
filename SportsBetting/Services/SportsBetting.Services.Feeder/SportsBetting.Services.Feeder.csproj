@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Factories\IObjectFactory.cs" />
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
-    <Compile Include="Contracts\Providers\Odds\IOddsProvider.cs" />
+    <Compile Include="Contracts\Providers\IOddsProvider.cs" />
     <Compile Include="Contracts\Services\IHtmlService.cs" />
     <Compile Include="Contracts\Services\IWebPagesService.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />

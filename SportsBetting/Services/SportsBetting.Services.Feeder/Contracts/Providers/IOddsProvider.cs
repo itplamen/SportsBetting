@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Services.Feeder.Contracts.Providers.Odds
+﻿namespace SportsBetting.Services.Feeder.Contracts.Providers
 {
     using System.Collections.Generic;
 

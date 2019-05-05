@@ -4,7 +4,7 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Services.Feeder.Contracts.Factories;
-    using SportsBetting.Services.Feeder.Contracts.Providers.Odds;
+    using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
     using SportsBetting.Services.Feeder.Factories;
     using SportsBetting.Services.Feeder.Providers.Odds;
