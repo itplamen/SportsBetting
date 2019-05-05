@@ -1,7 +1,6 @@
 ﻿namespace SportsBetting.Services.Feeder.Factories
 {
     using System;
-    using System.Collections.Generic;
 
     using SportsBetting.Feeder.Models;
     using SportsBetting.Services.Feeder.Contracts.Factories;
@@ -24,8 +23,7 @@
             MatchStatus status,
             Team homeTeam,
             Team awayTeam,
-            Tournament tournament,
-            IEnumerable<Market> markets)
+            Tournament tournament)
         {
             return new Match()
             {
@@ -35,8 +33,7 @@
                 Status = status,
                 HomeTeam = homeTeam,
                 AwayTeam = awayTeam,
-                Tournament = tournament,
-                Markets = markets
+                Tournament = tournament
             };
         }
 

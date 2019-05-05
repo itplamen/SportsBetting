@@ -1,7 +1,6 @@
 ﻿namespace SportsBetting.Services.Feeder.Contracts.Factories
 {
     using System;
-    using System.Collections.Generic;
 
     using SportsBetting.Feeder.Models;
 
@@ -9,7 +8,7 @@
     {
         Market CreateMarket(string name, int matchId);
 
-        Match CreateMatch(string url, bool isLive, DateTime startTime, MatchStatus status, Team homeTeam, Team awayTeam, Tournament tournament, IEnumerable<Market> markets);
+        Match CreateMatch(string url, bool isLive, DateTime startTime, MatchStatus status, Team homeTeam, Team awayTeam, Tournament tournament);
 
         Odd CreateOdd(string name, decimal value, bool isSuspended, OddResultStatus resultStatus, int rank, int matketId, string header = null);
 
