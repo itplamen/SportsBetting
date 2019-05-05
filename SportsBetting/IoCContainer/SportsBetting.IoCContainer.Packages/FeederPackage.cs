@@ -10,6 +10,7 @@
     using SportsBetting.Services.Feeder.Providers.Markets;
     using SportsBetting.Services.Feeder.Providers.Odds;
     using SportsBetting.Services.Feeder.Providers.Teams;
+    using SportsBetting.Services.Feeder.Providers.Tournaments;
     using SportsBetting.Services.Feeder.Services;
 
     public sealed class FeederPackage : IPackage
@@ -37,6 +38,7 @@
         {
             container.Register<IMarketsProvider, MarketsProvider>(Lifestyle.Singleton);
             container.Register<ITeamsProvider, TeamsProvider>(Lifestyle.Singleton);
+            container.Register<ITournametsProvider, TournametsProvider>(Lifestyle.Singleton);
 
             container.Register<IOddsProvider, HandicapOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, CorrectScoreOddsProvider>(Lifestyle.Singleton);
