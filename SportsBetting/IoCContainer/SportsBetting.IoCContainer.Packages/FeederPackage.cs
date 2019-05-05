@@ -4,8 +4,10 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Services.Feeder.Contracts.Factories;
+    using SportsBetting.Services.Feeder.Contracts.Providers.Odds;
     using SportsBetting.Services.Feeder.Contracts.Services;
     using SportsBetting.Services.Feeder.Factories;
+    using SportsBetting.Services.Feeder.Providers.Odds;
     using SportsBetting.Services.Feeder.Services;
 
     public sealed class FeederPackage : IPackage
@@ -14,6 +16,7 @@
         {
             RegisterFactories(container);
             RegisterFeederServices(container);
+            RegisterProviders(container);
         }
 
         private void RegisterFactories(Container container)
@@ -26,6 +29,15 @@
         {
             container.Register<IWebPagesService, WebPagesService>(Lifestyle.Singleton);
             container.Register<IHtmlService, HtmlService>(Lifestyle.Singleton);
+        }
+
+        private void RegisterProviders(Container container)
+        {
+            container.Register<IOddsProvider, HandicapOddsProvider>(Lifestyle.Singleton);
+            container.RegisterDecorator<IOddsProvider, CorrectScoreOddsProvider>(Lifestyle.Singleton);
+            container.RegisterDecorator<IOddsProvider, ThreeWayOddsProvider>(Lifestyle.Singleton);
+            container.RegisterDecorator<IOddsProvider, TotalLineOddsProvider>(Lifestyle.Singleton);
+            container.RegisterDecorator<IOddsProvider, TwoWayOddsProvider>(Lifestyle.Singleton);
         }
     }
 }
