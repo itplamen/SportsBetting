@@ -7,6 +7,7 @@
     using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
     using SportsBetting.Services.Feeder.Factories;
+    using SportsBetting.Services.Feeder.Providers.Markets;
     using SportsBetting.Services.Feeder.Providers.Odds;
     using SportsBetting.Services.Feeder.Services;
 
@@ -33,6 +34,8 @@
 
         private void RegisterProviders(Container container)
         {
+            container.Register<IMarketsProvider, MarketsProvider>(Lifestyle.Singleton);
+
             container.Register<IOddsProvider, HandicapOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, CorrectScoreOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, ThreeWayOddsProvider>(Lifestyle.Singleton);

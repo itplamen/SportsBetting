@@ -7,7 +7,7 @@
 
     public interface IObjectFactory
     {
-        Market CreateMarket(string name, int matchId, IEnumerable<Odd> odds);
+        Market CreateMarket(string name, int matchId);
 
         Match CreateMatch(string url, bool isLive, DateTime startTime, MatchStatus status, Team homeTeam, Team awayTeam, Tournament tournament, IEnumerable<Market> markets);
 

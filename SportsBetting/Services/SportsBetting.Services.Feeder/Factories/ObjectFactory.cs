@@ -8,13 +8,12 @@
 
     public class ObjectFactory : IObjectFactory
     {
-        public Market CreateMarket(string name, int matchId, IEnumerable<Odd> odds)
+        public Market CreateMarket(string name, int matchId)
         {
             return new Market()
             {
                 Name = name,
-                MatchId = matchId,
-                Odds = odds
+                MatchId = matchId
             };
         }
 
