@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Feeder.Common.XPaths
+﻿namespace SportsBetting.Common.XPaths
 {
     public static class MatchXPaths
     {

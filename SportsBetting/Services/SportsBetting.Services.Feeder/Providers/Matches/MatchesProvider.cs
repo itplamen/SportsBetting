@@ -9,7 +9,7 @@
 
     using Newtonsoft.Json;
 
-    using SportsBetting.Feeder.Common.XPaths;
+    using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
