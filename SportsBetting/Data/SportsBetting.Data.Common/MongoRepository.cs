@@ -11,12 +11,12 @@
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models.Base;
 
-    public class Repository<T> : IRepository<T>
+    public class MongoRepository<T> : IRepository<T>
         where T : BaseModel
     {
         private readonly IMongoCollection<T> collection;
 
-        public Repository(ISportsBettingDbContext dbContext)
+        public MongoRepository(ISportsBettingDbContext dbContext)
         {
             this.collection = dbContext.GetCollection<T>(typeof(T).Name);
         }
