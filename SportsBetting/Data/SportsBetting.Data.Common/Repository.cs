@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
 
     using MongoDB.Driver;
 
@@ -20,19 +21,9 @@
             this.collection = dbContext.GetCollection<T>(typeof(T).Name);
         }
 
-        public IEnumerable<T> All()
+        public IEnumerable<T> All(Expression<Func<T, bool>> filterExpression)
         {
-            return collection.Find(x => !x.IsDeleted).ToList();
-        }
-
-        public IEnumerable<T> AllWithDeleted()
-        {
-            return collection.Find(x => true).ToList();
-        }
-
-        public T GetById(string id)
-        {
-            return collection.Find(x => x.Id == id && !x.IsDeleted).FirstOrDefault();
+            return collection.Find(filterExpression).ToList();
         }
 
         public void Add(T entity)
