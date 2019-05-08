@@ -10,6 +10,10 @@
     {
         IList<string> GetOddNames(HtmlNode marketNode, Match match);
 
+        IEnumerable<string> GetMatchUrls(HtmlNode bettingContainer, string xpath);
+
+        HtmlNode GetContainer(string xpath, string pageSource);
+
         HtmlNode GetMarketContainer(HtmlNode marketNode);
 
         int GetTwoWayOddsCount(HtmlNode marketNode);

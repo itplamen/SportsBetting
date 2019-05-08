@@ -12,6 +12,8 @@
 
     public class HtmlService : IHtmlService
     {
+        private const string BASE_URL = "https://gg.bet";
+
         public IList<string> GetOddNames(HtmlNode marketNode, Match match)
         {
             HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAME);
@@ -26,6 +28,33 @@
                 match.HomeTeam.Name,
                 match.AwayTeam.Name
             };
+        }
+
+        public IEnumerable<string> GetMatchUrls(HtmlNode bettingContainer, string xpath)
+        {
+            HtmlNodeCollection hrefNodes = bettingContainer.SelectNodes(xpath);
+
+            if (hrefNodes != null)
+            {
+                IEnumerable<string> urls = hrefNodes
+                    .Select(x => x.GetAttributeValue("href", "noLink"))
+                    .Select(x => $"{BASE_URL}{x}")
+                    .Distinct();
+
+                return urls;
+            }
+
+            return Enumerable.Empty<string>();
+        }
+
+        public HtmlNode GetContainer(string xpath, string pageSource)
+        {
+            HtmlDocument document = new HtmlDocument();
+            document.LoadHtml(pageSource);
+
+            HtmlNode container = document.DocumentNode.SelectSingleNode(xpath);
+
+            return container;
         }
 
         public HtmlNode GetMarketContainer(HtmlNode marketNode)
