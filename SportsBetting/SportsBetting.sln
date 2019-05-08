@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E02E1E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.Common", "Common\SportsBetting.Common\SportsBetting.Common.csproj", "{B704B382-5AF7-4A6B-9B0A-04E522792386}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.Services.Data", "Services\SportsBetting.Services.Data\SportsBetting.Services.Data.csproj", "{495B608A-69DF-4AAC-A63A-AB2E57B2635C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{B704B382-5AF7-4A6B-9B0A-04E522792386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B704B382-5AF7-4A6B-9B0A-04E522792386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B704B382-5AF7-4A6B-9B0A-04E522792386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495B608A-69DF-4AAC-A63A-AB2E57B2635C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495B608A-69DF-4AAC-A63A-AB2E57B2635C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495B608A-69DF-4AAC-A63A-AB2E57B2635C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495B608A-69DF-4AAC-A63A-AB2E57B2635C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{9D9669F4-7D03-4142-A6DB-55FE1140E04B} = {D06575C7-49E1-4554-9723-AE33D42018B9}
 		{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA} = {D06575C7-49E1-4554-9723-AE33D42018B9}
 		{B704B382-5AF7-4A6B-9B0A-04E522792386} = {E02E1ECE-5925-4C24-8D42-3D2A987955AF}
+		{495B608A-69DF-4AAC-A63A-AB2E57B2635C} = {0381F5B8-AB33-4616-81B3-539BC963C5C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {268FD570-3112-4B6E-8255-B4566ED2CDCC}
