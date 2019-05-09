@@ -36,10 +36,9 @@
         public void Delete(T entity)
         {
             FilterDefinition<T> filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
-            UpdateDefinition<T> update = Builders<T>.Update.Set(x => x.IsDeleted, true);
-
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
+            UpdateDefinition<T> update = Builders<T>.Update
+                .Set(x => x.IsDeleted, true)
+                .Set(x => x.DeletedOn, DateTime.Now);
 
             collection.UpdateOne(filter, update);
         }
