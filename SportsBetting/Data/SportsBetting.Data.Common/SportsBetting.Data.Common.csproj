@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheRepository.cs" />
+    <Compile Include="Contracts\ICache.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MongoRepository.cs" />
