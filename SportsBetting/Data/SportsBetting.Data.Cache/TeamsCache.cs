@@ -8,16 +8,16 @@
 
     public class TeamsCache : BaseCache<int, Team>
     {
-        private readonly IRepository<Team> teamsRepository;
+        private readonly ICacheLoaderRepository<Team> teamsRepository;
 
-        public TeamsCache(IRepository<Team> teamsRepository)
+        public TeamsCache(ICacheLoaderRepository<Team> teamsRepository)
         {
             this.teamsRepository = teamsRepository;
         }
 
         public override void Load()
         {
-            IEnumerable<Team> teams = teamsRepository.All(x => !x.IsDeleted);
+            IEnumerable<Team> teams = teamsRepository.Load(x => !x.IsDeleted);
 
             foreach (var team in teams)
             {

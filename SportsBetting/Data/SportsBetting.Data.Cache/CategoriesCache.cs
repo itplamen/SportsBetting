@@ -8,16 +8,16 @@
 
     public class CategoriesCache : BaseCache<int, Category>
     {
-        private readonly IRepository<Category> categoriesRepository;
+        private readonly ICacheLoaderRepository<Category> categoriesRepository;
 
-        public CategoriesCache(IRepository<Category> categoriesRepository)
+        public CategoriesCache(ICacheLoaderRepository<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }
 
         public override void Load()
         {
-            IEnumerable<Category> categories = categoriesRepository.All(x => !x.IsDeleted);
+            IEnumerable<Category> categories = categoriesRepository.Load(x => !x.IsDeleted);
 
             foreach (var category in categories)
             {
