@@ -8,6 +8,6 @@
 
     public interface ITeamsProvider
     {
-        IEnumerable<Team> Get(HtmlNode matchContainer);
+        IEnumerable<TeamFeedModel> Get(HtmlNode matchContainer);
     }
 }

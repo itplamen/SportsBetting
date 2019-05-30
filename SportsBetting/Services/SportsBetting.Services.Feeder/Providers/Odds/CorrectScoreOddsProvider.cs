@@ -26,7 +26,7 @@
             this.oddsProvider = oddsProvider;
         }
 
-        public IEnumerable<Odd> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
         {
             if (ShouldGet(marketNode, oddNames))
             {
@@ -53,14 +53,14 @@
             return htmlService.IsSuspended(oddNode.LastChild.LastChild);
         }
 
-        private IEnumerable<Odd> GetTwoColumnOdds(HtmlNodeCollection oddNodes, int marketId)
+        private IEnumerable<OddFeedModel> GetTwoColumnOdds(HtmlNodeCollection oddNodes, int marketId)
         {
-            ICollection<Odd> odds = new List<Odd>();
+            ICollection<OddFeedModel> odds = new List<OddFeedModel>();
 
             for (int i = 0; i < oddNodes.Count; i++)
             {
                 string header = oddNodes[i].FirstChild.InnerText;
-                Odd odd = BuildOdd(oddNodes[i], header, i, marketId, header);
+                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketId, header);
 
                 odds.Add(odd);
             }
@@ -68,9 +68,9 @@
             return odds;
         }
 
-        private IEnumerable<Odd> GetFourColumnOdds(HtmlNode marketNode, int marketId)
+        private IEnumerable<OddFeedModel> GetFourColumnOdds(HtmlNode marketNode, int marketId)
         {
-            ICollection<Odd> odds = new List<Odd>();
+            ICollection<OddFeedModel> odds = new List<OddFeedModel>();
             List<string> columnXPaths = OddXPaths.CORRECT_SCORE_COLUMNS.ToList();
 
             for (int i = 0; i < columnXPaths.Count; i++)
@@ -83,7 +83,7 @@
                     foreach (var oddNode in oddNodes)
                     {
                         string header = oddNode.FirstChild.InnerText;
-                        Odd odd = BuildOdd(oddNode, header, rank, marketId, header);
+                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketId, header);
 
                         odds.Add(odd);
 

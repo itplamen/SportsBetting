@@ -5,18 +5,18 @@
 
     using SportsBetting.Feeder.Models.Base;
 
-    public class Market : BaseModel
+    public class MarketFeedModel : BaseFeedModel
     {
-        public Market()
+        public MarketFeedModel()
         {
-            Odds = new List<Odd>();
+            Odds = new List<OddFeedModel>();
         }
 
         public string Name { get; set; }
 
         public int MatchId { get; set; }
 
-        public IEnumerable<Odd> Odds { get; set; }
+        public IEnumerable<OddFeedModel> Odds { get; set; }
 
         protected override int GenerateId()
         {

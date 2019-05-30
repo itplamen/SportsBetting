@@ -17,7 +17,7 @@
 
         public void Manage(HtmlNode matchContainer, string url, bool isLive)
         {
-            Match match = matchesProvider.Get(matchContainer, url, isLive);
+            MatchFeedModel match = matchesProvider.Get(matchContainer, url, isLive);
         }
     }
 }

@@ -25,16 +25,16 @@
             this.oddsProvider = oddsProvider;
         }
 
-        public IEnumerable<Odd> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
         {
             if (ShouldGet(marketNode, oddNames))
             {
-                ICollection<Odd> odds = new List<Odd>();
+                ICollection<OddFeedModel> odds = new List<OddFeedModel>();
                 IList<HtmlNode> oddNodes = marketNode.SelectNodes(OddXPaths.NODE);
 
                 for (int i = 0; i < oddNames.Count; i++)
                 {
-                    Odd odd = BuildOdd(oddNodes[i], oddNames[i], i, marketId);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[i], i, marketId);
                     odds.Add(odd);
                 }
 

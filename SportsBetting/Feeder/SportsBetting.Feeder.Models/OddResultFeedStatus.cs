@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Feeder.Models
 {
-    public enum OddResultStatus
+    public enum OddResultFeedStatus
     {
         Win,
         Loss,

@@ -6,6 +6,6 @@
 
     public interface ITournametsProvider
     {
-        Tournament Get(HtmlNode matchInfo);
+        TournamentFeedModel Get(HtmlNode matchInfo);
     }
 }

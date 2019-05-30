@@ -7,25 +7,25 @@
 
     public class ObjectFactory : IObjectFactory
     {
-        public Market CreateMarket(string name, int matchId)
+        public MarketFeedModel CreateMarket(string name, int matchId)
         {
-            return new Market()
+            return new MarketFeedModel()
             {
                 Name = name,
                 MatchId = matchId
             };
         }
 
-        public Match CreateMatch(
+        public MatchFeedModel CreateMatch(
             string url,
             bool isLive,
             DateTime startTime,
-            MatchStatus status,
-            Team homeTeam,
-            Team awayTeam,
-            Tournament tournament)
+            MatchFeedStatus status,
+            TeamFeedModel homeTeam,
+            TeamFeedModel awayTeam,
+            TournamentFeedModel tournament)
         {
-            return new Match()
+            return new MatchFeedModel()
             {
                 Url = url,
                 IsLive = isLive,
@@ -37,16 +37,16 @@
             };
         }
 
-        public Odd CreateOdd(
+        public OddFeedModel CreateOdd(
             string name, 
             decimal value, 
             bool isSuspended, 
-            OddResultStatus resultStatus, 
+            OddResultFeedStatus resultStatus, 
             int rank, 
             int matketId, 
             string header = null)
         {
-            return new Odd()
+            return new OddFeedModel()
             {
                 Name = name,
                 Value = value,
@@ -58,18 +58,18 @@
             };
         }
 
-        public Team CreateTeam(string name, int? score)
+        public TeamFeedModel CreateTeam(string name, int? score)
         {
-            return new Team()
+            return new TeamFeedModel()
             {
                 Name = name,
                 Score = score
             };
         }
 
-        public Tournament CreateTournament(string name, string category)
+        public TournamentFeedModel CreateTournament(string name, string category)
         {
-            return new Tournament()
+            return new TournamentFeedModel()
             {
                 Name = name,
                 Category = category

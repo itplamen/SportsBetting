@@ -6,28 +6,28 @@
 
     using SportsBetting.Feeder.Models.Base;
 
-    public class Match : BaseModel
+    public class MatchFeedModel : BaseFeedModel
     {
-        public Match()
+        public MatchFeedModel()
         {
-            Markets = new List<Market>();
+            Markets = new List<MarketFeedModel>();
         }
 
         public string Url { get; set; }
 
         public bool IsLive { get; set; }
 
-        public Team HomeTeam { get; set; }
+        public TeamFeedModel HomeTeam { get; set; }
 
-        public Team AwayTeam { get; set; }
+        public TeamFeedModel AwayTeam { get; set; }
 
         public DateTime StartTime { get; set; }
 
-        public MatchStatus Status { get; set; }
+        public MatchFeedStatus Status { get; set; }
 
-        public Tournament Tournament { get; set; }
+        public TournamentFeedModel Tournament { get; set; }
 
-        public IEnumerable<Market> Markets { get; set; }
+        public IEnumerable<MarketFeedModel> Markets { get; set; }
 
         protected override int GenerateId()
         {

@@ -18,11 +18,11 @@
             this.objectFactory = objectFactory;
         }
 
-        public Tournament Get(HtmlNode matchInfo)
+        public TournamentFeedModel Get(HtmlNode matchInfo)
         {
             string name = WebUtility.HtmlDecode(matchInfo.FirstChild.FirstChild.InnerText);
             string category = matchInfo.ChildNodes[1].InnerText.Split(',').FirstOrDefault();
-            Tournament tournament = objectFactory.CreateTournament(name, category);
+            TournamentFeedModel tournament = objectFactory.CreateTournament(name, category);
 
             return tournament;
         }

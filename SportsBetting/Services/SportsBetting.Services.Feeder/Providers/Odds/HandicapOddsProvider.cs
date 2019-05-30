@@ -24,11 +24,11 @@
             this.htmlService = htmlService;
         }
 
-        public IEnumerable<Odd> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
         {
             if (ShouldGet(marketNode, oddNames))
             {
-                ICollection<Odd> odds = new List<Odd>();
+                ICollection<OddFeedModel> odds = new List<OddFeedModel>();
                 IList<HtmlNode> oddNodes = marketNode.SelectNodes(ContainerXPaths.HANDICAP_ODDS);
 
                 for (int i = 0; i < oddNodes.Count; i++)
@@ -36,14 +36,14 @@
                     int nameIndex = i % 2 == 0 ? 0 : 1;
                     string header = oddNodes[i].FirstChild.InnerText;
 
-                    Odd odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketId, header);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketId, header);
                     odds.Add(odd);
                 }
 
                 return odds;
             }
 
-            return Enumerable.Empty<Odd>();
+            return Enumerable.Empty<OddFeedModel>();
         }
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)

@@ -22,11 +22,11 @@
             this.objectFactory = objectFactory;
         }
 
-        protected Odd BuildOdd(HtmlNode oddNode, string name, int rank, int marketId, string header = null)
+        protected OddFeedModel BuildOdd(HtmlNode oddNode, string name, int rank, int marketId, string header = null)
         {
             decimal value = GetValue(oddNode);
             bool isSuspended = IsSuspended(oddNode);
-            OddResultStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
+            OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
             return objectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, marketId, header);
         }

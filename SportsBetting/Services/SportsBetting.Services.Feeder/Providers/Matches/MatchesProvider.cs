@@ -33,26 +33,26 @@
             this.tournametsProvider = tournametsProvider;
         }
 
-        public Match Get(HtmlNode matchContainer, string url, bool isLive)
+        public MatchFeedModel Get(HtmlNode matchContainer, string url, bool isLive)
         {
             HtmlNode matchInfo = matchContainer?.SelectSingleNode(MatchXPaths.HEADER_INFO_BOX);
-            MatchStatus status = GetStatus(matchInfo);
+            MatchFeedStatus status = GetStatus(matchInfo);
             DateTime startTime = GetStartTime(matchInfo);
 
-            IEnumerable<Team> teams = teamsProvider.Get(matchContainer);
-            Tournament tournament = tournametsProvider.Get(matchInfo);
+            IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
+            TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
 
-            Match match = objectFactory.CreateMatch(url, isLive, startTime, status, teams.First(), teams.Last(), tournament);
+            MatchFeedModel match = objectFactory.CreateMatch(url, isLive, startTime, status, teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);
 
             return match;
         }
 
-        private MatchStatus GetStatus(HtmlNode matchInfo)
+        private MatchFeedStatus GetStatus(HtmlNode matchInfo)
         {
             string status = matchInfo.ChildNodes[1].InnerText.Split(',').Last().Trim();
             string jsonStatus = JsonConvert.SerializeObject(status);
-            MatchStatus matchStatus = JsonConvert.DeserializeObject<MatchStatus>(jsonStatus);
+            MatchFeedStatus matchStatus = JsonConvert.DeserializeObject<MatchFeedStatus>(jsonStatus);
 
             return matchStatus;
         }

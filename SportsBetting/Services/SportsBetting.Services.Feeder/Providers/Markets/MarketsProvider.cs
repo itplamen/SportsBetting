@@ -25,15 +25,15 @@
             this.objectFactory = objectFactory;
         }
 
-        public IEnumerable<Market> Get(HtmlNode matchContainer, Match match)
+        public IEnumerable<MarketFeedModel> Get(HtmlNode matchContainer, MatchFeedModel match)
         {
-            ICollection<Market> markets = new List<Market>();
+            ICollection<MarketFeedModel> markets = new List<MarketFeedModel>();
 
             HtmlNodeCollection marketNodes = matchContainer.SelectNodes(MatchXPaths.MARKETS);
 
             foreach (var marketNode in marketNodes)
             {
-                Market market = objectFactory.CreateMarket(marketNode.FirstChild.FirstChild.InnerText, match.Id);
+                MarketFeedModel market = objectFactory.CreateMarket(marketNode.FirstChild.FirstChild.InnerText, match.Id);
                 market.Odds = GetOdds(marketNode, match, market.Id);
 
                 markets.Add(market);
@@ -42,12 +42,12 @@
             return markets;
         }
 
-        private IEnumerable<Odd> GetOdds(HtmlNode marketNode, Match match, int marketId)
+        private IEnumerable<OddFeedModel> GetOdds(HtmlNode marketNode, MatchFeedModel match, int marketId)
         {
             try
             {
                 IList<string> oddNames = htmlService.GetOddNames(marketNode, match);
-                IEnumerable<Odd> odds = oddsProvider.Get(marketNode, oddNames, marketId);
+                IEnumerable<OddFeedModel> odds = oddsProvider.Get(marketNode, oddNames, marketId);
 
                 return odds;
             }
@@ -55,7 +55,7 @@
             {
             }
 
-            return Enumerable.Empty<Odd>();
+            return Enumerable.Empty<OddFeedModel>();
         }
     }
 }

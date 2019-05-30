@@ -8,6 +8,6 @@
 
     public interface IOddsProvider
     {
-        IEnumerable<Odd> Get(HtmlNode marketNode, IList<string> oddNames, int marketId);
+        IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId);
     }
 }

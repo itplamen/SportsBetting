@@ -19,7 +19,7 @@
             this.objectFactory = objectFactory;
         }
 
-        public IEnumerable<Team> Get(HtmlNode matchContainer)
+        public IEnumerable<TeamFeedModel> Get(HtmlNode matchContainer)
         {
             IEnumerable<string> names = ParseNames(matchContainer);
 
@@ -28,10 +28,10 @@
                 return null;
             }
 
-            Team homeTeam = BuildTeam(names.First(), TeamXPaths.HOME_TEAM_SCORE, matchContainer);
-            Team awayTeam = BuildTeam(names.Last(), TeamXPaths.AWAY_TEAM_SCORE, matchContainer);
+            TeamFeedModel homeTeam = BuildTeam(names.First(), TeamXPaths.HOME_TEAM_SCORE, matchContainer);
+            TeamFeedModel awayTeam = BuildTeam(names.Last(), TeamXPaths.AWAY_TEAM_SCORE, matchContainer);
 
-            return new List<Team>() { homeTeam, awayTeam };
+            return new List<TeamFeedModel>() { homeTeam, awayTeam };
         }
 
         private IEnumerable<string> ParseNames(HtmlNode matchContainer)
@@ -44,10 +44,10 @@
             return teamNames;
         }
 
-        private Team BuildTeam(string name, string scoreXPath, HtmlNode matchContainer)
+        private TeamFeedModel BuildTeam(string name, string scoreXPath, HtmlNode matchContainer)
         {
             int? score = GetScore(matchContainer, scoreXPath);
-            Team team = objectFactory.CreateTeam(name, score);
+            TeamFeedModel team = objectFactory.CreateTeam(name, score);
 
             return team;
         }

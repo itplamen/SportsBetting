@@ -8,7 +8,7 @@
 
     public interface IHtmlService
     {
-        IList<string> GetOddNames(HtmlNode marketNode, Match match);
+        IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match);
 
         IEnumerable<string> GetMatchUrls(HtmlNode bettingContainer, string xpath);
 
@@ -20,7 +20,7 @@
 
         int GetThreeWayOddsCount(HtmlNode marketNode);
 
-        OddResultStatus GetOddResultStatus(HtmlNode oddNode);
+        OddResultFeedStatus GetOddResultStatus(HtmlNode oddNode);
 
         bool HasHeader(HtmlNode marketNode);
 

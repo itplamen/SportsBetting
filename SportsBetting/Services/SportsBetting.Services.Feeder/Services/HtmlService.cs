@@ -14,7 +14,7 @@
     {
         private const string BASE_URL = "https://gg.bet";
 
-        public IList<string> GetOddNames(HtmlNode marketNode, Match match)
+        public IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match)
         {
             HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAME);
 
@@ -117,21 +117,21 @@
             return 0;
         }
 
-        public OddResultStatus GetOddResultStatus(HtmlNode oddNode)
+        public OddResultFeedStatus GetOddResultStatus(HtmlNode oddNode)
         {
             string oddClass = oddNode.GetAttributeValue("class", string.Empty);
 
             if (IsWin(oddClass))
             {
-                return OddResultStatus.Win;
+                return OddResultFeedStatus.Win;
             }
 
             if (IsLoss(oddClass))
             {
-                return OddResultStatus.Loss;
+                return OddResultFeedStatus.Loss;
             }
 
-            return OddResultStatus.NotResulted;
+            return OddResultFeedStatus.NotResulted;
         }
 
         public bool HasHeader(HtmlNode marketNode)

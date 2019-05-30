@@ -8,6 +8,6 @@
 
     public interface IMarketsProvider
     {
-        IEnumerable<Market> Get(HtmlNode matchContainer, Match match);
+        IEnumerable<MarketFeedModel> Get(HtmlNode matchContainer, MatchFeedModel match);
     }
 }

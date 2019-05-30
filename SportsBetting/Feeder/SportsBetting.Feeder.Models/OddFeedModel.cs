@@ -4,7 +4,7 @@
 
     using SportsBetting.Feeder.Models.Base;
 
-    public class Odd : BaseModel
+    public class OddFeedModel : BaseFeedModel
     {
         public string Name { get; set; }
 
@@ -18,7 +18,7 @@
 
         public int MarketId { get; set; }
 
-        public OddResultStatus ResultStatus { get; set; }
+        public OddResultFeedStatus ResultStatus { get; set; }
 
         protected override int GenerateId()
         {

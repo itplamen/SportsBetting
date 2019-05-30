@@ -4,7 +4,7 @@
 
     using SportsBetting.Feeder.Models.Base;
 
-    public class Tournament : BaseModel
+    public class TournamentFeedModel : BaseFeedModel
     {
         public string Name { get; set; }
 

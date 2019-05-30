@@ -6,7 +6,7 @@
     using Newtonsoft.Json.Converters;
 
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum MatchStatus
+    public enum MatchFeedStatus
     {
         [EnumMember(Value = "NOT STARTED")]
         NotStarted,

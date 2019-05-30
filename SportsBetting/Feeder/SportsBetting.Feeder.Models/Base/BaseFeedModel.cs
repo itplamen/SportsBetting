@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Feeder.Models.Base
 {
-    public abstract class BaseModel
+    public abstract class BaseFeedModel
     {
         public int Id => GenerateId();
 
