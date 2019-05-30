@@ -6,15 +6,15 @@
 
     using SportsBetting.Data.Models.Base;
 
-    public interface ICache<TKey, TEntity>
+    public interface ICache<TEntity>
         where TEntity : BaseModel
     {
         IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression);
 
-        void Add(TKey key, TEntity entity);
+        void Add(int key, TEntity entity);
 
-        void Delete(TKey key, TEntity entity);
+        void Delete(int key, TEntity entity);
 
-        void HardDelete(TKey key);
+        void HardDelete(int key);
     }
 }

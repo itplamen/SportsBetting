@@ -6,7 +6,7 @@
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
 
-    public class TeamsCache : BaseCache<int, Team>
+    public class TeamsCache : BaseCache<Team>
     {
         private readonly ICacheLoaderRepository<Team> teamsRepository;
 

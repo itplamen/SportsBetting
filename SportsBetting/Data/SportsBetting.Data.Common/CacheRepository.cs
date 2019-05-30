@@ -10,10 +10,10 @@
     public class CacheRepository<T> : IRepository<T>
         where T : BaseModel
     {
-        private readonly ICache<int, T> cache;
+        private readonly ICache<T> cache;
         private readonly IRepository<T> repository;
 
-        public CacheRepository(ICache<int, T> cache, IRepository<T> repository)
+        public CacheRepository(ICache<T> cache, IRepository<T> repository)
         {
             this.cache = cache;
             this.repository = repository;

@@ -10,7 +10,7 @@
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models.Base;
 
-    public abstract class BaseCache<TKey, TEntity> : ICache<TKey, TEntity>
+    public abstract class BaseCache<TEntity> : ICache<TEntity>
         where TEntity : BaseModel
     {
         private readonly Timer timer;
@@ -22,11 +22,11 @@
 
         public BaseCache(int load, int update)
         {
-            this.Cache = new ConcurrentDictionary<TKey, TEntity>();
+            this.Cache = new ConcurrentDictionary<int, TEntity>();
             this.timer = new Timer((_) => Load(), null, load, update);
         }
 
-        protected IDictionary<TKey, TEntity> Cache { get; private set; }
+        protected IDictionary<int, TEntity> Cache { get; private set; }
 
         public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression)
         {
@@ -35,12 +35,12 @@
                    .Where(filterExpression);
         }
 
-        public void Add(TKey key, TEntity entity)
+        public void Add(int key, TEntity entity)
         {
             Cache[key] = entity;
         }
 
-        public void Delete(TKey key, TEntity entity)
+        public void Delete(int key, TEntity entity)
         {
             TEntity cachedEntity = Cache[key];
 
@@ -53,7 +53,7 @@
             }
         }
 
-        public void HardDelete(TKey key)
+        public void HardDelete(int key)
         {
             Cache.Remove(key);
         }

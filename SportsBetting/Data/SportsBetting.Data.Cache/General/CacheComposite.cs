@@ -5,11 +5,11 @@
 
     using SportsBetting.Data.Models.Base;
 
-    public class CacheComposite : BaseCache<int, BaseModel>
+    public class CacheComposite : BaseCache<BaseModel>
     {
-        private readonly IEnumerable<BaseCache<int, BaseModel>> caches;
+        private readonly IEnumerable<BaseCache<BaseModel>> caches;
 
-        public CacheComposite(IEnumerable<BaseCache<int, BaseModel>> caches)
+        public CacheComposite(IEnumerable<BaseCache<BaseModel>> caches)
         {
             this.caches = caches;
         }

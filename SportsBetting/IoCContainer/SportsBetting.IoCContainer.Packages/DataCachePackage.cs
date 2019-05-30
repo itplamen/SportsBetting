@@ -14,11 +14,11 @@
         {
             container.Register(typeof(ICacheLoaderRepository<>), typeof(CacheLoaderRepository<>), Lifestyle.Singleton);
 
-            container.Collection.Register(typeof(ICache <,>),
+            container.Collection.Register(typeof(ICache <>),
                 typeof(CategoriesCache),
                 typeof(TeamsCache));
 
-            container.Register(typeof(ICache<,>), typeof(CacheComposite), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(CacheComposite), Lifestyle.Singleton);
         }
     }
 }
