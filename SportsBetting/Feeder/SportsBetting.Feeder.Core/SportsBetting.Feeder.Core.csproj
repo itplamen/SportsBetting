@@ -48,6 +48,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IFeedManager.cs" />
+    <Compile Include="Contracts\IPrematchSynchronizer.cs" />
+    <Compile Include="Contracts\ISynchronizer.cs" />
+    <Compile Include="FeedManager.cs" />
+    <Compile Include="PrematchSynchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
