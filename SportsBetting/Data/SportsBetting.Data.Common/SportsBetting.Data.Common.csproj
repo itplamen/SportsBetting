@@ -64,6 +64,7 @@
     <Compile Include="CacheLoaderRepository.cs" />
     <Compile Include="CacheRepository.cs" />
     <Compile Include="Contracts\ICache.cs" />
+    <Compile Include="Contracts\ICacheInitializer.cs" />
     <Compile Include="Contracts\ICacheLoaderRepository.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

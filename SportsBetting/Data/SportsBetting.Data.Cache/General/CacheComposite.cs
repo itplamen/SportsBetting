@@ -3,20 +3,20 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using SportsBetting.Data.Models.Base;
+    using SportsBetting.Data.Common.Contracts;
 
-    public class CacheComposite : BaseCache<BaseModel>
+    public class CacheComposite : ICacheInitializer
     {
-        private readonly IEnumerable<BaseCache<BaseModel>> caches;
+        private readonly IEnumerable<ICacheInitializer> caches;
 
-        public CacheComposite(IEnumerable<BaseCache<BaseModel>> caches)
+        public CacheComposite(IEnumerable<ICacheInitializer> caches)
         {
             this.caches = caches;
         }
 
-        public override void Load()
+        public void Init()
         {
-            caches.ToList().ForEach(cache => cache.Load());
+            caches.ToList().ForEach(cache => cache.Init());
         }
     }
 }

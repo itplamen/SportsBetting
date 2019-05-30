@@ -10,10 +10,11 @@
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models.Base;
 
-    public abstract class BaseCache<TEntity> : ICache<TEntity>
+    public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheInitializer
         where TEntity : BaseModel
     {
-        private readonly Timer timer;
+        private readonly int load;
+        private readonly int update;
 
         public BaseCache()
             : this(1000, 1000 * 60)
@@ -22,11 +23,17 @@
 
         public BaseCache(int load, int update)
         {
+            this.load = load;
+            this.update = update;
             this.Cache = new ConcurrentDictionary<int, TEntity>();
-            this.timer = new Timer((_) => Load(), null, load, update);
         }
 
         protected IDictionary<int, TEntity> Cache { get; private set; }
+
+        public void Init()
+        {
+            Timer timer = new Timer((_) => Load(), null, load, update);
+        }
 
         public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression)
         {
