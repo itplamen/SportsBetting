@@ -53,6 +53,7 @@
     <Compile Include="Contracts\Managers\IMarketsManager.cs" />
     <Compile Include="Contracts\Managers\IOddsManager.cs" />
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
+    <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
     <Compile Include="Contracts\Mappers\IMapper.cs" />
     <Compile Include="Contracts\IPrematchSynchronizer.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Managers\MatchesManager.cs" />
     <Compile Include="Managers\OddsManager.cs" />
     <Compile Include="Managers\TeamsManager.cs" />
+    <Compile Include="Managers\TournamentsManager.cs" />
     <Compile Include="Mappers\MatchesMapper.cs" />
     <Compile Include="Mappers\OddsMapper.cs" />
     <Compile Include="PrematchSynchronizer.cs" />
