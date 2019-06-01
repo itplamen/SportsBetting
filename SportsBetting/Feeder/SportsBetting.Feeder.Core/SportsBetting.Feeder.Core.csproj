@@ -56,7 +56,9 @@
     <Compile Include="Contracts\ISynchronizer.cs" />
     <Compile Include="FeedManager.cs" />
     <Compile Include="Managers\MarketsManager.cs" />
+    <Compile Include="Managers\MatchesManager.cs" />
     <Compile Include="Managers\OddsManager.cs" />
+    <Compile Include="Mappers\MatchesMapper.cs" />
     <Compile Include="Mappers\OddsMapper.cs" />
     <Compile Include="PrematchSynchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
