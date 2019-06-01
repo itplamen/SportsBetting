@@ -44,6 +44,11 @@
 
         public void Add(int key, TEntity entity)
         {
+            Cache.Add(key, entity);
+        }
+
+        public void Update(int key, TEntity entity)
+        {
             Cache[key] = entity;
         }
 

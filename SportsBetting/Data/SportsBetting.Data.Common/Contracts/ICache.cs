@@ -13,6 +13,8 @@
 
         void Add(int key, TEntity entity);
 
+        void Update(int key, TEntity entity);
+
         void Delete(int key, TEntity entity);
 
         void HardDelete(int key);

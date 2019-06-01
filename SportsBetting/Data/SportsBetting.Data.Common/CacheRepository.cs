@@ -30,6 +30,12 @@
             cache.Add(entity.Key, entity);
         }
 
+        public void Update(T entity)
+        {
+            repository.Update(entity);
+            cache.Update(entity.Key, entity);
+        }
+
         public void Delete(T entity)
         {
             repository.Delete(entity);

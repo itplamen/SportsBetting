@@ -33,6 +33,14 @@
             collection.InsertOne(entity);
         }
 
+        public void Update(T entity)
+        {
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
+            entity.ModifiedOn = DateTime.UtcNow;
+
+            collection.ReplaceOne(filter, entity);
+        }
+
         public void Delete(T entity)
         {
             FilterDefinition<T> filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
