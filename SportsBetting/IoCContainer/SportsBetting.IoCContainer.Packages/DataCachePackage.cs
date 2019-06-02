@@ -31,6 +31,7 @@
             container.Register(typeof(ICache<>), typeof(CategoriesCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TournamentsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TeamsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(MarketsCache), Lifestyle.Singleton);
             container.Collection.Register<ICacheInitializer>(typeof(CategoriesCache), typeof(TeamsCache));
             container.Register<ICacheInitializer, CacheComposite>(Lifestyle.Singleton);
         }
