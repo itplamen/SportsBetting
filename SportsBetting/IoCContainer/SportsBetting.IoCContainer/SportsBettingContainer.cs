@@ -5,7 +5,13 @@
 
     public static class SportsBettingContainer
     {
-        private readonly static Container container = new Container();
+        private readonly static Container container;
+
+        static SportsBettingContainer()
+        {
+            container = new Container();
+            container.Options.DefaultLifestyle = Lifestyle.Singleton;
+        }
 
         public static void Initialize(IPackage[] packages)
         {

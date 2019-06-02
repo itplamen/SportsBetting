@@ -8,6 +8,7 @@
 
     using SimpleInjector.Packaging;
 
+    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.IoCContainer;
     using SportsBetting.IoCContainer.Packages;
@@ -22,6 +23,7 @@
         public FeederBootstrapper()
         {
             InitializeDependencies();
+            InitializeCaches();
             token = source.Token;
             prematchSynchronizer = SportsBettingContainer.Resolve<IPrematchSynchronizer>();
         }
@@ -47,6 +49,12 @@
             };
 
             SportsBettingContainer.Initialize(packages);
+        }
+
+        private void InitializeCaches()
+        {
+            ICacheInitializer cacheInitializer = SportsBettingContainer.Resolve<ICacheInitializer>();
+            cacheInitializer.Init();
         }
 
         private IEnumerable<Action> GetActions()
