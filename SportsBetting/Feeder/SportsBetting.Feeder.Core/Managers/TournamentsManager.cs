@@ -16,17 +16,19 @@
             this.tournamentsRepository = tournamentsRepository;
         }
 
-        public void Manage(TournamentFeedModel feedModel, string categoryId)
+        public string Manage(TournamentFeedModel feedModel, string categoryId)
         {
             Tournament tournament = tournamentsRepository.All(x => x.Name == feedModel.Name && x.CategoryId == categoryId).FirstOrDefault();
 
             if (tournament == null)
             {
-                Add(feedModel, categoryId);
+                return Add(feedModel, categoryId);
             }
+
+            return tournament.Id;
         }
 
-        private void Add(TournamentFeedModel feedModel, string categoryId)
+        private string Add(TournamentFeedModel feedModel, string categoryId)
         {
             Tournament tournament = new Tournament()
             {
@@ -36,6 +38,8 @@
             };
 
             tournamentsRepository.Add(tournament);
+
+            return tournament.Id;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
@@ -17,20 +16,19 @@
             this.marketsRepository = marketsRepository;
         }
 
-        public void Manage(IEnumerable<MarketFeedModel> feedModels, string matchId)
+        public string Manage(MarketFeedModel feedModel, string matchId)
         {
-            foreach (var feedModel in feedModels)
-            {
-                Market market = marketsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
+            Market market = marketsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
 
-                if (market == null)
-                {
-                    Add(feedModel, matchId);
-                }
+            if (market == null)
+            {
+                return Add(feedModel, matchId);
             }
+
+            return market.Id;
         }
 
-        private void Add(MarketFeedModel feedModel, string matchId)
+        private string Add(MarketFeedModel feedModel, string matchId)
         {
             Market market = new Market()
             {
@@ -40,6 +38,8 @@
             };
 
             marketsRepository.Add(market);
+
+            return market.Id;
         }
     }
 }

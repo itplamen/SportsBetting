@@ -4,6 +4,6 @@
 
     public interface IMatchesManager
     {
-        void Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId);
+        string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId);
     }
 }

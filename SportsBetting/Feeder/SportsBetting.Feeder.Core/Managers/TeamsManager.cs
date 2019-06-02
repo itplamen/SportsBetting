@@ -18,7 +18,7 @@
             this.sportsRepository = sportsRepository;
         }
 
-        public void Manage(TeamFeedModel feedModel)
+        public string Manage(TeamFeedModel feedModel)
         {
             Team team = teamsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
 
@@ -26,11 +26,13 @@
             {
                 Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
 
-                Add(feedModel, sport.Id);
+                return Add(feedModel, sport.Id);
             }
+
+            return team.Id;
         }
 
-        private void Add(TeamFeedModel feedModel, string sportId)
+        private string Add(TeamFeedModel feedModel, string sportId)
         {
             Team team = new Team()
             {
@@ -40,6 +42,8 @@
             };
 
             teamsRepository.Add(team);
+
+            return team.Id;
         }
     }
 }

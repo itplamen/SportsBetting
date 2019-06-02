@@ -4,6 +4,6 @@
 
     public interface ITeamsManager
     {
-        void Manage(TeamFeedModel feedModel);
+        string Manage(TeamFeedModel feedModel);
     }
 }

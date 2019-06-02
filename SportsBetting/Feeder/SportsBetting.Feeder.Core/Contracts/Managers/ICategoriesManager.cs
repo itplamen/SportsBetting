@@ -2,6 +2,6 @@
 {
     public interface ICategoriesManager
     {
-        void Manage(string name);
+        string Manage(string name);
     }
 }

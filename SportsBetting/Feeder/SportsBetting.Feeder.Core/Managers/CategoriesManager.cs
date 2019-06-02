@@ -18,7 +18,7 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public void Manage(string name)
+        public string Manage(string name)
         {
             Category category = categoriesRepository.All(x => x.Name == name).FirstOrDefault();
 
@@ -26,11 +26,13 @@
             {
                 Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
 
-                Add(name, sport.Id);
+                return Add(name, sport.Id);
             }
+
+            return category.Id;
         }
 
-        private void Add(string name, string sportId)
+        private string Add(string name, string sportId)
         {
             Category category = new Category()
             {
@@ -40,6 +42,8 @@
             };
 
             categoriesRepository.Add(category);
+
+            return category.Id;
         }
     }
 }
