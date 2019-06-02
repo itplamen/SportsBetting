@@ -6,39 +6,39 @@
     using SportsBetting.Data.Cache.General;
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
-    
-    public class OddsCache : BaseCache<Odd>
+
+    public class MatchesCache : BaseCache<Match>
     {
         private const int REFRESH_INTERVAL = 1000 * 3;
 
-        private readonly ICacheLoaderRepository<Odd> oddsRepository;
+        private readonly ICacheLoaderRepository<Match> matchesRepository;
 
-        public OddsCache(ICacheLoaderRepository<Odd> oddsRepository)
+        public MatchesCache(ICacheLoaderRepository<Match> matchesRepository)
             : base(REFRESH_INTERVAL)
         {
-            this.oddsRepository = oddsRepository;
+            this.matchesRepository = matchesRepository;
         }
 
         public override void Load()
         {
-            IEnumerable<Odd> odds = oddsRepository.Load(x => !x.IsDeleted && x.CreatedOn.AddDays(7) >= DateTime.UtcNow);
+            IEnumerable<Match> matches = matchesRepository.Load(x => !x.IsDeleted && x.CreatedOn.AddDays(7) >= DateTime.UtcNow);
 
-            foreach (var odd in odds)
+            foreach (var match in matches)
             {
-                Add(odd.Key, odd);
+                Add(match.Key, match);
             }
         }
 
         public override void Refresh()
         {
-            IEnumerable<Odd> odds = oddsRepository.Load(x =>
+            IEnumerable<Match> matches = matchesRepository.Load(x =>
                 !x.IsDeleted &&
                 x.ModifiedOn.HasValue &&
                 x.ModifiedOn.Value.AddMilliseconds(REFRESH_INTERVAL) >= DateTime.UtcNow);
 
-            foreach (var odd in odds)
+            foreach (var match in matches)
             {
-                Update(odd.Key, odd);
+                Update(match.Key, match);
             }
         }
     }

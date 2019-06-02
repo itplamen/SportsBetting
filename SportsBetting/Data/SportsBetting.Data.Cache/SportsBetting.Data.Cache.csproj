@@ -45,6 +45,7 @@
     <Compile Include="General\BaseCache.cs" />
     <Compile Include="General\CacheComposite.cs" />
     <Compile Include="MarketsCache.cs" />
+    <Compile Include="MatchesCache.cs" />
     <Compile Include="OddsCache.cs" />
     <Compile Include="TournamentsCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,6 +31,7 @@
             container.Register(typeof(ICache<>), typeof(CategoriesCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TournamentsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TeamsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(MatchesCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(MarketsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(OddsCache), Lifestyle.Singleton);
 
@@ -38,6 +39,7 @@
                 typeof(CategoriesCache), 
                 typeof(TournamentsCache),
                 typeof(TeamsCache),
+                typeof(MatchesCache),
                 typeof(MarketsCache),
                 typeof(OddsCache));
 
