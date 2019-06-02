@@ -51,6 +51,7 @@
     <Compile Include="Contracts\IFeedManager.cs" />
     <Compile Include="Contracts\Managers\ICategoriesManager.cs" />
     <Compile Include="Contracts\Managers\IMarketsManager.cs" />
+    <Compile Include="Contracts\Managers\IMatchesManager.cs" />
     <Compile Include="Contracts\Managers\IOddsManager.cs" />
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
     <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
