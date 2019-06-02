@@ -67,6 +67,10 @@
       <Project>{22F744B0-D455-4FF8-91CD-34D72D1ED206}</Project>
       <Name>SportsBetting.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Core\SportsBetting.Feeder.Core.csproj">
+      <Project>{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA}</Project>
+      <Name>SportsBetting.Feeder.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Feeder\SportsBetting.Services.Feeder.csproj">
       <Project>{C214AFA0-8068-4A89-A194-88D9C3B4F1D8}</Project>
       <Name>SportsBetting.Services.Feeder</Name>
