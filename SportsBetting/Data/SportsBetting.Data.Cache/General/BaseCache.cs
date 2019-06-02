@@ -13,63 +13,63 @@
     public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheInitializer
         where TEntity : BaseModel
     {
-        private readonly int load;
-        private readonly int update;
+        private readonly int refreshInterval;
+        private readonly IDictionary<int, TEntity> cache;
 
         public BaseCache()
-            : this(1000, 1000 * 60)
+            : this(1000 * 60)
         {
         }
 
-        public BaseCache(int load, int update)
+        public BaseCache(int refreshInterval)
         {
-            this.load = load;
-            this.update = update;
-            this.Cache = new ConcurrentDictionary<int, TEntity>();
+            this.refreshInterval = refreshInterval;
+            this.cache = new ConcurrentDictionary<int, TEntity>();
         }
-
-        protected IDictionary<int, TEntity> Cache { get; private set; }
 
         public void Init()
         {
-            Timer timer = new Timer((_) => Load(), null, load, update);
+            Timer timer = new Timer((_) => Refresh(), null, refreshInterval, refreshInterval);
+            Load();
         }
 
         public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression)
         {
-            return Cache.Select(x => x.Value)
+            return cache.Select(x => x.Value)
                    .AsQueryable()
                    .Where(filterExpression);
         }
 
         public void Add(int key, TEntity entity)
         {
-            Cache.Add(key, entity);
+            cache.Add(key, entity);
         }
 
         public void Update(int key, TEntity entity)
         {
-            Cache[key] = entity;
+            cache[key] = entity;
         }
 
         public void Delete(int key, TEntity entity)
         {
-            TEntity cachedEntity = Cache[key];
+            TEntity cachedEntity = cache[key];
 
             if (cachedEntity != null)
             {
                 cachedEntity.IsDeleted = entity.IsDeleted;
                 cachedEntity.DeletedOn = entity.DeletedOn;
 
-                Cache[key] = cachedEntity;
+                cache[key] = cachedEntity;
             }
         }
 
         public void HardDelete(int key)
         {
-            Cache.Remove(key);
+            cache.Remove(key);
         }
 
         public abstract void Load();
+
+        public abstract void Refresh();
     }
 }
