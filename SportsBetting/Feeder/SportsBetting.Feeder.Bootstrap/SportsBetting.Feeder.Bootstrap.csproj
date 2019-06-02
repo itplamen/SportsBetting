@@ -47,10 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeederBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
+      <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
+      <Name>SportsBetting.IoCContainer.Packages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer\SportsBetting.IoCContainer.csproj">
+      <Project>{54135F4C-8A05-4018-8240-6E0CC17EDF91}</Project>
+      <Name>SportsBetting.IoCContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SportsBetting.Feeder.Core\SportsBetting.Feeder.Core.csproj">
+      <Project>{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA}</Project>
+      <Name>SportsBetting.Feeder.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

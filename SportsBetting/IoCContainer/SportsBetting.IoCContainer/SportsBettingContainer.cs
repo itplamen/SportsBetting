@@ -7,9 +7,12 @@
     {
         private readonly static Container container = new Container();
 
-        public static void Initialize(IPackage package)
+        public static void Initialize(IPackage[] packages)
         {
-            package.RegisterServices(container);
+            foreach (var package in packages)
+            {
+                package.RegisterServices(container);
+            }
 
             container.Verify();
         }

@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Bootstrap\SportsBetting.Feeder.Bootstrap.csproj">
+      <Project>{3D872455-42AE-43F5-9321-82D2EF483068}</Project>
+      <Name>SportsBetting.Feeder.Bootstrap</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
