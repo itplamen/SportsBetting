@@ -7,7 +7,10 @@
     using OpenQA.Selenium.Remote;
 
     using SportsBetting.Feeder.Core.Contracts;
+    using SportsBetting.Feeder.Core.Contracts.Managers;
+    using SportsBetting.Feeder.Models;
     using SportsBetting.Services.Feeder.Contracts.Factories;
+    using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
 
     public class PrematchSynchronizer : IPrematchSynchronizer
@@ -16,16 +19,19 @@
         private readonly IHtmlService htmlService;
         private readonly RemoteWebDriver webDriver;
         private readonly IWebPagesService webPagesService;
+        private readonly IMatchesProvider matchesProvider;
 
         public PrematchSynchronizer(
             IFeedManager feedManager, 
             IHtmlService htmlService, 
-            IWebPagesService webPagesService, 
+            IWebPagesService webPagesService,
+            IMatchesProvider matchesProvider,
             IWebDriverFactory webDriverFactory)
         {
             this.feedManager = feedManager;
             this.htmlService = htmlService;
             this.webPagesService = webPagesService;
+            this.matchesProvider = matchesProvider;
             this.webDriver = webDriverFactory.CreateWebDriver(7772);
         }
 
@@ -44,7 +50,9 @@
                 if (isLoaded)
                 {
                     HtmlNode matchContainer = htmlService.GetContainer(".//div[starts-with(@class,'Match__container')]", webDriver.PageSource);
-                    feedManager.Manage(matchContainer, url, false);
+                    MatchFeedModel feedModel = matchesProvider.Get(matchContainer, url, false);
+
+                    feedManager.Manage(feedModel);
                 }
             }
         }
