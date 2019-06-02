@@ -28,6 +28,7 @@
 
         private void RegisterCaches(Container container)
         {
+            container.Register(typeof(ICache<>), typeof(SportsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(CategoriesCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TournamentsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TeamsCache), Lifestyle.Singleton);
@@ -36,6 +37,7 @@
             container.Register(typeof(ICache<>), typeof(OddsCache), Lifestyle.Singleton);
 
             container.Collection.Register<ICacheInitializer>(
+                typeof(SportsCache),
                 typeof(CategoriesCache), 
                 typeof(TournamentsCache),
                 typeof(TeamsCache),
