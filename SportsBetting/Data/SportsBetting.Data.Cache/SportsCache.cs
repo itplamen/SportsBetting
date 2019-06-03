@@ -30,10 +30,11 @@
 
         public override void Refresh()
         {
+            DateTime dateTime = DateTime.UtcNow.AddMilliseconds(-REFRESH_INTERVAL);
             IEnumerable<Sport> sports = sportsRepository.Load(x =>
                 !x.IsDeleted &&
                 x.ModifiedOn.HasValue &&
-                x.ModifiedOn.Value.AddMilliseconds(REFRESH_INTERVAL) >= DateTime.UtcNow);
+                x.ModifiedOn.Value >= dateTime);
 
             foreach (var sport in sports)
             {

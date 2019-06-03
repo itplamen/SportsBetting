@@ -21,7 +21,8 @@
 
         public override void Load()
         {
-            IEnumerable<Market> markets = marketsRepository.Load(x => !x.IsDeleted && x.CreatedOn.AddDays(7) >= DateTime.UtcNow);
+            DateTime dateTime = DateTime.UtcNow.AddDays(-7);
+            IEnumerable<Market> markets = marketsRepository.Load(x => !x.IsDeleted && x.CreatedOn >= dateTime);
 
             foreach (var market in markets)
             {
@@ -31,10 +32,11 @@
 
         public override void Refresh()
         {
+            DateTime dateTime = DateTime.UtcNow.AddMilliseconds(-REFRESH_INTERVAL);
             IEnumerable<Market> markets = marketsRepository.Load(x =>
                 !x.IsDeleted &&
                 x.ModifiedOn.HasValue &&
-                x.ModifiedOn.Value.AddMilliseconds(REFRESH_INTERVAL) >= DateTime.UtcNow);
+                x.ModifiedOn.Value >= dateTime);
 
             foreach (var market in markets)
             {
