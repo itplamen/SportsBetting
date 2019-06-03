@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Services.Feeder.Factories
 {
-    using System;
-
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Remote;
 
@@ -9,13 +7,12 @@
 
     public class WebDriverFactory : IWebDriverFactory
     {
-        private static readonly string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string ResourcesDirectory = $"{BaseDirectory}/Resources";
+        private const string DRIVER_PATH = "D:/Resources";
 
         public RemoteWebDriver CreateWebDriver(int port)
         {
             ChromeOptions options = GetOptions(port);
-            RemoteWebDriver webDriver = new ChromeDriver(ResourcesDirectory, options);
+            RemoteWebDriver webDriver = new ChromeDriver(DRIVER_PATH, options);
 
             return webDriver;
         }
