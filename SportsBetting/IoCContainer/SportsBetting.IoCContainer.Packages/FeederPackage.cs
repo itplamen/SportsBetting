@@ -3,6 +3,8 @@
     using SimpleInjector;
     using SimpleInjector.Packaging;
 
+    using SportsBetting.Feeder.Core;
+    using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Core.Managers;
@@ -27,6 +29,7 @@
             RegisterFactories(container);
             RegisterFeederServices(container);
             RegisterProviders(container);
+            RegisterSynchronizers(container);
         }
 
         private void RegisterMappers(Container container)
@@ -69,6 +72,11 @@
             container.RegisterDecorator<IOddsProvider, ThreeWayOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, TotalLineOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, TwoWayOddsProvider>(Lifestyle.Singleton);
+        }
+
+        private void RegisterSynchronizers(Container container)
+        {
+            container.Register<IPrematchSynchronizer, PrematchSynchronizer>(Lifestyle.Singleton);
         }
     }
 }
