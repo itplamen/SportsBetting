@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     using SimpleInjector.Packaging;
-
+    using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.IoCContainer;
@@ -23,6 +23,7 @@
         public FeederBootstrapper()
         {
             InitializeDependencies();
+            InitializeDb();
             InitializeCaches();
             token = source.Token;
             prematchSynchronizer = SportsBettingContainer.Resolve<IPrematchSynchronizer>();
@@ -44,11 +45,18 @@
         {
             IPackage[] packages = new IPackage[]
             {
+                new DataPackage(),
                 new DataCachePackage(),
                 new FeederPackage()
             };
 
             SportsBettingContainer.Initialize(packages);
+        }
+
+        private void InitializeDb()
+        {
+            IAplicationInitializer aplicationInitializer = SportsBettingContainer.Resolve<IAplicationInitializer>();
+            aplicationInitializer.Init();
         }
 
         private void InitializeCaches()

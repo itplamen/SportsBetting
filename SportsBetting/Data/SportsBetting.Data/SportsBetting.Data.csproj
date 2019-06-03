@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ISportsBettingDbContext.cs" />
-    <Compile Include="Initialize\DbConfig.cs" />
+    <Compile Include="Initialize\DbInitializer.cs" />
     <Compile Include="Initialize\SeedData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SportsBettingDbContext.cs" />
@@ -71,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
+      <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
+      <Name>SportsBetting.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
