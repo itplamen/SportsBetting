@@ -18,7 +18,7 @@
 
         int GetTwoWayOddsCount(HtmlNode marketNode);
 
-        int GetThreeWayOddsCount(HtmlNode marketNode);
+        int GetOddsCount(HtmlNode marketNode);
 
         OddResultFeedStatus GetOddResultStatus(HtmlNode oddNode);
 

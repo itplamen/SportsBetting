@@ -16,7 +16,7 @@
 
         public IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match)
         {
-            HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAME);
+            HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAMES);
 
             if (oddNodes != null)
             {
@@ -77,11 +77,12 @@
 
                 if (marketContainer != null && marketContainer.ChildNodes.Any())
                 {
-                    IEnumerable<HtmlNode> oddNodes = marketContainer.SelectNodes(OddXPaths.TWO_WAY_COUNT);
+
+                    IEnumerable<HtmlNode> oddNodes = marketContainer.SelectNodes(OddXPaths.NODE);
 
                     if (oddNodes != null)
                     {
-                        return oddNodes.SelectMany(x => x.ChildNodes).Count();
+                        return oddNodes.Count();
                     }
                 }
             }
@@ -93,7 +94,7 @@
             return 0;
         }
 
-        public int GetThreeWayOddsCount(HtmlNode marketNode)
+        public int GetOddsCount(HtmlNode marketNode)
         {
             try
             {
@@ -101,12 +102,7 @@
 
                 if (marketContainer != null && marketContainer.ChildNodes.Any())
                 {
-                    HtmlNode oddsContainer = marketContainer.SelectSingleNode(ContainerXPaths.THREE_WAY_ODDS);
-
-                    if (oddsContainer != null && oddsContainer.ChildNodes.Any())
-                    {
-                        return oddsContainer.ChildNodes.Count;
-                    }
+                    return marketContainer.ChildNodes.Count;
                 }
             }
             catch (Exception ex)
@@ -119,16 +115,19 @@
 
         public OddResultFeedStatus GetOddResultStatus(HtmlNode oddNode)
         {
-            string oddClass = oddNode.GetAttributeValue("class", string.Empty);
+            HtmlNode resultedNode = oddNode.SelectSingleNode(OddXPaths.RESULTED_STATUS);
 
-            if (IsWin(oddClass))
+            if (resultedNode != null)
             {
-                return OddResultFeedStatus.Win;
-            }
+                if (resultedNode.InnerText.ToLower() == "loss")
+                {
+                    return OddResultFeedStatus.Loss;
+                }
 
-            if (IsLoss(oddClass))
-            {
-                return OddResultFeedStatus.Loss;
+                if (resultedNode.InnerText.ToLower() == "win")
+                {
+                    return OddResultFeedStatus.Win;
+                }
             }
 
             return OddResultFeedStatus.NotResulted;
@@ -147,20 +146,6 @@
             bool isSuspended = OddXPaths.SUSPENDED.Any(x => oddNode.GetAttributeValue("class", string.Empty).Contains(x));
 
             return isDeactivated && isSuspended;
-        }
-
-        private bool IsWin(string oddClass)
-        {
-            return oddClass.Contains(OddXPaths.WIN_STATUS) ||
-                oddClass.Contains(OddXPaths.HANDICAP_WIN_STATUS) ||
-                oddClass.Contains(OddXPaths.CORRECT_SCORE_WIN_STATUS);
-        }
-
-        private bool IsLoss(string oddClass)
-        {
-            return oddClass.Contains(OddXPaths.LOSS_STATUS) ||
-                oddClass.Contains(OddXPaths.HANDICAP_LOSS_STATUS) ||
-                oddClass.Contains(OddXPaths.CORRECT_SCORE_LOSS_STATUS);
         }
     }
 }

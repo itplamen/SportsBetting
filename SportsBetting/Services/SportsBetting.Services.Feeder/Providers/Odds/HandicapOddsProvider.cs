@@ -48,7 +48,7 @@
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)
         {
-            int oddsCount = htmlService.GetTwoWayOddsCount(marketNode);
+            int oddsCount = htmlService.GetOddsCount(marketNode);
             bool isOddsCountValid = oddNames.Count == ODDS_COUNT && oddsCount == ODDS_COUNT;
 
             return isOddsCountValid && marketNode.FirstChild.FirstChild.InnerText.ToLower().Contains("handicap");
@@ -56,7 +56,7 @@
 
         protected override bool IsSuspended(HtmlNode oddNode)
         {
-            HtmlNode selectedOdd = oddNode.SelectSingleNode(OddXPaths.HANDICAP_ROW);
+            HtmlNode selectedOdd = oddNode.SelectSingleNode(OddXPaths.HANDICAP_NODE);
 
             if (selectedOdd != null)
             {

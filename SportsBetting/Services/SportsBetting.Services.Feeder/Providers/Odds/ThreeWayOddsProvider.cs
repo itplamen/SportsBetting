@@ -46,7 +46,7 @@
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)
         {
-            int oddsCount = htmlService.GetThreeWayOddsCount(marketNode);
+            int oddsCount = htmlService.GetOddsCount(marketNode);
             bool isOddsCountValid = oddNames.Count == ODDS_COUNT && oddsCount == ODDS_COUNT;
 
             return isOddsCountValid && !htmlService.HasHeader(marketNode);

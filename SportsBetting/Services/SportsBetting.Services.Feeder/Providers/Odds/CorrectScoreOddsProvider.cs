@@ -1,7 +1,6 @@
 ﻿namespace SportsBetting.Services.Feeder.Providers.Odds
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using HtmlAgilityPack;
 
@@ -30,7 +29,7 @@
         {
             if (ShouldGet(marketNode, oddNames))
             {
-                HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.TWO_WAY_COUNT);
+                HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NODE);
 
                 if (oddNodes != null)
                 {
@@ -71,16 +70,15 @@
         private IEnumerable<OddFeedModel> GetFourColumnOdds(HtmlNode marketNode, int marketId)
         {
             ICollection<OddFeedModel> odds = new List<OddFeedModel>();
-            List<string> columnXPaths = OddXPaths.CORRECT_SCORE_COLUMNS.ToList();
+            HtmlNodeCollection oddNodesCollection = marketNode.SelectNodes(OddXPaths.CORRECT_SCORE_NODE);
 
-            for (int i = 0; i < columnXPaths.Count; i++)
+            for (int i = 0; i < oddNodesCollection.Count; i++)
             {
                 int rank = i;
-                IList<HtmlNode> oddNodes = GetNodes(marketNode, columnXPaths[i]);
 
-                if (oddNodes != null)
+                if (oddNodesCollection[i].ChildNodes != null)
                 {
-                    foreach (var oddNode in oddNodes)
+                    foreach (var oddNode in oddNodesCollection[i].ChildNodes)
                     {
                         string header = oddNode.FirstChild.InnerText;
                         OddFeedModel odd = BuildOdd(oddNode, header, rank, marketId, header);
@@ -93,18 +91,6 @@
             }
 
             return odds;
-        }
-
-        private IList<HtmlNode> GetNodes(HtmlNode marketNode, string xpath)
-        {
-            HtmlNodeCollection oddValuesNodes = marketNode.SelectNodes(xpath);
-
-            if (oddValuesNodes != null)
-            {
-                return oddValuesNodes.First().SelectNodes(OddXPaths.CORRECT_SCORE_VALUE);
-            }
-
-            return marketNode.SelectNodes(OddXPaths.TWO_WAY_COUNT);
         }
     }
 }
