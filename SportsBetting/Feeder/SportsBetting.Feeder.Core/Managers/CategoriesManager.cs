@@ -1,49 +1,35 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
+    using SportsBetting.Services.Data.Contracts;
 
     public class CategoriesManager : ICategoriesManager
     {
         private readonly IRepository<Sport> sportsRepository;
-        private readonly IRepository<Category> categoriesRepository;
+        private readonly ICategoriesService categoriesService;
 
-        public CategoriesManager(IRepository<Sport> sportsRepository, IRepository<Category> categoriesRepository)
+        public CategoriesManager(IRepository<Sport> sportsRepository, ICategoriesService categoriesService)
         {
             this.sportsRepository = sportsRepository;
-            this.categoriesRepository = categoriesRepository;
+            this.categoriesService = categoriesService;
         }
 
         public string Manage(string name)
         {
-            Category category = categoriesRepository.All(x => x.Name == name).FirstOrDefault();
+            Category category = categoriesService.Get(name);
 
-            if (category == null)
+            if (category != null)
             {
-                Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
-
-                return Add(name, sport.Id);
+                return category.Id;
             }
 
-            return category.Id;
-        }
+            Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
 
-        private string Add(string name, string sportId)
-        {
-            Category category = new Category()
-            {
-                Key = Math.Abs(name.GetHashCode()),
-                Name = name,
-                SportId = sportId
-            };
-
-            categoriesRepository.Add(category);
-
-            return category.Id;
+            return categoriesService.Add(name, sport.Id);
         }
     }
 }

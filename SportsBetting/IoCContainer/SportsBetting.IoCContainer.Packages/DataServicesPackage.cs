@@ -2,6 +2,7 @@
 {
     using SimpleInjector;
     using SimpleInjector.Packaging;
+
     using SportsBetting.Services.Data;
     using SportsBetting.Services.Data.Contracts;
 
@@ -9,6 +10,7 @@
     {
         public void RegisterServices(Container container)
         {
+            container.Register<ICategoriesService, CategoriesService>(Lifestyle.Singleton);
             container.Register<IMatchesService, MatchesService>(Lifestyle.Singleton);
         }
     }
