@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using SimpleInjector.Packaging;
+
     using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
@@ -47,7 +48,8 @@
             {
                 new DataPackage(),
                 new DataCachePackage(),
-                new FeederPackage()
+                new FeederPackage(),
+                new DataServicesPackage()
             };
 
             SportsBettingContainer.Initialize(packages);

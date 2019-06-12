@@ -1,59 +1,35 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Linq;
-
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Services.Data.Contracts;
 
     public class MatchesManager : IMatchesManager
     {
-        private readonly IRepository<Match> matchesRepository;
+        private readonly IMatchesService matchesService;
         private readonly IMapper<MatchFeedModel, Match> matchesMapper;
 
-        public MatchesManager(IRepository<Match> matchesRepository, IMapper<MatchFeedModel, Match> matchesMapper)
+        public MatchesManager(IMatchesService matchesService, IMapper<MatchFeedModel, Match> matchesMapper)
         {
-            this.matchesRepository = matchesRepository;
+            this.matchesService = matchesService;
             this.matchesMapper = matchesMapper;
         }
 
         public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
         {
-            Match match = matchesRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
+            Match match = matchesService.Get(feedModel.Id);
             Match mappedMatch = matchesMapper.Map(feedModel);
 
-            if (match == null)
+            if (match != null)
             {
-                return Add(mappedMatch, categoryId, tournamentId, homeTeamId, awayTeamId);
+                matchesService.Update(match.Id, mappedMatch);
+
+                return match.Id;
             }
 
-            return Update(mappedMatch);
-        }
-
-        private string Add(Match match, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
-        {
-            match.CategoryId = categoryId;
-            match.TournamentId = tournamentId;
-            match.HomeTeamId = homeTeamId;
-            match.AwayTeamId = awayTeamId;
-
-            matchesRepository.Add(match);
-
-            return match.Id;
-        }
-
-        private string Update(Match match)
-        {
-            Match matchToUpdate = matchesRepository.All(x => x.Key == match.Key).FirstOrDefault();
-            matchToUpdate.StartTime = match.StartTime;
-            matchToUpdate.Score = match.Score;
-            match.Status = match.Status;
-
-            matchesRepository.Update(matchToUpdate);
-
-            return matchToUpdate.Id;
+            return matchesService.Add(mappedMatch, categoryId, tournamentId, homeTeamId, awayTeamId);
         }
     }
 }

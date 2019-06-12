@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataCachePackage.cs" />
     <Compile Include="DataPackage.cs" />
+    <Compile Include="DataServicesPackage.cs" />
     <Compile Include="FeederPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Core\SportsBetting.Feeder.Core.csproj">
       <Project>{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA}</Project>
       <Name>SportsBetting.Feeder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\SportsBetting.Services.Data\SportsBetting.Services.Data.csproj">
+      <Project>{495B608A-69DF-4AAC-A63A-AB2E57B2635C}</Project>
+      <Name>SportsBetting.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Feeder\SportsBetting.Services.Feeder.csproj">
       <Project>{C214AFA0-8068-4A89-A194-88D9C3B4F1D8}</Project>
