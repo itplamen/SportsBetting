@@ -47,11 +47,13 @@
     <Compile Include="Contracts\IMatchesService.cs" />
     <Compile Include="Contracts\IOddsService.cs" />
     <Compile Include="Contracts\ITeamsService.cs" />
+    <Compile Include="Contracts\ITournamentsService.cs" />
     <Compile Include="MarketsService.cs" />
     <Compile Include="MatchesService.cs" />
     <Compile Include="OddsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamsService.cs" />
+    <Compile Include="TournamentsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">

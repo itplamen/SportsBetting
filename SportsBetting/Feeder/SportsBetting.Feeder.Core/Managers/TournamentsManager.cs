@@ -1,45 +1,29 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Linq;
-
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Services.Data.Contracts;
 
     public class TournamentsManager : ITournamentsManager
     {
-        private readonly IRepository<Tournament> tournamentsRepository;
+        private readonly ITournamentsService tournamentsService;
 
-        public TournamentsManager(IRepository<Tournament> tournamentsRepository)
+        public TournamentsManager(ITournamentsService tournamentsService)
         {
-            this.tournamentsRepository = tournamentsRepository;
+            this.tournamentsService = tournamentsService;
         }
 
         public string Manage(TournamentFeedModel feedModel, string categoryId)
         {
-            Tournament tournament = tournamentsRepository.All(x => x.Name == feedModel.Name && x.CategoryId == categoryId).FirstOrDefault();
+            Tournament tournament = tournamentsService.Get(feedModel.Name, categoryId);
 
-            if (tournament == null)
+            if (tournament != null)
             {
-                return Add(feedModel, categoryId);
+                return tournament.Id;
             }
 
-            return tournament.Id;
-        }
-
-        private string Add(TournamentFeedModel feedModel, string categoryId)
-        {
-            Tournament tournament = new Tournament()
-            {
-                Key = feedModel.Id,
-                Name = feedModel.Name,
-                CategoryId = categoryId
-            };
-
-            tournamentsRepository.Add(tournament);
-
-            return tournament.Id;
-        }
+            return tournamentsService.Add(feedModel.Id, feedModel.Name, categoryId);
+        }       
     }
 }
