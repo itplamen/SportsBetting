@@ -13,6 +13,7 @@
             container.Register<ICategoriesService, CategoriesService>(Lifestyle.Singleton);
             container.Register<IMatchesService, MatchesService>(Lifestyle.Singleton);
             container.Register<IMarketsService, MarketsService>(Lifestyle.Singleton);
+            container.Register<IOddsService, OddsService>(Lifestyle.Singleton);
         }
     }
 }

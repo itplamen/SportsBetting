@@ -1,22 +1,21 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
     using System.Collections.Generic;
-    using System.Linq;
 
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Services.Data.Contracts;
 
     public class OddsManager : IOddsManager
     {
-        private readonly IRepository<Odd> oddsRepository;
+        private readonly IOddsService oddsService;
         private readonly IMapper<OddFeedModel, Odd> oddsMapper;
 
-        public OddsManager(IRepository<Odd> oddsRepository, IMapper<OddFeedModel, Odd> oddsMapper)
+        public OddsManager(IOddsService oddsService, IMapper<OddFeedModel, Odd> oddsMapper)
         {
-            this.oddsRepository = oddsRepository;
+            this.oddsService = oddsService;
             this.oddsMapper = oddsMapper;
         }
 
@@ -24,37 +23,18 @@
         {
             foreach (var feedModel in feedModels)
             {
-                Odd odd = oddsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
+                Odd odd = oddsService.Get(feedModel.Id);
                 Odd mappedOdd = oddsMapper.Map(feedModel);
 
-                if (odd == null)
+                if (odd != null)
                 {
-                    Add(mappedOdd, marketId, matchId);
+                    oddsService.Update(odd.Id, mappedOdd);
                 }
                 else
                 {
-                    Update(mappedOdd);
+                    oddsService.Add(mappedOdd, marketId, matchId);   
                 }
             }
-        }
-
-        private void Add(Odd odd, string marketId, string matchId)
-        {
-            odd.MarketId = marketId;
-            odd.MatchId = matchId;
-
-            oddsRepository.Add(odd);
-        }
-
-        private void Update(Odd odd)
-        {
-            Odd oddToUpdate = oddsRepository.All(x => x.Key == odd.Key).FirstOrDefault();
-            oddToUpdate.Value = odd.Value;
-            oddToUpdate.IsActive = true;
-            oddToUpdate.IsSuspended = odd.IsSuspended;
-            oddToUpdate.ResultStatus = odd.ResultStatus;
-
-            oddsRepository.Update(oddToUpdate);
         }
     }
 }
