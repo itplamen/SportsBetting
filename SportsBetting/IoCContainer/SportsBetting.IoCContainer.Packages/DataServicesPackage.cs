@@ -14,6 +14,7 @@
             container.Register<IMatchesService, MatchesService>(Lifestyle.Singleton);
             container.Register<IMarketsService, MarketsService>(Lifestyle.Singleton);
             container.Register<IOddsService, OddsService>(Lifestyle.Singleton);
+            container.Register<ITeamsService, TeamsService>(Lifestyle.Singleton);
         }
     }
 }

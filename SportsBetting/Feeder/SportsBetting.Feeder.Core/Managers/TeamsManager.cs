@@ -6,44 +6,31 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Services.Data.Contracts;
 
     public class TeamsManager : ITeamsManager
     {
-        private readonly IRepository<Team> teamsRepository;
+        private readonly ITeamsService teamsService;
         private readonly IRepository<Sport> sportsRepository;
 
-        public TeamsManager(IRepository<Team> teamsRepository, IRepository<Sport> sportsRepository)
+        public TeamsManager(ITeamsService teamsService, IRepository<Sport> sportsRepository)
         {
-            this.teamsRepository = teamsRepository;
+            this.teamsService = teamsService;
             this.sportsRepository = sportsRepository;
         }
 
         public string Manage(TeamFeedModel feedModel)
         {
-            Team team = teamsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
+            Team team = teamsService.Get(feedModel.Id);
 
-            if (team == null)
+            if (team != null)
             {
-                Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
-
-                return Add(feedModel, sport.Id);
+                return team.Id;
             }
 
-            return team.Id;
-        }
+            Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
 
-        private string Add(TeamFeedModel feedModel, string sportId)
-        {
-            Team team = new Team()
-            {
-                Key = feedModel.Id,
-                Name = feedModel.Name,
-                SportId = sportId
-            };
-
-            teamsRepository.Add(team);
-
-            return team.Id;
+            return teamsService.Add(feedModel.Id, feedModel.Name, sport.Id);
         }
     }
 }
