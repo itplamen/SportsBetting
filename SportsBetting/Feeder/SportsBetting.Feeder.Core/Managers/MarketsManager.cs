@@ -1,45 +1,29 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Linq;
-
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Services.Data.Contracts;
 
     public class MarketsManager : IMarketsManager
     {
-        private readonly IRepository<Market> marketsRepository;
+        private readonly IMarketsService marketsService;
 
-        public MarketsManager(IRepository<Market> marketsRepository)
+        public MarketsManager(IMarketsService marketsService)
         {
-            this.marketsRepository = marketsRepository;
+            this.marketsService = marketsService;
         }
 
         public string Manage(MarketFeedModel feedModel, string matchId)
         {
-            Market market = marketsRepository.All(x => x.Key == feedModel.Id).FirstOrDefault();
+            Market market = marketsService.Get(feedModel.Id);
 
-            if (market == null)
+            if (market != null)
             {
-                return Add(feedModel, matchId);
+                return market.Id;
             }
 
-            return market.Id;
-        }
-
-        private string Add(MarketFeedModel feedModel, string matchId)
-        {
-            Market market = new Market()
-            {
-                Key = feedModel.Id,
-                Name = feedModel.Name,
-                MatchId = matchId
-            };
-
-            marketsRepository.Add(market);
-
-            return market.Id;
+            return marketsService.Add(feedModel.Id, feedModel.Name, matchId);
         }
     }
 }

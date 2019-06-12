@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="CategoriesService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
+    <Compile Include="Contracts\IMarketsService.cs" />
     <Compile Include="Contracts\IMatchesService.cs" />
+    <Compile Include="MarketsService.cs" />
     <Compile Include="MatchesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
