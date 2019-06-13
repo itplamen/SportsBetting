@@ -79,6 +79,7 @@
     <Compile Include="DataServicesPackage.cs" />
     <Compile Include="FeederPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\DataPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
