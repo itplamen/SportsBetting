@@ -21,6 +21,7 @@
 
         public void Init()
         {
+            InitCollection<Account>();
             InitCollection<Category>();
             InitCollection<Tournament>();
             InitCollection<Team>();

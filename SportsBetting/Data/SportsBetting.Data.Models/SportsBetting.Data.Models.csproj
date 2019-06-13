@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccontRole.cs" />
+    <Compile Include="Account.cs" />
     <Compile Include="Base\BaseModel.cs" />
     <Compile Include="Base\IAuditInfo.cs" />
     <Compile Include="Base\IDeletableEntity.cs" />
