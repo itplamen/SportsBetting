@@ -138,6 +138,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,10 @@
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
+      <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
+      <Name>SportsBetting.IoCContainer.Packages</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Data\SportsBetting.Services.Data.csproj">
       <Project>{495B608A-69DF-4AAC-A63A-AB2E57B2635C}</Project>
