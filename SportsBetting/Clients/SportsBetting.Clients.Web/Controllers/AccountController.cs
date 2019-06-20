@@ -18,6 +18,12 @@
             this.encryptionService = encryptionService;
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)

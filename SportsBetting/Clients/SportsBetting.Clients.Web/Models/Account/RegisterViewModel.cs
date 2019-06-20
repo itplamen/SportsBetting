@@ -26,6 +26,7 @@
 
         [Required(ErrorMessage = "Confirm your password")]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         [Compare(
             nameof(Password),
             ErrorMessage = "Passwords do not match")]
