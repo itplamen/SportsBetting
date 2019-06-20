@@ -1,6 +1,7 @@
 ﻿namespace SportsBetting.Clients.Web.Controllers
 {
     using System.Web.Mvc;
+    using System.Web.Security;
 
     using SportsBetting.Clients.Web.Models.Account;
     using SportsBetting.Data.Models;
@@ -16,6 +17,24 @@
         {
             this.accountsService = accountsService;
             this.encryptionService = encryptionService;
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                FormsAuthentication.SetAuthCookie(viewModel.Username, false);
+            }
+
+            return View(viewModel);
         }
 
         [HttpGet]
