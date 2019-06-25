@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Models;
-    using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Models;
 
     public class MatchesMapper : IMapper<MatchFeedModel, Match>

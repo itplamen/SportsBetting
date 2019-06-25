@@ -3,10 +3,10 @@
     using SimpleInjector;
     using SimpleInjector.Packaging;
 
+    using SportsBetting.Common.Contracts;
     using SportsBetting.Feeder.Core;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.Feeder.Core.Contracts.Managers;
-    using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Core.Managers;
     using SportsBetting.Feeder.Core.Mappers;
     using SportsBetting.Services.Feeder.Contracts.Factories;

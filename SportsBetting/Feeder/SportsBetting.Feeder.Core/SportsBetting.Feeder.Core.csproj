@@ -55,7 +55,6 @@
     <Compile Include="Contracts\Managers\IOddsManager.cs" />
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
     <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
-    <Compile Include="Contracts\Mappers\IMapper.cs" />
     <Compile Include="Contracts\IPrematchSynchronizer.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
     <Compile Include="Managers\FeedManager.cs" />
@@ -71,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
+      <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
+      <Name>SportsBetting.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">
       <Project>{9B990381-DFA6-4CBF-B4A4-2461DC0CCA2A}</Project>
       <Name>SportsBetting.Data.Common</Name>

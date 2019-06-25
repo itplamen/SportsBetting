@@ -1,8 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
-    using SportsBetting.Feeder.Core.Contracts.Mappers;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Services.Data.Contracts;
 
