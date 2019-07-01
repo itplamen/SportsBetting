@@ -1,11 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Bootstrap
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using SimpleInjector.Packaging;
 
     using SportsBetting.Common.Contracts;
@@ -16,30 +10,25 @@
 
     public class FeederBootstrapper
     {
-        private readonly static CancellationTokenSource source = new CancellationTokenSource();
-
-        private readonly CancellationToken token;
-        private readonly ISynchronizer prematchSynchronizer;
+        private readonly ISynchronizer synchronizer;
 
         public FeederBootstrapper()
         {
             InitializeDependencies();
             InitializeDb();
             InitializeCaches();
-            token = source.Token;
-            prematchSynchronizer = SportsBettingContainer.Resolve<ISynchronizer>();
+
+            synchronizer = SportsBettingContainer.Resolve<ISynchronizer>();
         }
 
         public void Start()
         {
-            List<Action> actions = GetActions().ToList();
-            actions.ForEach(async x => await Task.Run(x));
+            synchronizer.Sync();
         }
 
         public void Stop()
         {
-            source.Cancel();
-            prematchSynchronizer.Stop();
+            synchronizer.Stop();
         }
 
         private void InitializeDependencies()
@@ -65,22 +54,6 @@
         {
             ICacheInitializer cacheInitializer = SportsBettingContainer.Resolve<ICacheInitializer>();
             cacheInitializer.Init();
-        }
-
-        private IEnumerable<Action> GetActions()
-        {
-            return new List<Action>()
-            {
-                () => Synchronize(prematchSynchronizer)
-            };
-        }
-
-        private void Synchronize(ISynchronizer synchronizer)
-        {
-            while (!token.IsCancellationRequested)
-            {
-                synchronizer.Sync();
-            }
         }
     }
 }
