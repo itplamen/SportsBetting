@@ -1,6 +1,7 @@
 ﻿namespace SportsBetting.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
@@ -35,6 +36,13 @@
             Category category = categoriesRepository.All(x => x.Name == name).FirstOrDefault();
 
             return category;
+        }
+
+        public IEnumerable<Category> All()
+        {
+            IEnumerable<Category> categories = categoriesRepository.All(x => !x.IsDeleted);
+
+            return categories;
         }
     }
 }
