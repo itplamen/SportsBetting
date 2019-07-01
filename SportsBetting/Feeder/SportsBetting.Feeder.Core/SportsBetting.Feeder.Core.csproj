@@ -56,6 +56,7 @@
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
     <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
+    <Compile Include="LoggingSynchronizer.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="Managers\CategoriesManager.cs" />
     <Compile Include="Managers\MarketsManager.cs" />
