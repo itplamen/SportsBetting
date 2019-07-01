@@ -3,12 +3,11 @@
     using System.Collections.Generic;
 
     using SportsBetting.Clients.Web.Areas.Administration.Models.Categories;
-    using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Models;
 
-    public class CategoriesMapper : IMapper<Category, CategoryViewModel>
+    internal static class CategoriesMapper
     {
-        public CategoryViewModel Map(Category from)
+        internal static CategoryViewModel Map(Category from)
         {
             CategoryViewModel mapped = new CategoryViewModel()
             {
@@ -24,7 +23,7 @@
             return mapped;
         }
 
-        public IEnumerable<CategoryViewModel> Map(IEnumerable<Category> from)
+        internal static IEnumerable<CategoryViewModel> Map(IEnumerable<Category> from)
         {
             ICollection<CategoryViewModel> mapped = new List<CategoryViewModel>();
 
