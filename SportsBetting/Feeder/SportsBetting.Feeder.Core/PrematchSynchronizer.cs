@@ -13,7 +13,7 @@
     using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
 
-    public class PrematchSynchronizer : IPrematchSynchronizer
+    public class PrematchSynchronizer : ISynchronizer
     {
         private readonly IFeedManager feedManager;
         private readonly IHtmlService htmlService;

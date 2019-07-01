@@ -19,7 +19,7 @@
         private readonly static CancellationTokenSource source = new CancellationTokenSource();
 
         private readonly CancellationToken token;
-        private readonly IPrematchSynchronizer prematchSynchronizer;
+        private readonly ISynchronizer prematchSynchronizer;
 
         public FeederBootstrapper()
         {
@@ -27,7 +27,7 @@
             InitializeDb();
             InitializeCaches();
             token = source.Token;
-            prematchSynchronizer = SportsBettingContainer.Resolve<IPrematchSynchronizer>();
+            prematchSynchronizer = SportsBettingContainer.Resolve<ISynchronizer>();
         }
 
         public void Start()

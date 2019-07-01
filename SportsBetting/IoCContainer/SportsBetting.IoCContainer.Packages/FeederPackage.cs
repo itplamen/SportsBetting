@@ -76,7 +76,8 @@
 
         private void RegisterSynchronizers(Container container)
         {
-            container.Register<IPrematchSynchronizer, PrematchSynchronizer>(Lifestyle.Singleton);
+            container.Register<ISynchronizer, SynchronizerComposite>(Lifestyle.Singleton);
+            container.Collection.Append<ISynchronizer, PrematchSynchronizer>(Lifestyle.Singleton);
         }
     }
 }

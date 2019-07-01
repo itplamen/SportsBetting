@@ -55,7 +55,6 @@
     <Compile Include="Contracts\Managers\IOddsManager.cs" />
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
     <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
-    <Compile Include="Contracts\IPrematchSynchronizer.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="Managers\CategoriesManager.cs" />
@@ -68,6 +67,7 @@
     <Compile Include="Mappers\OddsMapper.cs" />
     <Compile Include="PrematchSynchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SynchronizerComposite.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
