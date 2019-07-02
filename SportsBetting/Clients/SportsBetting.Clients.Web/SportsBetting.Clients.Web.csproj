@@ -148,6 +148,7 @@
     <Compile Include="Areas\Administration\Controllers\TournamentsController.cs" />
     <Compile Include="Areas\Administration\Models\Base\BaseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Categories\CategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Teams\TeamViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Tournaments\TournamentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
