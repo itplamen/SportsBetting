@@ -1,0 +1,34 @@
+﻿@using SportsBetting.Clients.Web.Areas.Administration.Models.Tournaments
+
+@model IEnumerable<TournamentViewModel>
+@{
+    ViewBag.Title = "Tournaments";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Key</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Deleted On</th>
+            <th scope="col">Updated On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tournament in Model)
+        {
+            <tr>
+                <th scope="row">@tournament.Id</th>
+                <td>@tournament.Key</td>
+                <td>@tournament.Name</td>
+                <td>@tournament.CategoryId</td>
+                <td>@tournament.CreatedOn</td>
+                <td>@tournament.DeletedOn</td>
+                <td>@tournament.ModifiedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
