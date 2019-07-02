@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class CategoryViewModel
+    using SportsBetting.Clients.Web.Mapping;
+    using SportsBetting.Data.Models;
+
+    public class CategoryViewModel : IMapFrom<Category>
     {
         public string Id { get; set; }
 
@@ -16,6 +19,6 @@
 
         public string Name { get; set; }
 
-        public string Sport { get; set; }
+        public string SportId { get; set; }
     }
 }
