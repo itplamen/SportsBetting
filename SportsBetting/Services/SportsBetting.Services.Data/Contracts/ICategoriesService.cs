@@ -10,6 +10,6 @@
 
         Category Get(string name);
 
-        IEnumerable<Category> All();
+        IEnumerable<Category> AllWithDeleted();
     }
 }

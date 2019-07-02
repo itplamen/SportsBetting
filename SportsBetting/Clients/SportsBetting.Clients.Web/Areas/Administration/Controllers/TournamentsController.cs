@@ -20,7 +20,7 @@
 
         public ActionResult Index()
         {
-            IEnumerable<Tournament> tournaments = tournamentsService.All();
+            IEnumerable<Tournament> tournaments = tournamentsService.AllWithDeleted();
             IEnumerable<TournamentViewModel> tournamentViewModels = Mapper.Map<IEnumerable<TournamentViewModel>>(tournaments);
 
             return View(tournamentViewModels);

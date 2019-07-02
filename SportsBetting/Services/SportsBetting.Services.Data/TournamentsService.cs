@@ -37,9 +37,9 @@
             return tournament;
         }
 
-        public IEnumerable<Tournament> All()
+        public IEnumerable<Tournament> AllWithDeleted()
         {
-            IEnumerable<Tournament> tournaments = tournamentsRepository.All(x => !x.IsDeleted);
+            IEnumerable<Tournament> tournaments = tournamentsRepository.All(x => true);
 
             return tournaments;
         }

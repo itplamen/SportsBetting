@@ -37,9 +37,9 @@
             return team;
         }
 
-        public IEnumerable<Team> All()
+        public IEnumerable<Team> AllWithDeleted()
         {
-            IEnumerable<Team> teams = teamsRepository.All(x => !x.IsDeleted);
+            IEnumerable<Team> teams = teamsRepository.All(x => true);
 
             return teams;
         }

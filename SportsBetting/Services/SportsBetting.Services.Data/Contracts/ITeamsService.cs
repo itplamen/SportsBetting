@@ -10,6 +10,6 @@
 
         Team Get(int key);
 
-        IEnumerable<Team> All();
+        IEnumerable<Team> AllWithDeleted();
     }
 }

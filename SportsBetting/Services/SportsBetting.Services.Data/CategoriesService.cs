@@ -38,9 +38,9 @@
             return category;
         }
 
-        public IEnumerable<Category> All()
+        public IEnumerable<Category> AllWithDeleted()
         {
-            IEnumerable<Category> categories = categoriesRepository.All(x => !x.IsDeleted);
+            IEnumerable<Category> categories = categoriesRepository.All(x => true);
 
             return categories;
         }

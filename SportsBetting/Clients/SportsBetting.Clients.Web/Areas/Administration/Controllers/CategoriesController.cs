@@ -20,7 +20,7 @@
 
         public ActionResult Index()
         {
-            IEnumerable<Category> categories = categoriesService.All();
+            IEnumerable<Category> categories = categoriesService.AllWithDeleted();
             IEnumerable<CategoryViewModel> categoryViewModels = Mapper.Map<IEnumerable<CategoryViewModel>>(categories);
 
             return View(categoryViewModels);

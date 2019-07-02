@@ -20,7 +20,7 @@
 
         public ActionResult Index()
         {
-            IEnumerable<Team> teams = teamsService.All();
+            IEnumerable<Team> teams = teamsService.AllWithDeleted();
             IEnumerable<TeamViewModel> teamViewModels = Mapper.Map<IEnumerable<TeamViewModel>>(teams);
 
             return View(teamViewModels);
