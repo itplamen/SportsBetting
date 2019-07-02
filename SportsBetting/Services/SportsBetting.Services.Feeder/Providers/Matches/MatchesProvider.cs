@@ -33,7 +33,7 @@
             this.tournametsProvider = tournametsProvider;
         }
 
-        public MatchFeedModel Get(HtmlNode matchContainer, string url, bool isLive)
+        public MatchFeedModel Get(HtmlNode matchContainer)
         {
             HtmlNode matchInfo = matchContainer?.SelectSingleNode(MatchXPaths.HEADER_INFO_BOX);
             MatchFeedStatus status = GetStatus(matchInfo);
@@ -42,7 +42,7 @@
             IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
             TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
 
-            MatchFeedModel match = objectFactory.CreateMatch(url, isLive, startTime, status, teams.First(), teams.Last(), tournament);
+            MatchFeedModel match = objectFactory.CreateMatch(startTime, status, teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);
 
             return match;

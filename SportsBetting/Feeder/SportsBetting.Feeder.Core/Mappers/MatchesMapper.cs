@@ -15,7 +15,6 @@
             {
                 Key = from.Id,
                 StartTime = from.StartTime,
-                Type = MapType(from.IsLive),
                 Status = MapStatus(from.Status),
                 Score = MapScore(from.HomeTeam, from.AwayTeam),
             };
@@ -33,16 +32,6 @@
             }
 
             return matches;
-        }
-
-        private MatchType MapType(bool isLive)
-        {
-            if (isLive)
-            {
-                return MatchType.Live;
-            }
-
-            return MatchType.Prematch;
         }
 
         private MatchStatus MapStatus(MatchFeedStatus feedStatus)

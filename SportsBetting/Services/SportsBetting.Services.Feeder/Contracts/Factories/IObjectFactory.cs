@@ -8,7 +8,7 @@
     {
         MarketFeedModel CreateMarket(string name, int matchId);
 
-        MatchFeedModel CreateMatch(string url, bool isLive, DateTime startTime, MatchFeedStatus status, TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament);
+        MatchFeedModel CreateMatch(DateTime startTime, MatchFeedStatus status, TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament);
 
         OddFeedModel CreateOdd(string name, decimal value, bool isSuspended, OddResultFeedStatus resultStatus, int rank, int matketId, string header = null);
 

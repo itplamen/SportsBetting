@@ -8,8 +8,6 @@
     {
         public DateTime StartTime { get; set; }
 
-        public MatchType Type { get; set; }
-
         public MatchStatus Status { get; set; }
 
         public string Score { get; set; }

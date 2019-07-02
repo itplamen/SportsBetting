@@ -10,9 +10,9 @@
     {
         IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match);
 
-        IEnumerable<string> GetMatchUrls(HtmlNode bettingContainer, string xpath);
+        IEnumerable<string> GetMatchUrls(string xpath, string pageSource);
 
-        HtmlNode GetContainer(string xpath, string pageSource);
+        HtmlNode GetMatchContainer(string xpath, string pageSource);
 
         HtmlNode GetMarketContainer(HtmlNode marketNode);
 

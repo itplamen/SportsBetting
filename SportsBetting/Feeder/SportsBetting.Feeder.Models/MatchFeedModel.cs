@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using SportsBetting.Feeder.Models.Base;
 
@@ -12,10 +11,6 @@
         {
             Markets = new List<MarketFeedModel>();
         }
-
-        public string Url { get; set; }
-
-        public bool IsLive { get; set; }
 
         public TeamFeedModel HomeTeam { get; set; }
 
@@ -31,17 +26,9 @@
 
         protected override int GenerateId()
         {
-            if (!string.IsNullOrWhiteSpace(Url))
-            {
-                string[] splittedUrl = Url.Split(':');
+            int id = Tournament.Id.GetHashCode() ^ HomeTeam.Id.GetHashCode() ^ AwayTeam.Id.GetHashCode();
 
-                if (splittedUrl.Any())
-                {
-                    return int.Parse(splittedUrl.Last());
-                }
-            }
-
-            return 0;
+            return Math.Abs(id);
         }
     }
 }

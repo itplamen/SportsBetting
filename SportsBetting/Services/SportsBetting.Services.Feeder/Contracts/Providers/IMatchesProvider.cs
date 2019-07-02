@@ -6,6 +6,6 @@
 
     public interface IMatchesProvider
     {
-        MatchFeedModel Get(HtmlNode matchContainer, string url, bool isLive);
+        MatchFeedModel Get(HtmlNode matchContainer);
     }
 }

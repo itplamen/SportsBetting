@@ -40,8 +40,7 @@
             webPagesService.Load(webDriver, "https://gg.bet/en/betting", "ScrollToTop__container___37xDi");
             webPagesService.ScrollToBottom(webDriver);
 
-            HtmlNode bettingContainer = htmlService.GetContainer(".//main[@id='betting__container']", webDriver.PageSource);
-            IEnumerable<string> urls = htmlService.GetMatchUrls(bettingContainer, ".//a[starts-with(@href,'/en/betting/match/0:')]");
+            IEnumerable<string> urls = htmlService.GetMatchUrls(".//div[contains(@class, 'sportEventRow__body___3Ywcg')]", webDriver.PageSource);
 
             foreach (var url in urls)
             {
@@ -49,8 +48,8 @@
 
                 if (isLoaded)
                 {
-                    HtmlNode matchContainer = htmlService.GetContainer(".//div[starts-with(@class,'Match__container')]", webDriver.PageSource);
-                    MatchFeedModel feedModel = matchesProvider.Get(matchContainer, url, false);
+                    HtmlNode matchContainer = htmlService.GetMatchContainer(".//div[starts-with(@class,'Match__container')]", webDriver.PageSource);
+                    MatchFeedModel feedModel = matchesProvider.Get(matchContainer);
 
                     feedManager.Manage(feedModel);
                 }

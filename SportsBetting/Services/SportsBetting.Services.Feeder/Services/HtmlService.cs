@@ -30,28 +30,18 @@
             };
         }
 
-        public IEnumerable<string> GetMatchUrls(HtmlNode bettingContainer, string xpath)
+        public IEnumerable<string> GetMatchUrls(string xpath, string pageSource)
         {
-            HtmlNodeCollection hrefNodes = bettingContainer.SelectNodes(xpath);
+            HtmlDocument document = LoadHtml(pageSource);
+            IEnumerable<HtmlNode> htmlNodes = document.DocumentNode.SelectNodes(xpath);
+            IEnumerable<string> urls = GetUrls(pageSource, "//a[starts-with(@href,'/en/betting/match/5:')]", htmlNodes);
 
-            if (hrefNodes != null)
-            {
-                IEnumerable<string> urls = hrefNodes
-                    .Select(x => x.GetAttributeValue("href", "noLink"))
-                    .Select(x => $"{BASE_URL}{x}")
-                    .Distinct();
-
-                return urls;
-            }
-
-            return Enumerable.Empty<string>();
+            return urls;            
         }
 
-        public HtmlNode GetContainer(string xpath, string pageSource)
+        public HtmlNode GetMatchContainer(string xpath, string pageSource)
         {
-            HtmlDocument document = new HtmlDocument();
-            document.LoadHtml(pageSource);
-
+            HtmlDocument document = LoadHtml(pageSource);
             HtmlNode container = document.DocumentNode.SelectSingleNode(xpath);
 
             return container;
@@ -146,6 +136,39 @@
             bool isSuspended = OddXPaths.SUSPENDED.Any(x => oddNode.GetAttributeValue("class", string.Empty).Contains(x));
 
             return isDeactivated && isSuspended;
+        }
+
+        private IEnumerable<string> GetUrls(string pageSource, string xpath, IEnumerable<HtmlNode> htmlNodes)
+        {
+            if (htmlNodes != null && htmlNodes.SelectMany(x => x.ChildNodes).Any())
+            {
+                IEnumerable<HtmlNode> nodes = htmlNodes.SelectMany(x => x.SelectNodes(xpath));
+
+                if (nodes != null)
+                {
+                    return SelectUrls(nodes);
+                }
+            }
+
+            return Enumerable.Empty<string>();
+        }
+
+        private IEnumerable<string> SelectUrls(IEnumerable<HtmlNode> htmlNodes)
+        {
+            IEnumerable<string> urls = htmlNodes
+                .Select(t => t.GetAttributeValue("href", "noLink"))
+                .Select(y => $"{BASE_URL}{y}")
+                .Distinct();
+
+            return urls;
+        }
+
+        private HtmlDocument LoadHtml(string pageSource)
+        {
+            HtmlDocument document = new HtmlDocument();
+            document.LoadHtml(pageSource);
+
+            return document;
         }
     }
 }

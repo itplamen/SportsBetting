@@ -17,8 +17,6 @@
         }
 
         public MatchFeedModel CreateMatch(
-            string url,
-            bool isLive,
             DateTime startTime,
             MatchFeedStatus status,
             TeamFeedModel homeTeam,
@@ -27,8 +25,6 @@
         {
             return new MatchFeedModel()
             {
-                Url = url,
-                IsLive = isLive,
                 StartTime = startTime,
                 Status = status,
                 HomeTeam = homeTeam,
