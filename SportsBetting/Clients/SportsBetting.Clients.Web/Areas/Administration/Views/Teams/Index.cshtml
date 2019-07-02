@@ -1,0 +1,34 @@
+﻿@using SportsBetting.Clients.Web.Areas.Administration.Models.Teams
+
+@model IEnumerable<TeamViewModel>
+@{
+    ViewBag.Title = "Teams";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Key</th>
+            <th scope="col">Name</th>
+            <th scope="col">Sport Id</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Deleted On</th>
+            <th scope="col">Updated On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <th scope="row">@team.Id</th>
+                <td>@team.Key</td>
+                <td>@team.Name</td>
+                <td>@team.SportId</td>
+                <td>@team.CreatedOn</td>
+                <td>@team.DeletedOn</td>
+                <td>@team.ModifiedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
