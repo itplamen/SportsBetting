@@ -146,7 +146,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Models\Categories\CategoryViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\Categories\TournamentViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Tournaments\TournamentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

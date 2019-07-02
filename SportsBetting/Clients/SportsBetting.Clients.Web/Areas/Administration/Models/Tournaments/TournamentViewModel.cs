@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Clients.Web.Areas.Administration.Models.Categories
+﻿namespace SportsBetting.Clients.Web.Areas.Administration.Models.Tournaments
 {
     using System;
 
