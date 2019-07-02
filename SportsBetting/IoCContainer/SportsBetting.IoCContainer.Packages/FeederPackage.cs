@@ -78,7 +78,7 @@
         {
             container.Register<ISynchronizer, SynchronizerComposite>(Lifestyle.Singleton);
             container.RegisterDecorator<ISynchronizer, LoggingSynchronizer>(Lifestyle.Singleton);
-            container.Collection.Append<ISynchronizer, PrematchSynchronizer>(Lifestyle.Singleton);
+            container.Collection.Append<ISynchronizer, FeedSynchronizer>(Lifestyle.Singleton);
         }
     }
 }
