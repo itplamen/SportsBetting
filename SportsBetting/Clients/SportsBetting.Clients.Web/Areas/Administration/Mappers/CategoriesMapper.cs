@@ -15,7 +15,6 @@
                 Key = from.Key,
                 CreatedOn = from.CreatedOn,
                 ModifiedOn = from.ModifiedOn,
-                IsDeleted = from.IsDeleted,
                 DeletedOn = from.DeletedOn,
                 Name = from.Name
             };
