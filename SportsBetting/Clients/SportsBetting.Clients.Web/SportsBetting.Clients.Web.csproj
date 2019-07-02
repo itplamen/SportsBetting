@@ -145,6 +145,7 @@
     <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TournamentsController.cs" />
     <Compile Include="Areas\Administration\Models\Base\BaseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Tournaments\TournamentViewModel.cs" />
