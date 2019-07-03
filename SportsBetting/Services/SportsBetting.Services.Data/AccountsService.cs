@@ -1,5 +1,6 @@
 ﻿namespace SportsBetting.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
@@ -34,6 +35,13 @@
             Account account = accountsRepository.All(x => x.Email == email).FirstOrDefault();
 
             return account;
+        }
+
+        public IEnumerable<Account> AllWithDeleted()
+        {
+            IEnumerable<Account> accounts = accountsRepository.All(x => true);
+
+            return accounts;
         }
     }
 }

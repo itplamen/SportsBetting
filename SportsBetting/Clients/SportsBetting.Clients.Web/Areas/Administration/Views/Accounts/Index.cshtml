@@ -1,0 +1,38 @@
+﻿@using SportsBetting.Clients.Web.Areas.Administration.Models.Accounts
+
+@model IEnumerable<AccountViewModel>
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Role</th>
+            <th scope="col">IsVerified</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Deleted On</th>
+            <th scope="col">Updated On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model)
+        {
+            <tr>
+                <th scope="row">@account.Id</th>
+                <td>@account.Username</td>
+                <td>@account.Email</td>
+                <td>@account.Balance</td>
+                <td>@account.Role</td>
+                <td>@account.IsVerified</td>
+                <td>@account.CreatedOn</td>
+                <td>@account.DeletedOn</td>
+                <td>@account.ModifiedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
