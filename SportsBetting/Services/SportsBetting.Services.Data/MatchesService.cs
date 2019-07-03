@@ -1,5 +1,6 @@
 ﻿namespace SportsBetting.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
@@ -32,6 +33,13 @@
             Match match = matchesRepository.All(x => x.Key == key).FirstOrDefault();
 
             return match;
+        }
+
+        public IEnumerable<Match> AllWithDeleted()
+        {
+            IEnumerable<Match> matches = matchesRepository.All(x => true);
+
+            return matches;
         }
 
         public Match Update(string id, Match match)

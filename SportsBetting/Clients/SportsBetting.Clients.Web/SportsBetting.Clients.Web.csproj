@@ -145,10 +145,12 @@
     <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\MatchesController.cs" />
     <Compile Include="Areas\Administration\Controllers\TeamsController.cs" />
     <Compile Include="Areas\Administration\Controllers\TournamentsController.cs" />
     <Compile Include="Areas\Administration\Models\Base\BaseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Categories\CategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Matches\MatchViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Teams\TeamViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Tournaments\TournamentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -179,6 +181,7 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Tournaments\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Teams\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Matches\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
