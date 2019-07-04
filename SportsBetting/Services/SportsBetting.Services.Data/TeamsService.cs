@@ -37,6 +37,13 @@
             return team;
         }
 
+        public IEnumerable<Team> Get(IEnumerable<string> teamIds)
+        {
+            IEnumerable<Team> teams = teamsRepository.All(x => !x.IsDeleted && teamIds.Contains(x.Id));
+
+            return teams;
+        }
+
         public IEnumerable<Team> AllWithDeleted()
         {
             IEnumerable<Team> teams = teamsRepository.All(x => true);

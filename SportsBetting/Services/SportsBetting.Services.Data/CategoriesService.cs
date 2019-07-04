@@ -38,6 +38,13 @@
             return category;
         }
 
+        public IEnumerable<Category> Get(IEnumerable<string> categoryIds)
+        {
+            IEnumerable<Category> categories = categoriesRepository.All(x => !x.IsDeleted && categoryIds.Contains(x.Id));
+
+            return categories;
+        }
+
         public IEnumerable<Category> AllWithDeleted()
         {
             IEnumerable<Category> categories = categoriesRepository.All(x => true);

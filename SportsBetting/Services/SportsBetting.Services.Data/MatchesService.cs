@@ -35,6 +35,13 @@
             return match;
         }
 
+        public IEnumerable<Match> AllActive()
+        {
+            IEnumerable<Match> matches = matchesRepository.All(x => !x.IsDeleted);
+
+            return matches;
+        }
+
         public IEnumerable<Match> AllWithDeleted()
         {
             IEnumerable<Match> matches = matchesRepository.All(x => true);

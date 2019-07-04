@@ -10,6 +10,8 @@
 
         Tournament Get(string name, string categoryId);
 
+        IEnumerable<Tournament> Get(IEnumerable<string> tournamentIds);
+
         IEnumerable<Tournament> AllWithDeleted();
     }
 }

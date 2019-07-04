@@ -37,6 +37,13 @@
             return tournament;
         }
 
+        public IEnumerable<Tournament> Get(IEnumerable<string> tournamentIds)
+        {
+            IEnumerable<Tournament> tournaments = tournamentsRepository.All(x => !x.IsDeleted && tournamentIds.Contains(x.Id));
+
+            return tournaments;
+        }
+
         public IEnumerable<Tournament> AllWithDeleted()
         {
             IEnumerable<Tournament> tournaments = tournamentsRepository.All(x => true);
