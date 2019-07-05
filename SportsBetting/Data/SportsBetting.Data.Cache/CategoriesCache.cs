@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using MongoDB.Driver;
+
     using SportsBetting.Data.Cache.General;
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
@@ -11,14 +13,18 @@
     {
         private const int REFRESH_INTERVAL = 1000 * 60;
 
+        private readonly ISportsBettingDbContext dbContext;
+
         public CategoriesCache(ISportsBettingDbContext dbContext)
-            : base(dbContext)
         {
+            this.dbContext = dbContext;
         }
 
         public override void Load()
         {
-            IEnumerable<Category> categories = GetEntities(x => !x.IsDeleted);
+            IEnumerable<Category> categories = dbContext.GetCollection<Category>()
+                .Find(x => !x.IsDeleted)
+                .ToList();
 
             foreach (var category in categories)
             {
@@ -30,10 +36,12 @@
         {
             DateTime dateTime = DateTime.UtcNow.AddMilliseconds(-REFRESH_INTERVAL);
 
-            IEnumerable<Category> categories = GetEntities(x => 
-                !x.IsDeleted && 
-                x.ModifiedOn.HasValue &&
-                x.ModifiedOn.Value >= dateTime);
+            IEnumerable<Category> categories = dbContext.GetCollection<Category>()
+                .Find(x => 
+                    !x.IsDeleted && 
+                    x.ModifiedOn.HasValue &&
+                    x.ModifiedOn.Value >= dateTime)
+                .ToList();
 
             foreach (var category in categories)
             {

@@ -11,47 +11,47 @@
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models.Base;
 
-    public class MongoRepository<T> : IRepository<T>
-        where T : BaseModel
+    public class MongoRepository<TEntity> : IRepository<TEntity>
+        where TEntity : BaseModel
     {
-        private readonly IMongoCollection<T> collection;
+        private readonly IMongoCollection<TEntity> collection;
 
         public MongoRepository(ISportsBettingDbContext dbContext)
         {
-            this.collection = dbContext.GetCollection<T>(typeof(T).Name);
+            this.collection = dbContext.GetCollection<TEntity>();
         }
 
-        public IEnumerable<T> All(Expression<Func<T, bool>> filterExpression)
+        public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression)
         {
             return collection.Find(filterExpression).ToList();
         }
 
-        public void Add(T entity)
+        public void Add(TEntity entity)
         {
             entity.CreatedOn = DateTime.UtcNow;
 
             collection.InsertOne(entity);
         }
 
-        public void Update(T entity)
+        public void Update(TEntity entity)
         {
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
+            FilterDefinition<TEntity> filter = Builders<TEntity>.Filter.Eq(x => x.Id, entity.Id);
             entity.ModifiedOn = DateTime.UtcNow;
 
             collection.ReplaceOne(filter, entity);
         }
 
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
-            UpdateDefinition<T> update = Builders<T>.Update
+            FilterDefinition<TEntity> filter = Builders<TEntity>.Filter.Eq(x => x.Id, entity.Id);
+            UpdateDefinition<TEntity> update = Builders<TEntity>.Update
                 .Set(x => x.IsDeleted, true)
                 .Set(x => x.DeletedOn, DateTime.Now);
 
             collection.UpdateOne(filter, update);
         }
 
-        public void HardDelete(T entity)
+        public void HardDelete(TEntity entity)
         {
             collection.DeleteOne(x => x.Id == entity.Id);
         }

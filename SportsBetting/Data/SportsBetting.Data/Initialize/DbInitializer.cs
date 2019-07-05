@@ -35,24 +35,24 @@
             Seed(sports, seedData.Sports);
         }
 
-        private IMongoCollection<T> InitCollection<T>()
-            where T : BaseModel
+        private IMongoCollection<TEntity> InitCollection<TEntity>()
+            where TEntity : BaseModel
         {
-            IMongoCollection<T> collection = dbContext.GetCollection<T>(typeof(T).Name);
+            IMongoCollection<TEntity> collection = dbContext.GetCollection<TEntity>();
             CreatIndex(collection);
 
             return collection;
         }
 
-        private void CreatIndex<T>(IMongoCollection<T> collection)
-            where T : BaseModel
+        private void CreatIndex<TEntity>(IMongoCollection<TEntity> collection)
+            where TEntity : BaseModel
         {
-            CreateIndexModel<T> indexModel = new CreateIndexModel<T>(Builders<T>.IndexKeys.Ascending(x => x.Key));
+            CreateIndexModel<TEntity> indexModel = new CreateIndexModel<TEntity>(Builders<TEntity>.IndexKeys.Ascending(x => x.Key));
             collection.Indexes.CreateOne(indexModel);
         }
 
-        private void Seed<T>(IMongoCollection<T> collection, IEnumerable<T> data)
-            where T : BaseModel
+        private void Seed<TEntity>(IMongoCollection<TEntity> collection, IEnumerable<TEntity> data)
+            where TEntity : BaseModel
         {
             if (!collection.Find(x => true).Any())
             {

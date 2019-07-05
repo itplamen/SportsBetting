@@ -17,10 +17,10 @@
             this.database = GetDataBase();
         }
 
-        public IMongoCollection<T> GetCollection<T>(string name)
-             where T : BaseModel
+        public IMongoCollection<TEntity> GetCollection<TEntity>()
+             where TEntity : BaseModel
         {
-            return this.database.GetCollection<T>(name);
+            return database.GetCollection<TEntity>(typeof(TEntity).Name);
         }
 
         private IMongoDatabase GetDataBase()

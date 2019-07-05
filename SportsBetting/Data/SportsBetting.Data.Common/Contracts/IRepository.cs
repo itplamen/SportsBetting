@@ -6,17 +6,17 @@
 
     using SportsBetting.Data.Models.Base;
 
-    public interface IRepository<T>
-         where T : BaseModel
+    public interface IRepository<TEntity>
+         where TEntity : BaseModel
     {
-        IEnumerable<T> All(Expression<Func<T, bool>> filterExpression);
+        IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression);
 
-        void Add(T entity);
+        void Add(TEntity entity);
 
-        void Update(T entity);
+        void Update(TEntity entity);
 
-        void Delete(T entity);
+        void Delete(TEntity entity);
 
-        void HardDelete(T entity);
+        void HardDelete(TEntity entity);
     }
 }

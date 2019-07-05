@@ -6,7 +6,7 @@
 
     public interface ISportsBettingDbContext
     {
-        IMongoCollection<T> GetCollection<T>(string name)
-             where T : BaseModel;
+        IMongoCollection<TEntity> GetCollection<TEntity>()
+             where TEntity : BaseModel;
     }
 }
