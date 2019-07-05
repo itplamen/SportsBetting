@@ -17,20 +17,6 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public string Add(string name, string sportId)
-        {
-            Category category = new Category()
-            {
-                Key = Math.Abs(name.GetHashCode()),
-                Name = name,
-                SportId = sportId
-            };
-
-            categoriesRepository.Add(category);
-
-            return category.Id;
-        }
-
         public Category Get(string name)
         {
             Category category = categoriesRepository.All(x => x.Name == name).FirstOrDefault();

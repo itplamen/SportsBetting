@@ -6,8 +6,6 @@
 
     public interface ICategoriesService
     {
-        string Add(string name, string sportId);
-
         Category Get(string name);
 
         IEnumerable<Category> Get(IEnumerable<string> categoryIds);

@@ -78,6 +78,7 @@
     <Compile Include="DataPackage.cs" />
     <Compile Include="DataServicesPackage.cs" />
     <Compile Include="FeederPackage.cs" />
+    <Compile Include="Feeder\CommandHandlersPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\DataPackage.cs" />
     <Compile Include="Web\DataServicesPackage.cs" />
@@ -106,6 +107,10 @@
     <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Core\SportsBetting.Feeder.Core.csproj">
       <Project>{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA}</Project>
       <Name>SportsBetting.Feeder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Commands\SportsBetting.Handlers.Commands.csproj">
+      <Project>{DAFFD5F9-0ECE-4E24-811C-F0CF688A5263}</Project>
+      <Name>SportsBetting.Handlers.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Data\SportsBetting.Services.Data.csproj">
       <Project>{495B608A-69DF-4AAC-A63A-AB2E57B2635C}</Project>
