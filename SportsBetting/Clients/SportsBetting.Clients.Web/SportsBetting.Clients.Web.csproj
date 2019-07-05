@@ -138,7 +138,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -160,9 +159,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\IMapTo.cs" />
-    <Compile Include="Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Home\GameViewModel.cs" />
@@ -233,6 +229,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common.Infrastructure\SportsBetting.Common.Infrastructure.csproj">
+      <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
+      <Name>SportsBetting.Common.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
       <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
       <Name>SportsBetting.Common</Name>

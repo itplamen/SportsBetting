@@ -1,7 +1,7 @@
 ﻿namespace SportsBetting.Clients.Web.Areas.Administration.Models.Categories
 {
     using SportsBetting.Clients.Web.Areas.Administration.Models.Base;
-    using SportsBetting.Clients.Web.Mapping;
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
 
     public class CategoryViewModel : BaseViewModel, IMapFrom<Category>

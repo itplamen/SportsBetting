@@ -6,6 +6,7 @@
     using System.Web.Routing;
 
     using SportsBetting.Clients.Web.App_Start;
+    using SportsBetting.Common.Infrastructure.Mapping;
 
     public class MvcApplication : System.Web.HttpApplication
     {

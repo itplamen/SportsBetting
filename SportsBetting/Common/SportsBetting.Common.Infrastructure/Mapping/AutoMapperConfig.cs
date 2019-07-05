@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Clients.Web.App_Start
+﻿namespace SportsBetting.Common.Infrastructure.Mapping
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,7 @@
 
     using AutoMapper;
     using AutoMapper.Configuration;
-
-    using SportsBetting.Clients.Web.Mapping;
-
+    
     public static class AutoMapperConfig
     {
         private static bool initialized;

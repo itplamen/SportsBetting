@@ -3,7 +3,7 @@
     using System;
 
     using SportsBetting.Clients.Web.Areas.Administration.Models.Base;
-    using SportsBetting.Clients.Web.Mapping;
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
 
     public class MatchViewModel : BaseViewModel, IMapFrom<Match>

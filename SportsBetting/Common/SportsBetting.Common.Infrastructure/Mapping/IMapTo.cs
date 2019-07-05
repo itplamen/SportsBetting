@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Clients.Web.Mapping
+﻿namespace SportsBetting.Common.Infrastructure.Mapping
 {
     public class IMapTo<TModel>
         where TModel : class
