@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.Handlers.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.Handlers.Queries", "Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj", "{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBetting.Common.Infrastructure", "Common\SportsBetting.Common.Infrastructure\SportsBetting.Common.Infrastructure.csproj", "{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +153,7 @@ Global
 		{B720E001-3A0F-4B42-9324-6B24E24B41C3} = {0381F5B8-AB33-4616-81B3-539BC963C5C8}
 		{DAFFD5F9-0ECE-4E24-811C-F0CF688A5263} = {6F9F0024-795F-45BA-A80C-1A8D7D004DE1}
 		{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D} = {6F9F0024-795F-45BA-A80C-1A8D7D004DE1}
+		{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1} = {E02E1ECE-5925-4C24-8D42-3D2A987955AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {268FD570-3112-4B6E-8255-B4566ED2CDCC}
