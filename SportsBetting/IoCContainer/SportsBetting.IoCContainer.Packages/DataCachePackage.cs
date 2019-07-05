@@ -5,15 +5,12 @@
 
     using SportsBetting.Data.Cache;
     using SportsBetting.Data.Cache.General;
-    using SportsBetting.Data.Common;
     using SportsBetting.Data.Common.Contracts;
 
     public sealed class DataCachePackage : IPackage
     {
         public void RegisterServices(Container container)
         {
-            container.Register(typeof(ICacheLoaderRepository<>), typeof(CacheLoaderRepository<>), Lifestyle.Singleton);
-
             container.Register(typeof(ICache<>), typeof(SportsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(CategoriesCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(TournamentsCache), Lifestyle.Singleton);

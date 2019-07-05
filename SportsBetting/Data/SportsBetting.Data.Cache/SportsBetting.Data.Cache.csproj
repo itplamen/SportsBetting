@@ -84,6 +84,10 @@
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SportsBetting.Data\SportsBetting.Data.csproj">
+      <Project>{22F744B0-D455-4FF8-91CD-34D72D1ED206}</Project>
+      <Name>SportsBetting.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

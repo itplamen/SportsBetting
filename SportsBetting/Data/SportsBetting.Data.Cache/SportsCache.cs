@@ -4,23 +4,21 @@
     using System.Collections.Generic;
 
     using SportsBetting.Data.Cache.General;
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
 
     public class SportsCache : BaseCache<Sport>
     {
         private const int REFRESH_INTERVAL = 1000 * 60;
 
-        private readonly ICacheLoaderRepository<Sport> sportsRepository;
-
-        public SportsCache(ICacheLoaderRepository<Sport> sportsRepository)
+        public SportsCache(ISportsBettingDbContext dbContext)
+            : base(dbContext)
         {
-            this.sportsRepository = sportsRepository;
         }
 
         public override void Load()
         {
-            IEnumerable<Sport> sports = sportsRepository.Load(x => !x.IsDeleted);
+            IEnumerable<Sport> sports = GetEntities(x => !x.IsDeleted);
 
             foreach (var sport in sports)
             {
@@ -31,7 +29,8 @@
         public override void Refresh()
         {
             DateTime dateTime = DateTime.UtcNow.AddMilliseconds(-REFRESH_INTERVAL);
-            IEnumerable<Sport> sports = sportsRepository.Load(x =>
+
+            IEnumerable<Sport> sports = GetEntities(x =>
                 !x.IsDeleted &&
                 x.ModifiedOn.HasValue &&
                 x.ModifiedOn.Value >= dateTime);

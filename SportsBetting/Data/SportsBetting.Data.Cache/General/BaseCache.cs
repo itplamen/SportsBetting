@@ -7,7 +7,10 @@
     using System.Linq.Expressions;
     using System.Threading;
 
+    using MongoDB.Driver;
+
     using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models.Base;
 
     public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheInitializer
@@ -15,14 +18,16 @@
     {
         private readonly int refreshInterval;
         private readonly IDictionary<int, TEntity> cache;
+        private readonly ISportsBettingDbContext dbContext;
 
-        public BaseCache()
-            : this(1000 * 60)
+        public BaseCache(ISportsBettingDbContext dbContext)
+            : this(dbContext, 1000 * 60)
         {
         }
 
-        public BaseCache(int refreshInterval)
+        public BaseCache(ISportsBettingDbContext dbContext, int refreshInterval)
         {
+            this.dbContext = dbContext;
             this.refreshInterval = refreshInterval;
             this.cache = new ConcurrentDictionary<int, TEntity>();
         }
@@ -71,5 +76,12 @@
         public abstract void Load();
 
         public abstract void Refresh();
+
+        protected IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> expression)
+        {
+            return dbContext.GetCollection<TEntity>(typeof(TEntity).Name)
+                .Find(expression)
+                .ToList();
+        }
     }
 }
