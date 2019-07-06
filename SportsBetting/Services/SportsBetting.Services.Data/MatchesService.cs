@@ -16,18 +16,6 @@
             this.matchesRepository = matchesRepository;
         }
 
-        public string Add(Match match, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
-        {
-            match.CategoryId = categoryId;
-            match.TournamentId = tournamentId;
-            match.HomeTeamId = homeTeamId;
-            match.AwayTeamId = awayTeamId;
-
-            matchesRepository.Add(match);
-
-            return match.Id;
-        }
-
         public IEnumerable<Match> AllActive()
         {
             IEnumerable<Match> matches = matchesRepository.All(x => !x.IsDeleted);

@@ -70,6 +70,8 @@
     <Compile Include="Contracts\ICommandHandler.cs" />
     <Compile Include="Markets\CreateMarketCommand.cs" />
     <Compile Include="Markets\CreateMarketCommandHandler.cs" />
+    <Compile Include="Matches\CreateMatchCommand.cs" />
+    <Compile Include="Matches\CreateMatchCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teams\CreateTeamCommand.cs" />
     <Compile Include="Teams\CreateTeamCommandHandler.cs" />

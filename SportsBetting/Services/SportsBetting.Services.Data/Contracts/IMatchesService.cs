@@ -6,8 +6,6 @@
 
     public interface IMatchesService
     {
-        string Add(Match match, string categoryId, string tournamentId, string homeTeamId, string awayTeamId);
-
         IEnumerable<Match> AllActive();
 
         IEnumerable<Match> AllWithDeleted();
