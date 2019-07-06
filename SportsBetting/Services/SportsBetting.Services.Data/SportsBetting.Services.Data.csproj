@@ -45,12 +45,10 @@
     <Compile Include="CategoriesService.cs" />
     <Compile Include="Contracts\IAccountsService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
-    <Compile Include="Contracts\IMarketsService.cs" />
     <Compile Include="Contracts\IMatchesService.cs" />
     <Compile Include="Contracts\IOddsService.cs" />
     <Compile Include="Contracts\ITeamsService.cs" />
     <Compile Include="Contracts\ITournamentsService.cs" />
-    <Compile Include="MarketsService.cs" />
     <Compile Include="MatchesService.cs" />
     <Compile Include="OddsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

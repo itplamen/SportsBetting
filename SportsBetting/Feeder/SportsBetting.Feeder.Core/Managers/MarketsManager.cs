@@ -5,22 +5,30 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Markets;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Markets;
 
     public class MarketsManager : IMarketsManager
     {
-        private readonly IMarketsService marketsService;
+        private readonly IQueryHandler<MarketByKeyQuery, Market> getMarketByKeyHandler;
         private readonly ICommandHandler<CreateMarketCommand, string> createMarketHandler;
 
-        public MarketsManager(IMarketsService marketsService, ICommandHandler<CreateMarketCommand, string> createMarketHandler)
+        public MarketsManager(
+            IQueryHandler<MarketByKeyQuery, Market> getMarketByKeyHandler, 
+            ICommandHandler<CreateMarketCommand, string> createMarketHandler)
         {
-            this.marketsService = marketsService;
+            this.getMarketByKeyHandler = getMarketByKeyHandler;
             this.createMarketHandler = createMarketHandler;
         }
 
         public string Manage(MarketFeedModel feedModel, string matchId)
         {
-            Market market = marketsService.Get(feedModel.Id);
+            MarketByKeyQuery query = new MarketByKeyQuery()
+            {
+                Key = feedModel.Id
+            };
+
+            Market market = getMarketByKeyHandler.Handle(query);
 
             if (market != null)
             {
