@@ -28,13 +28,6 @@
             return match.Id;
         }
 
-        public Match Get(int key)
-        {
-            Match match = matchesRepository.All(x => x.Key == key).FirstOrDefault();
-
-            return match;
-        }
-
         public IEnumerable<Match> AllActive()
         {
             IEnumerable<Match> matches = matchesRepository.All(x => !x.IsDeleted);

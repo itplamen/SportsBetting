@@ -8,8 +8,6 @@
     {
         string Add(Match match, string categoryId, string tournamentId, string homeTeamId, string awayTeamId);
 
-        Match Get(int key);
-
         IEnumerable<Match> AllActive();
 
         IEnumerable<Match> AllWithDeleted();
