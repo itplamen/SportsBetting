@@ -16,13 +16,6 @@
             this.teamsRepository = teamsRepository;
         }
 
-        public Team Get(int key)
-        {
-            Team team = teamsRepository.All(x => x.Key == key).FirstOrDefault();
-
-            return team;
-        }
-
         public IEnumerable<Team> Get(IEnumerable<string> teamIds)
         {
             IEnumerable<Team> teams = teamsRepository.All(x => !x.IsDeleted && teamIds.Contains(x.Id));

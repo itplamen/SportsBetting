@@ -8,24 +8,29 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Teams;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Teams;
 
     public class TeamsManager : ITeamsManager
     {
-        private readonly ITeamsService teamsService;
         private readonly IRepository<Sport> sportsRepository;
+        private readonly IQueryHandler<TeamByKeyQuery, Team> teamByKeyHandler;
         private readonly ICommandHandler<CreateTeamCommand, string> createTeamHandler;
 
-        public TeamsManager(ITeamsService teamsService, IRepository<Sport> sportsRepository, ICommandHandler<CreateTeamCommand, string> createTeamHandler)
+        public TeamsManager(
+            IRepository<Sport> sportsRepository,
+            IQueryHandler<TeamByKeyQuery, Team> teamByKeyHandler,
+            ICommandHandler<CreateTeamCommand, string> createTeamHandler)
         {
-            this.teamsService = teamsService;
             this.sportsRepository = sportsRepository;
+            this.teamByKeyHandler = teamByKeyHandler;
             this.createTeamHandler = createTeamHandler;
         }
 
         public string Manage(TeamFeedModel feedModel)
         {
-            Team team = teamsService.Get(feedModel.Id);
+            TeamByKeyQuery query = new TeamByKeyQuery(feedModel.Id);
+            Team team = teamByKeyHandler.Handle(query);
 
             if (team != null)
             {
