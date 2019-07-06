@@ -16,20 +16,6 @@
             this.tournamentsRepository = tournamentsRepository;
         }
 
-        public string Add(int key, string name, string categoryId)
-        {
-            Tournament tournament = new Tournament()
-            {
-                Key = key,
-                Name = name,
-                CategoryId = categoryId
-            };
-
-            tournamentsRepository.Add(tournament);
-
-            return tournament.Id;
-        }
-
         public Tournament Get(string name, string categoryId)
         {
             Tournament tournament = tournamentsRepository.All(x => x.Name == name && x.CategoryId == categoryId).FirstOrDefault();

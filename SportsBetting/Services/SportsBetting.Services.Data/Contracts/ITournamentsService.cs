@@ -6,8 +6,6 @@
 
     public interface ITournamentsService
     {
-        string Add(int key, string name, string categoryId);
-
         Tournament Get(string name, string categoryId);
 
         IEnumerable<Tournament> Get(IEnumerable<string> tournamentIds);

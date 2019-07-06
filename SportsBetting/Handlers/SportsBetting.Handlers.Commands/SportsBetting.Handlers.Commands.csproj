@@ -69,6 +69,8 @@
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tournaments\CreateTournamentCommand.cs" />
+    <Compile Include="Tournaments\CreateTournamentCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
@@ -83,5 +85,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
