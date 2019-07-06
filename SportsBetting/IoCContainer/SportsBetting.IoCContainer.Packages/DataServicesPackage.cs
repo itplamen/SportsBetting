@@ -10,7 +10,6 @@
     {
         public void RegisterServices(Container container)
         {
-            container.Register<ICategoriesService, CategoriesService>(Lifestyle.Singleton);
             container.Register<IMatchesService, MatchesService>(Lifestyle.Singleton);
             container.Register<IOddsService, OddsService>(Lifestyle.Singleton);
             container.Register<ITeamsService, TeamsService>(Lifestyle.Singleton);

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\CategoryByNameQuery.cs" />
+    <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
     <Compile Include="Markets\MarketByKeyQuery.cs" />

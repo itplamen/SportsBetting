@@ -17,13 +17,6 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public Category Get(string name)
-        {
-            Category category = categoriesRepository.All(x => x.Name == name).FirstOrDefault();
-
-            return category;
-        }
-
         public IEnumerable<Category> Get(IEnumerable<string> categoryIds)
         {
             IEnumerable<Category> categories = categoriesRepository.All(x => !x.IsDeleted && categoryIds.Contains(x.Id));

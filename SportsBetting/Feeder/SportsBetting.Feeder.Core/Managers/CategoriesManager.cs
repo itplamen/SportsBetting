@@ -7,27 +7,29 @@
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Handlers.Commands.Categories;
     using SportsBetting.Handlers.Commands.Contracts;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Categories;
+    using SportsBetting.Handlers.Queries.Contracts;
 
     public class CategoriesManager : ICategoriesManager
     {
         private readonly IRepository<Sport> sportsRepository;
-        private readonly ICategoriesService categoriesService;
+        private readonly IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler;
         private readonly ICommandHandler<CreateCategoryCommand, string> createCategoryHandler;
 
         public CategoriesManager(
-            IRepository<Sport> sportsRepository, 
-            ICategoriesService categoriesService,
+            IRepository<Sport> sportsRepository,
+            IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler,
             ICommandHandler<CreateCategoryCommand, string> createCategoryHandler)
         {
             this.sportsRepository = sportsRepository;
-            this.categoriesService = categoriesService;
+            this.categoryByNameHandler = categoryByNameHandler;
             this.createCategoryHandler = createCategoryHandler;
         }
 
         public string Manage(string name)
         {
-            Category category = categoriesService.Get(name);
+            CategoryByNameQuery query = new CategoryByNameQuery(name);
+            Category category = categoryByNameHandler.Handle(query);
 
             if (category != null)
             {
