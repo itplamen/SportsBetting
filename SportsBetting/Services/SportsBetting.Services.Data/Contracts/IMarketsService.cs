@@ -4,8 +4,6 @@
 
     public interface IMarketsService
     {
-        string Add(int key, string name, string matchId);
-
         Market Get(int key);
     }
 }
