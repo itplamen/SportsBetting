@@ -6,8 +6,6 @@
 
     public interface ITeamsService
     {
-        string Add(int key, string name, string sportId);
-
         Team Get(int key);
 
         IEnumerable<Team> Get(IEnumerable<string> teamIds);

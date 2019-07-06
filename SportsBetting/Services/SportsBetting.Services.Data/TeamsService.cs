@@ -16,20 +16,6 @@
             this.teamsRepository = teamsRepository;
         }
 
-        public string Add(int key, string name, string sportId)
-        {
-            Team team = new Team()
-            {
-                Key = key,
-                Name = name,
-                SportId = sportId
-            };
-
-            teamsRepository.Add(team);
-
-            return team.Id;
-        }
-
         public Team Get(int key)
         {
             Team team = teamsRepository.All(x => x.Key == key).FirstOrDefault();

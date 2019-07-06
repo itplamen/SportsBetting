@@ -5,6 +5,7 @@
 
     using SportsBetting.Handlers.Commands.Categories;
     using SportsBetting.Handlers.Commands.Contracts;
+    using SportsBetting.Handlers.Commands.Teams;
     using SportsBetting.Handlers.Commands.Tournaments;
 
     public sealed class CommandHandlersPackage : IPackage
@@ -13,6 +14,7 @@
         {
             container.Register<ICommandHandler<CreateCategoryCommand, string>, CreateCategoryCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateTournamentCommand, string>, CreateTournamentCommandHandler>(Lifestyle.Singleton);
+            container.Register<ICommandHandler<CreateTeamCommand, string>, CreateTeamCommandHandler>(Lifestyle.Singleton);
         }
     }
 }
