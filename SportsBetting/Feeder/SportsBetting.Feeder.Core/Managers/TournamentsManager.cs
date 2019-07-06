@@ -5,22 +5,26 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Tournaments;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Tournaments;
 
     public class TournamentsManager : ITournamentsManager
     {
-        private readonly ITournamentsService tournamentsService;
+        private readonly IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament> tournamentByNameAndCategoryIdHandler;
         private readonly ICommandHandler<CreateTournamentCommand, string> createTournamentHandler;
 
-        public TournamentsManager(ITournamentsService tournamentsService, ICommandHandler<CreateTournamentCommand, string> createTournamentHandler)
+        public TournamentsManager(
+            IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament> tournamentByNameAndCategoryIdHandler,
+            ICommandHandler<CreateTournamentCommand, string> createTournamentHandler)
         {
-            this.tournamentsService = tournamentsService;
+            this.tournamentByNameAndCategoryIdHandler = tournamentByNameAndCategoryIdHandler;
             this.createTournamentHandler = createTournamentHandler;
         }
 
         public string Manage(TournamentFeedModel feedModel, string categoryId)
         {
-            Tournament tournament = tournamentsService.Get(feedModel.Name, categoryId);
+            TournamentByNameAndCategoryIdQuery query = new TournamentByNameAndCategoryIdQuery(feedModel.Name, categoryId);
+            Tournament tournament = tournamentByNameAndCategoryIdHandler.Handle(query);
 
             if (tournament != null)
             {
