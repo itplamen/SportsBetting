@@ -64,7 +64,6 @@
     <Compile Include="Managers\OddsManager.cs" />
     <Compile Include="Managers\TeamsManager.cs" />
     <Compile Include="Managers\TournamentsManager.cs" />
-    <Compile Include="Mappers\MatchesMapper.cs" />
     <Compile Include="Mappers\OddsMapper.cs" />
     <Compile Include="FeedSynchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

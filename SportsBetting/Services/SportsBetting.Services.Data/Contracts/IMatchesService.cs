@@ -9,7 +9,5 @@
         IEnumerable<Match> AllActive();
 
         IEnumerable<Match> AllWithDeleted();
-
-        Match Update(string id, Match match);
     }
 }

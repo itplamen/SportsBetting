@@ -19,6 +19,7 @@
             container.Register<ICommandHandler<CreateMarketCommand, string>, CreateMarketCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateCategoryCommand, string>, CreateCategoryCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateTournamentCommand, string>, CreateTournamentCommandHandler>(Lifestyle.Singleton);
+            container.Register<ICommandHandler<UpdateMatchCommand, string>, UpdateMatchCommandHandler>(Lifestyle.Singleton);
         }
     }
 }

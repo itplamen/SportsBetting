@@ -35,7 +35,6 @@
         private void RegisterMappers(Container container)
         {
             container.Register(typeof(IMapper<,>), typeof(OddsMapper), Lifestyle.Singleton);
-            container.Register(typeof(IMapper<,>), typeof(MatchesMapper), Lifestyle.Singleton);
         }
 
         private void RegisterManagers(Container container)

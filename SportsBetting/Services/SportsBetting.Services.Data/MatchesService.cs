@@ -1,7 +1,6 @@
 ﻿namespace SportsBetting.Services.Data
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
@@ -28,23 +27,6 @@
             IEnumerable<Match> matches = matchesRepository.All(x => true);
 
             return matches;
-        }
-
-        public Match Update(string id, Match match)
-        {
-            Match matchToUpdate = matchesRepository.All(x => x.Id == id).FirstOrDefault();
-
-            if (matchToUpdate != null)
-            {
-                matchToUpdate.Score = match.Score;
-                matchToUpdate.Status = match.Status;
-                matchToUpdate.StartTime = match.StartTime;
-                matchToUpdate.StreamURL = match.StreamURL;
-
-                matchesRepository.Update(matchToUpdate);
-            }
-
-            return matchToUpdate;
         }
     }
 }
