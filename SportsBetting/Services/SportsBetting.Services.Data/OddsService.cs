@@ -25,13 +25,6 @@
             return odd.Id;
         }
 
-        public Odd Get(int key)
-        {
-            Odd odd = oddsRepository.All(x => x.Key == key).FirstOrDefault();
-
-            return odd;
-        }
-
         public Odd Update(string id, Odd odd)
         {
             Odd oddToUpdate = oddsRepository.All(x => x.Id == id).FirstOrDefault();

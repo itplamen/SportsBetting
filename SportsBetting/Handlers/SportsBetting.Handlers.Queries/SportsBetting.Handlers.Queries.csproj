@@ -49,6 +49,8 @@
     <Compile Include="Markets\MarketByKeyQueryHandler.cs" />
     <Compile Include="Matches\MatchByKeyQuery.cs" />
     <Compile Include="Matches\MatchByKeyQueryHandler.cs" />
+    <Compile Include="Odds\OddByKeyQuery.cs" />
+    <Compile Include="Odds\OddByKeyQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teams\TeamByKeyQuery.cs" />
     <Compile Include="Teams\TeamByKeyQueryHandler.cs" />
