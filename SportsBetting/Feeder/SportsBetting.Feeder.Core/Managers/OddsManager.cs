@@ -6,6 +6,8 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
+    using SportsBetting.Handlers.Commands.Contracts;
+    using SportsBetting.Handlers.Commands.Odds;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Odds;
     using SportsBetting.Services.Data.Contracts;
@@ -15,15 +17,18 @@
         private readonly IOddsService oddsService;
         private readonly IMapper<OddFeedModel, Odd> oddsMapper;
         private readonly IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler;
+        private readonly ICommandHandler<CreateOddCommand, string> createOddHandler;
 
         public OddsManager(
             IOddsService oddsService, 
             IMapper<OddFeedModel, Odd> oddsMapper,
-            IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler)
+            IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler,
+            ICommandHandler<CreateOddCommand, string> createOddHandler)
         {
             this.oddsService = oddsService;
             this.oddsMapper = oddsMapper;
             this.oddByKeyHandler = oddByKeyHandler;
+            this.createOddHandler = createOddHandler;
         }
 
         public void Manage(IEnumerable<OddFeedModel> feedModels, string marketId, string matchId)
@@ -41,7 +46,20 @@
                 }
                 else
                 {
-                    oddsService.Add(mappedOdd, marketId, matchId);   
+                    CreateOddCommand createCommand = new CreateOddCommand()
+                    {
+                        Key = feedModel.Id,
+                        Header = feedModel.Header,
+                        IsActive = true,
+                        IsSuspended = feedModel.IsSuspended,
+                        Name = feedModel.Name,
+                        Value = feedModel.Value,
+                        Rank = feedModel.Rank,
+                        MarketId = marketId,
+                        MatchId = matchId
+                    };
+
+                    createOddHandler.Handle(createCommand);
                 }
             }
         }

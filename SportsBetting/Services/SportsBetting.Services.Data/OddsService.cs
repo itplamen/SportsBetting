@@ -15,16 +15,6 @@
             this.oddsRepository = oddsRepository;
         }
 
-        public string Add(Odd odd, string marketId, string matchId)
-        {
-            odd.MarketId = marketId;
-            odd.MatchId = matchId;
-
-            oddsRepository.Add(odd);
-
-            return odd.Id;
-        }
-
         public Odd Update(string id, Odd odd)
         {
             Odd oddToUpdate = oddsRepository.All(x => x.Id == id).FirstOrDefault();

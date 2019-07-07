@@ -4,8 +4,6 @@
 
     public interface IOddsService
     {
-        string Add(Odd odd, string marketId, string matchId);
-
         Odd Update(string id, Odd odd);
     }
 }
