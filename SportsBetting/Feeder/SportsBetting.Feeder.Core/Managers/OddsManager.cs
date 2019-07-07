@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using SportsBetting.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -10,24 +9,20 @@
     using SportsBetting.Handlers.Commands.Odds;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Odds;
-    using SportsBetting.Services.Data.Contracts;
 
     public class OddsManager : IOddsManager
     {
-        private readonly IOddsService oddsService;
-        private readonly IMapper<OddFeedModel, Odd> oddsMapper;
         private readonly IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler;
+        private readonly ICommandHandler<UpdateOddCommand, string> updateOddHandler;
         private readonly ICommandHandler<CreateOddCommand, string> createOddHandler;
 
         public OddsManager(
-            IOddsService oddsService, 
-            IMapper<OddFeedModel, Odd> oddsMapper,
             IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler,
+            ICommandHandler<UpdateOddCommand, string> updateOddHandler,
             ICommandHandler<CreateOddCommand, string> createOddHandler)
         {
-            this.oddsService = oddsService;
-            this.oddsMapper = oddsMapper;
             this.oddByKeyHandler = oddByKeyHandler;
+            this.updateOddHandler = updateOddHandler;
             this.createOddHandler = createOddHandler;
         }
 
@@ -38,11 +33,17 @@
                 OddByKeyQuery query = new OddByKeyQuery(feedModel.Id);
                 Odd odd = oddByKeyHandler.Handle(query);
 
-                Odd mappedOdd = oddsMapper.Map(feedModel);
-
                 if (odd != null)
                 {
-                    oddsService.Update(odd.Id, mappedOdd);
+                    UpdateOddCommand updateCommand = new UpdateOddCommand()
+                    {
+                        Id = odd.Id,
+                        IsActive = true,
+                        Value = feedModel.Value,
+                        IsSuspended = feedModel.IsSuspended
+                    };
+
+                    updateOddHandler.Handle(updateCommand);
                 }
                 else
                 {

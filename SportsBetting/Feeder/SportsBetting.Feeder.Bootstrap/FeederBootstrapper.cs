@@ -39,7 +39,6 @@
                 new DataPackage(),
                 new DataCachePackage(),
                 new FeederPackage(),
-                new DataServicesPackage(),
                 new QueryHandlersPackage(),
                 new CommandHandlersPackage()
             };

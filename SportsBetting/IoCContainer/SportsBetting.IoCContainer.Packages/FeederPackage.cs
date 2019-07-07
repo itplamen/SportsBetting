@@ -3,12 +3,10 @@
     using SimpleInjector;
     using SimpleInjector.Packaging;
 
-    using SportsBetting.Common.Contracts;
     using SportsBetting.Feeder.Core;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Core.Managers;
-    using SportsBetting.Feeder.Core.Mappers;
     using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
@@ -24,17 +22,11 @@
     {
         public void RegisterServices(Container container)
         {
-            RegisterMappers(container);
             RegisterManagers(container);
             RegisterFactories(container);
             RegisterFeederServices(container);
             RegisterProviders(container);
             RegisterSynchronizers(container);
-        }
-
-        private void RegisterMappers(Container container)
-        {
-            container.Register(typeof(IMapper<,>), typeof(OddsMapper), Lifestyle.Singleton);
         }
 
         private void RegisterManagers(Container container)

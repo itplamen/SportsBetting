@@ -45,7 +45,6 @@
     <Compile Include="Account\AccountConstants.cs" />
     <Compile Include="Contracts\IAplicationInitializer.cs" />
     <Compile Include="Contracts\IConfigurationManager.cs" />
-    <Compile Include="Contracts\IMapper.cs" />
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XPaths\ContainerXPaths.cs" />
