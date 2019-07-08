@@ -98,10 +98,6 @@
       <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
       <Name>SportsBetting.Data.Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">
-      <Project>{9B990381-DFA6-4CBF-B4A4-2461DC0CCA2A}</Project>
-      <Name>SportsBetting.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
