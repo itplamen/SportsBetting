@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Data.Common.Contracts
+﻿namespace SportsBetting.Data.Cache.Contracts
 {
     using System;
     using System.Collections.Generic;

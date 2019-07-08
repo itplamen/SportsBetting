@@ -83,6 +83,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\SportsBetting.Data.Cache\SportsBetting.Data.Cache.csproj">
+      <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
+      <Name>SportsBetting.Data.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">
       <Project>{9B990381-DFA6-4CBF-B4A4-2461DC0CCA2A}</Project>
       <Name>SportsBetting.Data.Common</Name>

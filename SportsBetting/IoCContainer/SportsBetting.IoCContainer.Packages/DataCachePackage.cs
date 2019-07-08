@@ -4,8 +4,8 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Data.Cache;
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Cache.General;
-    using SportsBetting.Data.Common.Contracts;
 
     public sealed class DataCachePackage : IPackage
     {

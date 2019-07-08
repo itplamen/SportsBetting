@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Data.Common.Contracts
+﻿namespace SportsBetting.Data.Cache.Contracts
 {
     public interface ICacheInitializer
     {

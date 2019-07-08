@@ -7,7 +7,7 @@
     using System.Linq.Expressions;
     using System.Threading;
 
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models.Base;
 
     public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheInitializer

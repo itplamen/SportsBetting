@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 

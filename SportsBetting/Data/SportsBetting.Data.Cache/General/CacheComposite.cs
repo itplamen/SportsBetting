@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Cache.Contracts;
 
     public class CacheComposite : ICacheInitializer
     {

@@ -3,7 +3,7 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Common.Contracts;
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.IoCContainer;
     using SportsBetting.IoCContainer.Packages;

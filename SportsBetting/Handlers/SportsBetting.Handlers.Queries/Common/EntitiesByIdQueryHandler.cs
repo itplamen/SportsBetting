@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using SportsBetting.Data.Common.Contracts;
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Handlers.Queries.Contracts;
 
