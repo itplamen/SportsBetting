@@ -18,7 +18,8 @@
             IPackage[] packages = new IPackage[]
             {
                 new DataPackage(),
-                new DataServicesPackage()
+                new DataServicesPackage(),
+                new QueryHandlersPackage()
             };
 
             foreach (var package in packages)

@@ -241,6 +241,10 @@
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
+      <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
+      <Name>SportsBetting.Handlers.Queries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
       <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
       <Name>SportsBetting.IoCContainer.Packages</Name>

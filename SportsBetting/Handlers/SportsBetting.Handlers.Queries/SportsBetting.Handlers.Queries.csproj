@@ -31,8 +31,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DnsClient, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DnsClient.1.2.0\lib\net471\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Bson.2.8.0\lib\net452\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Driver.2.8.0\lib\net452\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Driver.Core.2.8.0\lib\net452\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\AllCategoriesWithDeletedHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
@@ -57,7 +78,9 @@
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQueryHandler.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">
       <Project>{9B990381-DFA6-4CBF-B4A4-2461DC0CCA2A}</Project>
@@ -66,6 +89,10 @@
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SportsBetting.Data\SportsBetting.Data.csproj">
+      <Project>{22F744B0-D455-4FF8-91CD-34D72D1ED206}</Project>
+      <Name>SportsBetting.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

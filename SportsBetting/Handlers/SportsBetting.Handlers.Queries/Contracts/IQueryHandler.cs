@@ -5,4 +5,9 @@
     {
         TResult Handle(TQuery query);
     }
+
+    public interface IQueryHandler<TResult>
+    {
+        TResult Handle();
+    }
 }

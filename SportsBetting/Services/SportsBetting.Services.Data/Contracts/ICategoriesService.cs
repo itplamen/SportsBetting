@@ -7,7 +7,5 @@
     public interface ICategoriesService
     {
         IEnumerable<Category> Get(IEnumerable<string> categoryIds);
-
-        IEnumerable<Category> AllWithDeleted();
     }
 }
