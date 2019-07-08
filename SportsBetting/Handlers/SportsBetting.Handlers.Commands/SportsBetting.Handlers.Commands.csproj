@@ -64,6 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\CreateAccountCommand.cs" />
+    <Compile Include="Accounts\CreateAccountCommandHandler.cs" />
     <Compile Include="Categories\CreateCategoryCommand.cs" />
     <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />

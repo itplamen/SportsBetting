@@ -241,6 +241,10 @@
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Commands\SportsBetting.Handlers.Commands.csproj">
+      <Project>{DAFFD5F9-0ECE-4E24-811C-F0CF688A5263}</Project>
+      <Name>SportsBetting.Handlers.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
       <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
       <Name>SportsBetting.Handlers.Queries</Name>
@@ -248,10 +252,6 @@
     <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
       <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
       <Name>SportsBetting.IoCContainer.Packages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\SportsBetting.Services.Data\SportsBetting.Services.Data.csproj">
-      <Project>{495B608A-69DF-4AAC-A63A-AB2E57B2635C}</Project>
-      <Name>SportsBetting.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Utils\SportsBetting.Services.Utils.csproj">
       <Project>{B720E001-3A0F-4B42-9324-6B24E24B41C3}</Project>

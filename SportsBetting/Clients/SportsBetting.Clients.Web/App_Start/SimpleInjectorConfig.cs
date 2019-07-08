@@ -19,7 +19,8 @@
             {
                 new DataPackage(),
                 new DataServicesPackage(),
-                new QueryHandlersPackage()
+                new QueryHandlersPackage(),
+                new CommandHandlersPackage()
             };
 
             foreach (var package in packages)

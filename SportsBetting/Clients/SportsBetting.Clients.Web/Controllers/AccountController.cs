@@ -5,27 +5,28 @@
 
     using SportsBetting.Clients.Web.Models.Account;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Services.Data.Contracts;
     using SportsBetting.Services.Utils.Contracts;
 
     public class AccountController : Controller
     {
-        private readonly IAccountsService accountsService;
         private readonly IEncryptionService encryptionService;
         private readonly IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler;
+        private readonly ICommandHandler<CreateAccountCommand, string> createAccountHandler;
         private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler;
 
         public AccountController(
-            IAccountsService accountsService, 
             IEncryptionService encryptionService,
             IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler,
+            ICommandHandler<CreateAccountCommand, string> createAccountHandler,
             IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler)
         {
-            this.accountsService = accountsService;
             this.encryptionService = encryptionService;
             this.accountByEmailHandler = accountByEmailHandler;
+            this.createAccountHandler = createAccountHandler;
             this.accountByUsernameHandler = accountByUsernameHandler;
         }
 
@@ -73,14 +74,15 @@
 
             if (ModelState.IsValid)
             {
-                Account account = new Account()
+                CreateAccountCommand command = new CreateAccountCommand()
                 {
+                    Role = AccontRole.User,
+                    Email = viewModel.Email,
                     Username = viewModel.Username,
                     Password = encryptionService.Encrypt(viewModel.Password),
-                    Email = viewModel.Email
                 };
 
-                accountsService.Add(account);
+                createAccountHandler.Handle(command);
             }
 
             return View(viewModel);
