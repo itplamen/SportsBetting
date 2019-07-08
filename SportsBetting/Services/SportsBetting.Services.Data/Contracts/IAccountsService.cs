@@ -5,7 +5,5 @@
     public interface IAccountsService
     {
         string Add(Account account);
-
-        Account GetByEmail(string email);
     }
 }

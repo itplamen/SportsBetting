@@ -14,15 +14,18 @@
     {
         private readonly IAccountsService accountsService;
         private readonly IEncryptionService encryptionService;
+        private readonly IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler;
         private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler;
 
         public AccountController(
             IAccountsService accountsService, 
             IEncryptionService encryptionService,
+            IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler,
             IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler)
         {
             this.accountsService = accountsService;
             this.encryptionService = encryptionService;
+            this.accountByEmailHandler = accountByEmailHandler;
             this.accountByUsernameHandler = accountByUsernameHandler;
         }
 
@@ -61,7 +64,9 @@
                 ModelState.AddModelError(nameof(viewModel.Username), "A user with the same username has already been registered!");
             }
 
-            if (accountsService.GetByEmail(viewModel.Email) != null)
+            AccountByEmailQuery accountByEmailQuery = new AccountByEmailQuery(viewModel.Email);
+
+            if (accountByEmailHandler.Handle(accountByEmailQuery) != null)
             {
                 ModelState.AddModelError(nameof(viewModel.Email), "A user with the same email has already been registered!");
             }
