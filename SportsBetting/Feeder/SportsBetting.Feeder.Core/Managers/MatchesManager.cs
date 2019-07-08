@@ -5,29 +5,29 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Matches;
+    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Handlers.Queries.Matches;
 
     public class MatchesManager : IMatchesManager
     {
-        private readonly IQueryHandler<MatchByKeyQuery, Match> matchByKeyHandler;
         private readonly ICommandHandler<UpdateMatchCommand, string> updateMatchHandler;
         private readonly ICommandHandler<CreateMatchCommand, string> createMatchHandler;
+        private readonly IQueryHandler<EntityByKeyQuery<Match>, Match> matchByKeyHandler;
 
         public MatchesManager(
-            IQueryHandler<MatchByKeyQuery, Match> matchByKeyHandler,
             ICommandHandler<UpdateMatchCommand, string> updateMatchHandler,
-            ICommandHandler<CreateMatchCommand, string> createMatchHandler)
+            ICommandHandler<CreateMatchCommand, string> createMatchHandler,
+            IQueryHandler<EntityByKeyQuery<Match>, Match> matchByKeyHandler)
         {
-            this.matchByKeyHandler = matchByKeyHandler;
             this.updateMatchHandler = updateMatchHandler;
             this.createMatchHandler = createMatchHandler;
+            this.matchByKeyHandler = matchByKeyHandler;
         }
 
         public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
         {
-            MatchByKeyQuery query = new MatchByKeyQuery(feedModel.Id);
-            Match match = matchByKeyHandler.Handle(query);
+            EntityByKeyQuery<Match> matchQuery = new EntityByKeyQuery<Match>(feedModel.Id);
+            Match match = matchByKeyHandler.Handle(matchQuery);
 
             if (match != null)
             {

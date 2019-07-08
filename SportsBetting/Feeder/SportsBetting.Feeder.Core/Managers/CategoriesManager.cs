@@ -1,51 +1,50 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Linq;
-
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Handlers.Commands.Categories;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Categories;
+    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class CategoriesManager : ICategoriesManager
     {
-        private readonly IRepository<Sport> sportsRepository;
+        private readonly IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler;
         private readonly IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler;
         private readonly ICommandHandler<CreateCategoryCommand, string> createCategoryHandler;
 
         public CategoriesManager(
-            IRepository<Sport> sportsRepository,
+            IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler,
             IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler,
             ICommandHandler<CreateCategoryCommand, string> createCategoryHandler)
         {
-            this.sportsRepository = sportsRepository;
+            this.sportByKeyHandler = sportByKeyHandler;
             this.categoryByNameHandler = categoryByNameHandler;
             this.createCategoryHandler = createCategoryHandler;
         }
 
         public string Manage(string name)
         {
-            CategoryByNameQuery query = new CategoryByNameQuery(name);
-            Category category = categoryByNameHandler.Handle(query);
+            CategoryByNameQuery categoryQuery = new CategoryByNameQuery(name);
+            Category category = categoryByNameHandler.Handle(categoryQuery);
 
             if (category != null)
             {
                 return category.Id;
             }
 
-            Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
+            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(1);
+            Sport sport = sportByKeyHandler.Handle(sportQuery);
 
-            CreateCategoryCommand command = new CreateCategoryCommand()
+            CreateCategoryCommand categoryCommand = new CreateCategoryCommand()
             {
                 Key = name.GetHashCode(),
                 Name = name,
                 SportId = sport.Id
             };
 
-            return createCategoryHandler.Handle(command);
+            return createCategoryHandler.Handle(categoryCommand);
         }
     }
 }

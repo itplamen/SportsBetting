@@ -1,45 +1,43 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
-    using System.Linq;
-
-    using SportsBetting.Data.Common.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Teams;
+    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Handlers.Queries.Teams;
 
     public class TeamsManager : ITeamsManager
     {
-        private readonly IRepository<Sport> sportsRepository;
-        private readonly IQueryHandler<TeamByKeyQuery, Team> teamByKeyHandler;
         private readonly ICommandHandler<CreateTeamCommand, string> createTeamHandler;
+        private readonly IQueryHandler<EntityByKeyQuery<Team>, Team> teamByKeyHandler;
+        private readonly IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler;
 
         public TeamsManager(
-            IRepository<Sport> sportsRepository,
-            IQueryHandler<TeamByKeyQuery, Team> teamByKeyHandler,
-            ICommandHandler<CreateTeamCommand, string> createTeamHandler)
+            ICommandHandler<CreateTeamCommand, string> createTeamHandler,
+            IQueryHandler<EntityByKeyQuery<Team>, Team> teamByKeyHandler,
+            IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler)
         {
-            this.sportsRepository = sportsRepository;
-            this.teamByKeyHandler = teamByKeyHandler;
             this.createTeamHandler = createTeamHandler;
+            this.teamByKeyHandler = teamByKeyHandler;
+            this.sportByKeyHandler = sportByKeyHandler;
         }
 
         public string Manage(TeamFeedModel feedModel)
         {
-            TeamByKeyQuery query = new TeamByKeyQuery(feedModel.Id);
-            Team team = teamByKeyHandler.Handle(query);
+            EntityByKeyQuery<Team> teamQuery = new EntityByKeyQuery<Team>(feedModel.Id);
+            Team team = teamByKeyHandler.Handle(teamQuery);
 
             if (team != null)
             {
                 return team.Id;
             }
+            
+            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(1);
+            Sport sport = sportByKeyHandler.Handle(sportQuery);
 
-            Sport sport = sportsRepository.All(x => x.Key == 1).FirstOrDefault();
-
-            CreateTeamCommand command = new CreateTeamCommand()
+            CreateTeamCommand teamCommand = new CreateTeamCommand()
             {
                 Key = feedModel.Id,
                 Name = feedModel.Name,
@@ -47,7 +45,7 @@
                 SportId = sport.Id
             };
 
-            return createTeamHandler.Handle(command);
+            return createTeamHandler.Handle(teamCommand);
         }
     }
 }

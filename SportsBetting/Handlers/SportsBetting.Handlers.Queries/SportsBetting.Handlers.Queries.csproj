@@ -67,21 +67,15 @@
     <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
+    <Compile Include="Common\EntityByKeyQuery.cs" />
+    <Compile Include="Common\EntityByKeyQueryHandler.cs" />
     <Compile Include="Common\WithDeletedEntitiesHandler.cs" />
     <Compile Include="Common\EntitiesByIdQuery.cs" />
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
-    <Compile Include="Markets\MarketByKeyQuery.cs" />
-    <Compile Include="Markets\MarketByKeyQueryHandler.cs" />
-    <Compile Include="Matches\MatchByKeyQuery.cs" />
-    <Compile Include="Matches\MatchByKeyQueryHandler.cs" />
     <Compile Include="Matches\OrderedMatchesQueryHandler.cs" />
-    <Compile Include="Odds\OddByKeyQuery.cs" />
-    <Compile Include="Odds\OddByKeyQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Teams\TeamByKeyQuery.cs" />
-    <Compile Include="Teams\TeamByKeyQueryHandler.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQueryHandler.cs" />
   </ItemGroup>

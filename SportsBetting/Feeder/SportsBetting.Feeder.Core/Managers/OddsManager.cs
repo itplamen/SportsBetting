@@ -7,17 +7,17 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Odds;
+    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Handlers.Queries.Odds;
 
     public class OddsManager : IOddsManager
     {
-        private readonly IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler;
+        private readonly IQueryHandler<EntityByKeyQuery<Odd>, Odd> oddByKeyHandler;
         private readonly ICommandHandler<UpdateOddCommand, string> updateOddHandler;
         private readonly ICommandHandler<CreateOddCommand, string> createOddHandler;
 
         public OddsManager(
-            IQueryHandler<OddByKeyQuery, Odd> oddByKeyHandler,
+            IQueryHandler<EntityByKeyQuery<Odd>, Odd> oddByKeyHandler,
             ICommandHandler<UpdateOddCommand, string> updateOddHandler,
             ICommandHandler<CreateOddCommand, string> createOddHandler)
         {
@@ -30,7 +30,7 @@
         {
             foreach (var feedModel in feedModels)
             {
-                OddByKeyQuery query = new OddByKeyQuery(feedModel.Id);
+                EntityByKeyQuery<Odd> query = new EntityByKeyQuery<Odd>(feedModel.Id);
                 Odd odd = oddByKeyHandler.Handle(query);
 
                 if (odd != null)
