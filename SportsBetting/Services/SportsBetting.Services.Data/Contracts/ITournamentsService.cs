@@ -6,8 +6,6 @@
 
     public interface ITournamentsService
     {
-        IEnumerable<Tournament> Get(IEnumerable<string> tournamentIds);
-
         IEnumerable<Tournament> AllWithDeleted();
     }
 }

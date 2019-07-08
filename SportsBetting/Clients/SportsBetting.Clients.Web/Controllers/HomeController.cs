@@ -6,7 +6,6 @@
 
     using SportsBetting.Clients.Web.Models.Home;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Queries.Categories;
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Services.Data.Contracts;
@@ -15,19 +14,19 @@
     {
         private readonly ITeamsService teamsService;
         private readonly IMatchesService matchesService;
-        private readonly ITournamentsService tournamentsService;
         private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
+        private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler;
 
         public HomeController(
             ITeamsService teamsService,
             IMatchesService matchesService,
-            ITournamentsService tournamentsService,
-            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler)
+            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler,
+            IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler)
         {
             this.teamsService = teamsService;
             this.matchesService = matchesService;
-            this.tournamentsService = tournamentsService;
             this.categoriesByIdHandler = categoriesByIdHandler;
+            this.tournamentsByIdHandler = tournamentsByIdHandler;
         }
 
         public ActionResult Index()
@@ -35,11 +34,11 @@
             IEnumerable<Match> matches = matchesService.AllActive()
                 .OrderBy(x => x.StartTime);
 
-            EntitiesByIdQuery<Category> query = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId));
-            IEnumerable<Category> categories = categoriesByIdHandler.Handle(query);
+            EntitiesByIdQuery<Category> categoriesQuery = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId));
+            IEnumerable<Category> categories = categoriesByIdHandler.Handle(categoriesQuery);
 
-            IEnumerable<string> tournamentIds = matches.Select(x => x.TournamentId);
-            IEnumerable<Tournament> tournaments = tournamentsService.Get(tournamentIds);
+            EntitiesByIdQuery<Tournament> tournamentsQuery = new EntitiesByIdQuery<Tournament>(matches.Select(x => x.TournamentId));
+            IEnumerable<Tournament> tournaments = tournamentsByIdHandler.Handle(tournamentsQuery);
 
             List<string> teamIds = matches.Select(x => x.HomeTeamId).ToList();
             teamIds.AddRange(matches.Select(x => x.AwayTeamId));
