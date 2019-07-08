@@ -7,20 +7,20 @@
 
     using SportsBetting.Clients.Web.Areas.Administration.Models.Accounts;
     using SportsBetting.Data.Models;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Contracts;
 
     public class AccountsController : Controller
     {
-        private readonly IAccountsService accountsService;
+        private readonly IQueryHandler<IEnumerable<Account>> allWithDeletedHandler;
 
-        public AccountsController(IAccountsService accountsService)
+        public AccountsController(IQueryHandler<IEnumerable<Account>> allWithDeletedHandler)
         {
-            this.accountsService = accountsService;
+            this.allWithDeletedHandler = allWithDeletedHandler;
         }
 
         public ActionResult Index()
         {
-            IEnumerable<Account> accounts = accountsService.AllWithDeleted();
+            IEnumerable<Account> accounts = allWithDeletedHandler.Handle();
             IEnumerable<AccountViewModel> accountViewModels = Mapper.Map<IEnumerable<AccountViewModel>>(accounts);
 
             return View(accountViewModels);

@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Services.Data.Contracts
 {
-    using System.Collections.Generic;
-
     using SportsBetting.Data.Models;
 
     public interface IAccountsService
@@ -11,7 +9,5 @@
         Account GetByUsername(string username);
 
         Account GetByEmail(string email);
-
-        IEnumerable<Account> AllWithDeleted();
     }
 }

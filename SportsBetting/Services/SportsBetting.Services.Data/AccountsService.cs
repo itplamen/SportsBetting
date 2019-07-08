@@ -36,12 +36,5 @@
 
             return account;
         }
-
-        public IEnumerable<Account> AllWithDeleted()
-        {
-            IEnumerable<Account> accounts = accountsRepository.All(x => true);
-
-            return accounts;
-        }
     }
 }
