@@ -42,9 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountsService.cs" />
-    <Compile Include="CategoriesService.cs" />
     <Compile Include="Contracts\IAccountsService.cs" />
-    <Compile Include="Contracts\ICategoriesService.cs" />
     <Compile Include="Contracts\IMatchesService.cs" />
     <Compile Include="Contracts\ITeamsService.cs" />
     <Compile Include="Contracts\ITournamentsService.cs" />

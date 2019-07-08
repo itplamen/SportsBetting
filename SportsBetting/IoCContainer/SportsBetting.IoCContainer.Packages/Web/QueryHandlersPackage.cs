@@ -15,6 +15,7 @@
         public void RegisterServices(Container container)
         {
             container.Register<IQueryHandler<IEnumerable<Category>>, AllCategoriesWithDeletedHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<CategoriesByIdsQuery, IEnumerable<Category>>, CategoriesByIdsQueryHandler>(new WebRequestLifestyle());
         }
     }
 }

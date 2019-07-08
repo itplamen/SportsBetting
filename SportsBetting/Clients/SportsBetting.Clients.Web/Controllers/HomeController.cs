@@ -6,25 +6,27 @@
 
     using SportsBetting.Clients.Web.Models.Home;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Queries.Categories;
+    using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Services.Data.Contracts;
 
     public class HomeController : Controller
     {
         private readonly ITeamsService teamsService;
         private readonly IMatchesService matchesService;
-        private readonly ICategoriesService categoriesService;
         private readonly ITournamentsService tournamentsService;
+        private readonly IQueryHandler<CategoriesByIdsQuery, IEnumerable<Category>> categoriesByIdsHandler;
 
         public HomeController(
             ITeamsService teamsService,
-            IMatchesService matchesService, 
-            ICategoriesService categoriesService,
-            ITournamentsService tournamentsService)
+            IMatchesService matchesService,
+            ITournamentsService tournamentsService,
+            IQueryHandler<CategoriesByIdsQuery, IEnumerable<Category>> categoriesByIdsHandler)
         {
             this.teamsService = teamsService;
             this.matchesService = matchesService;
-            this.categoriesService = categoriesService;
             this.tournamentsService = tournamentsService;
+            this.categoriesByIdsHandler = categoriesByIdsHandler;
         }
 
         public ActionResult Index()
@@ -32,8 +34,8 @@
             IEnumerable<Match> matches = matchesService.AllActive()
                 .OrderBy(x => x.StartTime);
 
-            IEnumerable<string> categoryIds = matches.Select(x => x.CategoryId);
-            IEnumerable<Category> categories = categoriesService.Get(categoryIds);
+            CategoriesByIdsQuery query = new CategoriesByIdsQuery(matches.Select(x => x.CategoryId));
+            IEnumerable<Category> categories = categoriesByIdsHandler.Handle(query);
 
             IEnumerable<string> tournamentIds = matches.Select(x => x.TournamentId);
             IEnumerable<Tournament> tournaments = tournamentsService.Get(tournamentIds);
