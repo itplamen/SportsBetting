@@ -5,6 +5,8 @@
 
     using SportsBetting.Clients.Web.Models.Account;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Queries.Accounts;
+    using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Services.Data.Contracts;
     using SportsBetting.Services.Utils.Contracts;
 
@@ -12,11 +14,16 @@
     {
         private readonly IAccountsService accountsService;
         private readonly IEncryptionService encryptionService;
+        private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler;
 
-        public AccountController(IAccountsService accountsService, IEncryptionService encryptionService)
+        public AccountController(
+            IAccountsService accountsService, 
+            IEncryptionService encryptionService,
+            IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler)
         {
             this.accountsService = accountsService;
             this.encryptionService = encryptionService;
+            this.accountByUsernameHandler = accountByUsernameHandler;
         }
 
         [HttpGet]
@@ -47,7 +54,9 @@
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            if (accountsService.GetByUsername(viewModel.Username) != null)
+            AccountByUsernameQuery accountByUsernameQuery = new AccountByUsernameQuery(viewModel.Username);
+
+            if (accountByUsernameHandler.Handle(accountByUsernameQuery) != null)
             {
                 ModelState.AddModelError(nameof(viewModel.Username), "A user with the same username has already been registered!");
             }

@@ -6,8 +6,6 @@
     {
         string Add(Account account);
 
-        Account GetByUsername(string username);
-
         Account GetByEmail(string email);
     }
 }

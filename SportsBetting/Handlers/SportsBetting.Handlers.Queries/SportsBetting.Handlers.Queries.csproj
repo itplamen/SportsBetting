@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountByUsernameQuery.cs" />
+    <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
     <Compile Include="Common\WithDeletedEntitiesHandler.cs" />

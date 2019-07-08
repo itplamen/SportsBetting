@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Services.Data
 {
-    using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Common.Contracts;
@@ -21,13 +20,6 @@
             accountsRepository.Add(account);
 
             return account.Id;
-        }
-
-        public Account GetByUsername(string username)
-        {
-            Account account = accountsRepository.All(x => x.Username == username).FirstOrDefault();
-
-            return account;
         }
 
         public Account GetByEmail(string email)
