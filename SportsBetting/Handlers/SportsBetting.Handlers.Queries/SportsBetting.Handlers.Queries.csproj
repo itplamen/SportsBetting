@@ -62,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\AllCategoriesWithDeletedHandler.cs" />
-    <Compile Include="Categories\CategoriesByIdsQuery.cs" />
-    <Compile Include="Categories\CategoriesByIdsQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
+    <Compile Include="Common\EntitiesByIdQuery.cs" />
+    <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
     <Compile Include="Markets\MarketByKeyQuery.cs" />

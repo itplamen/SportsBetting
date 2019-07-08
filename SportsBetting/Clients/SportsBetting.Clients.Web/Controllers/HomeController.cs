@@ -7,6 +7,7 @@
     using SportsBetting.Clients.Web.Models.Home;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Categories;
+    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Services.Data.Contracts;
 
@@ -15,18 +16,18 @@
         private readonly ITeamsService teamsService;
         private readonly IMatchesService matchesService;
         private readonly ITournamentsService tournamentsService;
-        private readonly IQueryHandler<CategoriesByIdsQuery, IEnumerable<Category>> categoriesByIdsHandler;
+        private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
 
         public HomeController(
             ITeamsService teamsService,
             IMatchesService matchesService,
             ITournamentsService tournamentsService,
-            IQueryHandler<CategoriesByIdsQuery, IEnumerable<Category>> categoriesByIdsHandler)
+            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler)
         {
             this.teamsService = teamsService;
             this.matchesService = matchesService;
             this.tournamentsService = tournamentsService;
-            this.categoriesByIdsHandler = categoriesByIdsHandler;
+            this.categoriesByIdHandler = categoriesByIdHandler;
         }
 
         public ActionResult Index()
@@ -34,8 +35,8 @@
             IEnumerable<Match> matches = matchesService.AllActive()
                 .OrderBy(x => x.StartTime);
 
-            CategoriesByIdsQuery query = new CategoriesByIdsQuery(matches.Select(x => x.CategoryId));
-            IEnumerable<Category> categories = categoriesByIdsHandler.Handle(query);
+            EntitiesByIdQuery<Category> query = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId));
+            IEnumerable<Category> categories = categoriesByIdHandler.Handle(query);
 
             IEnumerable<string> tournamentIds = matches.Select(x => x.TournamentId);
             IEnumerable<Tournament> tournaments = tournamentsService.Get(tournamentIds);
