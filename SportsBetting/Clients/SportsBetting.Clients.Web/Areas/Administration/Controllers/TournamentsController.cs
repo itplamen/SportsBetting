@@ -7,20 +7,20 @@
 
     using SportsBetting.Clients.Web.Areas.Administration.Models.Tournaments;
     using SportsBetting.Data.Models;
-    using SportsBetting.Services.Data.Contracts;
+    using SportsBetting.Handlers.Queries.Contracts;
 
     public class TournamentsController : Controller
     {
-        private readonly ITournamentsService tournamentsService;
+        private readonly IQueryHandler<IEnumerable<Tournament>> allWithDeletedHandler;
 
-        public TournamentsController(ITournamentsService tournamentsService)
+        public TournamentsController(IQueryHandler<IEnumerable<Tournament>> allWithDeletedHandler)
         {
-            this.tournamentsService = tournamentsService;
+            this.allWithDeletedHandler = allWithDeletedHandler;
         }
 
         public ActionResult Index()
         {
-            IEnumerable<Tournament> tournaments = tournamentsService.AllWithDeleted();
+            IEnumerable<Tournament> tournaments = allWithDeletedHandler.Handle();
             IEnumerable<TournamentViewModel> tournamentViewModels = Mapper.Map<IEnumerable<TournamentViewModel>>(tournaments);
 
             return View(tournamentViewModels);
