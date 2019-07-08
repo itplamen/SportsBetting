@@ -15,7 +15,6 @@
         {
             container.Register<IAccountsService, AccountsService>(new WebRequestLifestyle());
             container.Register<IEncryptionService, EncryptionService>(new WebRequestLifestyle());
-            container.Register<ITeamsService, TeamsService>(new WebRequestLifestyle());
             container.Register<IMatchesService, MatchesService>(new WebRequestLifestyle());
         }
     }

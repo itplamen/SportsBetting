@@ -12,19 +12,19 @@
 
     public class HomeController : Controller
     {
-        private readonly ITeamsService teamsService;
         private readonly IMatchesService matchesService;
+        private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler;
 
         public HomeController(
-            ITeamsService teamsService,
             IMatchesService matchesService,
+            IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler,
             IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler)
         {
-            this.teamsService = teamsService;
             this.matchesService = matchesService;
+            this.teamsByIdHandler = teamsByIdHandler;
             this.categoriesByIdHandler = categoriesByIdHandler;
             this.tournamentsByIdHandler = tournamentsByIdHandler;
         }
@@ -44,7 +44,8 @@
             teamIds.AddRange(matches.Select(x => x.AwayTeamId));
             teamIds.Distinct();
 
-            IEnumerable<Team> teams = teamsService.Get(teamIds);
+            EntitiesByIdQuery<Team> teamsQuery = new EntitiesByIdQuery<Team>(teamIds);
+            IEnumerable<Team> teams = teamsByIdHandler.Handle(teamsQuery);
 
             ICollection<GameViewModel> gameViewModels = new List<GameViewModel>();
 

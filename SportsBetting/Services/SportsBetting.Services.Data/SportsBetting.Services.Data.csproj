@@ -44,10 +44,8 @@
     <Compile Include="AccountsService.cs" />
     <Compile Include="Contracts\IAccountsService.cs" />
     <Compile Include="Contracts\IMatchesService.cs" />
-    <Compile Include="Contracts\ITeamsService.cs" />
     <Compile Include="MatchesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Common\SportsBetting.Data.Common.csproj">
