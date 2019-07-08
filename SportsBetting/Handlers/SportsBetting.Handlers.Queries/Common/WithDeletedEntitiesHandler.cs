@@ -9,12 +9,12 @@
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class AllEntitiesWithDeletedHandler<TEntity> : IQueryHandler<IEnumerable<TEntity>>
+    public class WithDeletedEntitiesHandler<TEntity> : IQueryHandler<IEnumerable<TEntity>>
         where TEntity : BaseModel
     {
         private readonly ISportsBettingDbContext dbContext;
 
-        public AllEntitiesWithDeletedHandler(ISportsBettingDbContext dbContext)
+        public WithDeletedEntitiesHandler(ISportsBettingDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

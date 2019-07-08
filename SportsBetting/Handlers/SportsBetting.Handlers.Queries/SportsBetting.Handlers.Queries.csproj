@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
-    <Compile Include="Common\AllEntitiesWithDeletedHandler.cs" />
+    <Compile Include="Common\WithDeletedEntitiesHandler.cs" />
     <Compile Include="Common\EntitiesByIdQuery.cs" />
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="Markets\MarketByKeyQueryHandler.cs" />
     <Compile Include="Matches\MatchByKeyQuery.cs" />
     <Compile Include="Matches\MatchByKeyQueryHandler.cs" />
+    <Compile Include="Matches\OrderedMatchesQueryHandler.cs" />
     <Compile Include="Odds\OddByKeyQuery.cs" />
     <Compile Include="Odds\OddByKeyQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

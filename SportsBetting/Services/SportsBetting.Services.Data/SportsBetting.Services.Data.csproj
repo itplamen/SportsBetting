@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="AccountsService.cs" />
     <Compile Include="Contracts\IAccountsService.cs" />
-    <Compile Include="Contracts\IMatchesService.cs" />
-    <Compile Include="MatchesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

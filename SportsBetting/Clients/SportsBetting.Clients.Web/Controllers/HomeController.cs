@@ -8,22 +8,21 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Services.Data.Contracts;
 
     public class HomeController : Controller
     {
-        private readonly IMatchesService matchesService;
+        private readonly IQueryHandler<IEnumerable<Match>> matchesHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler;
 
         public HomeController(
-            IMatchesService matchesService,
+            IQueryHandler<IEnumerable<Match>> matchesHandler,
             IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler,
             IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler)
         {
-            this.matchesService = matchesService;
+            this.matchesHandler = matchesHandler;
             this.teamsByIdHandler = teamsByIdHandler;
             this.categoriesByIdHandler = categoriesByIdHandler;
             this.tournamentsByIdHandler = tournamentsByIdHandler;
@@ -31,8 +30,7 @@
 
         public ActionResult Index()
         {
-            IEnumerable<Match> matches = matchesService.AllActive()
-                .OrderBy(x => x.StartTime);
+            IEnumerable<Match> matches = matchesHandler.Handle();
 
             EntitiesByIdQuery<Category> categoriesQuery = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId));
             IEnumerable<Category> categories = categoriesByIdHandler.Handle(categoriesQuery);
