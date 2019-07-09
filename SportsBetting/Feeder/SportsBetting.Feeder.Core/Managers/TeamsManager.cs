@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using AutoMapper;
+
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -37,12 +39,8 @@
             EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(1);
             Sport sport = sportByKeyHandler.Handle(sportQuery);
 
-            CreateTeamCommand teamCommand = new CreateTeamCommand()
-            {
-                Key = feedModel.Key,
-                Name = feedModel.Name,
-                SportId = sport.Id
-            };
+            CreateTeamCommand teamCommand = Mapper.Map<CreateTeamCommand>(feedModel);
+            teamCommand.SportId = sport.Id;
 
             return createTeamHandler.Handle(teamCommand);
         }
