@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Common.Infrastructure.Mapping
 {
-    public class IMapTo<TModel>
+    public interface IMapTo<TModel>
         where TModel : class
     {
     }
