@@ -15,6 +15,6 @@
 
 * SimpleInjector - [link](https://github.com/simpleinjector/SimpleInjector)
 * Automapper - [link](https://github.com/AutoMapper/AutoMapper)
-* Selenium - [link] (https://github.com/SeleniumHQ/selenium)
+* Selenium - [link](https://github.com/SeleniumHQ/selenium)
 * Html Agility Pack with XPath - [link](https://github.com/zzzprojects/html-agility-pack)
 * Moq, mocking framework - [link](https://github.com/moq/moq4)
