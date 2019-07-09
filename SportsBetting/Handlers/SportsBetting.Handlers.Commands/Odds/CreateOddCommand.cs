@@ -1,9 +1,11 @@
 ﻿namespace SportsBetting.Handlers.Commands.Odds
 {
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
+    using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class CreateOddCommand : ICommand
+    public class CreateOddCommand : ICommand, IMapFrom<OddFeedModel>, IMapTo<Odd>
     {
         public int Key { get; set; }
 

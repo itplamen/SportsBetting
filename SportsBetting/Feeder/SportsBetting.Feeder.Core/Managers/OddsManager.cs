@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using AutoMapper;
+
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -47,18 +49,10 @@
                 }
                 else
                 {
-                    CreateOddCommand createCommand = new CreateOddCommand()
-                    {
-                        Key = feedModel.Key,
-                        Header = feedModel.Header,
-                        IsActive = true,
-                        IsSuspended = feedModel.IsSuspended,
-                        Name = feedModel.Name,
-                        Value = feedModel.Value,
-                        Rank = feedModel.Rank,
-                        MarketId = marketId,
-                        MatchId = matchId
-                    };
+                    CreateOddCommand createCommand = Mapper.Map<CreateOddCommand>(feedModel);
+                    createCommand.IsActive = true;
+                    createCommand.MatchId = matchId;
+                    createCommand.MarketId = marketId;
 
                     createOddHandler.Handle(createCommand);
                 }
