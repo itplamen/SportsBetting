@@ -30,7 +30,7 @@
         {
             foreach (var feedModel in feedModels)
             {
-                EntityByKeyQuery<Odd> query = new EntityByKeyQuery<Odd>(feedModel.Id);
+                EntityByKeyQuery<Odd> query = new EntityByKeyQuery<Odd>(feedModel.Key);
                 Odd odd = oddByKeyHandler.Handle(query);
 
                 if (odd != null)
@@ -49,7 +49,7 @@
                 {
                     CreateOddCommand createCommand = new CreateOddCommand()
                     {
-                        Key = feedModel.Id,
+                        Key = feedModel.Key,
                         Header = feedModel.Header,
                         IsActive = true,
                         IsSuspended = feedModel.IsSuspended,

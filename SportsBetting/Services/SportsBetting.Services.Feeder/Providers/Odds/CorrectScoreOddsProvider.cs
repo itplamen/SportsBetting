@@ -25,7 +25,7 @@
             this.oddsProvider = oddsProvider;
         }
 
-        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketKey)
         {
             if (ShouldGet(marketNode, oddNames))
             {
@@ -33,13 +33,13 @@
 
                 if (oddNodes != null)
                 {
-                    return GetTwoColumnOdds(oddNodes, marketId);
+                    return GetTwoColumnOdds(oddNodes, marketKey);
                 }
 
-                return GetFourColumnOdds(marketNode, marketId);
+                return GetFourColumnOdds(marketNode, marketKey);
             }
 
-            return oddsProvider.Get(marketNode, oddNames, marketId);
+            return oddsProvider.Get(marketNode, oddNames, marketKey);
         }
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)
@@ -52,14 +52,14 @@
             return htmlService.IsSuspended(oddNode.LastChild.LastChild);
         }
 
-        private IEnumerable<OddFeedModel> GetTwoColumnOdds(HtmlNodeCollection oddNodes, int marketId)
+        private IEnumerable<OddFeedModel> GetTwoColumnOdds(HtmlNodeCollection oddNodes, int marketKey)
         {
             ICollection<OddFeedModel> odds = new List<OddFeedModel>();
 
             for (int i = 0; i < oddNodes.Count; i++)
             {
                 string header = oddNodes[i].FirstChild.InnerText;
-                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketId, header);
+                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketKey, header);
 
                 odds.Add(odd);
             }
@@ -67,7 +67,7 @@
             return odds;
         }
 
-        private IEnumerable<OddFeedModel> GetFourColumnOdds(HtmlNode marketNode, int marketId)
+        private IEnumerable<OddFeedModel> GetFourColumnOdds(HtmlNode marketNode, int marketKey)
         {
             ICollection<OddFeedModel> odds = new List<OddFeedModel>();
             HtmlNodeCollection oddNodesCollection = marketNode.SelectNodes(OddXPaths.CORRECT_SCORE_NODE);
@@ -81,7 +81,7 @@
                     foreach (var oddNode in oddNodesCollection[i].ChildNodes)
                     {
                         string header = oddNode.FirstChild.InnerText;
-                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketId, header);
+                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, header);
 
                         odds.Add(odd);
 

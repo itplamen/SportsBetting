@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Models
 {
-    using System;
     using System.Collections.Generic;
 
     using SportsBetting.Feeder.Models.Base;
@@ -14,13 +13,13 @@
 
         public string Name { get; set; }
 
-        public int MatchId { get; set; }
+        public int MatchKey { get; set; }
 
         public IEnumerable<OddFeedModel> Odds { get; set; }
 
-        protected override int GenerateId()
+        protected override int GenerateKey()
         {
-            return Math.Abs(Name.GetHashCode() ^ MatchId.GetHashCode());
+            return Name.GetHashCode() ^ MatchKey.GetHashCode();
         }
     }
 }

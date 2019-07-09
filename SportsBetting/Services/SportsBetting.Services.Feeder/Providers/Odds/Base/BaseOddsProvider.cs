@@ -22,13 +22,13 @@
             this.objectFactory = objectFactory;
         }
 
-        protected OddFeedModel BuildOdd(HtmlNode oddNode, string name, int rank, int marketId, string header = null)
+        protected OddFeedModel BuildOdd(HtmlNode oddNode, string name, int rank, int marketKey, string header = null)
         {
             decimal value = GetValue(oddNode);
             bool isSuspended = IsSuspended(oddNode);
             OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
-            return objectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, marketId, header);
+            return objectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, marketKey, header);
         }
 
         protected virtual decimal GetValue(HtmlNode oddNode)

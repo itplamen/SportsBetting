@@ -24,11 +24,9 @@
 
         public IEnumerable<MarketFeedModel> Markets { get; set; }
 
-        protected override int GenerateId()
+        protected override int GenerateKey()
         {
-            int id = Tournament.Id.GetHashCode() ^ HomeTeam.Id.GetHashCode() ^ AwayTeam.Id.GetHashCode();
-
-            return Math.Abs(id);
+            return Tournament.Key.GetHashCode() ^ HomeTeam.Key.GetHashCode() ^ AwayTeam.Key.GetHashCode();
         }
     }
 }

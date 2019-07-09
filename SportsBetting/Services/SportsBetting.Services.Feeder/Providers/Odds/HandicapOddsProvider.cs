@@ -24,7 +24,7 @@
             this.htmlService = htmlService;
         }
 
-        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketId)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketKey)
         {
             if (ShouldGet(marketNode, oddNames))
             {
@@ -36,7 +36,7 @@
                     int nameIndex = i % 2 == 0 ? 0 : 1;
                     string header = oddNodes[i].FirstChild.InnerText;
 
-                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketId, header);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketKey, header);
                     odds.Add(odd);
                 }
 

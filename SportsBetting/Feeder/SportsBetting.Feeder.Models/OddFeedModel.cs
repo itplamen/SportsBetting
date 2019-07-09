@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Models
 {
-    using System;
-
     using SportsBetting.Feeder.Models.Base;
 
     public class OddFeedModel : BaseFeedModel
@@ -16,11 +14,11 @@
 
         public bool IsSuspended { get; set; }
 
-        public int MarketId { get; set; }
+        public int MarketKey { get; set; }
 
         public OddResultFeedStatus ResultStatus { get; set; }
 
-        protected override int GenerateId()
+        protected override int GenerateKey()
         {
             int headerHash = 0;
 
@@ -29,7 +27,7 @@
                 headerHash = Header.GetHashCode();
             }
 
-            return Math.Abs(Name.GetHashCode() ^ headerHash ^ MarketId.GetHashCode());
+            return Name.GetHashCode() ^ headerHash ^ MarketKey.GetHashCode();
         }
     }
 }

@@ -26,7 +26,7 @@
 
         public string Manage(TeamFeedModel feedModel)
         {
-            EntityByKeyQuery<Team> teamQuery = new EntityByKeyQuery<Team>(feedModel.Id);
+            EntityByKeyQuery<Team> teamQuery = new EntityByKeyQuery<Team>(feedModel.Key);
             Team team = teamByKeyHandler.Handle(teamQuery);
 
             if (team != null)
@@ -39,7 +39,7 @@
 
             CreateTeamCommand teamCommand = new CreateTeamCommand()
             {
-                Key = feedModel.Id,
+                Key = feedModel.Key,
                 Name = feedModel.Name,
                 SportId = sport.Id
             };

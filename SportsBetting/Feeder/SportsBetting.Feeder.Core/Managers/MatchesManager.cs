@@ -26,7 +26,7 @@
 
         public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
         {
-            EntityByKeyQuery<Match> matchQuery = new EntityByKeyQuery<Match>(feedModel.Id);
+            EntityByKeyQuery<Match> matchQuery = new EntityByKeyQuery<Match>(feedModel.Key);
             Match match = matchByKeyHandler.Handle(matchQuery);
 
             if (match != null)
@@ -43,7 +43,7 @@
 
             CreateMatchCommand createCommand = new CreateMatchCommand()
             {
-                Key = feedModel.Id,
+                Key = feedModel.Key,
                 Score = $"{feedModel.HomeTeam.Score}:{feedModel.AwayTeam.Score}",
                 StartTime = feedModel.StartTime,
                 CategoryId = categoryId,

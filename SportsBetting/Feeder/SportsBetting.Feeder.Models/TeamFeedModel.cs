@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Models
 {
-    using System;
-
     using SportsBetting.Feeder.Models.Base;
 
     public class TeamFeedModel : BaseFeedModel
@@ -10,9 +8,9 @@
 
         public int? Score { get; set; }
 
-        protected override int GenerateId()
+        protected override int GenerateKey()
         {
-            return Math.Abs(Name.GetHashCode());
+            return Name.GetHashCode();
         }
     }
 }

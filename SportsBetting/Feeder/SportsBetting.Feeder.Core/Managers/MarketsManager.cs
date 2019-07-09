@@ -23,7 +23,7 @@
 
         public string Manage(MarketFeedModel feedModel, string matchId)
         {
-            EntityByKeyQuery<Market> query = new EntityByKeyQuery<Market>(feedModel.Id);
+            EntityByKeyQuery<Market> query = new EntityByKeyQuery<Market>(feedModel.Key);
             Market market = marketByKeyHandler.Handle(query);
 
             if (market != null)
@@ -33,7 +33,7 @@
 
             CreateMarketCommand command = new CreateMarketCommand()
             {
-                Key = feedModel.Id,
+                Key = feedModel.Key,
                 Name = feedModel.Name,
                 MatchId = matchId
             };

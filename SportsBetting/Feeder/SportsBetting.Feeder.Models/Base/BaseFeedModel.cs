@@ -2,8 +2,8 @@
 {
     public abstract class BaseFeedModel
     {
-        public int Id => GenerateId();
+        public int Key => GenerateKey();
 
-        protected abstract int GenerateId();
+        protected abstract int GenerateKey();
     }
 }

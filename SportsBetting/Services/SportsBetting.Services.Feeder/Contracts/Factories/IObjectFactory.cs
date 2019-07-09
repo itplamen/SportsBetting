@@ -6,11 +6,11 @@
 
     public interface IObjectFactory
     {
-        MarketFeedModel CreateMarket(string name, int matchId);
+        MarketFeedModel CreateMarket(string name, int matchKey);
 
         MatchFeedModel CreateMatch(DateTime startTime, MatchFeedStatus status, TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament);
 
-        OddFeedModel CreateOdd(string name, decimal value, bool isSuspended, OddResultFeedStatus resultStatus, int rank, int matketId, string header = null);
+        OddFeedModel CreateOdd(string name, decimal value, bool isSuspended, OddResultFeedStatus resultStatus, int rank, int marketKey, string header = null);
 
         TeamFeedModel CreateTeam(string name, int? score);
 

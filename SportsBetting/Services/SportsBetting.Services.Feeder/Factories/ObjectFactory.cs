@@ -7,12 +7,12 @@
 
     public class ObjectFactory : IObjectFactory
     {
-        public MarketFeedModel CreateMarket(string name, int matchId)
+        public MarketFeedModel CreateMarket(string name, int matchKey)
         {
             return new MarketFeedModel()
             {
                 Name = name,
-                MatchId = matchId
+                MatchKey = matchKey
             };
         }
 
@@ -39,7 +39,7 @@
             bool isSuspended, 
             OddResultFeedStatus resultStatus, 
             int rank, 
-            int matketId, 
+            int marketKey, 
             string header = null)
         {
             return new OddFeedModel()
@@ -50,7 +50,7 @@
                 IsSuspended = isSuspended,
                 ResultStatus = resultStatus,
                 Rank = rank,
-                MarketId = matketId
+                MarketKey = marketKey
             };
         }
 

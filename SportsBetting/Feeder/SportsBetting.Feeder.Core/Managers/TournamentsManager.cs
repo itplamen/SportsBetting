@@ -33,7 +33,7 @@
 
             CreateTournamentCommand command = new CreateTournamentCommand()
             {
-                Key = feedModel.Id,
+                Key = feedModel.Key,
                 Name = feedModel.Name,
                 CategoryId = categoryId
             };
