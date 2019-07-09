@@ -41,7 +41,6 @@
             {
                 Key = feedModel.Id,
                 Name = feedModel.Name,
-                Score = feedModel.Score,
                 SportId = sport.Id
             };
 
