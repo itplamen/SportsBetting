@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using AutoMapper;
+
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -41,16 +43,11 @@
                 return updateMatchHandler.Handle(updateCommand);
             }
 
-            CreateMatchCommand createCommand = new CreateMatchCommand()
-            {
-                Key = feedModel.Key,
-                Score = $"{feedModel.HomeTeam.Score}:{feedModel.AwayTeam.Score}",
-                StartTime = feedModel.StartTime,
-                CategoryId = categoryId,
-                TournamentId = tournamentId,
-                HomeTeamId = homeTeamId,
-                AwayTeamId = awayTeamId
-            };
+            CreateMatchCommand createCommand = Mapper.Map<CreateMatchCommand>(feedModel);
+            createCommand.CategoryId = categoryId;
+            createCommand.TournamentId = tournamentId;
+            createCommand.HomeTeamId = homeTeamId;
+            createCommand.AwayTeamId = awayTeamId;
 
             return createMatchHandler.Handle(createCommand);
         }
