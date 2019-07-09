@@ -1,8 +1,11 @@
 ﻿namespace SportsBetting.Feeder.Bootstrap
 {
+    using System.Reflection;
+
     using SimpleInjector.Packaging;
 
     using SportsBetting.Common.Contracts;
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.IoCContainer;
@@ -18,6 +21,7 @@
             InitializeDependencies();
             InitializeDb();
             InitializeCaches();
+            InitializeMapping();
 
             synchronizer = SportsBettingContainer.Resolve<ISynchronizer>();
         }
@@ -56,6 +60,12 @@
         {
             ICacheInitializer cacheInitializer = SportsBettingContainer.Resolve<ICacheInitializer>();
             cacheInitializer.Init();
+        }
+
+        private void InitializeMapping()
+        {
+            const string MAPPING_ASSEMBLY = "SportsBetting.Handlers.Commands";
+            AutoMapperConfig.RegisterMappings(Assembly.Load(MAPPING_ASSEMBLY));
         }
     }
 }

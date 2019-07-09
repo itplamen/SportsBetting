@@ -1,8 +1,10 @@
 ﻿namespace SportsBetting.Handlers.Commands.Categories
 {
+    using SportsBetting.Common.Infrastructure.Mapping;
+    using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class CreateCategoryCommand : ICommand
+    public class CreateCategoryCommand : ICommand, IMapTo<Category>
     {
         public int Key { get; set; }
 

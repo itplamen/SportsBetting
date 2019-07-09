@@ -90,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common.Infrastructure\SportsBetting.Common.Infrastructure.csproj">
+      <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
+      <Name>SportsBetting.Common.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
       <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
       <Name>SportsBetting.Common</Name>
