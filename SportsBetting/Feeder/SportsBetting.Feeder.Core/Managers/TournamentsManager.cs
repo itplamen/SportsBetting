@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using AutoMapper;
+
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -31,12 +33,8 @@
                 return tournament.Id;
             }
 
-            CreateTournamentCommand command = new CreateTournamentCommand()
-            {
-                Key = feedModel.Key,
-                Name = feedModel.Name,
-                CategoryId = categoryId
-            };
+            CreateTournamentCommand command = Mapper.Map<CreateTournamentCommand>(feedModel);
+            command.CategoryId = categoryId;
 
             return createTournamentHandler.Handle(command);
         }       
