@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using AutoMapper;
+
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -31,12 +33,8 @@
                 return market.Id;
             }
 
-            CreateMarketCommand command = new CreateMarketCommand()
-            {
-                Key = feedModel.Key,
-                Name = feedModel.Name,
-                MatchId = matchId
-            };
+            CreateMarketCommand command = Mapper.Map<CreateMarketCommand>(feedModel);
+            command.MatchId = matchId;
 
             return createMarketHandler.Handle(command);
         }
