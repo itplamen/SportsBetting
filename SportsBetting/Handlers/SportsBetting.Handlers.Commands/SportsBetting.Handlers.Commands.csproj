@@ -99,6 +99,10 @@
       <Project>{22F744B0-D455-4FF8-91CD-34D72D1ED206}</Project>
       <Name>SportsBetting.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Models\SportsBetting.Feeder.Models.csproj">
+      <Project>{9D9669F4-7D03-4142-A6DB-55FE1140E04B}</Project>
+      <Name>SportsBetting.Feeder.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
