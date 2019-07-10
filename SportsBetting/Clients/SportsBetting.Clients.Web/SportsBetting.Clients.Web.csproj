@@ -237,6 +237,10 @@
       <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
       <Name>SportsBetting.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\SportsBetting.Data.Cache\SportsBetting.Data.Cache.csproj">
+      <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
+      <Name>SportsBetting.Data.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
       <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
       <Name>SportsBetting.Data.Models</Name>
@@ -252,6 +256,10 @@
     <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
       <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
       <Name>SportsBetting.IoCContainer.Packages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer\SportsBetting.IoCContainer.csproj">
+      <Project>{54135F4C-8A05-4018-8240-6E0CC17EDF91}</Project>
+      <Name>SportsBetting.IoCContainer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Utils\SportsBetting.Services.Utils.csproj">
       <Project>{B720E001-3A0F-4B42-9324-6B24E24B41C3}</Project>

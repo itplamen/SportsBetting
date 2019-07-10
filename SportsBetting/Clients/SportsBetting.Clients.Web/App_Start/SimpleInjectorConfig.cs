@@ -7,6 +7,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SimpleInjector.Packaging;
 
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.IoCContainer.Packages.Web;
 
     public static class SimpleInjectorConfig
@@ -33,6 +34,9 @@
             container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+
+            ICacheInitializer cacheInitializer = container.GetInstance<ICacheInitializer>();
+            cacheInitializer.Init();
         }
     }
 }
