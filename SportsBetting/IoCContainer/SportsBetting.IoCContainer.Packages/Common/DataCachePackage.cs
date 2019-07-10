@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.IoCContainer.Packages.Feeder
+﻿namespace SportsBetting.IoCContainer.Packages.Common
 {
     using SimpleInjector;
     using SimpleInjector.Packaging;
@@ -19,16 +19,14 @@
             container.Register(typeof(ICache<>), typeof(MarketsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(OddsCache), Lifestyle.Singleton);
 
-            container.Collection.Register<ICacheInitializer>(
-                typeof(SportsCache),
-                typeof(CategoriesCache),
-                typeof(TournamentsCache),
-                typeof(TeamsCache),
-                typeof(MatchesCache),
-                typeof(MarketsCache),
-                typeof(OddsCache));
-
             container.Register<ICacheInitializer, CacheComposite>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, SportsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, CategoriesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, TournamentsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, TeamsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, MatchesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, MarketsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, OddsCache>(Lifestyle.Singleton);
         }
     }
 }

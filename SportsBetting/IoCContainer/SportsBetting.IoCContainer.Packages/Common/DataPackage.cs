@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.IoCContainer.Packages.Feeder
+﻿namespace SportsBetting.IoCContainer.Packages.Common
 {
     using SimpleInjector;
     using SimpleInjector.Packaging;

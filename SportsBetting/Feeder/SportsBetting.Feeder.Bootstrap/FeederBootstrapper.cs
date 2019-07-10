@@ -9,7 +9,7 @@
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.IoCContainer;
-    using SportsBetting.IoCContainer.Packages;
+    using SportsBetting.IoCContainer.Packages.Common;
     using SportsBetting.IoCContainer.Packages.Feeder;
 
     public class FeederBootstrapper

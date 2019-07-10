@@ -8,6 +8,7 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Data.Cache.Contracts;
+    using SportsBetting.IoCContainer.Packages.Common;
     using SportsBetting.IoCContainer.Packages.Web;
 
     public static class SimpleInjectorConfig

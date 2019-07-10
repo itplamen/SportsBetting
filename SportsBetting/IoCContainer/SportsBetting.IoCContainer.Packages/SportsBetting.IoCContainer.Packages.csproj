@@ -74,15 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Feeder\DataCachePackage.cs" />
-    <Compile Include="Feeder\DataPackage.cs" />
+    <Compile Include="Common\DataCachePackage.cs" />
+    <Compile Include="Common\DataPackage.cs" />
     <Compile Include="Feeder\FeederPackage.cs" />
     <Compile Include="Feeder\CommandHandlersPackage.cs" />
     <Compile Include="Feeder\QueryHandlersPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\CommandHandlersPackage.cs" />
-    <Compile Include="Web\DataCachePackage.cs" />
-    <Compile Include="Web\DataPackage.cs" />
     <Compile Include="Web\DataServicesPackage.cs" />
     <Compile Include="Web\QueryHandlersPackage.cs" />
   </ItemGroup>
