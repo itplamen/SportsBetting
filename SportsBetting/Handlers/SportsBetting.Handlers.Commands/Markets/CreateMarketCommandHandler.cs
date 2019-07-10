@@ -4,16 +4,19 @@
 
     using AutoMapper;
 
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     
     public class CreateMarketCommandHandler : ICommandHandler<CreateMarketCommand, string>
     {
+        private readonly ICache<Market> marketsCache;
         private readonly ISportsBettingDbContext dbContext;
 
-        public CreateMarketCommandHandler(ISportsBettingDbContext dbContext)
+        public CreateMarketCommandHandler(ICache<Market> marketsCache, ISportsBettingDbContext dbContext)
         {
+            this.marketsCache = marketsCache;
             this.dbContext = dbContext;
         }
 
@@ -23,6 +26,7 @@
             market.CreatedOn = DateTime.UtcNow;
 
             dbContext.GetCollection<Market>().InsertOne(market);
+            marketsCache.Add(market.Key, market);
 
             return market.Id;
         }

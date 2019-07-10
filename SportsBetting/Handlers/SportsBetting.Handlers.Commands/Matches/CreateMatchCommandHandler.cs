@@ -4,16 +4,19 @@
 
     using AutoMapper;
 
+    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class CreateMatchCommandHandler : ICommandHandler<CreateMatchCommand, string>
     {
+        private readonly ICache<Match> matchesCache;
         private readonly ISportsBettingDbContext dbContext;
 
-        public CreateMatchCommandHandler(ISportsBettingDbContext dbContext)
+        public CreateMatchCommandHandler(ICache<Match> matchesCache, ISportsBettingDbContext dbContext)
         {
+            this.matchesCache = matchesCache;
             this.dbContext = dbContext;
         }
 
@@ -23,6 +26,7 @@
             match.CreatedOn = DateTime.UtcNow;
 
             dbContext.GetCollection<Match>().InsertOne(match);
+            matchesCache.Add(match.Key, match);
 
             return match.Id;
         }
