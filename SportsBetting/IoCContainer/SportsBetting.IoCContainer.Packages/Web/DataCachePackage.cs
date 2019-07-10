@@ -12,22 +12,22 @@
     {
         public void RegisterServices(Container container)
         {
-            container.Register(typeof(ICache<>), typeof(SportsCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(CategoriesCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(TournamentsCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(TeamsCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(MatchesCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(MarketsCache), new WebRequestLifestyle());
-            container.Register(typeof(ICache<>), typeof(OddsCache), new WebRequestLifestyle());
+            container.Register(typeof(ICache<>), typeof(SportsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(CategoriesCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(TournamentsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(TeamsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(MatchesCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(MarketsCache), Lifestyle.Singleton);
+            container.Register(typeof(ICache<>), typeof(OddsCache), Lifestyle.Singleton);
 
-            container.Register<ICacheInitializer, CacheComposite>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, SportsCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, CategoriesCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, TournamentsCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, TeamsCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, MatchesCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, MarketsCache>(new WebRequestLifestyle());
-            container.Collection.Append<ICacheInitializer, OddsCache>(new WebRequestLifestyle());
+            container.Register<ICacheInitializer, CacheComposite>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, SportsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, CategoriesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, TournamentsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, TeamsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, MatchesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, MarketsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheInitializer, OddsCache>(Lifestyle.Singleton);
         }
     }
 }

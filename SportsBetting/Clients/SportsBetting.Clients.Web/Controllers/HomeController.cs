@@ -32,10 +32,10 @@
         {
             IEnumerable<Match> matches = matchesHandler.Handle();
 
-            EntitiesByIdQuery<Category> categoriesQuery = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId));
+            EntitiesByIdQuery<Category> categoriesQuery = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId).Distinct());
             IEnumerable<Category> categories = categoriesByIdHandler.Handle(categoriesQuery);
 
-            EntitiesByIdQuery<Tournament> tournamentsQuery = new EntitiesByIdQuery<Tournament>(matches.Select(x => x.TournamentId));
+            EntitiesByIdQuery<Tournament> tournamentsQuery = new EntitiesByIdQuery<Tournament>(matches.Select(x => x.TournamentId).Distinct());
             IEnumerable<Tournament> tournaments = tournamentsByIdHandler.Handle(tournamentsQuery);
 
             List<string> teamIds = matches.Select(x => x.HomeTeamId).ToList();

@@ -11,7 +11,7 @@
     {
         public void RegisterServices(Container container)
         {
-            container.Register<ISportsBettingDbContext, SportsBettingDbContext>(new WebRequestLifestyle());
+            container.Register<ISportsBettingDbContext, SportsBettingDbContext>(Lifestyle.Singleton);
         }
     }
 }
