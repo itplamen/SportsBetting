@@ -33,12 +33,8 @@
 
             if (match != null)
             {
-                UpdateMatchCommand updateCommand = new UpdateMatchCommand()
-                {
-                    Id = match.Id,
-                    Score = $"{feedModel.HomeTeam.Score}:{feedModel.AwayTeam.Score}",
-                    StartTime = feedModel.StartTime
-                };
+                UpdateMatchCommand updateCommand = Mapper.Map<UpdateMatchCommand>(feedModel);
+                updateCommand.Id = match.Id;
 
                 return updateMatchHandler.Handle(updateCommand);
             }

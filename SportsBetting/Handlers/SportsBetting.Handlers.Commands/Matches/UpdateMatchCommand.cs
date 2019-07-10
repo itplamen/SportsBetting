@@ -2,10 +2,14 @@
 {
     using System;
 
+    using AutoMapper;
+
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
+    using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
-    
-    public class UpdateMatchCommand : ICommand
+
+    public class UpdateMatchCommand : ICommand, IMapFrom<MatchFeedModel>, IMapTo<Match>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -16,5 +20,11 @@
         public string Score { get; set; }
 
         public string StreamURL { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<MatchFeedModel, UpdateMatchCommand>()
+                .ForMember(x => x.Score, opt => opt.MapFrom(x => $"{x.HomeTeam.Score}:{x.AwayTeam.Score}"));
+        }
     }
 }

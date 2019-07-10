@@ -37,13 +37,8 @@
 
                 if (odd != null)
                 {
-                    UpdateOddCommand updateCommand = new UpdateOddCommand()
-                    {
-                        Id = odd.Id,
-                        IsActive = true,
-                        Value = feedModel.Value,
-                        IsSuspended = feedModel.IsSuspended
-                    };
+                    UpdateOddCommand updateCommand = Mapper.Map<UpdateOddCommand>(feedModel);
+                    updateCommand.Id = odd.Id;
 
                     updateOddHandler.Handle(updateCommand);
                 }
