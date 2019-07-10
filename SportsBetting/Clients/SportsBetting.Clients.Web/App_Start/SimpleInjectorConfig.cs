@@ -18,6 +18,7 @@
             IPackage[] packages = new IPackage[]
             {
                 new DataPackage(),
+                new DataCachePackage(),
                 new DataServicesPackage(),
                 new QueryHandlersPackage(),
                 new CommandHandlersPackage()
