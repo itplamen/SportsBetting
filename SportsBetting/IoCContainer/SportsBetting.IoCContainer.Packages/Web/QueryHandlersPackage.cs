@@ -18,9 +18,9 @@
         {
             container.Register(typeof(IQueryHandler<,>), typeof(EntitiesByIdQueryHandler<>), new WebRequestLifestyle());
             container.Register(typeof(IQueryHandler<>), typeof(WithDeletedEntitiesHandler<>), new WebRequestLifestyle());
-            //container.Register<IQueryHandler<IEnumerable<Match>>, OrderedMatchesQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByEmailQuery, Account>, AccountByEmailQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<UpcomingMatchesQuery, IEnumerable<UpcomingMatchesResult>>, UpcomingMatchesQueryHandler>(new WebRequestLifestyle());
         }
     }
 }

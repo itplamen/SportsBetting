@@ -1,68 +1,30 @@
 ﻿namespace SportsBetting.Clients.Web.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper;
+
     using SportsBetting.Clients.Web.Models.Home;
-    using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Matches;
 
     public class HomeController : Controller
     {
-        private readonly IQueryHandler<IEnumerable<Match>> matchesHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler;
+        private readonly IQueryHandler<UpcomingMatchesQuery, IEnumerable<UpcomingMatchesResult>> upcomingMatchesHandler;
 
-        public HomeController(
-            IQueryHandler<IEnumerable<Match>> matchesHandler,
-            IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler,
-            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler,
-            IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler)
+        public HomeController(IQueryHandler<UpcomingMatchesQuery, IEnumerable<UpcomingMatchesResult>> upcomingMatchesHandler)
         {
-            this.matchesHandler = matchesHandler;
-            this.teamsByIdHandler = teamsByIdHandler;
-            this.categoriesByIdHandler = categoriesByIdHandler;
-            this.tournamentsByIdHandler = tournamentsByIdHandler;
+            this.upcomingMatchesHandler = upcomingMatchesHandler;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(SelectGamesViewModel viewModel)
         {
-            IEnumerable<Match> matches = matchesHandler.Handle();
+            UpcomingMatchesQuery query = Mapper.Map<UpcomingMatchesQuery>(viewModel);
+            IEnumerable<UpcomingMatchesResult> upcomingMatches = upcomingMatchesHandler.Handle(query);
+            IEnumerable<GameViewModel> viewModels = Mapper.Map<IEnumerable<GameViewModel>>(upcomingMatches);
 
-            EntitiesByIdQuery<Category> categoriesQuery = new EntitiesByIdQuery<Category>(matches.Select(x => x.CategoryId).Distinct());
-            IEnumerable<Category> categories = categoriesByIdHandler.Handle(categoriesQuery);
-
-            EntitiesByIdQuery<Tournament> tournamentsQuery = new EntitiesByIdQuery<Tournament>(matches.Select(x => x.TournamentId).Distinct());
-            IEnumerable<Tournament> tournaments = tournamentsByIdHandler.Handle(tournamentsQuery);
-
-            List<string> teamIds = matches.Select(x => x.HomeTeamId).ToList();
-            teamIds.AddRange(matches.Select(x => x.AwayTeamId));
-            teamIds.Distinct();
-
-            EntitiesByIdQuery<Team> teamsQuery = new EntitiesByIdQuery<Team>(teamIds);
-            IEnumerable<Team> teams = teamsByIdHandler.Handle(teamsQuery);
-
-            ICollection<GameViewModel> gameViewModels = new List<GameViewModel>();
-
-            foreach (var match in matches)
-            {
-                GameViewModel gameViewModel = new GameViewModel()
-                {
-                    StartTime = match.StartTime,
-                    Score = match.Score,
-                    HomeTeam = teams.First(x => x.Id == match.HomeTeamId).Name,
-                    AwayTeam = teams.First(x => x.Id == match.AwayTeamId).Name,
-                    Category = categories.First(x => x.Id == match.CategoryId).Name,
-                    Tournament = tournaments.First(x => x.Id == match.TournamentId).Name
-                };
-
-                gameViewModels.Add(gameViewModel);
-            }
-
-            return View(gameViewModels);
+            return View(viewModels);
         }
 
         public ActionResult About()

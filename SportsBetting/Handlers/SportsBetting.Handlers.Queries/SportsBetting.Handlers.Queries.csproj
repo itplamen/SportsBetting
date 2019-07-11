@@ -77,7 +77,9 @@
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
-    <Compile Include="Matches\OrderedMatchesQueryHandler.cs" />
+    <Compile Include="Matches\UpcomingMatchesQuery.cs" />
+    <Compile Include="Matches\UpcomingMatchesQueryHandler.cs" />
+    <Compile Include="Matches\UpcomingMatchesResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQueryHandler.cs" />
@@ -86,6 +88,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common.Infrastructure\SportsBetting.Common.Infrastructure.csproj">
+      <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
+      <Name>SportsBetting.Common.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Cache\SportsBetting.Data.Cache.csproj">
       <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
       <Name>SportsBetting.Data.Cache</Name>

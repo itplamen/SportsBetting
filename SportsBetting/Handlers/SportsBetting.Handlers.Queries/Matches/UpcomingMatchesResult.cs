@@ -1,11 +1,11 @@
-﻿namespace SportsBetting.Clients.Web.Models.Home
+﻿namespace SportsBetting.Handlers.Queries.Matches
 {
     using System;
 
     using SportsBetting.Common.Infrastructure.Mapping;
-    using SportsBetting.Handlers.Queries.Matches;
+    using SportsBetting.Data.Models;
 
-    public class GameViewModel : IMapFrom<UpcomingMatchesResult>
+    public class UpcomingMatchesResult : IMapFrom<Match>
     {
         public string Id { get; set; }
 
