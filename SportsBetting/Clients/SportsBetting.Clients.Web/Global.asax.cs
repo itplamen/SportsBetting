@@ -17,7 +17,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SimpleInjectorConfig.RegisterContainer();
-            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
+            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly(), Assembly.Load("SportsBetting.Handlers.Queries"));
         }
     }
 }
