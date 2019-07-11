@@ -7,18 +7,11 @@
 
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
+    using SportsBetting.Services.Feeder.Factories;
 
     public class TeamsProvider : ITeamsProvider
     {
-        private readonly IObjectFactory objectFactory;
-
-        public TeamsProvider(IObjectFactory objectFactory)
-        {
-            this.objectFactory = objectFactory;
-        }
-
         public IEnumerable<TeamFeedModel> Get(HtmlNode matchContainer)
         {
             IEnumerable<string> names = ParseNames(matchContainer);
@@ -47,7 +40,7 @@
         private TeamFeedModel BuildTeam(string name, string scoreXPath, HtmlNode matchContainer)
         {
             int? score = GetScore(matchContainer, scoreXPath);
-            TeamFeedModel team = objectFactory.CreateTeam(name, score);
+            TeamFeedModel team = ObjectFactory.CreateTeam(name, score);
 
             return team;
         }

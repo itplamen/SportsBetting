@@ -6,23 +6,16 @@
     using HtmlAgilityPack;
 
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
+    using SportsBetting.Services.Feeder.Factories;
 
     public class TournametsProvider : ITournametsProvider
     {
-        private readonly IObjectFactory objectFactory;
-
-        public TournametsProvider(IObjectFactory objectFactory)
-        {
-            this.objectFactory = objectFactory;
-        }
-
         public TournamentFeedModel Get(HtmlNode matchInfo)
         {
             string name = WebUtility.HtmlDecode(matchInfo.FirstChild.FirstChild.InnerText);
             string category = matchInfo.ChildNodes[1].InnerText.Split(',').FirstOrDefault();
-            TournamentFeedModel tournament = objectFactory.CreateTournament(name, category);
+            TournamentFeedModel tournament = ObjectFactory.CreateTournament(name, category);
 
             return tournament;
         }

@@ -8,21 +8,19 @@
 
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
+    using SportsBetting.Services.Feeder.Factories;
 
     public class MarketsProvider : IMarketsProvider
     {
         private readonly IHtmlService htmlService;
         private readonly IOddsProvider oddsProvider;
-        private readonly IObjectFactory objectFactory;
 
-        public MarketsProvider(IHtmlService htmlService, IOddsProvider oddsProvider, IObjectFactory objectFactory)
+        public MarketsProvider(IHtmlService htmlService, IOddsProvider oddsProvider)
         {
             this.htmlService = htmlService;
             this.oddsProvider = oddsProvider;
-            this.objectFactory = objectFactory;
         }
 
         public IEnumerable<MarketFeedModel> Get(HtmlNode matchContainer, MatchFeedModel match)
@@ -33,7 +31,7 @@
 
             foreach (var marketNode in marketNodes)
             {
-                MarketFeedModel market = objectFactory.CreateMarket(marketNode.FirstChild.FirstChild.InnerText, match.Key);
+                MarketFeedModel market = ObjectFactory.CreateMarket(marketNode.FirstChild.FirstChild.InnerText, match.Key);
                 market.Odds = GetOdds(marketNode, match, market.Key);
 
                 markets.Add(market);

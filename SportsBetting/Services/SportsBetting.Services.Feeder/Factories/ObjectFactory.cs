@@ -3,11 +3,10 @@
     using System;
 
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
 
-    public class ObjectFactory : IObjectFactory
+    public static class ObjectFactory
     {
-        public MarketFeedModel CreateMarket(string name, int matchKey)
+        public static MarketFeedModel CreateMarket(string name, int matchKey)
         {
             return new MarketFeedModel()
             {
@@ -16,7 +15,7 @@
             };
         }
 
-        public MatchFeedModel CreateMatch(
+        public static MatchFeedModel CreateMatch(
             DateTime startTime,
             MatchFeedStatus status,
             TeamFeedModel homeTeam,
@@ -33,7 +32,7 @@
             };
         }
 
-        public OddFeedModel CreateOdd(
+        public static OddFeedModel CreateOdd(
             string name, 
             decimal value, 
             bool isSuspended, 
@@ -54,7 +53,7 @@
             };
         }
 
-        public TeamFeedModel CreateTeam(string name, int? score)
+        public static TeamFeedModel CreateTeam(string name, int? score)
         {
             return new TeamFeedModel()
             {
@@ -63,7 +62,7 @@
             };
         }
 
-        public TournamentFeedModel CreateTournament(string name, string category)
+        public static TournamentFeedModel CreateTournament(string name, string category)
         {
             return new TournamentFeedModel()
             {

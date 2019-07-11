@@ -7,7 +7,6 @@
 
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
     using SportsBetting.Services.Feeder.Contracts.Services;
     using SportsBetting.Services.Feeder.Providers.Odds.Base;
@@ -18,8 +17,8 @@
 
         private readonly IHtmlService htmlService;
 
-        public HandicapOddsProvider(IHtmlService htmlService, IObjectFactory objectFactory)
-            : base(htmlService, objectFactory)
+        public HandicapOddsProvider(IHtmlService htmlService)
+            : base(htmlService)
         {
             this.htmlService = htmlService;
         }

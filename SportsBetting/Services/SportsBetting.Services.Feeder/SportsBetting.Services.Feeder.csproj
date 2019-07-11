@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Factories\IObjectFactory.cs" />
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
     <Compile Include="Contracts\Providers\IMarketsProvider.cs" />
     <Compile Include="Contracts\Providers\IMatchesProvider.cs" />

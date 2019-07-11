@@ -43,7 +43,6 @@
         private void RegisterFactories(Container container)
         {
             container.Register<IWebDriverFactory, WebDriverFactory>(Lifestyle.Singleton);
-            container.Register<IObjectFactory, ObjectFactory>(Lifestyle.Singleton);
         }
 
         private void RegisterFeederServices(Container container)

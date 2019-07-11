@@ -8,18 +8,16 @@
 
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Services;
+    using SportsBetting.Services.Feeder.Factories;
 
     public abstract class BaseOddsProvider
     {
         private readonly IHtmlService htmlService;
-        private readonly IObjectFactory objectFactory;
 
-        public BaseOddsProvider(IHtmlService htmlService, IObjectFactory objectFactory)
+        public BaseOddsProvider(IHtmlService htmlService)
         {
             this.htmlService = htmlService;
-            this.objectFactory = objectFactory;
         }
 
         protected OddFeedModel BuildOdd(HtmlNode oddNode, string name, int rank, int marketKey, string header = null)
@@ -28,7 +26,7 @@
             bool isSuspended = IsSuspended(oddNode);
             OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
-            return objectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, marketKey, header);
+            return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, marketKey, header);
         }
 
         protected virtual decimal GetValue(HtmlNode oddNode)

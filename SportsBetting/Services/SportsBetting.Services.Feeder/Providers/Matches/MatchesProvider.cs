@@ -11,23 +11,17 @@
 
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
     using SportsBetting.Services.Feeder.Contracts.Providers;
+    using SportsBetting.Services.Feeder.Factories;
 
     public class MatchesProvider : IMatchesProvider
     {
-        private readonly IObjectFactory objectFactory;
         private readonly ITeamsProvider teamsProvider;
         private readonly IMarketsProvider marketsProvider;
         private readonly ITournametsProvider tournametsProvider;
 
-        public MatchesProvider(
-            IObjectFactory objectFactory, 
-            ITeamsProvider teamsProvider, 
-            IMarketsProvider marketsProvider,
-            ITournametsProvider tournametsProvider)
+        public MatchesProvider(ITeamsProvider teamsProvider, IMarketsProvider marketsProvider, ITournametsProvider tournametsProvider)
         {
-            this.objectFactory = objectFactory;
             this.teamsProvider = teamsProvider;
             this.marketsProvider = marketsProvider;
             this.tournametsProvider = tournametsProvider;
@@ -42,7 +36,7 @@
             IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
             TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
 
-            MatchFeedModel match = objectFactory.CreateMatch(startTime, status, teams.First(), teams.Last(), tournament);
+            MatchFeedModel match = ObjectFactory.CreateMatch(startTime, status, teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);
 
             return match;
