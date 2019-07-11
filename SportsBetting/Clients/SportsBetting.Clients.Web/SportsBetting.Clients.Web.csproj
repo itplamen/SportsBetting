@@ -162,6 +162,7 @@
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Home\GameViewModel.cs" />
+    <Compile Include="Models\Home\SelectGamesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
