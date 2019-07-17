@@ -6,14 +6,13 @@
 
     using HtmlAgilityPack;
 
+    using SportsBetting.Common.Constants;
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Services.Feeder.Contracts.Services;
 
     public class HtmlService : IHtmlService
     {
-        private const string BASE_URL = "https://gg.bet";
-
         public IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match)
         {
             HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAMES);
@@ -34,7 +33,7 @@
         {
             HtmlDocument document = LoadHtml(pageSource);
             IEnumerable<HtmlNode> htmlNodes = document.DocumentNode.SelectNodes(xpath);
-            IEnumerable<string> urls = GetUrls(pageSource, "//a[starts-with(@href,'/en/betting/match/5:')]", htmlNodes);
+            IEnumerable<string> urls = GetUrls(pageSource, MatchXPaths.EVENT_URL, htmlNodes);
 
             return urls;            
         }
@@ -157,7 +156,7 @@
         {
             IEnumerable<string> urls = htmlNodes
                 .Select(t => t.GetAttributeValue("href", "noLink"))
-                .Select(y => $"{BASE_URL}{y}")
+                .Select(y => $"{CommonConstants.BASE_URL}{y}")
                 .Distinct();
 
             return urls;

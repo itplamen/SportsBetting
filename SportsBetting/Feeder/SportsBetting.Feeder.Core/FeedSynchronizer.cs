@@ -6,6 +6,8 @@
 
     using OpenQA.Selenium.Remote;
 
+    using SportsBetting.Common.Constants;
+    using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -37,18 +39,18 @@
 
         public void Sync()
         {
-            webPagesService.Load(webDriver, "https://gg.bet/en/betting", "ScrollToTop__container___37xDi");
+            webPagesService.Load(webDriver, CommonConstants.FEED_URL, CommonConstants.WAIT_FOR_SCROLL_CONTAINER);
             webPagesService.ScrollToBottom(webDriver);
 
-            IEnumerable<string> urls = htmlService.GetMatchUrls(".//div[contains(@class, 'sportEventRow__body___3Ywcg')]", webDriver.PageSource);
+            IEnumerable<string> urls = htmlService.GetMatchUrls(MatchXPaths.EVENT_BODY, webDriver.PageSource);
 
             foreach (var url in urls)
             {
-                bool isLoaded = webPagesService.Load(webDriver, url, "MatchHeaderInfobox__info-box___2rQ4p");
+                bool isLoaded = webPagesService.Load(webDriver, url, CommonConstants.WAIT_FOR_MATCH_HEADER);
 
                 if (isLoaded)
                 {
-                    HtmlNode matchContainer = htmlService.GetMatchContainer(".//div[starts-with(@class,'Match__container')]", webDriver.PageSource);
+                    HtmlNode matchContainer = htmlService.GetMatchContainer(ContainerXPaths.MATCH, webDriver.PageSource);
                     MatchFeedModel feedModel = matchesProvider.Get(matchContainer);
 
                     feedManager.Manage(feedModel);
