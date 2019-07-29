@@ -2,6 +2,7 @@
 {
     using AutoMapper;
 
+    using SportsBetting.Common.Constants;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
@@ -36,7 +37,7 @@
                 return team.Id;
             }
             
-            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(1);
+            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(CommonConstants.ESPORT_KEY);
             Sport sport = sportByKeyHandler.Handle(sportQuery);
 
             CreateTeamCommand teamCommand = Mapper.Map<CreateTeamCommand>(feedModel);

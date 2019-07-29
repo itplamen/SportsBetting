@@ -6,6 +6,10 @@
 
         public const string FEED_URL = "https://gg.bet/en/betting";
 
+        public const int FEED_PORT = 7772;
+
+        public const int ESPORT_KEY = 1;
+
         public const string WAIT_FOR_MATCH_HEADER = "MatchHeaderInfobox__info-box___2rQ4p";
 
         public const string WAIT_FOR_SCROLL_CONTAINER = "ScrollToTop__container___37xDi";

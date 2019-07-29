@@ -34,7 +34,7 @@
             this.htmlService = htmlService;
             this.webPagesService = webPagesService;
             this.matchesProvider = matchesProvider;
-            this.webDriver = webDriverFactory.CreateWebDriver(7772);
+            this.webDriver = webDriverFactory.CreateWebDriver(CommonConstants.FEED_PORT);
         }
 
         public void Sync()
