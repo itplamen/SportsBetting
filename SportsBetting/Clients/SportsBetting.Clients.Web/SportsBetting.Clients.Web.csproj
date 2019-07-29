@@ -183,6 +183,7 @@
     <Compile Include="Models\Home\GameViewModel.cs" />
     <Compile Include="Models\Home\SelectGamesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
