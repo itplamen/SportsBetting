@@ -13,7 +13,7 @@
 
     public static class SimpleInjectorConfig
     {
-        public static void RegisterContainer()
+        public static Container RegisterContainer()
         {
             Container container = new Container();
 
@@ -38,6 +38,8 @@
 
             ICacheInitializer cacheInitializer = container.GetInstance<ICacheInitializer>();
             cacheInitializer.Init();
+
+            return container;
         }
     }
 }
