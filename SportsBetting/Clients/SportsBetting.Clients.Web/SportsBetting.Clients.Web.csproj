@@ -282,10 +282,6 @@
       <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
       <Name>SportsBetting.IoCContainer.Packages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer\SportsBetting.IoCContainer.csproj">
-      <Project>{54135F4C-8A05-4018-8240-6E0CC17EDF91}</Project>
-      <Name>SportsBetting.IoCContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Utils\SportsBetting.Services.Utils.csproj">
       <Project>{B720E001-3A0F-4B42-9324-6B24E24B41C3}</Project>
       <Name>SportsBetting.Services.Utils</Name>

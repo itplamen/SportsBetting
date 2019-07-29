@@ -1,29 +1,32 @@
 ﻿namespace SportsBetting.Feeder.Bootstrap
 {
     using System.Reflection;
-
+    using SimpleInjector;
     using SimpleInjector.Packaging;
 
     using SportsBetting.Common.Contracts;
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Feeder.Core.Contracts;
-    using SportsBetting.IoCContainer;
     using SportsBetting.IoCContainer.Packages.Common;
     using SportsBetting.IoCContainer.Packages.Feeder;
 
     public class FeederBootstrapper
     {
+        private readonly Container container;
         private readonly ISynchronizer synchronizer;
 
         public FeederBootstrapper()
         {
+            container = new Container();
+            container.Options.DefaultLifestyle = Lifestyle.Singleton;
+
+            synchronizer = container.GetInstance<ISynchronizer>();
+
             InitializeDependencies();
             InitializeDb();
             InitializeCaches();
             InitializeMapping();
-
-            synchronizer = SportsBettingContainer.Resolve<ISynchronizer>();
         }
 
         public void Start()
@@ -47,18 +50,23 @@
                 new CommandHandlersPackage()
             };
 
-            SportsBettingContainer.Initialize(packages);
+            foreach (var package in packages)
+            {
+                package.RegisterServices(container);
+            }
+
+            container.Verify();
         }
 
         private void InitializeDb()
         {
-            IAplicationInitializer aplicationInitializer = SportsBettingContainer.Resolve<IAplicationInitializer>();
+            IAplicationInitializer aplicationInitializer = container.GetInstance<IAplicationInitializer>();
             aplicationInitializer.Init();
         }
 
         private void InitializeCaches()
         {
-            ICacheInitializer cacheInitializer = SportsBettingContainer.Resolve<ICacheInitializer>();
+            ICacheInitializer cacheInitializer = container.GetInstance<ICacheInitializer>();
             cacheInitializer.Init();
         }
 

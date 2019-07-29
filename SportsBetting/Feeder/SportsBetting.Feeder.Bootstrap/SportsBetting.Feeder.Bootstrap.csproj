@@ -71,10 +71,6 @@
       <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
       <Name>SportsBetting.IoCContainer.Packages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer\SportsBetting.IoCContainer.csproj">
-      <Project>{54135F4C-8A05-4018-8240-6E0CC17EDF91}</Project>
-      <Name>SportsBetting.IoCContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SportsBetting.Feeder.Core\SportsBetting.Feeder.Core.csproj">
       <Project>{11A4C8BB-AC0B-4C52-9B91-67A6834F8AFA}</Project>
       <Name>SportsBetting.Feeder.Core</Name>
