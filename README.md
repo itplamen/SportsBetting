@@ -6,8 +6,9 @@
 
 ## Technologies
 
-* ASP.NET MVC 5 with Razor view engine
+* ASP.NET Web API
 * ASP.NET SignalR
+* Vue.js
 * MongoDB
 * CQS
 
