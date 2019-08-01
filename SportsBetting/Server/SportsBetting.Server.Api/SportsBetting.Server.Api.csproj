@@ -96,6 +96,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UpcomingGamesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -121,9 +122,17 @@
       <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
       <Name>SportsBetting.Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\SportsBetting.Data.Cache\SportsBetting.Data.Cache.csproj">
+      <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
+      <Name>SportsBetting.Data.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
       <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
       <Name>SportsBetting.Handlers.Queries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IoCContainer\SportsBetting.IoCContainer.Packages\SportsBetting.IoCContainer.Packages.csproj">
+      <Project>{70DB083C-EF76-4E14-BD46-7B04C10DE804}</Project>
+      <Name>SportsBetting.IoCContainer.Packages</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
