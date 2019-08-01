@@ -88,9 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\UpcomingGamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UpcomingGames\GameResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common.Infrastructure\SportsBetting.Common.Infrastructure.csproj">
+      <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
+      <Name>SportsBetting.Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
+      <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
+      <Name>SportsBetting.Handlers.Queries</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
