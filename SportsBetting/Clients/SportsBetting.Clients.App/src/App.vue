@@ -1,12 +1,40 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">eSports</router-link> |
       <router-link to="/about">About</router-link>
+      <UpcomingGames v-if="isHomePage === true" />
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import UpcomingGames from './components/UpcomingGames'
+import { truncate } from 'fs';
+
+export default {
+  components: {
+    UpcomingGames
+  },
+  data() {
+    return {
+      isHomePage: Boolean
+    }
+  },
+  mounted() {
+    this.showUpcomingGames();
+  },
+  updated() {
+    this.showUpcomingGames();
+  },
+  methods: {
+    showUpcomingGames() {
+      this.isHomePage = this.$route.name === 'home';
+    }
+  }
+}
+</script>
 
 <style>
 #app {
