@@ -20,7 +20,6 @@
             {
                 new DataPackage(),
                 new DataCachePackage(),
-                new DataServicesPackage(),
                 new QueryHandlersPackage(),
                 new CommandHandlersPackage()
             };

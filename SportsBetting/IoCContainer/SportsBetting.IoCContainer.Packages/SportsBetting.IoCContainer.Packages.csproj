@@ -81,7 +81,6 @@
     <Compile Include="Feeder\QueryHandlersPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\CommandHandlersPackage.cs" />
-    <Compile Include="Web\DataServicesPackage.cs" />
     <Compile Include="Web\QueryHandlersPackage.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,10 +123,6 @@
     <ProjectReference Include="..\..\Services\SportsBetting.Services.Feeder\SportsBetting.Services.Feeder.csproj">
       <Project>{C214AFA0-8068-4A89-A194-88D9C3B4F1D8}</Project>
       <Name>SportsBetting.Services.Feeder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\SportsBetting.Services.Utils\SportsBetting.Services.Utils.csproj">
-      <Project>{B720E001-3A0F-4B42-9324-6B24E24B41C3}</Project>
-      <Name>SportsBetting.Services.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
