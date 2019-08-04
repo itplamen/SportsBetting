@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Web.Http;
+    using System.Web.Http.Cors;
 
     using AutoMapper;
 
@@ -9,6 +10,7 @@
     using SportsBetting.Handlers.Queries.Matches;
     using SportsBetting.Server.Api.Models.UpcomingGames;
 
+    [EnableCors("*", "*", "*")]
     public class UpcomingGamesController : ApiController
     {
         private readonly IQueryHandler<UpcomingMatchesQuery, IEnumerable<UpcomingMatchesResult>> upcomingMatchesHandler;

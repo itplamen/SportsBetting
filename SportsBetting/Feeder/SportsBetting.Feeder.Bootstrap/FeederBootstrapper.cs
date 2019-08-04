@@ -21,12 +21,12 @@
             container = new Container();
             container.Options.DefaultLifestyle = Lifestyle.Singleton;
 
-            synchronizer = container.GetInstance<ISynchronizer>();
-
             InitializeDependencies();
             InitializeDb();
             InitializeCaches();
             InitializeMapping();
+
+            synchronizer = container.GetInstance<ISynchronizer>();
         }
 
         public void Start()
