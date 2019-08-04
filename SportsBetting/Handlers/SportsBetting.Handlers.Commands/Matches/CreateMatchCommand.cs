@@ -32,7 +32,17 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<MatchFeedModel, CreateMatchCommand>()
-                .ForMember(x => x.Score, opt => opt.MapFrom(x => $"{x.HomeTeam.Score}:{x.AwayTeam.Score}"));
+                .ForMember(x => x.Score, opt => opt.MapFrom(x => MapScore(x)));
+        }
+
+        private string MapScore(MatchFeedModel feedModel)
+        {
+            if (feedModel.HomeTeam.Score.HasValue && feedModel.AwayTeam.Score.HasValue)
+            {
+                return $"{feedModel.HomeTeam.Score}:{feedModel.AwayTeam.Score}";
+            }
+
+            return null;
         }
     }
 }
