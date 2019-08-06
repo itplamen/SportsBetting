@@ -2,24 +2,28 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">eSports</router-link> |
-      <router-link to="/about">About</router-link>
-      <UpcomingGames v-if="isHomePage === true" />
+      <router-link to="/about">About</router-link> |
+      <router-link to="" v-b-modal.RegisterModal>Register</router-link>
     </div>
     <router-view/>
+    <UpcomingGames v-if="isHomePage === true" />
+    <Register />
   </div>
 </template>
 
 <script>
 import UpcomingGames from './components/UpcomingGames'
+import Register from './components/Register'
 import { truncate } from 'fs';
 
 export default {
   components: {
-    UpcomingGames
+    UpcomingGames,
+    Register
   },
   data() {
     return {
-      isHomePage: Boolean
+      isHomePage: Boolean,
     }
   },
   mounted() {
