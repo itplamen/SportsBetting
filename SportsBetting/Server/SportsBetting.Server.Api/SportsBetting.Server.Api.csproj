@@ -104,10 +104,12 @@
   <ItemGroup>
     <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UpcomingGamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account\RegisterRequestModel.cs" />
     <Compile Include="Models\UpcomingGames\GameResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -128,9 +130,21 @@
       <Project>{3D172DAC-A5D7-47C5-BB9E-76A8ECBA42D1}</Project>
       <Name>SportsBetting.Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\SportsBetting.Common\SportsBetting.Common.csproj">
+      <Project>{B704B382-5AF7-4A6B-9B0A-04E522792386}</Project>
+      <Name>SportsBetting.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SportsBetting.Data.Cache\SportsBetting.Data.Cache.csproj">
       <Project>{29342E1C-B0DD-44D7-9431-6E813125947A}</Project>
       <Name>SportsBetting.Data.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SportsBetting.Data.Models\SportsBetting.Data.Models.csproj">
+      <Project>{803FDA14-C8FD-4383-B11B-45F4BC34910A}</Project>
+      <Name>SportsBetting.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Commands\SportsBetting.Handlers.Commands.csproj">
+      <Project>{DAFFD5F9-0ECE-4E24-811C-F0CF688A5263}</Project>
+      <Name>SportsBetting.Handlers.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
       <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>

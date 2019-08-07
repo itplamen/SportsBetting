@@ -12,7 +12,10 @@
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             SimpleInjectorConfig.RegisterContainer();
-            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly(), Assembly.Load("SportsBetting.Handlers.Queries"));
+            AutoMapperConfig.RegisterMappings(
+                Assembly.GetExecutingAssembly(), 
+                Assembly.Load("SportsBetting.Handlers.Queries"), 
+                Assembly.Load("SportsBetting.Handlers.Commands"));
         }
     }
 }

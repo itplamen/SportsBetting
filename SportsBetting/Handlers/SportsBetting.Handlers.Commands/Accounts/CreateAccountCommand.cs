@@ -1,9 +1,10 @@
 ﻿namespace SportsBetting.Handlers.Commands.Accounts
 {
+    using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class CreateAccountCommand : ICommand
+    public class CreateAccountCommand : ICommand, IMapTo<Account>
     {
         public string Username { get; set; }
 
