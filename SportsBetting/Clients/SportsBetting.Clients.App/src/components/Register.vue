@@ -69,8 +69,8 @@ export default {
                         confirmPassword: this.registerModel.confirmPassword.value,
                         email: this.registerModel.email.value
                     })
-                    .then(res => this.games = res.data)
-                    .catch(err => console.log(err));
+                    .then(res => console.log(res.data))
+                    .catch(err => this.showModelStateErrors(err.response.data));
             }
         },
         isRegisterValid() {
@@ -107,6 +107,17 @@ export default {
             this.registerModel.confirmPassword.message = validation.message;
 
             return validation.state == enums.REGISTER_STATE.VALID;
+        },
+        showModelStateErrors(data) {
+            let self = this;
+
+            Object.keys(data.ModelState).forEach(function(key) {
+                let prop = key.toString().toLowerCase().split('.')[1];
+                let message = data.ModelState[key][0];
+
+                self.registerModel[prop].message = message;
+                self.registerModel[prop].state = enums.REGISTER_STATE.INVALID;
+            });
         }
     }
 }
