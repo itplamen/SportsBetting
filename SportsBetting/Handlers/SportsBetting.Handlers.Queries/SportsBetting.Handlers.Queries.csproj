@@ -72,6 +72,9 @@
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
     <Compile Include="Common\EntityByKeyQuery.cs" />
     <Compile Include="Common\EntityByKeyQueryHandler.cs" />
+    <Compile Include="Common\Results\MarketResult.cs" />
+    <Compile Include="Common\Results\MatchResult.cs" />
+    <Compile Include="Common\Results\OddResult.cs" />
     <Compile Include="Common\WithDeletedEntitiesHandler.cs" />
     <Compile Include="Common\EntitiesByIdQuery.cs" />
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
