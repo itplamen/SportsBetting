@@ -5,7 +5,6 @@
       <router-link to="/about">About</router-link> |
       <router-link to="" v-b-modal.RegisterModal>Register</router-link>
     </div>
-    <router-view/>
     <UpcomingGames v-if="isHomePage === true" />
     <Register />
   </div>
