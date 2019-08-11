@@ -19,9 +19,12 @@
 
         public IEnumerable<TEntity> Handle(EntitiesByIdQuery<TEntity> query)
         {
-            IEnumerable<TEntity> entities = cache.All(x => query.Ids.Contains(x.Id));
+            if (query.Expression == null)
+            {
+                return cache.All(x => query.Ids.Contains(x.Id));
+            }
 
-            return entities;
+            return cache.All(query.Expression);
         }
     }
 }

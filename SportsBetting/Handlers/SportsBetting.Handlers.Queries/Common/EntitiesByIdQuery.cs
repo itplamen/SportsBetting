@@ -1,6 +1,8 @@
 ﻿namespace SportsBetting.Handlers.Queries.Common
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Handlers.Queries.Contracts;
@@ -13,6 +15,14 @@
             Ids = ids;
         }
 
+        public EntitiesByIdQuery(IEnumerable<string> ids, Expression<Func<TEntity, bool>> expression)
+        {
+            Ids = ids;
+            Expression = expression;
+        }
+
         public IEnumerable<string> Ids { get; set; }
+
+        public Expression<Func<TEntity, bool>> Expression { get; set; }
     }
 }
