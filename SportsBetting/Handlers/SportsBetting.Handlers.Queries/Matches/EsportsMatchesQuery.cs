@@ -4,7 +4,7 @@
 
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class UpcomingMatchesQuery : IQuery<IEnumerable<UpcomingMatchesResult>>
+    public class EsportsMatchesQuery : IQuery<IEnumerable<EsportsMatchesResult>>
     {
         public int Take { get; set; }
 

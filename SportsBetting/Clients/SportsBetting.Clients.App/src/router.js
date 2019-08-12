@@ -1,6 +1,6 @@
+import Esports from './components/Esports'
 import Match from './components/Match'
 import Router from 'vue-router'
-import UpcomingGames from './components/UpcomingGames'
 import Vue from 'vue'
 
 Vue.use(Router)
@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: UpcomingGames
+      component: Esports
     },
     {
       path: '/matches/:id',

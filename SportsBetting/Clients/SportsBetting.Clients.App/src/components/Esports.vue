@@ -30,14 +30,14 @@ import axios from 'axios'
 import moment from 'moment'
 
 export default {
-    name: 'UpcomingGames',
+    name: 'Esports',
     data() {
         return {
             games: []
         }
     },
     created() {
-        axios.get('http://localhost:64399/api/UpcomingGames')
+        axios.get('http://localhost:64399/api/Esports')
             .then(res => this.games = res.data)
             .catch(err => console.log(err));
     },

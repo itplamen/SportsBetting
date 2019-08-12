@@ -10,14 +10,14 @@
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class UpcomingMatchesQueryHandler : IQueryHandler<UpcomingMatchesQuery, IEnumerable<UpcomingMatchesResult>>
+    public class EsportsMatchesQueryHandler : IQueryHandler<EsportsMatchesQuery, IEnumerable<EsportsMatchesResult>>
     {
         private readonly ICache<Match> matchesCache;
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsByIdHandler;
 
-        public UpcomingMatchesQueryHandler(
+        public EsportsMatchesQueryHandler(
             ICache<Match> matchesCache,
             IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsByIdHandler,
             IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesByIdHandler,
@@ -29,18 +29,18 @@
             this.tournamentsByIdHandler = tournamentsByIdHandler;
         }
 
-        public IEnumerable<UpcomingMatchesResult> Handle(UpcomingMatchesQuery query)
+        public IEnumerable<EsportsMatchesResult> Handle(EsportsMatchesQuery query)
         {
             IEnumerable<Match> matches = matchesCache.All(_ => true).OrderBy(x => x.StartTime).Take(query.Take);
             IEnumerable<Category> categories = GetCategories(matches.Select(x => x.CategoryId));
             IEnumerable<Tournament> tournaments = GetTournaments(matches.Select(x => x.TournamentId));
             IEnumerable<Team> teams = GetTeams(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));
 
-            ICollection<UpcomingMatchesResult> upcomingMatches = new List<UpcomingMatchesResult>();
+            ICollection<EsportsMatchesResult> upcomingMatches = new List<EsportsMatchesResult>();
 
             foreach (var match in matches)
             {
-                UpcomingMatchesResult upcomingMatch = Mapper.Map<UpcomingMatchesResult>(match);
+                EsportsMatchesResult upcomingMatch = Mapper.Map<EsportsMatchesResult>(match);
                 upcomingMatch.HomeTeam = teams.First(x => x.Id == match.HomeTeamId).Name;
                 upcomingMatch.AwayTeam = teams.First(x => x.Id == match.AwayTeamId).Name;
                 upcomingMatch.Category = categories.First(x => x.Id == match.CategoryId).Name;

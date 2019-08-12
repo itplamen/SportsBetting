@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import UpcomingGames from './components/UpcomingGames'
 import Register from './components/Register'
 import { truncate } from 'fs';
 
 export default {
   components: {
-    UpcomingGames,
     Register
   }
 }
