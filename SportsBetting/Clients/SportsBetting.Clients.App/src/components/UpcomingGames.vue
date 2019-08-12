@@ -11,7 +11,7 @@
         </b-container>
         <b-jumbotron >
             <b-container v-for="game in games">
-               <router-link :to="{ path: '/matches/'+ game.Id}">
+               <router-link :to="{ path: `/matches/${game.Id}`}">
                     <b-row class="game-row">
                         <b-col cols="1">{{formatDate(game.StartTime)}}</b-col>
                         <b-col cols="4">{{game.Category}}: {{game.Tournament}}</b-col>

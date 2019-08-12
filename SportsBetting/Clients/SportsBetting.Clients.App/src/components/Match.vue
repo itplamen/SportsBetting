@@ -33,7 +33,7 @@ export default {
         }
     },
     created() {
-        axios.get('http://localhost:64399/api/matches/5d508d11da61de43189c2e8c')
+        axios.get(`http://localhost:64399/api/matches/${this.$route.params.id}`)
             .then(res => this.match = res.data)
             .catch(err => console.log(err));
     }
