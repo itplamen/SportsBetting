@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link> |
       <router-link to="" v-b-modal.RegisterModal>Register</router-link>
     </div>
-    <UpcomingGames v-if="isHomePage === true" />
+    <router-view/>
     <Register />
   </div>
 </template>
@@ -19,22 +19,6 @@ export default {
   components: {
     UpcomingGames,
     Register
-  },
-  data() {
-    return {
-      isHomePage: Boolean,
-    }
-  },
-  mounted() {
-    this.showUpcomingGames();
-  },
-  updated() {
-    this.showUpcomingGames();
-  },
-  methods: {
-    showUpcomingGames() {
-      this.isHomePage = this.$route.name === 'home';
-    }
   }
 }
 </script>
