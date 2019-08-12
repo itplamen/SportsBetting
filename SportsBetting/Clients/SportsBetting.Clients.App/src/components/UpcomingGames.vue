@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-container class="bv-example-row">
-            <b-row id=GamesHeader>
+            <b-row id="GamesHeader">
                 <b-col cols="1">Date</b-col>
                 <b-col cols="4">Game</b-col>
                 <b-col cols="3">1</b-col>
@@ -68,7 +68,7 @@ export default {
         text-align: center;
     }
     .game-row:hover {
-        background-color: #ab0b00;
+        background-color: #ff365f;
         border-radius: 10px;
     }
 </style>

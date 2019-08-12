@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
+    using System.Web.Http.Cors;
 
     using AutoMapper;
 
@@ -13,6 +14,7 @@
     using SportsBetting.Server.Api.Models.Matches;
     using SportsBetting.Server.Api.Models.Odds;
 
+    [EnableCors("*", "*", "*")]
     public class MatchesController : ApiController
     {
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamByIdHandler;
