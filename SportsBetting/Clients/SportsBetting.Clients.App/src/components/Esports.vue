@@ -34,17 +34,34 @@ export default {
     name: 'Esports',
     data() {
         return {
-            games: []
+            games: [],
+            take: 20
         }
     },
     created() {
-        axios.get('http://localhost:64399/api/Esports')
-            .then(res => this.games = res.data)
-            .catch(err => console.log(err));
+        this.getEsports();
+    },
+    mounted() {
+        let self = this;
+
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+                self.getEsports();
+            }
+        });
     },
     methods: {
         formatDate(date) {
             return moment(date).format('DD MMM hh:mm')
+        },
+        getEsports() {
+            axios.get('http://localhost:64399/api/Esports', {
+                params: {
+                    Take: this.take
+                }
+            })
+            .then(res => this.games = res.data, this.take += this.take)
+            .catch(err => console.log(err));
         }
     }
 }
