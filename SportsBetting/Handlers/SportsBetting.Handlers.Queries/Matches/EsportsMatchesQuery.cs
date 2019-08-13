@@ -6,8 +6,11 @@
 
     public class EsportsMatchesQuery : IQuery<IEnumerable<EsportsMatchesResult>>
     {
-        public int Take { get; set; }
+        public EsportsMatchesQuery(int take)
+        {
+            Take = take;
+        }
 
-        public string Token { get; set; }
+        public int Take { get; set; }
     }
 }

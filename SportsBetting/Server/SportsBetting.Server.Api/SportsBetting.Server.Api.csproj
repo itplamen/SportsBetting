@@ -114,7 +114,7 @@
     <Compile Include="Models\Markets\MarketResponseModel.cs" />
     <Compile Include="Models\Matches\MatchResponseModel.cs" />
     <Compile Include="Models\Odds\OddResponseModel.cs" />
-    <Compile Include="Models\UpcomingGames\GameResponseModel.cs" />
+    <Compile Include="Models\Esports\EsportsResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -21,11 +21,11 @@
         }
 
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int take = 20)
         {
-            EsportsMatchesQuery query = new EsportsMatchesQuery() { Take = 20 };
+            EsportsMatchesQuery query = new EsportsMatchesQuery(take);
             IEnumerable<EsportsMatchesResult> esports = esportsHandler.Handle(query);
-            IEnumerable<GameResponseModel> response = Mapper.Map<IEnumerable<GameResponseModel>>(esports);
+            IEnumerable<EsportsResponseModel> response = Mapper.Map<IEnumerable<EsportsResponseModel>>(esports);
 
             return Ok(response);
         }

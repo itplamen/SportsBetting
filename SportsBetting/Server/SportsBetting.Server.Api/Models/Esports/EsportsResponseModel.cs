@@ -5,7 +5,7 @@
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Handlers.Queries.Matches;
 
-    public class GameResponseModel : IMapFrom<EsportsMatchesResult>
+    public class EsportsResponseModel : IMapFrom<EsportsMatchesResult>
     {
         public string Id { get; set; }
 
