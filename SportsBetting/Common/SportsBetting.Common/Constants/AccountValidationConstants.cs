@@ -1,6 +1,6 @@
-﻿namespace SportsBetting.Common.Account
+﻿namespace SportsBetting.Common.Constants
 {
-    public static class AccountConstants
+    public static class AccountValidationConstants
     {
         public const int USERNAME_MAX_LENGTH = 15;
 

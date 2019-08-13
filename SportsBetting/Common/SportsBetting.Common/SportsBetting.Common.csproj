@@ -42,8 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountConstants.cs" />
-    <Compile Include="Constants\AccountConstants.cs" />
+    <Compile Include="Constants\AccountValidationConstants.cs" />
     <Compile Include="Constants\CommonConstants.cs" />
     <Compile Include="Contracts\IAplicationInitializer.cs" />
     <Compile Include="Contracts\IConfigurationManager.cs" />
