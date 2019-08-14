@@ -4,6 +4,7 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Handlers.Commands.Categories;
+    using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Markets;
     using SportsBetting.Handlers.Commands.Matches;
@@ -15,6 +16,7 @@
     {
         public void RegisterServices(Container container)
         {
+            container.Register(typeof(ICommandHandler<>), typeof(HideEntitiesCommandHandler<>), Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateOddCommand, string>, CreateOddCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateTeamCommand, string>, CreateTeamCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateMatchCommand, string>, CreateMatchCommandHandler>(Lifestyle.Singleton);

@@ -68,6 +68,8 @@
     <Compile Include="Accounts\CreateAccountCommandHandler.cs" />
     <Compile Include="Categories\CreateCategoryCommand.cs" />
     <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
+    <Compile Include="Common\HideEntitiesCommand.cs" />
+    <Compile Include="Common\HideEntitiesCommandHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />
     <Compile Include="Markets\CreateMarketCommand.cs" />
