@@ -80,9 +80,10 @@
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
-    <Compile Include="Matches\EsportsMatchesQuery.cs" />
-    <Compile Include="Matches\EsportsMatchesQueryHandler.cs" />
-    <Compile Include="Matches\EsportsMatchesResult.cs" />
+    <Compile Include="Matches\AllMatchesQuery.cs" />
+    <Compile Include="Matches\AllMatchesQueryHandler.cs" />
+    <Compile Include="Matches\MatchByIdQuery.cs" />
+    <Compile Include="Matches\MatchByIdQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameAndCategoryIdQueryHandler.cs" />

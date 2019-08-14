@@ -2,11 +2,12 @@
 {
     using System.Collections.Generic;
 
+    using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class EsportsMatchesQuery : IQuery<IEnumerable<EsportsMatchesResult>>
+    public class AllMatchesQuery : IQuery<IEnumerable<MatchResult>>
     {
-        public EsportsMatchesQuery(int take)
+        public AllMatchesQuery(int take)
         {
             Take = take;
         }

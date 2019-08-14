@@ -9,6 +9,7 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Matches;
 
@@ -20,7 +21,7 @@
             container.Register(typeof(IQueryHandler<>), typeof(WithDeletedEntitiesHandler<>), new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByEmailQuery, Account>, AccountByEmailQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
-            container.Register<IQueryHandler<EsportsMatchesQuery, IEnumerable<EsportsMatchesResult>>, EsportsMatchesQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
         }
     }
 }
