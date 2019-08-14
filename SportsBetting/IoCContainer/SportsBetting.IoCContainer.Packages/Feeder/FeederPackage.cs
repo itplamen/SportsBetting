@@ -38,6 +38,7 @@
             container.Register<IMarketsManager, MarketsManager>(Lifestyle.Singleton);
             container.Register<IOddsManager, OddsManager>(Lifestyle.Singleton);
             container.Register<IFeedManager, FeedManager>(Lifestyle.Singleton);
+            container.Register<IUnprocessedFeedManager, UnprocessedFeedManager>(Lifestyle.Singleton);
         }
 
         private void RegisterFactories(Container container)

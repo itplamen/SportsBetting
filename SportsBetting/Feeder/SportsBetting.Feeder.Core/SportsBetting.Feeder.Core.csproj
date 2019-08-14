@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IUnprocessedFeedManager.cs" />
     <Compile Include="Contracts\Managers\IFeedManager.cs" />
     <Compile Include="Contracts\Managers\ICategoriesManager.cs" />
     <Compile Include="Contracts\Managers\IMarketsManager.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Managers\TeamsManager.cs" />
     <Compile Include="Managers\TournamentsManager.cs" />
     <Compile Include="FeedSynchronizer.cs" />
+    <Compile Include="Managers\UnprocessedFeedManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SynchronizerComposite.cs" />
   </ItemGroup>

@@ -22,18 +22,21 @@
         private readonly RemoteWebDriver webDriver;
         private readonly IWebPagesService webPagesService;
         private readonly IMatchesProvider matchesProvider;
+        private readonly IUnprocessedFeedManager unprocessedFeedManager;
 
         public FeedSynchronizer(
             IFeedManager feedManager, 
             IHtmlService htmlService, 
             IWebPagesService webPagesService,
             IMatchesProvider matchesProvider,
-            IWebDriverFactory webDriverFactory)
+            IWebDriverFactory webDriverFactory,
+            IUnprocessedFeedManager unprocessedFeedManager)
         {
             this.feedManager = feedManager;
             this.htmlService = htmlService;
             this.webPagesService = webPagesService;
             this.matchesProvider = matchesProvider;
+            this.unprocessedFeedManager = unprocessedFeedManager;
             this.webDriver = webDriverFactory.CreateWebDriver(CommonConstants.FEED_PORT);
         }
 
@@ -42,6 +45,7 @@
             webPagesService.Load(webDriver, CommonConstants.FEED_URL, CommonConstants.WAIT_FOR_SCROLL_CONTAINER);
             webPagesService.ScrollToBottom(webDriver);
 
+            ICollection<MatchFeedModel> processedFeed = new List<MatchFeedModel>();
             IEnumerable<string> urls = htmlService.GetMatchUrls(MatchXPaths.EVENT_BODY, webDriver.PageSource);
 
             foreach (var url in urls)
@@ -52,10 +56,13 @@
                 {
                     HtmlNode matchContainer = htmlService.GetMatchContainer(ContainerXPaths.MATCH, webDriver.PageSource);
                     MatchFeedModel feedModel = matchesProvider.Get(matchContainer);
-
                     feedManager.Manage(feedModel);
+
+                    processedFeed.Add(feedModel);
                 }
             }
+
+            unprocessedFeedManager.Manage(processedFeed);
         }
 
         public void Stop()
