@@ -1,9 +1,9 @@
 ﻿namespace SportsBetting.Server.Api.Models.Odds
 {
     using SportsBetting.Common.Infrastructure.Mapping;
-    using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Queries.Common.Results;
 
-    public class OddResponseModel : IMapFrom<Odd>
+    public class OddResponseModel : IMapFrom<OddResult>
     {
         public string Id { get; set; }
 

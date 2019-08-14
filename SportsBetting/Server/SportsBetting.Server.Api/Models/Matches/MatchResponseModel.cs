@@ -4,10 +4,10 @@
     using System.Collections.Generic;
 
     using SportsBetting.Common.Infrastructure.Mapping;
-    using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Server.Api.Models.Markets;
 
-    public class MatchResponseModel : IMapFrom<Match>
+    public class MatchResponseModel : IMapFrom<MatchResult>
     {
         public string Id { get; set; }
 

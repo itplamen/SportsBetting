@@ -3,10 +3,10 @@
     using System.Collections.Generic;
 
     using SportsBetting.Common.Infrastructure.Mapping;
-    using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Server.Api.Models.Odds;
 
-    public class MarketResponseModel : IMapFrom<Market>
+    public class MarketResponseModel : IMapFrom<MarketResult>
     {
         public string Id { get; set; }
 
