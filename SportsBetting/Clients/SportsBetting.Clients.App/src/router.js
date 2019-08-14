@@ -1,5 +1,5 @@
-import Esports from './components/Esports'
 import Match from './components/Match'
+import Matches from './components/Matches'
 import Router from 'vue-router'
 import Vue from 'vue'
 
@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Esports
+      component: Matches
     },
     {
       path: '/matches/:id',

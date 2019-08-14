@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios'
+import $ from 'jquery';
 
 export default {
     data() {
@@ -33,7 +34,9 @@ export default {
         }
     },
     created() {
-        axios.get(`http://localhost:64399/api/matches/${this.$route.params.id}`)
+        $(window).off('scroll');
+
+        axios.get(`http://localhost:64399/api/Matches/${this.$route.params.id}`)
             .then(res => this.match = res.data)
             .catch(err => console.log(err));
     }
