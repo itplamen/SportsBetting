@@ -39,6 +39,9 @@ export default {
         }
     },
     created() {
+        this.games = [];
+        this.take = 20;
+
         this.getEsports();
     },
     mounted() {
@@ -55,12 +58,8 @@ export default {
             return moment(date).format('DD MMM hh:mm')
         },
         getEsports() {
-            axios.get('http://localhost:64399/api/Esports', {
-                params: {
-                    Take: this.take
-                }
-            })
-            .then(res => this.games = res.data, this.take += this.take)
+            axios.get(`http://localhost:64399/api/Matches/All/${this.take}`)
+            .then(res => this.games = res.data, this.take += 20)
             .catch(err => console.log(err));
         }
     }
