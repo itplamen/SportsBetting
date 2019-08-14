@@ -13,7 +13,7 @@
     {
         public void RegisterServices(Container container)
         {
-            container.Register(typeof(IQueryHandler<,>), typeof(EntityByKeyQueryHandler<>), Lifestyle.Singleton);
+            container.Register(typeof(IQueryHandler<,>), typeof(EntitiesByKeyQueryHandler<>), Lifestyle.Singleton);
             container.Register<IQueryHandler<CategoryByNameQuery, Category>, CategoryByNameQueryHandler>(Lifestyle.Singleton);
             container.Register<IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament>, TournamentByNameAndCategoryIdQueryHandler>(Lifestyle.Singleton);
         }

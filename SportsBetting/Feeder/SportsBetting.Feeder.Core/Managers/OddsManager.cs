@@ -1,6 +1,7 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using AutoMapper;
 
@@ -14,14 +15,14 @@
 
     public class OddsManager : IOddsManager
     {
-        private readonly IQueryHandler<EntityByKeyQuery<Odd>, Odd> oddByKeyHandler;
         private readonly ICommandHandler<UpdateOddCommand, string> updateOddHandler;
         private readonly ICommandHandler<CreateOddCommand, string> createOddHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddByKeyHandler;
 
         public OddsManager(
-            IQueryHandler<EntityByKeyQuery<Odd>, Odd> oddByKeyHandler,
             ICommandHandler<UpdateOddCommand, string> updateOddHandler,
-            ICommandHandler<CreateOddCommand, string> createOddHandler)
+            ICommandHandler<CreateOddCommand, string> createOddHandler,
+            IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddByKeyHandler)
         {
             this.oddByKeyHandler = oddByKeyHandler;
             this.updateOddHandler = updateOddHandler;
@@ -32,8 +33,9 @@
         {
             foreach (var feedModel in feedModels)
             {
-                EntityByKeyQuery<Odd> query = new EntityByKeyQuery<Odd>(feedModel.Key);
-                Odd odd = oddByKeyHandler.Handle(query);
+                IEnumerable<int> keys = new List<int>() { feedModel.Key };
+                EntitiesByKeyQuery<Odd> query = new EntitiesByKeyQuery<Odd>(keys);
+                Odd odd = oddByKeyHandler.Handle(query).FirstOrDefault();
 
                 if (odd != null)
                 {

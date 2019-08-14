@@ -70,8 +70,8 @@
     <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
-    <Compile Include="Common\EntityByKeyQuery.cs" />
-    <Compile Include="Common\EntityByKeyQueryHandler.cs" />
+    <Compile Include="Common\EntitiesByKeyQuery.cs" />
+    <Compile Include="Common\EntitiesByKeyQueryHandler.cs" />
     <Compile Include="Common\Results\MarketResult.cs" />
     <Compile Include="Common\Results\MatchResult.cs" />
     <Compile Include="Common\Results\OddResult.cs" />

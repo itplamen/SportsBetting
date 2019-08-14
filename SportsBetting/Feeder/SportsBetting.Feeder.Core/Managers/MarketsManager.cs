@@ -1,5 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using AutoMapper;
 
     using SportsBetting.Data.Models;
@@ -13,11 +16,11 @@
     public class MarketsManager : IMarketsManager
     {
         private readonly ICommandHandler<CreateMarketCommand, string> createMarketHandler;
-        private readonly IQueryHandler<EntityByKeyQuery<Market>, Market> marketByKeyHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketByKeyHandler;
 
         public MarketsManager(
             ICommandHandler<CreateMarketCommand, string> createMarketHandler,
-            IQueryHandler<EntityByKeyQuery<Market>, Market> marketByKeyHandler)
+            IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketByKeyHandler)
         {
             this.createMarketHandler = createMarketHandler;
             this.marketByKeyHandler = marketByKeyHandler;
@@ -25,8 +28,9 @@
 
         public string Manage(MarketFeedModel feedModel, string matchId)
         {
-            EntityByKeyQuery<Market> query = new EntityByKeyQuery<Market>(feedModel.Key);
-            Market market = marketByKeyHandler.Handle(query);
+            IEnumerable<int> keys = new List<int>() { feedModel.Key };
+            EntitiesByKeyQuery<Market> query = new EntitiesByKeyQuery<Market>(keys);
+            Market market = marketByKeyHandler.Handle(query).FirstOrDefault();
 
             if (market != null)
             {

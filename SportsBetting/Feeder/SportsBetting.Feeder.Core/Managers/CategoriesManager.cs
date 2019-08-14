@@ -1,5 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using SportsBetting.Common.Constants;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Core.Contracts.Managers;
@@ -11,16 +14,16 @@
 
     public class CategoriesManager : ICategoriesManager
     {
-        private readonly IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Sport>, IEnumerable<Sport>> sportsByKeyHandler;
         private readonly IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler;
         private readonly ICommandHandler<CreateCategoryCommand, string> createCategoryHandler;
 
         public CategoriesManager(
-            IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler,
+            IQueryHandler<EntitiesByKeyQuery<Sport>, IEnumerable<Sport>> sportByKeyHandler,
             IQueryHandler<CategoryByNameQuery, Category> categoryByNameHandler,
             ICommandHandler<CreateCategoryCommand, string> createCategoryHandler)
         {
-            this.sportByKeyHandler = sportByKeyHandler;
+            this.sportsByKeyHandler = sportByKeyHandler;
             this.categoryByNameHandler = categoryByNameHandler;
             this.createCategoryHandler = createCategoryHandler;
         }
@@ -35,8 +38,9 @@
                 return category.Id;
             }
 
-            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(CommonConstants.ESPORT_KEY);
-            Sport sport = sportByKeyHandler.Handle(sportQuery);
+            IEnumerable<int> keys = new List<int>() { CommonConstants.ESPORT_KEY };
+            EntitiesByKeyQuery<Sport> sportQuery = new EntitiesByKeyQuery<Sport>(keys);
+            Sport sport = sportsByKeyHandler.Handle(sportQuery).First();
 
             CreateCategoryCommand categoryCommand = new CreateCategoryCommand()
             {

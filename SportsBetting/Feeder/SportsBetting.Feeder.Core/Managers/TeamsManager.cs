@@ -1,5 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using AutoMapper;
 
     using SportsBetting.Common.Constants;
@@ -14,13 +17,13 @@
     public class TeamsManager : ITeamsManager
     {
         private readonly ICommandHandler<CreateTeamCommand, string> createTeamHandler;
-        private readonly IQueryHandler<EntityByKeyQuery<Team>, Team> teamByKeyHandler;
-        private readonly IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Team>, IEnumerable<Team>> teamByKeyHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Sport>, IEnumerable<Sport>> sportByKeyHandler;
 
         public TeamsManager(
             ICommandHandler<CreateTeamCommand, string> createTeamHandler,
-            IQueryHandler<EntityByKeyQuery<Team>, Team> teamByKeyHandler,
-            IQueryHandler<EntityByKeyQuery<Sport>, Sport> sportByKeyHandler)
+            IQueryHandler<EntitiesByKeyQuery<Team>, IEnumerable<Team>> teamByKeyHandler,
+            IQueryHandler<EntitiesByKeyQuery<Sport>, IEnumerable<Sport>> sportByKeyHandler)
         {
             this.createTeamHandler = createTeamHandler;
             this.teamByKeyHandler = teamByKeyHandler;
@@ -29,16 +32,18 @@
 
         public string Manage(TeamFeedModel feedModel)
         {
-            EntityByKeyQuery<Team> teamQuery = new EntityByKeyQuery<Team>(feedModel.Key);
-            Team team = teamByKeyHandler.Handle(teamQuery);
+            IEnumerable<int> teamKeys = new List<int>() { feedModel.Key };
+            EntitiesByKeyQuery<Team> teamQuery = new EntitiesByKeyQuery<Team>(teamKeys);
+            Team team = teamByKeyHandler.Handle(teamQuery).FirstOrDefault();
 
             if (team != null)
             {
                 return team.Id;
             }
-            
-            EntityByKeyQuery<Sport> sportQuery = new EntityByKeyQuery<Sport>(CommonConstants.ESPORT_KEY);
-            Sport sport = sportByKeyHandler.Handle(sportQuery);
+
+            IEnumerable<int> sportKeys = new List<int>() { CommonConstants.ESPORT_KEY };
+            EntitiesByKeyQuery<Sport> sportQuery = new EntitiesByKeyQuery<Sport>(sportKeys);
+            Sport sport = sportByKeyHandler.Handle(sportQuery).First();
 
             CreateTeamCommand teamCommand = Mapper.Map<CreateTeamCommand>(feedModel);
             teamCommand.SportId = sport.Id;

@@ -1,5 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Core.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using AutoMapper;
 
     using SportsBetting.Data.Models;
@@ -14,12 +17,12 @@
     {
         private readonly ICommandHandler<UpdateMatchCommand, string> updateMatchHandler;
         private readonly ICommandHandler<CreateMatchCommand, string> createMatchHandler;
-        private readonly IQueryHandler<EntityByKeyQuery<Match>, Match> matchByKeyHandler;
+        private readonly IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchByKeyHandler;
 
         public MatchesManager(
             ICommandHandler<UpdateMatchCommand, string> updateMatchHandler,
             ICommandHandler<CreateMatchCommand, string> createMatchHandler,
-            IQueryHandler<EntityByKeyQuery<Match>, Match> matchByKeyHandler)
+            IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchByKeyHandler)
         {
             this.updateMatchHandler = updateMatchHandler;
             this.createMatchHandler = createMatchHandler;
@@ -28,8 +31,9 @@
 
         public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
         {
-            EntityByKeyQuery<Match> matchQuery = new EntityByKeyQuery<Match>(feedModel.Key);
-            Match match = matchByKeyHandler.Handle(matchQuery);
+            IEnumerable<int> keys = new List<int>() { feedModel.Key };
+            EntitiesByKeyQuery<Match> matchQuery = new EntitiesByKeyQuery<Match>(keys);
+            Match match = matchByKeyHandler.Handle(matchQuery).FirstOrDefault();
 
             if (match != null)
             {
