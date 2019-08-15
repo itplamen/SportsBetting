@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Data.Cache.General
+﻿namespace SportsBetting.Data.Cache
 {
     using System.Collections.Generic;
     using System.Linq;

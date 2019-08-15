@@ -61,18 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoriesCache.cs" />
+    <Compile Include="Cache.cs" />
     <Compile Include="Contracts\ICache.cs" />
     <Compile Include="Contracts\ICacheLoader.cs" />
-    <Compile Include="General\BaseCache.cs" />
-    <Compile Include="General\CacheComposite.cs" />
-    <Compile Include="MarketsCache.cs" />
-    <Compile Include="MatchesCache.cs" />
-    <Compile Include="OddsCache.cs" />
-    <Compile Include="SportsCache.cs" />
-    <Compile Include="TournamentsCache.cs" />
+    <Compile Include="CacheComposite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamsCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
