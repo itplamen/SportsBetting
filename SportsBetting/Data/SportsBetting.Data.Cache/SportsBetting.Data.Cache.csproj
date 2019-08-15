@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="CategoriesCache.cs" />
     <Compile Include="Contracts\ICache.cs" />
-    <Compile Include="Contracts\ICacheInitializer.cs" />
+    <Compile Include="Contracts\ICacheLoader.cs" />
     <Compile Include="General\BaseCache.cs" />
     <Compile Include="General\CacheComposite.cs" />
     <Compile Include="MarketsCache.cs" />

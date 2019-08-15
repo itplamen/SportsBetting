@@ -19,14 +19,14 @@
             container.Register(typeof(ICache<>), typeof(MarketsCache), Lifestyle.Singleton);
             container.Register(typeof(ICache<>), typeof(OddsCache), Lifestyle.Singleton);
 
-            container.Register<ICacheInitializer, CacheComposite>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, SportsCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, CategoriesCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, TournamentsCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, TeamsCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, MatchesCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, MarketsCache>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheInitializer, OddsCache>(Lifestyle.Singleton);
+            container.Register<ICacheLoader, CacheComposite>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, SportsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, CategoriesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, TournamentsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, TeamsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, MatchesCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, MarketsCache>(Lifestyle.Singleton);
+            container.Collection.Append<ICacheLoader, OddsCache>(Lifestyle.Singleton);
         }
     }
 }

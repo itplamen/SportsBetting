@@ -20,7 +20,7 @@
             this.dbContext = dbContext;
         }
 
-        public override void Load()
+        public override void Init()
         {
             IEnumerable<Category> categories = dbContext.GetCollection<Category>()
                 .Find(x => !x.IsDeleted)

@@ -21,7 +21,7 @@
             this.dbContext = dbContext;
         }
 
-        public override void Load()
+        public override void Init()
         {
             DateTime dateTime = DateTime.UtcNow.AddDays(-7);
 

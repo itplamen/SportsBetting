@@ -1,7 +1,9 @@
 ﻿namespace SportsBetting.Data.Cache.Contracts
 {
-    public interface ICacheInitializer
+    public interface ICacheLoader
     {
         void Init();
+
+        void Refresh();
     }
 }

@@ -5,12 +5,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Threading;
 
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models.Base;
 
-    public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheInitializer
+    public abstract class BaseCache<TEntity> : ICache<TEntity>, ICacheLoader
         where TEntity : BaseModel
     {
         private readonly int refreshInterval;
@@ -25,12 +24,6 @@
         {
             this.refreshInterval = refreshInterval;
             this.cache = new ConcurrentDictionary<int, TEntity>();
-        }
-
-        public void Init()
-        {
-            Timer timer = new Timer((_) => Refresh(), null, refreshInterval, refreshInterval);
-            Load();
         }
 
         public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> filterExpression)
@@ -55,8 +48,8 @@
             return cache.Remove(key);
         }
 
-        public abstract void Load();
-
+        public abstract void Init();
+        
         public abstract void Refresh();
     }
 }

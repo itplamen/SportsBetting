@@ -20,7 +20,7 @@
             this.dbContext = dbContext;
         }
 
-        public override void Load()
+        public override void Init()
         {
             IEnumerable<Team> teams = dbContext.GetCollection<Team>()
                 .Find(x => !x.IsDeleted)

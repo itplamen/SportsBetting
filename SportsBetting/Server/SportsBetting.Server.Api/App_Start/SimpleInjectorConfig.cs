@@ -6,16 +6,13 @@
     using SimpleInjector.Integration.WebApi;
     using SimpleInjector.Packaging;
 
-    using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.IoCContainer.Packages.Common;
     using SportsBetting.IoCContainer.Packages.Web;
 
     public static class SimpleInjectorConfig
     {
-        public static void RegisterContainer()
+        public static void RegisterContainer(Container container)
         {
-            Container container = new Container();
-
             IPackage[] packages = new IPackage[]
             {
                 new DataPackage(),
@@ -32,9 +29,6 @@
             container.Verify();
 
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
-
-            ICacheInitializer cacheInitializer = container.GetInstance<ICacheInitializer>();
-            cacheInitializer.Init();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace SportsBetting.Feeder.Bootstrap
 {
     using System.Reflection;
+    using System.Threading;
+    using System.Threading.Tasks;
     using SimpleInjector;
     using SimpleInjector.Packaging;
 
@@ -13,33 +15,44 @@
 
     public class FeederBootstrapper
     {
-        private readonly Container container;
+        private readonly static CancellationTokenSource source = new CancellationTokenSource();
+
+        private readonly CancellationToken token;
+        private readonly ICacheLoader cacheLoader;
         private readonly ISynchronizer synchronizer;
 
         public FeederBootstrapper()
         {
-            container = new Container();
+            Container container = new Container();
             container.Options.DefaultLifestyle = Lifestyle.Singleton;
 
-            InitializeDependencies();
-            InitializeDb();
-            InitializeCaches();
+            InitializeDependencies(container);
+            InitializeDb(container);
             InitializeMapping();
 
-            synchronizer = container.GetInstance<ISynchronizer>();
+            this.cacheLoader = container.GetInstance<ICacheLoader>();
+            this.cacheLoader.Init();
+
+            this.token = source.Token;
+            this.synchronizer = container.GetInstance<ISynchronizer>();
         }
 
         public void Start()
         {
+            Task task = new Task(() => RefreshCaches(cacheLoader));
+            task.Start();
+
             synchronizer.Sync();
         }
 
         public void Stop()
         {
+            source.Cancel();
+
             synchronizer.Stop();
         }
 
-        private void InitializeDependencies()
+        private void InitializeDependencies(Container container)
         {
             IPackage[] packages = new IPackage[]
             {
@@ -58,22 +71,24 @@
             container.Verify();
         }
 
-        private void InitializeDb()
+        private void InitializeDb(Container container)
         {
             IAplicationInitializer aplicationInitializer = container.GetInstance<IAplicationInitializer>();
             aplicationInitializer.Init();
-        }
-
-        private void InitializeCaches()
-        {
-            ICacheInitializer cacheInitializer = container.GetInstance<ICacheInitializer>();
-            cacheInitializer.Init();
         }
 
         private void InitializeMapping()
         {
             const string MAPPING_ASSEMBLY = "SportsBetting.Handlers.Commands";
             AutoMapperConfig.RegisterMappings(Assembly.Load(MAPPING_ASSEMBLY));
+        }
+
+        private void RefreshCaches(ICacheLoader cacheLoader)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                cacheLoader.Refresh();
+            }
         }
     }
 }

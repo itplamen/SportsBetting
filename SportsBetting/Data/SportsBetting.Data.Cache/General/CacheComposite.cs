@@ -2,14 +2,18 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using SportsBetting.Data.Cache.Contracts;
 
-    public class CacheComposite : ICacheInitializer
+    public class CacheComposite : ICacheLoader
     {
-        private readonly IEnumerable<ICacheInitializer> caches;
+        private const int TIMEOUT = 1000 * 3;
 
-        public CacheComposite(IEnumerable<ICacheInitializer> caches)
+        private readonly IEnumerable<ICacheLoader> caches;
+
+        public CacheComposite(IEnumerable<ICacheLoader> caches)
         {
             this.caches = caches;
         }
@@ -17,6 +21,14 @@
         public void Init()
         {
             caches.ToList().ForEach(cache => cache.Init());
+        }
+
+        public void Refresh()
+        {
+            List<Task> task = caches.Select(x => new Task(() => x.Refresh())).ToList();
+            task.ForEach(x => x.Start());
+
+            Thread.Sleep(TIMEOUT);
         }
     }
 }
