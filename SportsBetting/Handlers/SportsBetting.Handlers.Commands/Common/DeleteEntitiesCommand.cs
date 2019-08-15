@@ -5,10 +5,10 @@
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class HideEntitiesCommand<TEntity> : ICommand
+    public class DeleteEntitiesCommand<TEntity> : ICommand
         where TEntity : BaseModel
     {
-        public HideEntitiesCommand(IEnumerable<TEntity> entities)
+        public DeleteEntitiesCommand(IEnumerable<TEntity> entities)
         {
             Entities = entities;
         }

@@ -14,17 +14,17 @@
 
     public class UnprocessedFeedManager : IUnprocessedFeedManager
     {
-        private readonly ICommandHandler<HideEntitiesCommand<Odd>> oddsCommandHandler;
-        private readonly ICommandHandler<HideEntitiesCommand<Match>> matchesCommandHandler;
-        private readonly ICommandHandler<HideEntitiesCommand<Market>> marketsCommandHandler;
+        private readonly ICommandHandler<DeleteEntitiesCommand<Odd>> oddsCommandHandler;
+        private readonly ICommandHandler<DeleteEntitiesCommand<Match>> matchesCommandHandler;
+        private readonly ICommandHandler<DeleteEntitiesCommand<Market>> marketsCommandHandler;
         private readonly IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddsQueryHandler;
         private readonly IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchesQueryHandler;
         private readonly IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketsQueryHandler;
 
         public UnprocessedFeedManager(
-            ICommandHandler<HideEntitiesCommand<Odd>> oddsCommandHandler,
-            ICommandHandler<HideEntitiesCommand<Match>> matchesCommandHandler,
-            ICommandHandler<HideEntitiesCommand<Market>> marketsCommandHandler,
+            ICommandHandler<DeleteEntitiesCommand<Odd>> oddsCommandHandler,
+            ICommandHandler<DeleteEntitiesCommand<Match>> matchesCommandHandler,
+            ICommandHandler<DeleteEntitiesCommand<Market>> marketsCommandHandler,
             IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddsQueryHandler,
             IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchesQueryHandler,
             IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketsQueryHandler)
@@ -40,25 +40,25 @@
         public void Manage(IEnumerable<MatchFeedModel> processedFeed)
         {
             IEnumerable<int> matchKeys = processedFeed.Select(x => x.Key);
-            HideUnprocessedEntities(matchKeys, matchesCommandHandler, matchesQueryHandler);
+            DeleteUnprocessedEntities(matchKeys, matchesCommandHandler, matchesQueryHandler);
 
             IEnumerable<int> marketKeys = processedFeed.SelectMany(x => x.Markets.Select(y => y.Key));
-            HideUnprocessedEntities(marketKeys, marketsCommandHandler, marketsQueryHandler);
+            DeleteUnprocessedEntities(marketKeys, marketsCommandHandler, marketsQueryHandler);
 
             IEnumerable<int> oddKeys = processedFeed.SelectMany(x => x.Markets.SelectMany(y => y.Odds.Select(z => z.Key)));
-            HideUnprocessedEntities(oddKeys, oddsCommandHandler, oddsQueryHandler);
+            DeleteUnprocessedEntities(oddKeys, oddsCommandHandler, oddsQueryHandler);
         }
 
-        private void HideUnprocessedEntities<TEntity>(
+        private void DeleteUnprocessedEntities<TEntity>(
             IEnumerable<int> entityKeys,
-            ICommandHandler<HideEntitiesCommand<TEntity>> commandHandler,
+            ICommandHandler<DeleteEntitiesCommand<TEntity>> commandHandler,
             IQueryHandler<EntitiesByKeyQuery<TEntity>, IEnumerable<TEntity>> queryHandler)
             where TEntity : BaseModel
         {
-            EntitiesByKeyQuery<TEntity> entitiesQuery = new EntitiesByKeyQuery<TEntity>(entityKeys);
+            EntitiesByKeyQuery<TEntity> entitiesQuery = new EntitiesByKeyQuery<TEntity>(entityKeys, x => !entityKeys.Contains(x.Key));
             IEnumerable<TEntity> entities = queryHandler.Handle(entitiesQuery);
 
-            HideEntitiesCommand<TEntity> entitiesCommand = new HideEntitiesCommand<TEntity>(entities);
+            DeleteEntitiesCommand<TEntity> entitiesCommand = new DeleteEntitiesCommand<TEntity>(entities);
             commandHandler.Handle(entitiesCommand);
         }
     }

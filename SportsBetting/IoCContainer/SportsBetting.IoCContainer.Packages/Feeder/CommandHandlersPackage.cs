@@ -16,7 +16,7 @@
     {
         public void RegisterServices(Container container)
         {
-            container.Register(typeof(ICommandHandler<>), typeof(HideEntitiesCommandHandler<>), Lifestyle.Singleton);
+            container.Register(typeof(ICommandHandler<>), typeof(DeleteEntitiesCommandHandler<>), Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateOddCommand, string>, CreateOddCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateTeamCommand, string>, CreateTeamCommandHandler>(Lifestyle.Singleton);
             container.Register<ICommandHandler<CreateMatchCommand, string>, CreateMatchCommandHandler>(Lifestyle.Singleton);
