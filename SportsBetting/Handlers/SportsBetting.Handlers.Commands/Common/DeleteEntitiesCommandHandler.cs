@@ -31,10 +31,7 @@
                     .Set(x => x.DeletedOn, DateTime.UtcNow);
 
                 dbContext.GetCollection<TEntity>().UpdateOne(filter, update);
-
-                entity.IsDeleted = true;
-                entity.DeletedOn = DateTime.UtcNow;
-                cache.Delete(entity.Key, entity);
+                cache.Delete(entity.Key);
             }
         }
     }

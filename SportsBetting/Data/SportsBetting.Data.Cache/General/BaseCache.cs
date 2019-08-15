@@ -50,22 +50,9 @@
             cache[key] = entity;
         }
 
-        public void Delete(int key, TEntity entity)
+        public bool Delete(int key)
         {
-            TEntity cachedEntity = cache[key];
-
-            if (cachedEntity != null)
-            {
-                cachedEntity.IsDeleted = entity.IsDeleted;
-                cachedEntity.DeletedOn = entity.DeletedOn;
-
-                cache[key] = cachedEntity;
-            }
-        }
-
-        public void HardDelete(int key)
-        {
-            cache.Remove(key);
+            return cache.Remove(key);
         }
 
         public abstract void Load();
