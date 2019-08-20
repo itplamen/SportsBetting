@@ -5,7 +5,7 @@
 
     using SportsBetting.Data.Models;
     using SportsBetting.Data.Models.Base;
-    using SportsBetting.Feeder.Core.Contracts;
+    using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;

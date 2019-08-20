@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Feeder.Core.Contracts
+﻿namespace SportsBetting.Feeder.Core.Contracts.Managers
 {
     using System.Collections.Generic;
 

@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
-    <Compile Include="Contracts\IUnprocessedFeedManager.cs" />
+    <Compile Include="Contracts\Managers\IUnprocessedFeedManager.cs" />
     <Compile Include="Contracts\Managers\IFeedManager.cs" />
     <Compile Include="Contracts\Managers\ICategoriesManager.cs" />
     <Compile Include="Contracts\Managers\IMarketsManager.cs" />
