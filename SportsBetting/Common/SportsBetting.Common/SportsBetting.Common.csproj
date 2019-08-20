@@ -48,6 +48,10 @@
     <Compile Include="Contracts\IAplicationInitializer.cs" />
     <Compile Include="Contracts\IConfigurationManager.cs" />
     <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Contracts\ILogger.cs" />
+    <Compile Include="Contracts\ILoggerFactory.cs" />
+    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\LoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XPaths\ContainerXPaths.cs" />
     <Compile Include="XPaths\MatchXPaths.cs" />
