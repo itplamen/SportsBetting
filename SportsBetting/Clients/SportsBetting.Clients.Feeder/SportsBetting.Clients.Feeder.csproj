@@ -54,6 +54,10 @@
       <Project>{3D872455-42AE-43F5-9321-82D2EF483068}</Project>
       <Name>SportsBetting.Feeder.Bootstrap</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Feeder\SportsBetting.Feeder.Resources\SportsBetting.Feeder.Resources.csproj">
+      <Project>{a330de4f-fbce-4f0d-9bad-9cf5f42829b4}</Project>
+      <Name>SportsBetting.Feeder.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
