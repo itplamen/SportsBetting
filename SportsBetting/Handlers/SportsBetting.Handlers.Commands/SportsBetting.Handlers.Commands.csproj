@@ -109,6 +109,10 @@
       <Project>{9D9669F4-7D03-4142-A6DB-55FE1140E04B}</Project>
       <Name>SportsBetting.Feeder.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
+      <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
+      <Name>SportsBetting.Handlers.Queries</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
