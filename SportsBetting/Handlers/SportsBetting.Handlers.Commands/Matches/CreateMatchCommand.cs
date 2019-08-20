@@ -5,6 +5,7 @@
     using AutoMapper;
 
     using SportsBetting.Common.Infrastructure.Mapping;
+    using SportsBetting.Common.Mapping;
     using SportsBetting.Data.Models;
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
@@ -32,17 +33,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<MatchFeedModel, CreateMatchCommand>()
-                .ForMember(x => x.Score, opt => opt.MapFrom(x => MapScore(x)));
-        }
-
-        private string MapScore(MatchFeedModel feedModel)
-        {
-            if (feedModel.HomeTeam.Score.HasValue && feedModel.AwayTeam.Score.HasValue)
-            {
-                return $"{feedModel.HomeTeam.Score}:{feedModel.AwayTeam.Score}";
-            }
-
-            return null;
+                .ForMember(x => x.Score, opt => opt.MapFrom(x => ScoreMapping.Map(x.HomeTeam.Score, x.AwayTeam.Score)));
         }
     }
 }

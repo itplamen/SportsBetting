@@ -52,6 +52,7 @@
     <Compile Include="Contracts\ILoggerFactory.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LoggerFactory.cs" />
+    <Compile Include="Mapping\ScoreMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XPaths\ContainerXPaths.cs" />
     <Compile Include="XPaths\MatchXPaths.cs" />
