@@ -11,8 +11,10 @@
 
     public static class SimpleInjectorConfig
     {
-        public static void RegisterContainer(Container container)
+        public static Container RegisterContainer()
         {
+            Container container = new Container();
+
             IPackage[] packages = new IPackage[]
             {
                 new DataPackage(),
@@ -29,6 +31,8 @@
             container.Verify();
 
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+
+            return container;
         }
     }
 }

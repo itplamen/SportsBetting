@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Server.Api
 {
-     using System.Reflection;
+    using System.Reflection;
     using System.Web.Http;
 
     using SimpleInjector;
@@ -12,10 +12,8 @@
     {
         protected void Application_Start()
         {
-            Container container = new Container();
-
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            SimpleInjectorConfig.RegisterContainer(container);
+            Container container = SimpleInjectorConfig.RegisterContainer();
             CacheConfig.Init(container);
             AutoMapperConfig.RegisterMappings(
                 Assembly.GetExecutingAssembly(), 
