@@ -33,18 +33,12 @@
         {
             decimal parsedValue = 0;
 
-            try
-            {
-                HtmlNodeCollection nodeCollection = oddNode.SelectNodes(OddXPaths.VALUE);
+            HtmlNodeCollection nodeCollection = oddNode.SelectNodes(OddXPaths.VALUE);
 
-                if (nodeCollection != null)
-                {
-                    string value = nodeCollection.Select(x => x.InnerText).First();
-                    decimal.TryParse(value, out parsedValue);
-                }
-            }
-            catch (Exception ex)
+            if (nodeCollection != null)
             {
+                string value = nodeCollection.Select(x => x.InnerText).First();
+                decimal.TryParse(value, out parsedValue);
             }
 
             return parsedValue;

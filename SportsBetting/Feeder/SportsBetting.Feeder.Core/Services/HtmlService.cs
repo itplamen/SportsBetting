@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Core.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -60,24 +59,17 @@
 
         public int GetTwoWayOddsCount(HtmlNode marketNode)
         {
-            try
-            {
-                HtmlNode marketContainer = GetMarketContainer(marketNode);
+            HtmlNode marketContainer = GetMarketContainer(marketNode);
 
-                if (marketContainer != null && marketContainer.ChildNodes.Any())
+            if (marketContainer != null && marketContainer.ChildNodes.Any())
+            {
+
+                IEnumerable<HtmlNode> oddNodes = marketContainer.SelectNodes(OddXPaths.NODE);
+
+                if (oddNodes != null)
                 {
-
-                    IEnumerable<HtmlNode> oddNodes = marketContainer.SelectNodes(OddXPaths.NODE);
-
-                    if (oddNodes != null)
-                    {
-                        return oddNodes.Count();
-                    }
+                    return oddNodes.Count();
                 }
-            }
-            catch (Exception ex)
-            {
-
             }
 
             return 0;
@@ -85,18 +77,11 @@
 
         public int GetOddsCount(HtmlNode marketNode)
         {
-            try
-            {
-                HtmlNode marketContainer = GetMarketContainer(marketNode);
+            HtmlNode marketContainer = GetMarketContainer(marketNode);
 
-                if (marketContainer != null && marketContainer.ChildNodes.Any())
-                {
-                    return marketContainer.ChildNodes.Count;
-                }
-            }
-            catch (Exception ex)
+            if (marketContainer != null && marketContainer.ChildNodes.Any())
             {
-
+                return marketContainer.ChildNodes.Count;
             }
 
             return 0;
