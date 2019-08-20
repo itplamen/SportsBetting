@@ -2,7 +2,6 @@
 {
     using SimpleInjector;
     using SimpleInjector.Packaging;
-
     using SportsBetting.Feeder.Core;
     using SportsBetting.Feeder.Core.Contracts;
     using SportsBetting.Feeder.Core.Contracts.Managers;

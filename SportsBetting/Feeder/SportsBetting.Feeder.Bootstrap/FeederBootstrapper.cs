@@ -3,6 +3,7 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
+
     using SimpleInjector;
     using SimpleInjector.Packaging;
 
@@ -59,6 +60,7 @@
                 new DataPackage(),
                 new DataCachePackage(),
                 new FeederPackage(),
+                new CommonPackage(),
                 new QueryHandlersPackage(),
                 new CommandHandlersPackage()
             };

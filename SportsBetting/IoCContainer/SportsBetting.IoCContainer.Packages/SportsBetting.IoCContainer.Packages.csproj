@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Common\DataCachePackage.cs" />
     <Compile Include="Common\DataPackage.cs" />
+    <Compile Include="Feeder\CommonPackage.cs" />
     <Compile Include="Feeder\FeederPackage.cs" />
     <Compile Include="Feeder\CommandHandlersPackage.cs" />
     <Compile Include="Feeder\QueryHandlersPackage.cs" />
