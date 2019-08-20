@@ -63,6 +63,7 @@
             container.RegisterDecorator<IOddsProvider, ThreeWayOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, TotalLineOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, TwoWayOddsProvider>(Lifestyle.Singleton);
+            container.RegisterDecorator<IOddsProvider, LoggingOddsProvider>(Lifestyle.Singleton);
         }
 
         private void RegisterSynchronizers(Container container)

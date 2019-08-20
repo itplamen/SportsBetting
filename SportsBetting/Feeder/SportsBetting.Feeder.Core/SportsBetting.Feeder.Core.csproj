@@ -92,6 +92,7 @@
     <Compile Include="Providers\Odds\Base\BaseOddsProvider.cs" />
     <Compile Include="Providers\Odds\CorrectScoreOddsProvider.cs" />
     <Compile Include="Providers\Odds\HandicapOddsProvider.cs" />
+    <Compile Include="Providers\Odds\LoggingOddsProvider.cs" />
     <Compile Include="Providers\Odds\ThreeWayOddsProvider.cs" />
     <Compile Include="Providers\Odds\TotalLineOddsProvider.cs" />
     <Compile Include="Providers\Odds\TwoWayOddsProvider.cs" />

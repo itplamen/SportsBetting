@@ -1,8 +1,6 @@
 ﻿namespace SportsBetting.Feeder.Core.Providers.Markets
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using HtmlAgilityPack;
 
@@ -42,18 +40,10 @@
 
         private IEnumerable<OddFeedModel> GetOdds(HtmlNode marketNode, MatchFeedModel match, int marketKey)
         {
-            try
-            {
-                IList<string> oddNames = htmlService.GetOddNames(marketNode, match);
-                IEnumerable<OddFeedModel> odds = oddsProvider.Get(marketNode, oddNames, marketKey);
+            IList<string> oddNames = htmlService.GetOddNames(marketNode, match);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(marketNode, oddNames, marketKey);
 
-                return odds;
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return Enumerable.Empty<OddFeedModel>();
+            return odds;
         }
     }
 }
