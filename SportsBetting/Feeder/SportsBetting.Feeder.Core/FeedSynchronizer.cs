@@ -9,11 +9,11 @@
     using SportsBetting.Common.Constants;
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Core.Contracts;
+    using SportsBetting.Feeder.Core.Contracts.Factories;
     using SportsBetting.Feeder.Core.Contracts.Managers;
+    using SportsBetting.Feeder.Core.Contracts.Providers;
+    using SportsBetting.Feeder.Core.Contracts.Services;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
-    using SportsBetting.Services.Feeder.Contracts.Providers;
-    using SportsBetting.Services.Feeder.Contracts.Services;
 
     public class FeedSynchronizer : ISynchronizer
     {

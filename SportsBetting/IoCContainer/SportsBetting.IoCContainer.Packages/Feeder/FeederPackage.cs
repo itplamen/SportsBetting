@@ -2,20 +2,21 @@
 {
     using SimpleInjector;
     using SimpleInjector.Packaging;
+
     using SportsBetting.Feeder.Core;
     using SportsBetting.Feeder.Core.Contracts;
+    using SportsBetting.Feeder.Core.Contracts.Factories;
     using SportsBetting.Feeder.Core.Contracts.Managers;
+    using SportsBetting.Feeder.Core.Contracts.Providers;
+    using SportsBetting.Feeder.Core.Contracts.Services;
+    using SportsBetting.Feeder.Core.Factories;
     using SportsBetting.Feeder.Core.Managers;
-    using SportsBetting.Services.Feeder.Contracts.Factories;
-    using SportsBetting.Services.Feeder.Contracts.Providers;
-    using SportsBetting.Services.Feeder.Contracts.Services;
-    using SportsBetting.Services.Feeder.Factories;
-    using SportsBetting.Services.Feeder.Providers.Markets;
-    using SportsBetting.Services.Feeder.Providers.Matches;
-    using SportsBetting.Services.Feeder.Providers.Odds;
-    using SportsBetting.Services.Feeder.Providers.Teams;
-    using SportsBetting.Services.Feeder.Providers.Tournaments;
-    using SportsBetting.Services.Feeder.Services;
+    using SportsBetting.Feeder.Core.Providers.Markets;
+    using SportsBetting.Feeder.Core.Providers.Matches;
+    using SportsBetting.Feeder.Core.Providers.Odds;
+    using SportsBetting.Feeder.Core.Providers.Teams;
+    using SportsBetting.Feeder.Core.Providers.Tournaments;
+    using SportsBetting.Feeder.Core.Services;
 
     public sealed class FeederPackage : IPackage
     {

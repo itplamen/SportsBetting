@@ -37,6 +37,9 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HtmlAgilityPack.1.11.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,8 +52,12 @@
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Selenium.Support.3.141.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
     <Compile Include="Contracts\IUnprocessedFeedManager.cs" />
     <Compile Include="Contracts\Managers\IFeedManager.cs" />
     <Compile Include="Contracts\Managers\ICategoriesManager.cs" />
@@ -60,6 +67,15 @@
     <Compile Include="Contracts\Managers\ITeamsManager.cs" />
     <Compile Include="Contracts\Managers\ITournamentsManager.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
+    <Compile Include="Contracts\Providers\IMarketsProvider.cs" />
+    <Compile Include="Contracts\Providers\IMatchesProvider.cs" />
+    <Compile Include="Contracts\Providers\IOddsProvider.cs" />
+    <Compile Include="Contracts\Providers\ITeamsProvider.cs" />
+    <Compile Include="Contracts\Providers\ITournametsProvider.cs" />
+    <Compile Include="Contracts\Services\IHtmlService.cs" />
+    <Compile Include="Contracts\Services\IWebPagesService.cs" />
+    <Compile Include="Factories\ObjectFactory.cs" />
+    <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="LoggingSynchronizer.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="Managers\CategoriesManager.cs" />
@@ -71,6 +87,18 @@
     <Compile Include="FeedSynchronizer.cs" />
     <Compile Include="Managers\UnprocessedFeedManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Markets\MarketsProvider.cs" />
+    <Compile Include="Providers\Matches\MatchesProvider.cs" />
+    <Compile Include="Providers\Odds\Base\BaseOddsProvider.cs" />
+    <Compile Include="Providers\Odds\CorrectScoreOddsProvider.cs" />
+    <Compile Include="Providers\Odds\HandicapOddsProvider.cs" />
+    <Compile Include="Providers\Odds\ThreeWayOddsProvider.cs" />
+    <Compile Include="Providers\Odds\TotalLineOddsProvider.cs" />
+    <Compile Include="Providers\Odds\TwoWayOddsProvider.cs" />
+    <Compile Include="Providers\Teams\TeamsProvider.cs" />
+    <Compile Include="Providers\Tournaments\TournametsProvider.cs" />
+    <Compile Include="Services\HtmlService.cs" />
+    <Compile Include="Services\WebPagesService.cs" />
     <Compile Include="SynchronizerComposite.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +121,6 @@
     <ProjectReference Include="..\..\Handlers\SportsBetting.Handlers.Queries\SportsBetting.Handlers.Queries.csproj">
       <Project>{BB51D3DA-718B-4BDD-80D0-1B1807FCB11D}</Project>
       <Name>SportsBetting.Handlers.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\SportsBetting.Services.Feeder\SportsBetting.Services.Feeder.csproj">
-      <Project>{C214AFA0-8068-4A89-A194-88D9C3B4F1D8}</Project>
-      <Name>SportsBetting.Services.Feeder</Name>
     </ProjectReference>
     <ProjectReference Include="..\SportsBetting.Feeder.Models\SportsBetting.Feeder.Models.csproj">
       <Project>{9D9669F4-7D03-4142-A6DB-55FE1140E04B}</Project>
