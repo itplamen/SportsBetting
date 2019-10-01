@@ -1,7 +1,7 @@
 <template>
     <div>
-        <b-container class="bv-example-row">
-            <b-row id="GamesHeader">
+        <b-container class="container-row">
+            <b-row>
                 <b-col cols="1">Date</b-col>
                 <b-col cols="4">Game</b-col>
                 <b-col cols="3">1</b-col>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-    #GamesHeader {
+    .container-row {
         font-weight: bold;
         font-size: 16px;
     }

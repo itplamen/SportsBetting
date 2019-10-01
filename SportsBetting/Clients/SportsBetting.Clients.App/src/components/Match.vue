@@ -1,11 +1,13 @@
 <template>
     <div>
-        <b-container class="bv-example-row">
+        <b-container class="container-row">
             <b-row>
-                <b-col cols="4">{{match.HomeTeam}}</b-col>
-                <b-col cols="3">{{match.Category}}: {{match.Tournament}}</b-col>
-                <b-col cols="1">{{match.Score}}</b-col>
-                <b-col cols="4">{{match.AwayTeam}}</b-col>
+                <b-col cols="5" class="team-name">{{match.HomeTeam}}</b-col>
+                <b-col cols="2" class="score">{{match.Score}}</b-col>
+                <b-col cols="5" class="team-name">{{match.AwayTeam}}</b-col>
+            </b-row>
+            <b-row>
+                <b-col cols="12" class="category-name">{{match.Category}}</br>{{match.Tournament}}</b-col>
             </b-row>
         </b-container>
         <b-jumbotron >
@@ -44,6 +46,23 @@ export default {
 </script>
 
 <style scoped>
+    .score{
+        font-weight: bold;
+        font-size: 24px;
+        color: #ff365f;
+    }
+
+    .team-name{
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .category-name {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
     .market {
         background-color: #ff365f;
         border-radius: 10px;
