@@ -35,7 +35,7 @@
                     int nameIndex = i % 2 == 0 ? 0 : 1;
                     string header = oddNodes[i].FirstChild.InnerText;
 
-                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketKey, header);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, marketKey, OddFeedType.Handicap, header);
                     odds.Add(odd);
                 }
 

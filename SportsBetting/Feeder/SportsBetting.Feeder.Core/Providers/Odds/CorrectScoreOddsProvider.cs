@@ -58,7 +58,7 @@
             for (int i = 0; i < oddNodes.Count; i++)
             {
                 string header = oddNodes[i].FirstChild.InnerText;
-                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketKey, header);
+                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketKey, OddFeedType.CorrectScore, header);
 
                 odds.Add(odd);
             }
@@ -80,7 +80,7 @@
                     foreach (var oddNode in oddNodesCollection[i].ChildNodes)
                     {
                         string header = oddNode.FirstChild.InnerText;
-                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, header);
+                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, OddFeedType.CorrectScore, header);
 
                         odds.Add(odd);
 
