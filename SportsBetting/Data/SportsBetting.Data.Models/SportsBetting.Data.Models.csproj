@@ -68,6 +68,7 @@
     <Compile Include="Base\IDeletableEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Market.cs" />
+    <Compile Include="MarketType.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchStatus.cs" />
     <Compile Include="MatchType.cs" />
