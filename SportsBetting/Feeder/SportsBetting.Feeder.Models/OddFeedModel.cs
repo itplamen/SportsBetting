@@ -16,6 +16,8 @@
 
         public int MarketKey { get; set; }
 
+        public OddFeedType Type { get; set; }
+
         public OddResultFeedStatus ResultStatus { get; set; }
 
         protected override int GenerateKey()
