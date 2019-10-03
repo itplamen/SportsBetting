@@ -28,14 +28,28 @@
         {
             if (ShouldGet(marketNode, oddNames))
             {
-                HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NODE);
+                ICollection<OddFeedModel> odds = new List<OddFeedModel>();
+                HtmlNodeCollection oddNodesCollection = marketNode.SelectNodes(OddXPaths.CORRECT_SCORE_NODE);
 
-                if (oddNodes != null)
+                for (int i = 0; i < oddNodesCollection.Count; i++)
                 {
-                    return GetTwoColumnOdds(oddNodes, marketKey);
+                    int rank = i;
+
+                    if (oddNodesCollection[i].ChildNodes != null)
+                    {
+                        foreach (var oddNode in oddNodesCollection[i].ChildNodes)
+                        {
+                            string header = oddNode.FirstChild.InnerText;
+                            OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, OddFeedType.CorrectScore, header);
+
+                            odds.Add(odd);
+
+                            rank += 2;
+                        }
+                    }
                 }
 
-                return GetFourColumnOdds(marketNode, marketKey);
+                return odds;
             }
 
             return oddsProvider.Get(marketNode, oddNames, marketKey);
@@ -49,47 +63,6 @@
         protected override bool IsSuspended(HtmlNode oddNode)
         {
             return htmlService.IsSuspended(oddNode.LastChild.LastChild);
-        }
-
-        private IEnumerable<OddFeedModel> GetTwoColumnOdds(HtmlNodeCollection oddNodes, int marketKey)
-        {
-            ICollection<OddFeedModel> odds = new List<OddFeedModel>();
-
-            for (int i = 0; i < oddNodes.Count; i++)
-            {
-                string header = oddNodes[i].FirstChild.InnerText;
-                OddFeedModel odd = BuildOdd(oddNodes[i], header, i, marketKey, OddFeedType.CorrectScore, header);
-
-                odds.Add(odd);
-            }
-
-            return odds;
-        }
-
-        private IEnumerable<OddFeedModel> GetFourColumnOdds(HtmlNode marketNode, int marketKey)
-        {
-            ICollection<OddFeedModel> odds = new List<OddFeedModel>();
-            HtmlNodeCollection oddNodesCollection = marketNode.SelectNodes(OddXPaths.CORRECT_SCORE_NODE);
-
-            for (int i = 0; i < oddNodesCollection.Count; i++)
-            {
-                int rank = i;
-
-                if (oddNodesCollection[i].ChildNodes != null)
-                {
-                    foreach (var oddNode in oddNodesCollection[i].ChildNodes)
-                    {
-                        string header = oddNode.FirstChild.InnerText;
-                        OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, OddFeedType.CorrectScore, header);
-
-                        odds.Add(odd);
-
-                        rank += 2;
-                    }
-                }
-            }
-
-            return odds;
         }
     }
 }
