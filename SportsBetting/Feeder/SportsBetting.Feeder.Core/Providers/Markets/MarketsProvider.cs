@@ -30,7 +30,7 @@
             foreach (var marketNode in marketNodes)
             {
                 MarketFeedModel market = ObjectFactory.CreateMarket(marketNode.FirstChild.FirstChild.InnerText, match.Key);
-                market.Odds = GetOdds(marketNode, match, market.Key);
+                market.Odds = GetOdds(marketNode, match);
 
                 markets.Add(market);
             }
@@ -38,10 +38,10 @@
             return markets;
         }
 
-        private IEnumerable<OddFeedModel> GetOdds(HtmlNode marketNode, MatchFeedModel match, int marketKey)
+        private IEnumerable<OddFeedModel> GetOdds(HtmlNode marketNode, MatchFeedModel match)
         {
             IList<string> oddNames = htmlService.GetOddNames(marketNode, match);
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(marketNode, oddNames, marketKey);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(marketNode, oddNames);
 
             return odds;
         }

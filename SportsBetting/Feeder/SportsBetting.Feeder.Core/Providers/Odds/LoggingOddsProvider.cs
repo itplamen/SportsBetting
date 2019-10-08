@@ -25,11 +25,11 @@
             this.logger = loggerFactory.Create($"{LOGGER}.txt", "Odd Providers");
         }
 
-        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketKey)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames)
         {
             try
             {
-                return decoratedOdssProvider.Get(marketNode, oddNames, marketKey);
+                return decoratedOdssProvider.Get(marketNode, oddNames);
             }
             catch (Exception ex)
             {

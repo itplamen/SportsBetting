@@ -24,7 +24,7 @@
             this.oddsProvider = oddsProvider;
         }
 
-        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames, int marketKey)
+        public IEnumerable<OddFeedModel> Get(HtmlNode marketNode, IList<string> oddNames)
         {
             if (ShouldGet(marketNode, oddNames))
             {
@@ -40,7 +40,7 @@
                         foreach (var oddNode in oddNodesCollection[i].ChildNodes)
                         {
                             string header = oddNode.FirstChild.InnerText;
-                            OddFeedModel odd = BuildOdd(oddNode, header, rank, marketKey, OddFeedType.CorrectScore, header);
+                            OddFeedModel odd = BuildOdd(oddNode, header, rank, OddFeedType.CorrectScore, header);
 
                             odds.Add(odd);
 
@@ -52,7 +52,7 @@
                 return odds;
             }
 
-            return oddsProvider.Get(marketNode, oddNames, marketKey);
+            return oddsProvider.Get(marketNode, oddNames);
         }
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)

@@ -16,15 +16,13 @@
 
         public bool IsSuspended { get; set; }
 
-        public int MarketKey { get; set; }
-
         public OddFeedType Type { get; set; }
 
         public OddResultFeedStatus ResultStatus { get; set; }
 
         protected override int GenerateKey()
         {
-            return Name.GetHashCode() ^ Header.GetHashCode() ^ MarketKey.GetHashCode();
+            return Name.GetHashCode() ^ Header.GetHashCode() ^ Type.GetHashCode() ^ Rank.GetHashCode();
         }
     }
 }

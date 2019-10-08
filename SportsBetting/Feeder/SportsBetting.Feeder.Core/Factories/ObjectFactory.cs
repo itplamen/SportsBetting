@@ -38,8 +38,7 @@
             bool isSuspended, 
             OddResultFeedStatus resultStatus,
             OddFeedType type,
-            int rank, 
-            int marketKey, 
+            int rank,
             decimal header = 0,
             string symbol = null)
         {
@@ -52,8 +51,7 @@
                 IsSuspended = isSuspended,
                 ResultStatus = resultStatus,
                 Type = type,
-                Rank = rank,
-                MarketKey = marketKey
+                Rank = rank
             };
         }
 

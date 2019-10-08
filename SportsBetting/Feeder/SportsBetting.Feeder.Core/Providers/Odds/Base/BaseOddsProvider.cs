@@ -23,7 +23,6 @@
             HtmlNode oddNode, 
             string name, 
             int rank, 
-            int marketKey, 
             OddFeedType type,
             string header = null, 
             string symbol = null)
@@ -33,7 +32,7 @@
             decimal.TryParse(header, out decimal parsedHeader);
             OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
-            return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, type, rank, marketKey, parsedHeader, symbol);
+            return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, type, rank, parsedHeader, symbol);
         }
 
         protected virtual decimal GetValue(HtmlNode oddNode)
