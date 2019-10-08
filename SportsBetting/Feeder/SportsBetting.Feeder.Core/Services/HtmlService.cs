@@ -12,20 +12,11 @@
 
     public class HtmlService : IHtmlService
     {
-        public IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match)
+        public IList<string> GetOddNames(HtmlNode marketNode)
         {
             HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAMES);
 
-            if (oddNodes != null)
-            {
-                return oddNodes.Select(x => x.InnerText).ToList();
-            }
-
-            return new List<string>()
-            {
-                match.HomeTeam.Name,
-                match.AwayTeam.Name
-            };
+            return oddNodes.Select(x => x.InnerText).ToList();
         }
 
         public IEnumerable<string> GetMatchUrls(string xpath, string pageSource)

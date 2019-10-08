@@ -8,7 +8,7 @@
 
     public interface IHtmlService
     {
-        IList<string> GetOddNames(HtmlNode marketNode, MatchFeedModel match);
+        IList<string> GetOddNames(HtmlNode marketNode);
 
         IEnumerable<string> GetMatchUrls(string xpath, string pageSource);
 
