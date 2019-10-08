@@ -8,7 +8,9 @@
 
         public decimal Value { get; set; }
 
-        public string Header { get; set; }
+        public decimal Header { get; set; }
+
+        public string Symbol { get; set; }
 
         public int Rank { get; set; }
 
@@ -22,14 +24,7 @@
 
         protected override int GenerateKey()
         {
-            int headerHash = 0;
-
-            if (!string.IsNullOrWhiteSpace(Header))
-            {
-                headerHash = Header.GetHashCode();
-            }
-
-            return Name.GetHashCode() ^ headerHash ^ MarketKey.GetHashCode();
+            return Name.GetHashCode() ^ Header.GetHashCode() ^ MarketKey.GetHashCode();
         }
     }
 }

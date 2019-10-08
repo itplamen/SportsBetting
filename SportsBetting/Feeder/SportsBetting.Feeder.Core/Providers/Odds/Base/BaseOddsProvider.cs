@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Core.Providers.Odds.Base
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -20,13 +19,21 @@
             this.htmlService = htmlService;
         }
 
-        protected OddFeedModel BuildOdd(HtmlNode oddNode, string name, int rank, int marketKey, OddFeedType type, string header = null)
+        protected OddFeedModel BuildOdd(
+            HtmlNode oddNode, 
+            string name, 
+            int rank, 
+            int marketKey, 
+            OddFeedType type,
+            string header = null, 
+            string symbol = null)
         {
             decimal value = GetValue(oddNode);
             bool isSuspended = IsSuspended(oddNode);
+            decimal.TryParse(header, out decimal parsedHeader);
             OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
-            return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, type, rank, marketKey, header);
+            return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, type, rank, marketKey, parsedHeader, symbol);
         }
 
         protected virtual decimal GetValue(HtmlNode oddNode)

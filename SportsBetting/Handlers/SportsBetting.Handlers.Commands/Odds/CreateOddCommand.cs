@@ -13,7 +13,9 @@
 
         public decimal Value { get; set; }
 
-        public string Header { get; set; }
+        public decimal Header { get; set; }
+
+        public string Symbol { get; set; }
 
         public bool IsActive { get; set; }
 

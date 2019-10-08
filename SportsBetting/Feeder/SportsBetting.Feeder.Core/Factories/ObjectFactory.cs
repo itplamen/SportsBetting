@@ -40,13 +40,15 @@
             OddFeedType type,
             int rank, 
             int marketKey, 
-            string header = null)
+            decimal header = 0,
+            string symbol = null)
         {
             return new OddFeedModel()
             {
                 Name = name,
                 Value = value,
                 Header = header,
+                Symbol = symbol,
                 IsSuspended = isSuspended,
                 ResultStatus = resultStatus,
                 Type = type,
