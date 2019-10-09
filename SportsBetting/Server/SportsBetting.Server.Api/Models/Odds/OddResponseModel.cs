@@ -16,5 +16,7 @@
         public string Symbol { get; set; }
 
         public bool IsSuspended { get; set; }
+
+        public int Rank { get; set; }
     }
 }
