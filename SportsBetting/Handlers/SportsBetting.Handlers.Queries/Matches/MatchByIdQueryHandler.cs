@@ -119,7 +119,9 @@
         {
             IEnumerable<string> marketIds = new List<string>() { marketId };
             EntitiesByIdQuery<Odd> oddsByMarketIdQuery = new EntitiesByIdQuery<Odd>(marketIds, x => marketIds.Contains(x.MarketId));
-            IEnumerable<Odd> odds = oddsHandler.Handle(oddsByMarketIdQuery).OrderBy(x => x.Header);
+            IEnumerable<Odd> odds = oddsHandler.Handle(oddsByMarketIdQuery)
+                .OrderBy(x => x.Header)
+                .ThenBy(x => x.Rank);
 
             return odds;
         }

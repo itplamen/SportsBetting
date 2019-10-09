@@ -12,14 +12,21 @@
         </b-container>
         <b-jumbotron >
             <b-container v-for="market in match.Markets">
-                <b-row class="market">
-                    <b-col class="market-name">{{market.Name}}</b-col>
-                    <b-container v-for="odd in market.Odds">
-                        <b-row class="odd">
-                            <b-col>{{odd.Name}} <b-button size="sm" class="odd-value">{{odd.Value}}</b-button></b-col>
-                        </b-row>
-                    </b-container>
-                </b-row>
+                <div class="market">
+                    <div class="market-name">{{market.Name}}</div>
+                    <div v-bind:key="odd.Id" v-for="odd in market.Odds" class="odd">
+                        <div v-if="odd.Rank % 2 === 0">
+                            <span class="odd-name">{{odd.Name}}</span>
+                            <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span> 
+                            <b-button size="sm" class="odd-value">{{odd.Value}}</b-button>
+                        </div>
+                        <div v-else>
+                            <b-button size="sm" class="odd-value">{{odd.Value}}</b-button> 
+                            <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span>
+                            <span class="odd-name">{{odd.Name}}</span>
+                        </div>
+                    </div>
+                </div>
             </b-container>
         </b-jumbotron>
     </div>
@@ -27,7 +34,8 @@
 
 <script>
 import axios from 'axios'
-import $ from 'jquery';
+import $ from 'jquery'
+import enums from '../common/constants/enums'
 
 export default {
     data() {
@@ -68,13 +76,48 @@ export default {
         border-radius: 10px;
         margin-bottom: 10px;
         color: #fff;
+     }
+
+    .market:after { 
+        content: "";
+        display: table;
+        clear: both;
     }
+
     .market-name {
         font-weight: bold;
         font-size: 18px;
     }
+
+    .odd-name {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
     .odd-value {
         background: #e01e5a;
         font-weight: bold;
+        margin-right: 10px;
+        margin-left: 10px;
     }
+
+    .odd {        
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 400px;
+    }
+
+    .odd:nth-child(even) {
+        float: left;
+        clear: both;
+        margin-left: 150px;
+        text-align: right;
+    }
+
+    .odd:nth-child(odd) {
+        float: right;
+        margin-right: 150px;
+        text-align: left;
+    }
+    
 </style>
