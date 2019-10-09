@@ -40,7 +40,7 @@
                         foreach (var oddNode in oddNodesCollection[i].ChildNodes)
                         {
                             string header = oddNode.FirstChild.InnerText;
-                            OddFeedModel odd = BuildOdd(oddNode, header, rank, OddFeedType.CorrectScore, header);
+                            OddFeedModel odd = BuildOdd(oddNode, header, rank, header);
 
                             odds.Add(odd);
 

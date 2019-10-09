@@ -16,13 +16,11 @@
 
         public bool IsSuspended { get; set; }
 
-        public OddFeedType Type { get; set; }
-
         public OddResultFeedStatus ResultStatus { get; set; }
 
         protected override int GenerateKey()
         {
-            return Name.GetHashCode() ^ Header.GetHashCode() ^ Type.GetHashCode() ^ Rank.GetHashCode();
+            return Name.GetHashCode() ^ Header.GetHashCode() ^ Rank.GetHashCode();
         }
     }
 }

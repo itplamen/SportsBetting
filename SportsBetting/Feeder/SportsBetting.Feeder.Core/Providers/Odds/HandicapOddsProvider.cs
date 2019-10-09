@@ -36,7 +36,7 @@
                     string symbol = oddNodes[i].FirstChild.InnerText[0].ToString();
                     string header = oddNodes[i].FirstChild.InnerText.Substring(1);
 
-                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, OddFeedType.Handicap, header, symbol);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[nameIndex], i, header, symbol);
                     odds.Add(odd);
                 }
 

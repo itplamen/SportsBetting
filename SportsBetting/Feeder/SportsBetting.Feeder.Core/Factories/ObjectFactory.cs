@@ -37,7 +37,6 @@
             decimal value, 
             bool isSuspended, 
             OddResultFeedStatus resultStatus,
-            OddFeedType type,
             int rank,
             decimal header = 0,
             string symbol = null)
@@ -50,7 +49,6 @@
                 Symbol = symbol,
                 IsSuspended = isSuspended,
                 ResultStatus = resultStatus,
-                Type = type,
                 Rank = rank
             };
         }

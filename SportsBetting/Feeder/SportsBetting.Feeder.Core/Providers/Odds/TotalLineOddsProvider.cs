@@ -38,7 +38,7 @@
                 {
                     for (int i = 0; i < oddNames.Count; i++)
                     {
-                        OddFeedModel odd = BuildOdd(oddNode.Value[i], oddNames[i], i, OddFeedType.TotalLine, oddNode.Key);
+                        OddFeedModel odd = BuildOdd(oddNode.Value[i], oddNames[i], i, oddNode.Key);
                         odds.Add(odd);
                     }
                 }

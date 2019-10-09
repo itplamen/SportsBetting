@@ -33,7 +33,7 @@
 
                 for (int i = 0; i < oddNames.Count; i++)
                 {
-                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[i], i, OddFeedType.ThreeWay);
+                    OddFeedModel odd = BuildOdd(oddNodes[i], oddNames[i], i);
                     odds.Add(odd);
                 }
 

@@ -7,7 +7,5 @@
         public string Name { get; set; }
 
         public string MatchId { get; set; }
-
-        public MarketType Type { get; set; }
     }
 }
