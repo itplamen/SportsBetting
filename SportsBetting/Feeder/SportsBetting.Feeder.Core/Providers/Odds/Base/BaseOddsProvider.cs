@@ -23,7 +23,10 @@
         {
             decimal value = GetValue(oddNode);
             bool isSuspended = IsSuspended(oddNode);
-            decimal.TryParse(header, out decimal parsedHeader);
+
+            decimal parsedHeader = 0;
+            decimal.TryParse(header, out parsedHeader);
+
             OddResultFeedStatus resultStatus = htmlService.GetOddResultStatus(oddNode);
 
             return ObjectFactory.CreateOdd(name, value, isSuspended, resultStatus, rank, parsedHeader, symbol);
