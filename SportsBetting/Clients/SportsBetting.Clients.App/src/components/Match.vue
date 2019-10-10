@@ -1,5 +1,10 @@
 <template>
     <div>
+        <Betslip 
+            :marketName=marketName 
+            :oddName=oddName 
+            :oddValue=oddValue
+            :oddId=oddId  />
         <b-container class="container-row">
             <b-row>
                 <b-col cols="5" class="team-name">{{match.HomeTeam}}</b-col>
@@ -18,10 +23,10 @@
                         <div v-if="odd.Rank % 2 === 0">
                             <span class="odd-name">{{odd.Name}}</span>
                             <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span> 
-                            <b-button size="sm" class="odd-value">{{odd.Value}}</b-button>
+                            <b-button @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button>
                         </div>
                         <div v-else>
-                            <b-button size="sm" class="odd-value">{{odd.Value}}</b-button> 
+                            <b-button @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button> 
                             <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span>
                             <span class="odd-name">{{odd.Name}}</span>
                         </div>
@@ -35,12 +40,19 @@
 <script>
 import axios from 'axios'
 import $ from 'jquery'
-import enums from '../common/constants/enums'
+import Betslip from './Betslip'
 
 export default {
+    components: {
+        Betslip
+    },
     data() {
         return {
-            match: {}
+            match: {},
+            marketName: '',
+            oddName: '',
+            oddValue: 0,
+            oddId: ''
         }
     },
     created() {
@@ -49,6 +61,28 @@ export default {
         axios.get(`http://localhost:64399/api/Matches/${this.$route.params.id}`)
             .then(res => this.match = res.data)
             .catch(err => console.log(err));
+    },
+    methods: {
+        showBetslip(marketName, odd) {
+            this.marketName = marketName;
+            this.oddValue = odd.Value;
+            this.oddId = odd.Id;
+            this.oddName = this.getBetslipOddName(odd);
+
+            this.$bvToast.show('PlaceBetToast')
+        },
+        getBetslipOddName(odd) {
+            let oddName = odd.Name;
+
+            if (odd.Symbol !== null && odd.Header > 0) {
+                oddName += ' ' + odd.Symbol + '' + odd.Header;;
+            }
+            else if (odd.Header > 0) {
+                oddName += ' ' + odd.Header;
+            }
+
+            return oddName;
+        }
     }
 }
 </script>
