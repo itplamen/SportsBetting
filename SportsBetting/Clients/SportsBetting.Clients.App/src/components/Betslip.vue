@@ -1,15 +1,15 @@
 <template>
     <div>
-        <b-toast id="PlaceBetToast">
+        <b-toast id="BetslipToast">
             <template v-slot:toast-title>
                 <div class="d-flex flex-grow-1 align-items-baseline">
                     <b-img blank blank-color="#ff5555" class="mr-2" width="12" height="12"></b-img>
                     <strong class="mr-auto">{{marketName}}</strong>
                 </div>
             </template>
-            <div id="BettingName">{{oddName}}</div>
+            <div id="BettingName">{{getOddName()}}</div>
             <div>
-                <span id='BettingValue'>{{oddValue}}</span>
+                <span id='BettingValue'>{{odd.Value}}</span>
                 <input id="Stake" type="number" min="0" placeholder="0.00" />
                 <button id="PlaceBetBtn" class="place-bet-btn" @click="placeBet()">Place Bet</button>
             </div>
@@ -18,16 +18,40 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props: {
-        marketName: '',
-        oddName: '',
-        oddValue: 0,
-        oddId: ''
+        odd: Object,
+        marketName: String
+    },
+    data() {
+        return {
+            match: {}
+        }
     },
     methods: {
+        getOddName() {
+            let oddName = this.odd.Name;
+
+            if (this.odd.Symbol !== null && this.odd.Header > 0) {
+                oddName += ' ' + this.odd.Symbol + '' + this.odd.Header;;
+            }
+            else if (this.odd.Header > 0) {
+                oddName += ' ' + this.odd.Header;
+            }
+
+            return oddName;
+        },
         placeBet() {
-            alert('ada')
+            axios.post('http://localhost:64399/api/Bets', {
+                        username: this.registerModel.username.value,
+                        password: this.registerModel.password.value,
+                        confirmPassword: this.registerModel.confirmPassword.value,
+                        email: this.registerModel.email.value
+                    })
+                    .then(res => console.log(res.data))
+                    .catch(err => this.showModelStateErrors(err.response.data));
         }
     }
 }

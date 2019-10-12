@@ -1,10 +1,6 @@
 <template>
     <div>
-        <Betslip 
-            :marketName=marketName 
-            :oddName=oddName 
-            :oddValue=oddValue
-            :oddId=oddId  />
+        <Betslip :marketName=marketName :odd=odd />
         <b-container class="container-row">
             <b-row>
                 <b-col cols="5" class="team-name">{{match.HomeTeam}}</b-col>
@@ -17,44 +13,30 @@
         </b-container>
         <b-jumbotron >
             <b-container v-for="market in match.Markets">
-                <div class="market">
-                    <div class="market-name">{{market.Name}}</div>
-                    <div v-bind:key="odd.Id" v-for="odd in market.Odds" class="odd">
-                        <div v-if="odd.Rank % 2 === 0">
-                            <span class="odd-name">{{odd.Name}}</span>
-                            <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span> 
-                            <img v-if="odd.IsSuspended" src="../assets/Suspended.png" title="Suspended" alt="Suspended" class="suspended-img">
-                            <b-button v-else @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button>
-                        </div>
-                        <div v-else>
-                            <img v-if="odd.IsSuspended" src="../assets/Suspended.png" title="Suspended" alt="Suspended" class="suspended-img">
-                            <b-button v-else @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button> 
-                            <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span>
-                            <span class="odd-name">{{odd.Name}}</span>
-                        </div>
-                    </div>
-                </div>
+                <Market :market=market v-on:showBetslip="showBetslipInfo" />
             </b-container>
         </b-jumbotron>
+
+        
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import $ from 'jquery'
+import Market from './Market'
 import Betslip from './Betslip'
 
 export default {
     components: {
+        Market,
         Betslip
     },
     data() {
         return {
             match: {},
-            marketName: '',
-            oddName: '',
-            oddValue: 0,
-            oddId: ''
+            odd: {},
+            marketName: ''
         }
     },
     created() {
@@ -65,25 +47,10 @@ export default {
             .catch(err => console.log(err));
     },
     methods: {
-        showBetslip(marketName, odd) {
+        showBetslipInfo(odd, marketName) {
+            this.odd = odd;
             this.marketName = marketName;
-            this.oddValue = odd.Value;
-            this.oddId = odd.Id;
-            this.oddName = this.getBetslipOddName(odd);
-
-            this.$bvToast.show('PlaceBetToast')
-        },
-        getBetslipOddName(odd) {
-            let oddName = odd.Name;
-
-            if (odd.Symbol !== null && odd.Header > 0) {
-                oddName += ' ' + odd.Symbol + '' + odd.Header;;
-            }
-            else if (odd.Header > 0) {
-                oddName += ' ' + odd.Header;
-            }
-
-            return oddName;
+            this.$bvToast.show('BetslipToast');
         }
     }
 }
@@ -106,66 +73,4 @@ export default {
         font-weight: bold;
         font-size: 14px;
     }
-
-    .market {
-        background-color: #ff365f;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        color: #fff;
-     }
-
-    .market:after { 
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .market-name {
-        font-weight: bold;
-        font-size: 18px;
-    }
-
-    .odd-name {
-        margin-right: 5px;
-        margin-left: 5px;
-    }
-
-    .odd-value {
-        background: #e01e5a;
-        font-weight: bold;
-        margin-right: 10px;
-        margin-left: 10px;
-        padding: 5px;
-        width: 50px;
-        height: 40px;
-    }
-
-    .odd-value:hover {
-        background-color: #5baf4e;
-    }
-
-    .odd {        
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 400px;
-    }
-
-    .odd:nth-child(even) {
-        float: left;
-        clear: both;
-        margin-left: 150px;
-        text-align: right;
-    }
-
-    .odd:nth-child(odd) {
-        float: right;
-        margin-right: 150px;
-        text-align: left;
-    }
-    
-    .suspended-img {
-        width: 40px;
-        cursor: not-allowed;
-    }
-    
 </style>
