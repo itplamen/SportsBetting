@@ -23,10 +23,12 @@
                         <div v-if="odd.Rank % 2 === 0">
                             <span class="odd-name">{{odd.Name}}</span>
                             <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span> 
-                            <b-button @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button>
+                            <img v-if="odd.IsSuspended" src="../assets/Suspended.png" title="Suspended" alt="Suspended" class="suspended-img">
+                            <b-button v-else @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button>
                         </div>
                         <div v-else>
-                            <b-button @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button> 
+                            <img v-if="odd.IsSuspended" src="../assets/Suspended.png" title="Suspended" alt="Suspended" class="suspended-img">
+                            <b-button v-else @click="showBetslip(market.Name, odd)" size="sm" class="odd-value">{{odd.Value}}</b-button> 
                             <span class="odd-header" v-if="odd.Header > 0">{{odd.Symbol}}{{odd.Header}}</span>
                             <span class="odd-name">{{odd.Name}}</span>
                         </div>
@@ -133,6 +135,13 @@ export default {
         font-weight: bold;
         margin-right: 10px;
         margin-left: 10px;
+        padding: 5px;
+        width: 50px;
+        height: 40px;
+    }
+
+    .odd-value:hover {
+        background-color: #5baf4e;
     }
 
     .odd {        
@@ -152,6 +161,11 @@ export default {
         float: right;
         margin-right: 150px;
         text-align: left;
+    }
+    
+    .suspended-img {
+        width: 40px;
+        cursor: not-allowed;
     }
     
 </style>
