@@ -8,6 +8,7 @@
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Accounts.Results;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
@@ -16,18 +17,15 @@
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
-        private readonly ICommandHandler<CreateAccountCommand, string> createAccountHandler;
+        private readonly ICommandHandler<CreateAccountCommand, AccountResult> createAccountHandler;
         private readonly ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler;
-        private readonly IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler;
 
         public AccountController(
-            ICommandHandler<CreateAccountCommand, string> createAccountHandler,
-            ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler,
-            IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler)
+            ICommandHandler<CreateAccountCommand, AccountResult> createAccountHandler,
+            ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler)
         {
             this.createAccountHandler = createAccountHandler;
             this.loginAccountHandler = loginAccountHandler;
-            this.accountValidationHandler = accountValidationHandler;
         }
 
         [HttpPost]
@@ -44,7 +42,7 @@
                     command.Role = AccontRole.User;
 
                     RegisterResponseModel responseModel = new RegisterResponseModel();
-                    responseModel.Id = createAccountHandler.Handle(command);
+                    responseModel.Id = createAccountHandler.Handle(command).Account.Id;
 
                     return Ok(responseModel);
                 }

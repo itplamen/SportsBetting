@@ -6,9 +6,10 @@
 
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Commands.Accounts.Results;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, string>
+    public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, AccountResult>
     {
         private readonly ISportsBettingDbContext dbContext;
         private readonly ICommandHandler<EncryptPasswordCommand, string> encryptPasswordHandler;
@@ -21,7 +22,7 @@
             this.encryptPasswordHandler = encryptPasswordHandler;
         }
 
-        public string Handle(CreateAccountCommand command)
+        public AccountResult Handle(CreateAccountCommand command)
         {
             EncryptPasswordCommand encryptPasswordCommand = new EncryptPasswordCommand(command.Password);
             string password = encryptPasswordHandler.Handle(encryptPasswordCommand);
@@ -32,7 +33,7 @@
 
             dbContext.GetCollection<Account>().InsertOne(account);
 
-            return account.Id;
+            return new AccountResult(account);
         }   
     }
 }
