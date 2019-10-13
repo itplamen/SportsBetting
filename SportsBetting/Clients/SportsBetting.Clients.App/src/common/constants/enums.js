@@ -4,5 +4,5 @@ const REGISTER_STATE = {
 };
 
 export default {
-    REGISTER_STATE: REGISTER_STATE
+    REGISTER_STATE
 };

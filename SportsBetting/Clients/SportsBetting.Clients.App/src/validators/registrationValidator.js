@@ -53,7 +53,7 @@ const validatePasswordMatching = (password, confirmPassword) => {
 };
 
 export default {
-    validateEmail: validateEmail,
-    validateFields: validateFields,
-    validatePasswordMatching: validatePasswordMatching
+    validateEmail,
+    validateFields,
+    validatePasswordMatching
 };

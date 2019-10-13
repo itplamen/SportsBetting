@@ -5,5 +5,5 @@ const REGISTER_MESSAGE = {
 };
 
 export default {
-    REGISTER_MESSAGE: REGISTER_MESSAGE
+    REGISTER_MESSAGE
 };
