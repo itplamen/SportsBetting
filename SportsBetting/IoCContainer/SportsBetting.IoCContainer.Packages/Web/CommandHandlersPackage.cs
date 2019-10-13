@@ -12,6 +12,7 @@
         public void RegisterServices(Container container)
         {
             container.Register<ICommandHandler<CreateAccountCommand, string>, CreateAccountCommandHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<EncryptPasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
         }
     }
 }
