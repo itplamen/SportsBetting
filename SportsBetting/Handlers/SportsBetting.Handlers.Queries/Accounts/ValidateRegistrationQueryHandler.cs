@@ -11,18 +11,18 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class AccountValidationQueryHandler : IQueryHandler<AccountValidationQuery, ValidationResult>
+    public class ValidateRegistrationQueryHandler : IQueryHandler<ValidateRegistrationQuery, ValidationResult>
     {
         private const string ERROR_MESSAGE = "A user with the same {0} has already been registered!";
 
         private readonly ISportsBettingDbContext dbContext;
 
-        public AccountValidationQueryHandler(ISportsBettingDbContext dbContext)
+        public ValidateRegistrationQueryHandler(ISportsBettingDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public ValidationResult Handle(AccountValidationQuery query)
+        public ValidationResult Handle(ValidateRegistrationQuery query)
         {
             if (GetAccount(x => x.Username == query.Username) != null)
             {

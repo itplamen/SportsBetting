@@ -17,11 +17,11 @@
     public class AccountController : ApiController
     {
         private readonly ICommandHandler<CreateAccountCommand, string> createAccountHandler;
-        private readonly IQueryHandler<AccountValidationQuery, ValidationResult> accountValidationHandler;
+        private readonly IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler;
 
         public AccountController(
             ICommandHandler<CreateAccountCommand, string> createAccountHandler, 
-            IQueryHandler<AccountValidationQuery, ValidationResult> accountValidationHandler)
+            IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler)
         {
             this.createAccountHandler = createAccountHandler;
             this.accountValidationHandler = accountValidationHandler;
@@ -35,7 +35,7 @@
                 return BadRequest(ModelState);
             }
 
-            AccountValidationQuery query = new AccountValidationQuery(requestModel.Username, requestModel.Email);
+            ValidateRegistrationQuery query = new ValidateRegistrationQuery(requestModel.Username, requestModel.Email);
             ValidationResult validationResult = accountValidationHandler.Handle(query);
 
             if (validationResult.HasErrors)

@@ -21,7 +21,7 @@
             container.Register(typeof(IQueryHandler<>), typeof(WithDeletedEntitiesHandler<>), new WebRequestLifestyle());
             container.Register<IQueryHandler<MatchByIdQuery, MatchResult>, MatchByIdQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
-            container.Register<IQueryHandler<AccountValidationQuery, ValidationResult>, AccountValidationQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<ValidateRegistrationQuery, ValidationResult>, ValidateRegistrationQueryHandler>(new WebRequestLifestyle());
         }
     }
 }

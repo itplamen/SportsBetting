@@ -3,9 +3,9 @@
     using SportsBetting.Common.Validation;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class AccountValidationQuery : IQuery<ValidationResult>
+    public class ValidateRegistrationQuery : IQuery<ValidationResult>
     {
-        public AccountValidationQuery(string username, string email)
+        public ValidateRegistrationQuery(string username, string email)
         {
             Username = username;
             Email = email;
