@@ -7,6 +7,8 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Data.Models;
+    using SportsBetting.Common.Validation;
+    
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Common.Results;
@@ -23,6 +25,7 @@
             container.Register<IQueryHandler<AccountByEmailQuery, Account>, AccountByEmailQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<AccountValidationQuery, ValidationResult>, AccountValidationQueryHandler>(new WebRequestLifestyle());
         }
     }
 }
