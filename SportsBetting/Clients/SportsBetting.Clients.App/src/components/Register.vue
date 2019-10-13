@@ -33,7 +33,6 @@ import enums from '../common/constants/enums';
 import registrationValidator from '../validators/registrationValidator';
 
 export default {
-    name: 'Register',
     data() {
         return {
             registerModel: {
@@ -112,8 +111,9 @@ export default {
             let self = this;
 
             Object.keys(data.ModelState).forEach(function(key) {
-                let prop = key.toString().toLowerCase().split('.')[1];
                 let message = data.ModelState[key][0];
+                let splitKey = key.toString().toLowerCase().split('.');
+                let prop = splitKey.length == 1 ? splitKey : splitKey[1];
 
                 self.registerModel[prop].message = message;
                 self.registerModel[prop].state = enums.REGISTER_STATE.INVALID;
