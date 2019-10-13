@@ -54,6 +54,7 @@
     <Compile Include="Logger\LoggerFactory.cs" />
     <Compile Include="Mapping\ScoreMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="XPaths\ContainerXPaths.cs" />
     <Compile Include="XPaths\MatchXPaths.cs" />
     <Compile Include="XPaths\OddXPaths.cs" />
