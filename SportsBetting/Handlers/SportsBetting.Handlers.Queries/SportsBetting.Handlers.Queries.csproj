@@ -64,6 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountByExpressionQuery.cs" />
+    <Compile Include="Accounts\AccountByExpressionQueryHandler.cs" />
     <Compile Include="Accounts\ValidateRegistrationQuery.cs" />
     <Compile Include="Accounts\ValidateRegistrationQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />

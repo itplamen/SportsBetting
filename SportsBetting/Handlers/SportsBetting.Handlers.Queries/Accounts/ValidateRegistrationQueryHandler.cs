@@ -1,13 +1,6 @@
 ﻿namespace SportsBetting.Handlers.Queries.Accounts
 {
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
-
-    using MongoDB.Driver;
-
     using SportsBetting.Common.Validation;
-    using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 
@@ -15,33 +8,32 @@
     {
         private const string ERROR_MESSAGE = "A user with the same {0} has already been registered!";
 
-        private readonly ISportsBettingDbContext dbContext;
+        private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
 
-        public ValidateRegistrationQueryHandler(ISportsBettingDbContext dbContext)
+        public ValidateRegistrationQueryHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
         {
-            this.dbContext = dbContext;
+            this.accountByExpressionHandler = accountByExpressionHandler;
         }
 
         public ValidationResult Handle(ValidateRegistrationQuery query)
         {
-            if (GetAccount(x => x.Username == query.Username) != null)
+            AccountByExpressionQuery byUsernameQuery = new AccountByExpressionQuery(x => x.Username == query.Username);
+            Account accountByUsername = accountByExpressionHandler.Handle(byUsernameQuery);
+
+            if (accountByUsername != null)
             {
                 return GetErrorResult(nameof(query.Username));
             }
 
-            if (GetAccount(x => x.Email == query.Email) != null)
+            AccountByExpressionQuery byEmailQuery = new AccountByExpressionQuery(x => x.Email == query.Email);
+            Account accountByEmail = accountByExpressionHandler.Handle(byEmailQuery);
+
+            if (accountByEmail != null)
             {
                 return GetErrorResult(nameof(query.Email));
             }
 
             return new ValidationResult();
-        }
-
-        private Account GetAccount(Expression<Func<Account, bool>> expression)
-        {
-            return dbContext.GetCollection<Account>()
-                .Find(expression)
-                .FirstOrDefault();
         }
 
         private ValidationResult GetErrorResult(string key)
