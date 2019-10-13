@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Handlers.Queries.Accounts
 {
-    using SportsBetting.Common.Validation;
+    using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 

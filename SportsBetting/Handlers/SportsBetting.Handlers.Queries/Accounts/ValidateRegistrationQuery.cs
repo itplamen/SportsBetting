@@ -1,6 +1,6 @@
 ﻿namespace SportsBetting.Handlers.Queries.Accounts
 {
-    using SportsBetting.Common.Validation;
+    using SportsBetting.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class ValidateRegistrationQuery : IQuery<ValidationResult>

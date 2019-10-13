@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Common.Validation
+﻿namespace SportsBetting.Common.Results
 {
     public class ValidationResult
     {

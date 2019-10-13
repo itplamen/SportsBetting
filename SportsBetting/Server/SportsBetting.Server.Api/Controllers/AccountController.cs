@@ -5,7 +5,7 @@
 
     using AutoMapper;
 
-    using SportsBetting.Common.Validation;
+    using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts;
     using SportsBetting.Handlers.Commands.Contracts;
@@ -17,41 +17,42 @@
     public class AccountController : ApiController
     {
         private readonly ICommandHandler<CreateAccountCommand, string> createAccountHandler;
+        private readonly ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler;
         private readonly IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler;
 
         public AccountController(
-            ICommandHandler<CreateAccountCommand, string> createAccountHandler, 
+            ICommandHandler<CreateAccountCommand, string> createAccountHandler,
+            ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler,
             IQueryHandler<ValidateRegistrationQuery, ValidationResult> accountValidationHandler)
         {
             this.createAccountHandler = createAccountHandler;
+            this.loginAccountHandler = loginAccountHandler;
             this.accountValidationHandler = accountValidationHandler;
         }
 
         [HttpPost]
         public IHttpActionResult Register(RegisterRequestModel requestModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest(ModelState);
-            }
+                ValidateRegistrationQuery query = new ValidateRegistrationQuery(requestModel.Username, requestModel.Email);
+                ValidationResult validationResult = accountValidationHandler.Handle(query);
 
-            ValidateRegistrationQuery query = new ValidateRegistrationQuery(requestModel.Username, requestModel.Email);
-            ValidationResult validationResult = accountValidationHandler.Handle(query);
+                if (!validationResult.HasErrors)
+                {
+                    CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
+                    command.Role = AccontRole.User;
 
-            if (validationResult.HasErrors)
-            {
+                    RegisterResponseModel responseModel = new RegisterResponseModel();
+                    responseModel.Id = createAccountHandler.Handle(command);
+
+                    return Ok(responseModel);
+                }
+
                 ModelState.AddModelError(validationResult.ErrorKey, validationResult.ErrorMessage);
-
-                return BadRequest(ModelState);
             }
 
-            CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
-            command.Role = AccontRole.User;
-
-            RegisterResponseModel responseModel = new RegisterResponseModel();
-            responseModel.Id = createAccountHandler.Handle(command);
-
-            return Ok(responseModel);
+            return BadRequest(ModelState);
         }
     }
 }

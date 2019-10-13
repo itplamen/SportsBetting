@@ -6,7 +6,7 @@
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Packaging;
 
-    using SportsBetting.Common.Validation;
+    using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Common;
