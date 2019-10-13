@@ -68,6 +68,8 @@
     <Compile Include="Accounts\CreateAccountCommandHandler.cs" />
     <Compile Include="Accounts\EncryptPasswordCommand.cs" />
     <Compile Include="Accounts\EncryptPasswordCommandHandler.cs" />
+    <Compile Include="Accounts\LoginAccountCommand.cs" />
+    <Compile Include="Accounts\LoginAccountCommandHandler.cs" />
     <Compile Include="Categories\CreateCategoryCommand.cs" />
     <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
     <Compile Include="Common\DeleteEntitiesCommand.cs" />
