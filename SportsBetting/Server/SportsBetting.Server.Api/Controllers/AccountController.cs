@@ -11,7 +11,7 @@
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Server.Api.Models.Account;
+    using SportsBetting.Server.Api.Models.Account.Register;
 
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
