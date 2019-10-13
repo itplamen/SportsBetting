@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Hubs\SimpleInjectorHubActivator.cs" />
     <Compile Include="Models\Account\RegisterRequestModel.cs" />
+    <Compile Include="Models\Account\RegisterResponseModel.cs" />
     <Compile Include="Models\Markets\MarketResponseModel.cs" />
     <Compile Include="Models\Matches\MatchResponseModel.cs" />
     <Compile Include="Models\Odds\OddResponseModel.cs" />
