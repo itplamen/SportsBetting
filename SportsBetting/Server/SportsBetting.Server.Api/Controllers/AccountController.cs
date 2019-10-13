@@ -30,6 +30,11 @@
         [HttpPost]
         public IHttpActionResult Register(RegisterRequestModel requestModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             AccountValidationQuery query = new AccountValidationQuery(requestModel.Username, requestModel.Email);
             ValidationResult validationResult = accountValidationHandler.Handle(query);
 
