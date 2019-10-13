@@ -54,6 +54,7 @@ export default {
         text-align: center;
         vertical-align: middle;
         cursor: pointer;
+        border-radius: 10px;
     }
 
     .odd-value:hover {

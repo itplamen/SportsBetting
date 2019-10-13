@@ -1,64 +1,52 @@
-﻿using AutoMapper;
-using SportsBetting.Data.Models;
-using SportsBetting.Handlers.Commands.Accounts;
-using SportsBetting.Handlers.Commands.Contracts;
-using SportsBetting.Handlers.Queries.Accounts;
-using SportsBetting.Handlers.Queries.Contracts;
-using SportsBetting.Server.Api.Models.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.Cors;
-
-namespace SportsBetting.Server.Api.Controllers
+﻿namespace SportsBetting.Server.Api.Controllers
 {
+    using System.Web.Http;
+    using System.Web.Http.Cors;
+
+    using AutoMapper;
+
+    using SportsBetting.Common.Validation;
+    using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Contracts;
+    using SportsBetting.Handlers.Queries.Accounts;
+    using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Server.Api.Models.Account;
+
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
-        private readonly IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler;
         private readonly ICommandHandler<CreateAccountCommand, string> createAccountHandler;
-        private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler;
+        private readonly IQueryHandler<AccountValidationQuery, ValidationResult> accountValidationHandler;
 
         public AccountController(
-            IQueryHandler<AccountByEmailQuery, Account> accountByEmailHandler,
-            ICommandHandler<CreateAccountCommand, string> createAccountHandler,
-            IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler)
+            ICommandHandler<CreateAccountCommand, string> createAccountHandler, 
+            IQueryHandler<AccountValidationQuery, ValidationResult> accountValidationHandler)
         {
-            this.accountByEmailHandler = accountByEmailHandler;
             this.createAccountHandler = createAccountHandler;
-            this.accountByUsernameHandler = accountByUsernameHandler;
+            this.accountValidationHandler = accountValidationHandler;
         }
 
         [HttpPost]
         public IHttpActionResult Register(RegisterRequestModel requestModel)
         {
-            AccountByUsernameQuery accountByUsernameQuery = new AccountByUsernameQuery(requestModel.Username);
+            AccountValidationQuery query = new AccountValidationQuery(requestModel.Username, requestModel.Email);
+            ValidationResult validationResult = accountValidationHandler.Handle(query);
 
-            if (accountByUsernameHandler.Handle(accountByUsernameQuery) != null)
+            if (validationResult.HasErrors)
             {
-                ModelState.AddModelError(nameof(requestModel.Username), "A user with the same username has already been registered!");
+                ModelState.AddModelError(validationResult.ErrorKey, validationResult.ErrorMessage);
+
+                return BadRequest(ModelState);
             }
 
-            AccountByEmailQuery accountByEmailQuery = new AccountByEmailQuery(requestModel.Email);
+            CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
+            command.Role = AccontRole.User;
 
-            if (accountByEmailHandler.Handle(accountByEmailQuery) != null)
-            {
-                ModelState.AddModelError(nameof(requestModel.Email), "A user with the same email has already been registered!");
-            }
+            RegisterResponseModel responseModel = new RegisterResponseModel();
+            responseModel.Id = createAccountHandler.Handle(command);
 
-            if (ModelState.IsValid)
-            {
-                CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
-                command.Role = AccontRole.User;
-
-                createAccountHandler.Handle(command);
-
-                return Ok();
-            }
-
-            return BadRequest(ModelState);
+            return Ok(responseModel);
         }
     }
 }

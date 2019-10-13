@@ -64,10 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts\AccountByEmailQuery.cs" />
-    <Compile Include="Accounts\AccountByEmailQueryHandler.cs" />
-    <Compile Include="Accounts\AccountByUsernameQuery.cs" />
-    <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
     <Compile Include="Accounts\AccountValidationQuery.cs" />
     <Compile Include="Accounts\AccountValidationQueryHandler.cs" />
     <Compile Include="Categories\CategoryByNameQuery.cs" />
