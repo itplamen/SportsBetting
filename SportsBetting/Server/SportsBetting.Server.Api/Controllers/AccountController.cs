@@ -8,7 +8,6 @@
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts;
-    using SportsBetting.Handlers.Commands.Accounts.Results;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Server.Api.Models.Account.Register;
 
@@ -16,12 +15,12 @@
     public class AccountController : ApiController
     {
         private readonly IValidationHandler<CreateAccountCommand> validationHandler;
-        private readonly ICommandHandler<CreateAccountCommand, AccountResult> createAccountHandler;
+        private readonly ICommandHandler<CreateAccountCommand, Account> createAccountHandler;
         private readonly ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler;
 
         public AccountController(
             IValidationHandler<CreateAccountCommand> validationHandler,
-            ICommandHandler<CreateAccountCommand, AccountResult> createAccountHandler,
+            ICommandHandler<CreateAccountCommand, Account> createAccountHandler,
             ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler)
         {
             this.validationHandler = validationHandler;
@@ -41,8 +40,9 @@
 
                 if (!validationResult.HasErrors)
                 {
+                    Account account = createAccountHandler.Handle(command);
                     RegisterResponseModel responseModel = new RegisterResponseModel();
-                    responseModel.Id = createAccountHandler.Handle(command).Account.Id;
+                    responseModel.Id = account.Id;
 
                     return Ok(responseModel);
                 }
