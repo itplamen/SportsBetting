@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Accounts\CreateAccountCommand.cs" />
     <Compile Include="Accounts\CreateAccountCommandHandler.cs" />
+    <Compile Include="Accounts\CreateAccountValidationHandler.cs" />
     <Compile Include="Accounts\EncryptPasswordCommand.cs" />
     <Compile Include="Accounts\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\LoginAccountCommand.cs" />
