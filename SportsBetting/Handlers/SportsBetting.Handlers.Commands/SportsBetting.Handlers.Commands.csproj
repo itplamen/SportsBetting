@@ -77,6 +77,7 @@
     <Compile Include="Common\DeleteEntitiesCommandHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />
+    <Compile Include="Contracts\IValidationHandler.cs" />
     <Compile Include="Markets\CreateMarketCommand.cs" />
     <Compile Include="Markets\CreateMarketCommandHandler.cs" />
     <Compile Include="Matches\CreateMatchCommand.cs" />
