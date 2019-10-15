@@ -14,18 +14,11 @@
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
-        private readonly IValidationHandler<CreateAccountCommand> validationHandler;
-        private readonly ICommandHandler<CreateAccountCommand, Account> createAccountHandler;
-        private readonly ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler;
+        private readonly ICommandDispatcher commandDispatcher;
 
-        public AccountController(
-            IValidationHandler<CreateAccountCommand> validationHandler,
-            ICommandHandler<CreateAccountCommand, Account> createAccountHandler,
-            ICommandHandler<LoginAccountCommand, ValidationResult> loginAccountHandler)
+        public AccountController(ICommandDispatcher commandDispatcher)
         {
-            this.validationHandler = validationHandler;
-            this.createAccountHandler = createAccountHandler;
-            this.loginAccountHandler = loginAccountHandler;
+            this.commandDispatcher = commandDispatcher;
         }
 
         [HttpPost]
@@ -36,11 +29,12 @@
                 CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
                 command.Role = AccontRole.User;
 
-                ValidationResult validationResult = validationHandler.Validate(command);
+                ValidationResult validationResult = commandDispatcher.Validate(command);
 
                 if (!validationResult.HasErrors)
                 {
-                    Account account = createAccountHandler.Handle(command);
+                    Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(command);
+
                     RegisterResponseModel responseModel = new RegisterResponseModel();
                     responseModel.Id = account.Id;
 
