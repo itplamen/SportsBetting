@@ -14,15 +14,11 @@
     [EnableCors("*", "*", "*")]
     public class MatchesController : ApiController
     {
-        private readonly IQueryHandler<MatchByIdQuery, MatchResult> matchesByIdHandler;
-        private readonly IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>> allMatchesHandler;
+        private readonly IQueryDispatcher queryDispatcher;
 
-        public MatchesController(
-            IQueryHandler<MatchByIdQuery, MatchResult> matchesByIdHandler,
-            IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>> allMatchesHandler)
+        public MatchesController(IQueryDispatcher queryDispatcher)
         {
-            this.matchesByIdHandler = matchesByIdHandler;
-            this.allMatchesHandler = allMatchesHandler;
+            this.queryDispatcher = queryDispatcher;
         }
 
         [HttpGet]
@@ -36,7 +32,7 @@
             }
 
             AllMatchesQuery query = new AllMatchesQuery(take);
-            IEnumerable<MatchResult> matches = allMatchesHandler.Handle(query);
+            IEnumerable<MatchResult> matches = queryDispatcher.Dispatch<AllMatchesQuery, IEnumerable<MatchResult>>(query);
             IEnumerable<MatchResponseModel> responseModel = Mapper.Map<IEnumerable<MatchResponseModel>>(matches);
 
             return Ok(responseModel);
@@ -53,7 +49,7 @@
             }
 
             MatchByIdQuery query = new MatchByIdQuery(id);
-            MatchResult result = matchesByIdHandler.Handle(query);
+            MatchResult result = queryDispatcher.Dispatch<MatchByIdQuery, MatchResult>(query);
 
             if (result == null)
             {
