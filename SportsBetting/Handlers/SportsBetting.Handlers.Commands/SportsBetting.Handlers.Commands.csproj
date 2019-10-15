@@ -76,9 +76,11 @@
     <Compile Include="Accounts\LoginAccountCommandHandler.cs" />
     <Compile Include="Categories\CreateCategoryCommand.cs" />
     <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
+    <Compile Include="Common\CommandDispatcher.cs" />
     <Compile Include="Common\DeleteEntitiesCommand.cs" />
     <Compile Include="Common\DeleteEntitiesCommandHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\ICommandDispatcher.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />
     <Compile Include="Contracts\IValidationHandler.cs" />
     <Compile Include="Markets\CreateMarketCommand.cs" />
