@@ -15,22 +15,20 @@
 
     public class MarketsManager : IMarketsManager
     {
-        private readonly ICommandHandler<CreateMarketCommand, string> createMarketHandler;
-        private readonly IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketByKeyHandler;
+        private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
 
-        public MarketsManager(
-            ICommandHandler<CreateMarketCommand, string> createMarketHandler,
-            IQueryHandler<EntitiesByKeyQuery<Market>, IEnumerable<Market>> marketByKeyHandler)
+        public MarketsManager(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this.createMarketHandler = createMarketHandler;
-            this.marketByKeyHandler = marketByKeyHandler;
+            this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
         }
 
         public string Manage(MarketFeedModel feedModel, string matchId)
         {
             IEnumerable<int> keys = new List<int>() { feedModel.Key };
             EntitiesByKeyQuery<Market> query = new EntitiesByKeyQuery<Market>(keys);
-            Market market = marketByKeyHandler.Handle(query).FirstOrDefault();
+            Market market = queryDispatcher.Dispatch<EntitiesByKeyQuery<Market>, IEnumerable<Market>>(query).FirstOrDefault();
 
             if (market != null)
             {
@@ -40,7 +38,7 @@
             CreateMarketCommand command = Mapper.Map<CreateMarketCommand>(feedModel);
             command.MatchId = matchId;
 
-            return createMarketHandler.Handle(command);
+            return commandDispatcher.Dispatch<CreateMarketCommand, string>(command);
         }
     }
 }

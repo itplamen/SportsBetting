@@ -15,32 +15,27 @@
 
     public class MatchesManager : IMatchesManager
     {
-        private readonly ICommandHandler<UpdateMatchCommand, string> updateMatchHandler;
-        private readonly ICommandHandler<CreateMatchCommand, string> createMatchHandler;
-        private readonly IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchByKeyHandler;
+        private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
 
-        public MatchesManager(
-            ICommandHandler<UpdateMatchCommand, string> updateMatchHandler,
-            ICommandHandler<CreateMatchCommand, string> createMatchHandler,
-            IQueryHandler<EntitiesByKeyQuery<Match>, IEnumerable<Match>> matchByKeyHandler)
+        public MatchesManager(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this.updateMatchHandler = updateMatchHandler;
-            this.createMatchHandler = createMatchHandler;
-            this.matchByKeyHandler = matchByKeyHandler;
+            this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
         }
 
         public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
         {
             IEnumerable<int> keys = new List<int>() { feedModel.Key };
             EntitiesByKeyQuery<Match> matchQuery = new EntitiesByKeyQuery<Match>(keys);
-            Match match = matchByKeyHandler.Handle(matchQuery).FirstOrDefault();
+            Match match = queryDispatcher.Dispatch<EntitiesByKeyQuery<Match>, IEnumerable<Match>>(matchQuery).FirstOrDefault();
 
             if (match != null)
             {
                 UpdateMatchCommand updateCommand = Mapper.Map<UpdateMatchCommand>(feedModel);
                 updateCommand.Id = match.Id;
 
-                return updateMatchHandler.Handle(updateCommand);
+                return commandDispatcher.Dispatch<UpdateMatchCommand, string>(updateCommand);
             }
 
             CreateMatchCommand createCommand = Mapper.Map<CreateMatchCommand>(feedModel);
@@ -49,7 +44,7 @@
             createCommand.HomeTeamId = homeTeamId;
             createCommand.AwayTeamId = awayTeamId;
 
-            return createMatchHandler.Handle(createCommand);
+            return commandDispatcher.Dispatch<CreateMatchCommand, string>(createCommand);
         }
     }
 }

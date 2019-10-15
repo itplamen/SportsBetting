@@ -15,18 +15,13 @@
 
     public class OddsManager : IOddsManager
     {
-        private readonly ICommandHandler<UpdateOddCommand, string> updateOddHandler;
-        private readonly ICommandHandler<CreateOddCommand, string> createOddHandler;
-        private readonly IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddByKeyHandler;
+        private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
 
-        public OddsManager(
-            ICommandHandler<UpdateOddCommand, string> updateOddHandler,
-            ICommandHandler<CreateOddCommand, string> createOddHandler,
-            IQueryHandler<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>> oddByKeyHandler)
+        public OddsManager(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this.oddByKeyHandler = oddByKeyHandler;
-            this.updateOddHandler = updateOddHandler;
-            this.createOddHandler = createOddHandler;
+            this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
         }
 
         public void Manage(IEnumerable<OddFeedModel> feedModels, string marketId, string matchId)
@@ -35,14 +30,14 @@
             {
                 IEnumerable<int> keys = new List<int>() { feedModel.Key };
                 EntitiesByKeyQuery<Odd> query = new EntitiesByKeyQuery<Odd>(keys);
-                Odd odd = oddByKeyHandler.Handle(query).FirstOrDefault();
+                Odd odd = queryDispatcher.Dispatch<EntitiesByKeyQuery<Odd>, IEnumerable<Odd>>(query).FirstOrDefault();
 
                 if (odd != null)
                 {
                     UpdateOddCommand updateCommand = Mapper.Map<UpdateOddCommand>(feedModel);
                     updateCommand.Id = odd.Id;
 
-                    updateOddHandler.Handle(updateCommand);
+                    commandDispatcher.Dispatch<UpdateOddCommand, string>(updateCommand);
                 }
                 else
                 {
@@ -51,7 +46,7 @@
                     createCommand.MatchId = matchId;
                     createCommand.MarketId = marketId;
 
-                    createOddHandler.Handle(createCommand);
+                    commandDispatcher.Dispatch<CreateOddCommand, string>(createCommand);
                 }
             }
         }

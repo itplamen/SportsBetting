@@ -12,21 +12,19 @@
 
     public class TournamentsManager : ITournamentsManager
     {
-        private readonly IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament> tournamentByNameAndCategoryIdHandler;
-        private readonly ICommandHandler<CreateTournamentCommand, string> createTournamentHandler;
+        private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
 
-        public TournamentsManager(
-            IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament> tournamentByNameAndCategoryIdHandler,
-            ICommandHandler<CreateTournamentCommand, string> createTournamentHandler)
+        public TournamentsManager(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this.tournamentByNameAndCategoryIdHandler = tournamentByNameAndCategoryIdHandler;
-            this.createTournamentHandler = createTournamentHandler;
+            this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
         }
 
         public string Manage(TournamentFeedModel feedModel, string categoryId)
         {
             TournamentByNameAndCategoryIdQuery query = new TournamentByNameAndCategoryIdQuery(feedModel.Name, categoryId);
-            Tournament tournament = tournamentByNameAndCategoryIdHandler.Handle(query);
+            Tournament tournament = queryDispatcher.Dispatch<TournamentByNameAndCategoryIdQuery, Tournament>(query);
 
             if (tournament != null)
             {
@@ -36,7 +34,7 @@
             CreateTournamentCommand command = Mapper.Map<CreateTournamentCommand>(feedModel);
             command.CategoryId = categoryId;
 
-            return createTournamentHandler.Handle(command);
+            return commandDispatcher.Dispatch<CreateTournamentCommand, string>(command);
         }       
     }
 }
