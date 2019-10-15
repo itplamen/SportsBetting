@@ -73,6 +73,7 @@
     <Compile Include="Categories\CategoryByNameQueryHandler.cs" />
     <Compile Include="Common\EntitiesByKeyQuery.cs" />
     <Compile Include="Common\EntitiesByKeyQueryHandler.cs" />
+    <Compile Include="Common\QueryDispatcher.cs" />
     <Compile Include="Common\Results\MarketResult.cs" />
     <Compile Include="Common\Results\MatchResult.cs" />
     <Compile Include="Common\Results\OddResult.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Common\EntitiesByIdQuery.cs" />
     <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
+    <Compile Include="Contracts\IQueryDispatcher.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
     <Compile Include="Matches\AllMatchesQuery.cs" />
     <Compile Include="Matches\AllMatchesQueryHandler.cs" />
