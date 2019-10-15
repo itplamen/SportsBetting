@@ -17,7 +17,7 @@
         public void Dispatch<TCommand>(TCommand command) 
             where TCommand : ICommand
         {
-            ICommandHandler<ICommand> handler = container.GetInstance<ICommandHandler<ICommand>>();
+            ICommandHandler<TCommand> handler = container.GetInstance<ICommandHandler<TCommand>>();
 
             handler.Handle(command);
         }
@@ -25,7 +25,7 @@
         public TResult Dispatch<TCommand, TResult>(TCommand command) 
             where TCommand : ICommand
         {
-            ICommandHandler<ICommand, TResult> handler = container.GetInstance<ICommandHandler<ICommand, TResult>>();
+            ICommandHandler<TCommand, TResult> handler = container.GetInstance<ICommandHandler<TCommand, TResult>>();
 
             return handler.Handle(command);
         }
@@ -33,7 +33,7 @@
         public ValidationResult Validate<TCommand>(TCommand command) 
             where TCommand : ICommand
         {
-            IValidationHandler<ICommand> handler = container.GetInstance<IValidationHandler<ICommand>>();
+            IValidationHandler<TCommand> handler = container.GetInstance<IValidationHandler<TCommand>>();
 
             return handler.Validate(command);
         }
