@@ -8,7 +8,7 @@
 
 * ASP.NET Web API
 * ASP.NET SignalR
-* Vue.js
+* Vue.js, Vuex
 * MongoDB
 * CQS
 
