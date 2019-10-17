@@ -1,6 +1,6 @@
 <template>
     <b-modal id="RegisterModal" title="Register" hide-footer>
-        <form ref="form">
+         <form ref="form">
             <b-form-group :state="registerModel.username.state" label="Username" label-for="UsernameInput">
                 <b-form-input :state="registerModel.username.state" v-model="registerModel.username.value" id="UsernameInput" required></b-form-input>
                 <div class="invalid-feedback">{{registerModel.username.message}}</div>
@@ -31,8 +31,13 @@
 import axios from 'axios'
 import enums from '../common/constants/enums';
 import registrationValidator from '../validators/registrationValidator';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    computed: mapGetters(['getAccount']),
+    created() {
+        this.fetchAccount();
+    },
     data() {
         return {
             registerModel: {
@@ -60,6 +65,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['fetchAccount']),
         register() {
             if(this.isRegisterValid()) {
                 axios.post('http://localhost:64399/api/Account/Register', {
