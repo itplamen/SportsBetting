@@ -28,16 +28,12 @@
 </template>
 
 <script>
-import axios from 'axios'
 import enums from '../common/constants/enums';
 import registrationValidator from '../validators/registrationValidator';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
     computed: mapGetters(['getAccount']),
-    created() {
-        this.fetchAccount();
-    },
     data() {
         return {
             registerModel: {
@@ -65,16 +61,16 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchAccount']),
+        ...mapActions(['registerAccount']),
         register() {
             if(this.isRegisterValid()) {
-                axios.post('http://localhost:64399/api/Account/Register', {
+                this.registerAccount({
                         username: this.registerModel.username.value,
                         password: this.registerModel.password.value,
                         confirmPassword: this.registerModel.confirmPassword.value,
                         email: this.registerModel.email.value
                     })
-                    .then(res => console.log(res.data))
+                    .then(res => this.$bvModal.hide('RegisterModal'))
                     .catch(err => this.showModelStateErrors(err.response.data));
             }
         },

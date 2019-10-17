@@ -13,6 +13,11 @@ const getters = {
 };
 
 const actions = {
+    async registerAccount({ commit }, request) {
+        const response = await axios.post('http://localhost:64399/api/Account/Register', request);
+        
+        commit('setAccount', response.data);
+    },
     async fetchAccount({ commit }) {
         const response = await axios.get('http://localhost:64399/api/Account');
 
