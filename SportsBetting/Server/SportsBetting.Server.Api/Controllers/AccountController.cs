@@ -34,9 +34,7 @@
                 if (!validationResult.HasErrors)
                 {
                     Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(command);
-
-                    RegisterResponseModel responseModel = new RegisterResponseModel();
-                    responseModel.Id = account.Id;
+                    RegisterResponseModel responseModel = Mapper.Map<RegisterResponseModel>(account);
 
                     return Ok(responseModel);
                 }
