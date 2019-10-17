@@ -1,5 +1,6 @@
 ﻿namespace SportsBetting.Handlers.Commands.Accounts
 {
+    using SportsBetting.Common.Constants;
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
@@ -22,7 +23,7 @@
 
             if (accountByUsername != null)
             {
-                return GetErrorResult(nameof(command.Username));
+                return new ValidationResult(nameof(command.Username), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Username).ToLower()));
             }
 
             AccountByExpressionQuery byEmailQuery = new AccountByExpressionQuery(x => x.Email == command.Email);
@@ -30,15 +31,10 @@
 
             if (accountByEmail != null)
             {
-                return GetErrorResult(nameof(command.Email));
+                return new ValidationResult(nameof(command.Email), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Email).ToLower()));
             }
 
             return new ValidationResult();
-        }
-
-        private ValidationResult GetErrorResult(string key)
-        {
-            return new ValidationResult(key, $"A user with the same {key.ToLower()} has already been registered!");
         }
     }
 }
