@@ -8,9 +8,10 @@
 
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Server.Api.Extensions;
+    using SportsBetting.Server.Api.Models.Account.Login;
     using SportsBetting.Server.Api.Models.Account.Register;
 
     [EnableCors("*", "*", "*")]
@@ -45,5 +46,7 @@
 
             return BadRequest(ModelState);
         }
+
+        
     }
 }

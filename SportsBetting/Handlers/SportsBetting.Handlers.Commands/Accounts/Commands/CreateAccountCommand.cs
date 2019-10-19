@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts
+﻿namespace SportsBetting.Handlers.Commands.Accounts.Commands
 {
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;

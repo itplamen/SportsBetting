@@ -5,7 +5,8 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Accounts.CommandHandlers;
+    using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Accounts.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;

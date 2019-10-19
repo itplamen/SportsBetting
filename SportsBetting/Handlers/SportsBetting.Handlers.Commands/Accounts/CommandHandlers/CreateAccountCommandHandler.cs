@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts
+﻿namespace SportsBetting.Handlers.Commands.Accounts.CommandHandlers
 {
     using System;
 
@@ -6,6 +6,7 @@
 
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, Account>
