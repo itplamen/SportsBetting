@@ -37,7 +37,7 @@
                 return new ValidationResult(nameof(command.Password), "Invalid password!"); ;
             }
 
-            return new ValidationResult();
+            return null;
         }
     }
 }

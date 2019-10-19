@@ -1,5 +1,6 @@
 ﻿namespace SportsBetting.Server.Api.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Http;
     using System.Web.Http.Cors;
 
@@ -9,6 +10,7 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts;
     using SportsBetting.Handlers.Commands.Contracts;
+    using SportsBetting.Server.Api.Extensions;
     using SportsBetting.Server.Api.Models.Account.Register;
 
     [EnableCors("*", "*", "*")]
@@ -29,17 +31,16 @@
                 CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
                 command.Role = AccontRole.User;
 
-                ValidationResult validationResult = commandDispatcher.Validate(command);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(command);
+                ModelState.AddModelErrors(validations);
 
-                if (!validationResult.HasErrors)
+                if (ModelState.IsValid)
                 {
                     Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(command);
                     RegisterResponseModel responseModel = Mapper.Map<RegisterResponseModel>(account);
 
                     return Ok(responseModel);
                 }
-
-                ModelState.AddModelError(validationResult.ErrorKey, validationResult.ErrorMessage);
             }
 
             return BadRequest(ModelState);

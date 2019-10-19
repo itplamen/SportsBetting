@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Handlers.Commands.Common
 {
+    using System.Collections.Generic;
+
     using SimpleInjector;
 
     using SportsBetting.Common.Results;
@@ -30,7 +32,7 @@
             return handler.Handle(command);
         }
 
-        public ValidationResult Validate<TCommand>(TCommand command) 
+        public IEnumerable<ValidationResult> Validate<TCommand>(TCommand command) 
             where TCommand : ICommand
         {
             IValidationHandler<TCommand> handler = container.GetInstance<IValidationHandler<TCommand>>();

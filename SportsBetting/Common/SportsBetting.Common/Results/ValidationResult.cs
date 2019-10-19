@@ -8,14 +8,8 @@
             ErrorMessage = errorMessage;
         }
 
-        public ValidationResult()
-        {
-        }
-
         public string ErrorKey { get; set; }
 
         public string ErrorMessage { get; set; }
-
-        public bool HasErrors => !string.IsNullOrEmpty(ErrorKey) && !string.IsNullOrEmpty(ErrorMessage);
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Handlers.Commands.Accounts
 {
+    using System.Collections.Generic;
+
     using SportsBetting.Common.Constants;
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
@@ -16,14 +18,14 @@
             this.accountByExpressionHandler = accountByExpressionHandler;
         }
 
-        public ValidationResult Validate(CreateAccountCommand command)
+        public IEnumerable<ValidationResult> Validate(CreateAccountCommand command)
         {
             AccountByExpressionQuery byUsernameQuery = new AccountByExpressionQuery(x => x.Username == command.Username);
             Account accountByUsername = accountByExpressionHandler.Handle(byUsernameQuery);
 
             if (accountByUsername != null)
             {
-                return new ValidationResult(nameof(command.Username), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Username).ToLower()));
+                yield return new ValidationResult(nameof(command.Username), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Username).ToLower()));
             }
 
             AccountByExpressionQuery byEmailQuery = new AccountByExpressionQuery(x => x.Email == command.Email);
@@ -31,10 +33,8 @@
 
             if (accountByEmail != null)
             {
-                return new ValidationResult(nameof(command.Email), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Email).ToLower()));
+                yield return new ValidationResult(nameof(command.Email), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Email).ToLower()));
             }
-
-            return new ValidationResult();
         }
     }
 }

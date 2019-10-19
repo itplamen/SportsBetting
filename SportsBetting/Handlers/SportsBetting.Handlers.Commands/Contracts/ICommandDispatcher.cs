@@ -1,5 +1,7 @@
 ﻿namespace SportsBetting.Handlers.Commands.Contracts
 {
+    using System.Collections.Generic;
+
     using SportsBetting.Common.Results;
 
     public interface ICommandDispatcher
@@ -10,7 +12,7 @@
         TResult Dispatch<TCommand, TResult>(TCommand command)
             where TCommand : ICommand;
 
-        ValidationResult Validate<TCommand>(TCommand command)
+        IEnumerable<ValidationResult> Validate<TCommand>(TCommand command)
             where TCommand : ICommand;
     }
 }
