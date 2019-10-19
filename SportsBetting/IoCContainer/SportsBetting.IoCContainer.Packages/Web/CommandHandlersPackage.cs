@@ -4,9 +4,9 @@
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Packaging;
 
-    using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts;
+    using SportsBetting.Handlers.Commands.Accounts.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;
 
@@ -17,8 +17,8 @@
             container.Register<ICommandDispatcher, CommandDispatcher>(new WebRequestLifestyle());
             container.Register<ICommandHandler<CreateAccountCommand, Account>, CreateAccountCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<EncryptPasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
-            container.Register<ICommandHandler<LoginAccountCommand, ValidationResult>, LoginAccountCommandHandler>(new WebRequestLifestyle());
-            container.Register<IValidationHandler<CreateAccountCommand>, CreateAccountValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<LoginAccountCommand>, CanLoginAccountValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<CreateAccountCommand>, CanCreateAccountValidationHandler>(new WebRequestLifestyle());
         }
     }
 }

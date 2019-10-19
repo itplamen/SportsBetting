@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts
+﻿namespace SportsBetting.Handlers.Commands.Accounts.ValidationHandlers
 {
     using System.Collections.Generic;
 
@@ -9,11 +9,11 @@
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class CreateAccountValidationHandler : IValidationHandler<CreateAccountCommand>
+    public class CanCreateAccountValidationHandler : IValidationHandler<CreateAccountCommand>
     {
         private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
 
-        public CreateAccountValidationHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
+        public CanCreateAccountValidationHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
         {
             this.accountByExpressionHandler = accountByExpressionHandler;
         }
