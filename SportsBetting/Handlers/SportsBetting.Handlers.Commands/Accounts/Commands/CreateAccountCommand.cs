@@ -11,7 +11,5 @@
         public string Password { get; set; }
 
         public string Email { get; set; }
-
-        public AccontRole Role { get; set; }
     }
 }

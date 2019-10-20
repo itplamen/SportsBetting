@@ -33,9 +33,8 @@
             if (ModelState.IsValid)
             {
                 CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
-                command.Role = AccontRole.User;
-
                 IEnumerable<ValidationResult> validations = commandDispatcher.Validate(command);
+
                 ModelState.AddModelErrors(validations);
 
                 if (ModelState.IsValid)

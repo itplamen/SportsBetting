@@ -12,8 +12,6 @@
 
         public decimal Balance { get; set; }
 
-        public AccontRole Role { get; set; }
-
         public bool IsVerified { get; set; }
     }
 }
