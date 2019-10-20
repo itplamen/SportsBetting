@@ -1,4 +1,5 @@
 import axios from 'axios'
+import endpoints from '../../common/constants/endpoints'
 
 const state = {
   account: {
@@ -14,7 +15,7 @@ const getters = {
 
 const actions = {
   async registerAccount ({ commit }, request) {
-    const response = await axios.post('http://localhost:64399/api/Account/Register', request)
+    const response = await axios.post(endpoints.REGISTER_ACCOUNT, request)
 
     commit('setAccount', response.data)
   },
