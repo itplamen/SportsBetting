@@ -12,6 +12,13 @@
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+               name: "DefaultApi",
+               routeTemplate: "api/{controller}/{id}",
+               defaults: new { id = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+           );
+
+            config.Routes.MapHttpRoute(
                 name: "Register",
                 routeTemplate: "api/{controller}/{action}",
                 defaults: new { controller = "Account", action = "Register" } 
@@ -28,12 +35,6 @@
                 routeTemplate: "api/{controller}/{action}/{take}",
                 defaults: new { controller = "Matches", action = "All" },
                 constraints: new { take = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
             );
         }
     }
