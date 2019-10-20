@@ -32,15 +32,21 @@
         {
             if (ModelState.IsValid)
             {
-                CreateAccountCommand command = Mapper.Map<CreateAccountCommand>(requestModel);
-                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(command);
+                CreateAccountCommand createCommand = Mapper.Map<CreateAccountCommand>(requestModel);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(createCommand);
 
                 ModelState.AddModelErrors(validations);
 
                 if (ModelState.IsValid)
                 {
-                    Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(command);
-                    AccountResponseModel responseModel = Mapper.Map<AccountResponseModel>(account);
+                    Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(createCommand);
+                    AuthenticateAccountCommand authCommand = new AuthenticateAccountCommand(account.Id, false);
+
+                    Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authCommand);
+
+                    AccountResponseModel responseModel = Mapper
+                        .Map<AccountResponseModel>(authentication)
+                        .Map(account);
 
                     return Ok(responseModel);
                 }
@@ -55,8 +61,8 @@
             if (ModelState.IsValid)
             {
                 LoginAccountCommand loginCommand = Mapper.Map<LoginAccountCommand>(requestModel);
-
                 IEnumerable<ValidationResult> validations = commandDispatcher.Validate(loginCommand);
+
                 ModelState.AddModelErrors(validations);
 
                 if (ModelState.IsValid)
@@ -64,8 +70,8 @@
                     AccountByExpressionQuery query = new AccountByExpressionQuery(x => x.Username == requestModel.Username);
                     Account account = queryDispatcher.Dispatch<AccountByExpressionQuery, Account>(query);
 
-                    AuthenticateAccountCommand authenticationCommand = new AuthenticateAccountCommand(account.Id, requestModel.RememberMe);
-                    Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authenticationCommand);
+                    AuthenticateAccountCommand authCommand = new AuthenticateAccountCommand(account.Id, requestModel.RememberMe);
+                    Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
