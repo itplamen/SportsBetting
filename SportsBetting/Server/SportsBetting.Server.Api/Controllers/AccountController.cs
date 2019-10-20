@@ -13,8 +13,7 @@
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Server.Api.Extensions;
-    using SportsBetting.Server.Api.Models.Account.Login;
-    using SportsBetting.Server.Api.Models.Account.Register;
+    using SportsBetting.Server.Api.Models.Account;
 
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
@@ -42,7 +41,7 @@
                 if (ModelState.IsValid)
                 {
                     Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(command);
-                    RegisterResponseModel responseModel = Mapper.Map<RegisterResponseModel>(account);
+                    AccountResponseModel responseModel = Mapper.Map<AccountResponseModel>(account);
 
                     return Ok(responseModel);
                 }
@@ -69,8 +68,8 @@
                     AuthenticateAccountCommand authenticationCommand = new AuthenticateAccountCommand(account.Id, requestModel.RememberMe);
                     Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authenticationCommand);
 
-                    LoginResponseModel responseModel = Mapper
-                        .Map<LoginResponseModel>(authentication)
+                    AccountResponseModel responseModel = Mapper
+                        .Map<AccountResponseModel>(authentication)
                         .Map(account);
 
                     return Ok(responseModel);

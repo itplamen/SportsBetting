@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Server.Api.Models.Account.Login
+﻿namespace SportsBetting.Server.Api.Models.Account
 {
     using System;
 
@@ -7,7 +7,7 @@
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
 
-    public class LoginResponseModel : IMapFrom<Authentication>, IMapFrom<Account>, IHaveCustomMappings
+    public class AccountResponseModel : IMapFrom<Authentication>, IMapFrom<Account>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -21,12 +21,12 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Authentication, LoginResponseModel>()
+            configuration.CreateMap<Authentication, AccountResponseModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(x => x.AccountId))
                 .ForMember(x => x.LoginToken, opt => opt.MapFrom(x => x.Id))
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(x => x.Expiration));
 
-            configuration.CreateMap<Account, LoginResponseModel>()
+            configuration.CreateMap<Account, AccountResponseModel>()
                 .ForMember(x => x.Username, opt => opt.MapFrom(x => x.Username))
                 .ForMember(x => x.Balance, opt => opt.MapFrom(x => x.Balance));
         }

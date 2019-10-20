@@ -138,10 +138,9 @@
     </Compile>
     <Compile Include="Hubs\SimpleInjectorHubActivator.cs" />
     <Compile Include="Models\Account\AccountRequestModel.cs" />
-    <Compile Include="Models\Account\Login\LoginRequestModel.cs" />
-    <Compile Include="Models\Account\Login\LoginResponseModel.cs" />
-    <Compile Include="Models\Account\Register\RegisterRequestModel.cs" />
-    <Compile Include="Models\Account\Register\RegisterResponseModel.cs" />
+    <Compile Include="Models\Account\AccountResponseModel.cs" />
+    <Compile Include="Models\Account\LoginRequestModel.cs" />
+    <Compile Include="Models\Account\RegisterRequestModel.cs" />
     <Compile Include="Models\Markets\MarketResponseModel.cs" />
     <Compile Include="Models\Matches\MatchResponseModel.cs" />
     <Compile Include="Models\Odds\OddResponseModel.cs" />
