@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\CommandHandlers\AuthenticateAccountCommandHandler.cs" />
+    <Compile Include="Accounts\Commands\AuthenticateAccountCommand.cs" />
     <Compile Include="Accounts\Commands\CreateAccountCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\CreateAccountCommandHandler.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanCreateAccountValidationHandler.cs" />

@@ -20,6 +20,7 @@
             container.Register<ICommandHandler<EncryptPasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LoginAccountCommand>, CanLoginAccountValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<CreateAccountCommand>, CanCreateAccountValidationHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<AuthenticateAccountCommand, Authentication>, AuthenticateAccountCommandHandler>(new WebRequestLifestyle());
         }
     }
 }
