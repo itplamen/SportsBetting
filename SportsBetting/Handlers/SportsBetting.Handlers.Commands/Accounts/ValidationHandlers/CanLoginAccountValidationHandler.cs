@@ -1,6 +1,7 @@
 ﻿namespace SportsBetting.Handlers.Commands.Accounts.ValidationHandlers
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
@@ -29,7 +30,10 @@
 
             if (account == null)
             {
-                yield return new ValidationResult(nameof(command.Username), "Could not find account with such username!");
+                return new List<ValidationResult>()
+                {
+                    new ValidationResult(nameof(command.Username), "Could not find account with such username!")
+                };
             }
 
             EncryptPasswordCommand encryptPasswordCommand = new EncryptPasswordCommand(command.Password);
@@ -37,8 +41,13 @@
 
             if (encryptedPassword != account.Password)
             {
-                yield return new ValidationResult(nameof(command.Password), "Invalid password!"); ;
+                return new List<ValidationResult>()
+                {
+                    new ValidationResult(nameof(command.Password), "Invalid password!")
+                };
             }
+
+            return Enumerable.Empty<ValidationResult>();
         }
     }
 }
