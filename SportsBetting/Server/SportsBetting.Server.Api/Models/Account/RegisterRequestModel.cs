@@ -5,7 +5,7 @@
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
 
-    public class RegisterRequestModel : AccountRequestModel, IMapTo<CreateAccountCommand>
+    public class RegisterRequestModel : AccountRequestModel, IMapTo<RegisterCommand>
     {
 
         [Required(ErrorMessage = "Confirm your password")]

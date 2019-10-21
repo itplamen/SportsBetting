@@ -32,14 +32,14 @@
         {
             if (ModelState.IsValid)
             {
-                CreateAccountCommand createCommand = Mapper.Map<CreateAccountCommand>(requestModel);
-                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(createCommand);
+                RegisterCommand registerCommand = Mapper.Map<RegisterCommand>(requestModel);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(registerCommand);
 
                 ModelState.AddModelErrors(validations);
 
                 if (ModelState.IsValid)
                 {
-                    Account account = commandDispatcher.Dispatch<CreateAccountCommand, Account>(createCommand);
+                    Account account = commandDispatcher.Dispatch<RegisterCommand, Account>(registerCommand);
                     AuthenticateAccountCommand authCommand = new AuthenticateAccountCommand(account.Id, false);
 
                     Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authCommand);

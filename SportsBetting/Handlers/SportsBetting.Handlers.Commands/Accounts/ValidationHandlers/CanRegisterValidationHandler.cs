@@ -10,16 +10,16 @@
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class CanCreateAccountValidationHandler : IValidationHandler<CreateAccountCommand>
+    public class CanRegisterValidationHandler : IValidationHandler<RegisterCommand>
     {
         private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
 
-        public CanCreateAccountValidationHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
+        public CanRegisterValidationHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
         {
             this.accountByExpressionHandler = accountByExpressionHandler;
         }
 
-        public IEnumerable<ValidationResult> Validate(CreateAccountCommand command)
+        public IEnumerable<ValidationResult> Validate(RegisterCommand command)
         {
             AccountByExpressionQuery byUsernameQuery = new AccountByExpressionQuery(x => x.Username == command.Username);
             Account accountByUsername = accountByExpressionHandler.Handle(byUsernameQuery);

@@ -4,7 +4,7 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class CreateAccountCommand : ICommand, IMapTo<Account>
+    public class RegisterCommand : ICommand, IMapTo<Account>
     {
         public string Username { get; set; }
 
