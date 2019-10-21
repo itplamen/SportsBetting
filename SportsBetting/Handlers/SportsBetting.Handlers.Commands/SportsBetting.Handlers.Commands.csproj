@@ -68,14 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounts\CommandHandlers\AuthenticateAccountCommandHandler.cs" />
-    <Compile Include="Accounts\Commands\AuthenticateAccountCommand.cs" />
+    <Compile Include="Accounts\Commands\AuthenticateCommand.cs" />
+    <Compile Include="Accounts\Commands\LoginCommand.cs" />
     <Compile Include="Accounts\Commands\RegisterCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanRegisterValidationHandler.cs" />
     <Compile Include="Accounts\Commands\PasswordCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
-    <Compile Include="Accounts\ValidationHandlers\CanLoginAccountValidationHandler.cs" />
+    <Compile Include="Accounts\ValidationHandlers\CanLoginValidationHandler.cs" />
     <Compile Include="Categories\CreateCategoryCommand.cs" />
     <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
     <Compile Include="Common\CommandDispatcher.cs" />

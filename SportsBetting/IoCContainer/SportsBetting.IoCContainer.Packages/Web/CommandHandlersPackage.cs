@@ -18,9 +18,9 @@
             container.Register<ICommandDispatcher, CommandDispatcher>(new WebRequestLifestyle());
             container.Register<ICommandHandler<RegisterCommand, Account>, RegisterCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<PasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
-            container.Register<IValidationHandler<AccountCommand>, CanLoginAccountValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<RegisterCommand>, CanRegisterValidationHandler>(new WebRequestLifestyle());
-            container.Register<ICommandHandler<AuthenticateAccountCommand, Authentication>, AuthenticateAccountCommandHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<LoginCommand, Authentication>, AuthenticateAccountCommandHandler>(new WebRequestLifestyle());
         }
     }
 }

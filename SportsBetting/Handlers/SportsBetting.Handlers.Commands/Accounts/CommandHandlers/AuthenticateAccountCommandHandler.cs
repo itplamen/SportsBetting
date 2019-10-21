@@ -7,7 +7,7 @@
     using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class AuthenticateAccountCommandHandler : ICommandHandler<AuthenticateAccountCommand, Authentication>
+    public class AuthenticateAccountCommandHandler : ICommandHandler<LoginCommand, Authentication>
     {
         private const int EXPIRATION_TIME = 30;
 
@@ -18,7 +18,7 @@
             this.dbContext = dbContext;
         }
 
-        public Authentication Handle(AuthenticateAccountCommand command)
+        public Authentication Handle(LoginCommand command)
         {
             Authentication authentication = new Authentication();
             authentication.AccountId = command.AccountId;

@@ -2,16 +2,13 @@
 {
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class AuthenticateAccountCommand : ICommand
+    public class AuthenticateCommand : ICommand
     {
-        public AuthenticateAccountCommand(string accountId, bool rememberMe)
+        public AuthenticateCommand(string accountId)
         {
             AccountId = accountId;
-            RememberMe = rememberMe;
         }
 
         public string AccountId { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 }
