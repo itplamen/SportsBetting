@@ -2,9 +2,9 @@
 {
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class EncryptPasswordCommand : ICommand
+    public class PasswordCommand : ICommand
     {
-        public EncryptPasswordCommand(string password)
+        public PasswordCommand(string password)
         {
             Password = password;
         }

@@ -60,7 +60,7 @@
         {
             if (ModelState.IsValid)
             {
-                LoginAccountCommand loginCommand = Mapper.Map<LoginAccountCommand>(requestModel);
+                AccountCommand loginCommand = Mapper.Map<AccountCommand>(requestModel);
                 IEnumerable<ValidationResult> validations = commandDispatcher.Validate(loginCommand);
 
                 ModelState.AddModelErrors(validations);

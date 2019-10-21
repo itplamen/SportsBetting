@@ -12,11 +12,11 @@
     public class RegisterCommandHandler : ICommandHandler<RegisterCommand, Account>
     {
         private readonly ISportsBettingDbContext dbContext;
-        private readonly ICommandHandler<EncryptPasswordCommand, string> encryptPasswordHandler;
+        private readonly ICommandHandler<PasswordCommand, string> encryptPasswordHandler;
 
         public RegisterCommandHandler(
             ISportsBettingDbContext dbContext,
-            ICommandHandler<EncryptPasswordCommand, string> encryptPasswordHandler)
+            ICommandHandler<PasswordCommand, string> encryptPasswordHandler)
         {
             this.dbContext = dbContext;
             this.encryptPasswordHandler = encryptPasswordHandler;
@@ -24,7 +24,7 @@
 
         public Account Handle(RegisterCommand command)
         {
-            EncryptPasswordCommand encryptPasswordCommand = new EncryptPasswordCommand(command.Password);
+            PasswordCommand encryptPasswordCommand = new PasswordCommand(command.Password);
             string password = encryptPasswordHandler.Handle(encryptPasswordCommand);
 
             Account account = Mapper.Map<Account>(command);

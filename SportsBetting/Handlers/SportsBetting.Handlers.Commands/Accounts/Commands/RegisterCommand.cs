@@ -2,13 +2,14 @@
 {
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Contracts;
 
-    public class RegisterCommand : ICommand, IMapTo<Account>
+    public class RegisterCommand : AccountCommand, IMapTo<Account>
     {
-        public string Username { get; set; }
-
-        public string Password { get; set; }
+        public RegisterCommand(string username, string password, string email) 
+            : base(username, password)
+        {
+            Email = email;
+        }
 
         public string Email { get; set; }
     }

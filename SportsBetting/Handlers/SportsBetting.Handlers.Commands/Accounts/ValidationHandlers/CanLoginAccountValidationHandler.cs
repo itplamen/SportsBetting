@@ -10,20 +10,20 @@
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class CanLoginAccountValidationHandler : IValidationHandler<LoginAccountCommand>
+    public class CanLoginAccountValidationHandler : IValidationHandler<AccountCommand>
     {
-        private readonly ICommandHandler<EncryptPasswordCommand, string> encryptPasswordHandler;
+        private readonly ICommandHandler<PasswordCommand, string> encryptPasswordHandler;
         private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByUsernameHandler;
 
         public CanLoginAccountValidationHandler(
-            ICommandHandler<EncryptPasswordCommand, string> encryptPasswordHandler, 
+            ICommandHandler<PasswordCommand, string> encryptPasswordHandler, 
             IQueryHandler<AccountByExpressionQuery, Account> accountByUsernameHandler)
         {
             this.encryptPasswordHandler = encryptPasswordHandler;
             this.accountByUsernameHandler = accountByUsernameHandler;
         }
 
-        public IEnumerable<ValidationResult> Validate(LoginAccountCommand command)
+        public IEnumerable<ValidationResult> Validate(AccountCommand command)
         {
             AccountByExpressionQuery query = new AccountByExpressionQuery(x => x.Username == command.Username);
             Account account = accountByUsernameHandler.Handle(query);
@@ -36,7 +36,7 @@
                 };
             }
 
-            EncryptPasswordCommand encryptPasswordCommand = new EncryptPasswordCommand(command.Password);
+            PasswordCommand encryptPasswordCommand = new PasswordCommand(command.Password);
             string encryptedPassword = encryptPasswordHandler.Handle(encryptPasswordCommand);
 
             if (encryptedPassword != account.Password)

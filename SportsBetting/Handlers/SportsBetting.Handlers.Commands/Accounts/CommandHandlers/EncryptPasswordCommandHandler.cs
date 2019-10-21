@@ -6,9 +6,9 @@
     using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class EncryptPasswordCommandHandler : ICommandHandler<EncryptPasswordCommand, string>
+    public class EncryptPasswordCommandHandler : ICommandHandler<PasswordCommand, string>
     {
-        public string Handle(EncryptPasswordCommand command)
+        public string Handle(PasswordCommand command)
         {
             using (SHA512 sha512 = SHA512.Create())
             {
