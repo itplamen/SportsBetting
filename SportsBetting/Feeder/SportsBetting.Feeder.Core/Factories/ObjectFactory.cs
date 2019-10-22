@@ -13,10 +13,11 @@
             };
         }
 
-        public static MatchFeedModel CreateMatch(TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament)
+        public static MatchFeedModel CreateMatch(MatchFeedType type, TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament)
         {
             return new MatchFeedModel()
             {
+                Type = type,
                 HomeTeam = homeTeam,
                 AwayTeam = awayTeam,
                 Tournament = tournament

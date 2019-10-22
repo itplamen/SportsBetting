@@ -45,6 +45,7 @@
     <Compile Include="Base\BaseFeedModel.cs" />
     <Compile Include="MarketFeedModel.cs" />
     <Compile Include="MatchFeedModel.cs" />
+    <Compile Include="MatchFeedType.cs" />
     <Compile Include="OddFeedModel.cs" />
     <Compile Include="OddResultFeedStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

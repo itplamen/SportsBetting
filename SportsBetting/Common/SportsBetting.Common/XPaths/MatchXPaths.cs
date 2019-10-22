@@ -9,5 +9,7 @@
         public const string EVENT_BODY = ".//div[contains(@class, 'sportEventRow__body___3Ywcg')]";
 
         public const string EVENT_URL = "//a[starts-with(@href,'/en/betting/match/5:')]";
+
+        public const string LIVE_SCORE = ".//div[starts-with(@class,'__app-PromoMatchBody-score-container promoMatchBody__score-container___1doLE')]";
     }
 }

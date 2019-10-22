@@ -11,6 +11,8 @@
             Markets = new List<MarketFeedModel>();
         }
 
+        public MatchFeedType Type { get; set; }
+
         public TeamFeedModel HomeTeam { get; set; }
 
         public TeamFeedModel AwayTeam { get; set; }
