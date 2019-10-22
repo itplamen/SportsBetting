@@ -14,6 +14,8 @@
 
         public string Score { get; set; }
 
+        public MatchType Type { get; set; }
+
         public string StreamURL { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

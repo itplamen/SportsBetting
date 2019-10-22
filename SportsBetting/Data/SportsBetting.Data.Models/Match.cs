@@ -6,6 +6,8 @@
     {
         public string Score { get; set; }
 
+        public MatchType Type { get; set; }
+
         public string StreamURL { get; set; }
 
         public string TournamentId { get; set; }
