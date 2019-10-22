@@ -2,7 +2,7 @@
   <div>
     <b-container class="container-row">
       <b-row>
-        <b-col cols="1">Date</b-col>
+        <b-col cols="1">Type</b-col>
         <b-col cols="4">Game</b-col>
         <b-col cols="3">1</b-col>
         <b-col cols="1">x</b-col>
@@ -13,7 +13,8 @@
       <b-container v-for="game in games">
         <router-link :to="{ path: `/matches/${game.Id}`}">
           <b-row class="game-row">
-            <b-col cols="4">{{game.Category}}: {{game.Tournament}}</b-col>
+            <b-col cols="1">{{game.Type}}</b-col>
+            <b-col cols="4">{{game.Tournament}}</b-col>
             <b-col cols="3">{{game.HomeTeam}}</b-col>
             <b-col cols="1">{{game.Score}}</b-col>
             <b-col cols="3">{{game.AwayTeam}}</b-col>
