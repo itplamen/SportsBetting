@@ -50,7 +50,7 @@
 
             foreach (var url in urls)
             {
-                bool isLoaded = webPagesService.Load(webDriver, url, CommonConstants.WAIT_FOR_MATCH_HEADER);
+                bool isLoaded = webPagesService.Load(webDriver, url, CommonConstants.WAIT_FOR_MATCH_CONTAINER);
 
                 if (isLoaded)
                 {

@@ -4,7 +4,7 @@
     {
         public const string MARKETS = ".//div[starts-with(@class,'__app-TableGroupMarket-table marketTable__table___dvHTz')]";
 
-        public const string HEADER_INFO_BOX = ".//div[starts-with(@class,'MatchHeaderInfobox')]";
+        public const string HEADER_INFO_BOX = ".//div[starts-with(@class,'matchPromoHeader__container___FCrDx')]";
 
         public const string EVENT_BODY = ".//div[contains(@class, 'sportEventRow__body___3Ywcg')]";
 
