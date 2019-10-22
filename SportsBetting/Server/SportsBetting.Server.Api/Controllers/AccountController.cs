@@ -40,9 +40,9 @@
                 if (ModelState.IsValid)
                 {
                     Account account = commandDispatcher.Dispatch<RegisterCommand, Account>(registerCommand);
-                    AuthenticateAccountCommand authCommand = new AuthenticateAccountCommand(account.Id, false);
+                    LoginCommand authCommand = new LoginCommand(account.Id, false);
 
-                    Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authCommand);
+                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(authCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
@@ -60,8 +60,8 @@
         {
             if (ModelState.IsValid)
             {
-                AccountCommand loginCommand = Mapper.Map<AccountCommand>(requestModel);
-                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(loginCommand);
+                AccountCommand accountCommand = Mapper.Map<AccountCommand>(requestModel);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(accountCommand);
 
                 ModelState.AddModelErrors(validations);
 
@@ -70,8 +70,8 @@
                     AccountByExpressionQuery query = new AccountByExpressionQuery(x => x.Username == requestModel.Username);
                     Account account = queryDispatcher.Dispatch<AccountByExpressionQuery, Account>(query);
 
-                    AuthenticateAccountCommand authCommand = new AuthenticateAccountCommand(account.Id, requestModel.RememberMe);
-                    Authentication authentication = commandDispatcher.Dispatch<AuthenticateAccountCommand, Authentication>(authCommand);
+                    LoginCommand loginCommand = new LoginCommand(account.Id, requestModel.RememberMe);
+                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
