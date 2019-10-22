@@ -7,8 +7,6 @@
 
     using HtmlAgilityPack;
 
-    using Newtonsoft.Json;
-
     using SportsBetting.Common.XPaths;
     using SportsBetting.Feeder.Core.Contracts.Providers;
     using SportsBetting.Feeder.Core.Factories;
@@ -30,25 +28,15 @@
         public MatchFeedModel Get(HtmlNode matchContainer)
         {
             HtmlNode matchInfo = matchContainer?.SelectSingleNode(MatchXPaths.HEADER_INFO_BOX);
-            MatchFeedStatus status = GetStatus(matchInfo);
             DateTime startTime = GetStartTime(matchInfo);
 
             IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
             TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
 
-            MatchFeedModel match = ObjectFactory.CreateMatch(startTime, status, teams.First(), teams.Last(), tournament);
+            MatchFeedModel match = ObjectFactory.CreateMatch(startTime, teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);
 
             return match;
-        }
-
-        private MatchFeedStatus GetStatus(HtmlNode matchInfo)
-        {
-            string status = matchInfo.ChildNodes[1].InnerText.Split(',').Last().Trim();
-            string jsonStatus = JsonConvert.SerializeObject(status);
-            MatchFeedStatus matchStatus = JsonConvert.DeserializeObject<MatchFeedStatus>(jsonStatus);
-
-            return matchStatus;
         }
 
         private DateTime GetStartTime(HtmlNode matchInfo)

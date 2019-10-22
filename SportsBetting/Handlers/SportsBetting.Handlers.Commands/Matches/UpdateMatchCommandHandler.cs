@@ -44,7 +44,6 @@
             FilterDefinition<Match> filter = Builders<Match>.Filter.Eq(x => x.Id, command.Id);
             UpdateDefinition<Match> update = Builders<Match>.Update
                .Set(x => x.StartTime, command.StartTime)
-               .Set(x => x.Status, command.Status)
                .Set(x => x.Score, command.Score)
                .Set(x => x.StreamURL, command.StreamURL)
                .Set(x => x.ModifiedOn, modifiedOn);
@@ -56,7 +55,6 @@
         {
             Match match = GetMatch(command.Id);
             match.StartTime = command.StartTime;
-            match.Status = command.Status;
             match.Score = command.Score;
             match.StreamURL = command.StreamURL;
             match.ModifiedOn = modifiedOn;

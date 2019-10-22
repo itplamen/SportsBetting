@@ -17,7 +17,6 @@
 
         public static MatchFeedModel CreateMatch(
             DateTime startTime,
-            MatchFeedStatus status,
             TeamFeedModel homeTeam,
             TeamFeedModel awayTeam,
             TournamentFeedModel tournament)
@@ -25,7 +24,6 @@
             return new MatchFeedModel()
             {
                 StartTime = startTime,
-                Status = status,
                 HomeTeam = homeTeam,
                 AwayTeam = awayTeam,
                 Tournament = tournament

@@ -18,8 +18,6 @@
 
         public DateTime StartTime { get; set; }
 
-        public MatchFeedStatus Status { get; set; }
-
         public TournamentFeedModel Tournament { get; set; }
 
         public IEnumerable<MarketFeedModel> Markets { get; set; }

@@ -14,8 +14,6 @@
 
         public MatchType Type { get; set; }
 
-        public MatchStatus Status { get; set; }
-
         public DateTime StartTime { get; set; }
 
         public string Category { get; set; }
