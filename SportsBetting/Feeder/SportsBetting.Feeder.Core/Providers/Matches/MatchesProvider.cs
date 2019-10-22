@@ -1,8 +1,6 @@
 ﻿namespace SportsBetting.Feeder.Core.Providers.Matches
 {
-    using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
 
     using HtmlAgilityPack;
@@ -28,27 +26,14 @@
         public MatchFeedModel Get(HtmlNode matchContainer)
         {
             HtmlNode matchInfo = matchContainer?.SelectSingleNode(MatchXPaths.HEADER_INFO_BOX);
-            DateTime startTime = GetStartTime(matchInfo);
 
             IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
             TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
 
-            MatchFeedModel match = ObjectFactory.CreateMatch(startTime, teams.First(), teams.Last(), tournament);
+            MatchFeedModel match = ObjectFactory.CreateMatch(teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);
 
             return match;
-        }
-
-        private DateTime GetStartTime(HtmlNode matchInfo)
-        {
-            string startTime = matchInfo.LastChild.InnerText;
-
-            startTime = startTime.Replace(", ", $" { DateTime.Now.Year } ");
-            startTime = startTime.Replace(" +", ":00 +");
-
-            DateTime gameTime = DateTime.ParseExact(startTime, "dd MMM yyyy HH:mm:ss zzz", CultureInfo.InvariantCulture);
-
-            return gameTime;
         }
     }
 }

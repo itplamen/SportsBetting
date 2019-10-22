@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Models
 {
-    using System;
     using System.Collections.Generic;
 
     using SportsBetting.Feeder.Models.Base;
@@ -15,8 +14,6 @@
         public TeamFeedModel HomeTeam { get; set; }
 
         public TeamFeedModel AwayTeam { get; set; }
-
-        public DateTime StartTime { get; set; }
 
         public TournamentFeedModel Tournament { get; set; }
 

@@ -32,7 +32,7 @@
 
         public IEnumerable<MatchResult> Handle(AllMatchesQuery query)
         {
-            IEnumerable<Match> matches = matchesCache.All(_ => true).OrderBy(x => x.StartTime).Take(query.Take);
+            IEnumerable<Match> matches = matchesCache.All(_ => true).Take(query.Take);
             IEnumerable<Category> categories = GetCategories(matches.Select(x => x.CategoryId));
             IEnumerable<Tournament> tournaments = GetTournaments(matches.Select(x => x.TournamentId));
             IEnumerable<Team> teams = GetTeams(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));

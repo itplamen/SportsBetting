@@ -1,13 +1,9 @@
 ﻿namespace SportsBetting.Data.Models
 {
-    using System;
-
     using SportsBetting.Data.Models.Base;
 
     public class Match : BaseModel
     {
-        public DateTime StartTime { get; set; }
-
         public string Score { get; set; }
 
         public string StreamURL { get; set; }

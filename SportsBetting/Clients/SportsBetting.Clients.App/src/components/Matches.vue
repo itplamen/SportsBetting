@@ -13,7 +13,6 @@
       <b-container v-for="game in games">
         <router-link :to="{ path: `/matches/${game.Id}`}">
           <b-row class="game-row">
-            <b-col cols="1">{{formatDate(game.StartTime)}}</b-col>
             <b-col cols="4">{{game.Category}}: {{game.Tournament}}</b-col>
             <b-col cols="3">{{game.HomeTeam}}</b-col>
             <b-col cols="1">{{game.Score}}</b-col>
@@ -54,9 +53,6 @@ export default {
     });
   },
   methods: {
-    formatDate(date) {
-      return moment(date).format('DD MMM hh:mm')
-    },
     getEsports() {
       axios.get(`http://localhost:64399/api/Matches/All/${this.take}`)
       .then(res => this.games = res.data, this.take += 20)

@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Core.Factories
 {
-    using System;
-
     using SportsBetting.Feeder.Models;
 
     public static class ObjectFactory
@@ -15,15 +13,10 @@
             };
         }
 
-        public static MatchFeedModel CreateMatch(
-            DateTime startTime,
-            TeamFeedModel homeTeam,
-            TeamFeedModel awayTeam,
-            TournamentFeedModel tournament)
+        public static MatchFeedModel CreateMatch(TeamFeedModel homeTeam, TeamFeedModel awayTeam, TournamentFeedModel tournament)
         {
             return new MatchFeedModel()
             {
-                StartTime = startTime,
                 HomeTeam = homeTeam,
                 AwayTeam = awayTeam,
                 Tournament = tournament
