@@ -16,7 +16,6 @@
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Match>, IEnumerable<Match>> matchesHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Market>, IEnumerable<Market>> marketsHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler;
 
         public MatchByIdQueryHandler(
@@ -24,14 +23,12 @@
             IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler,
             IQueryHandler<EntitiesByIdQuery<Match>, IEnumerable<Match>> matchesHandler,
             IQueryHandler<EntitiesByIdQuery<Market>, IEnumerable<Market>> marketsHandler,
-            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler)
         {
             this.oddsHandler = oddsHandler;
             this.teamsHandler = teamsHandler;
             this.matchesHandler = matchesHandler;
             this.marketsHandler = marketsHandler;
-            this.categoriesHandler = categoriesHandler;
             this.tournamentsHandler = tournamentsHandler;
         }
 
@@ -61,7 +58,6 @@
             }
 
             MatchResult matchResult = Mapper.Map<MatchResult>(match);
-            matchResult.Category = GetCategory(match.CategoryId).Name;
             matchResult.Tournament = GetTournament(match.TournamentId).Name;
             matchResult.HomeTeam = GetTeam(match.HomeTeamId).Name;
             matchResult.AwayTeam = GetTeam(match.AwayTeamId).Name;
@@ -77,15 +73,6 @@
             Match match = matchesHandler.Handle(matchByIdQuery).FirstOrDefault();
 
             return match;
-        }
-        
-        private Category GetCategory(string id)
-        {
-            IEnumerable<string> ids = new List<string>() { id };
-            EntitiesByIdQuery<Category> categoryByIdQuery = new EntitiesByIdQuery<Category>(ids);
-            Category category = categoriesHandler.Handle(categoryByIdQuery).FirstOrDefault();
-
-            return category;
         }
 
         private Tournament GetTournament(string id)

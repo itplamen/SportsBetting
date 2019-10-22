@@ -24,7 +24,6 @@
             InitCollection<Account>();
             InitCollection<Authentication>();
             InitCollection<Bet>();
-            InitCollection<Category>();
             InitCollection<Tournament>();
             InitCollection<Team>();
             InitCollection<Match>();

@@ -79,8 +79,6 @@
     <Compile Include="Accounts\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanLoginValidationHandler.cs" />
-    <Compile Include="Categories\CreateCategoryCommand.cs" />
-    <Compile Include="Categories\CreateCategoryCommandHandler.cs" />
     <Compile Include="Common\CommandDispatcher.cs" />
     <Compile Include="Common\DeleteEntitiesCommand.cs" />
     <Compile Include="Common\DeleteEntitiesCommandHandler.cs" />

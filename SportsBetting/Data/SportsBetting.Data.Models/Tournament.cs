@@ -5,7 +5,5 @@
     public class Tournament : BaseModel
     {
         public string Name { get; set; }
-
-        public string CategoryId { get; set; }
     }
 }

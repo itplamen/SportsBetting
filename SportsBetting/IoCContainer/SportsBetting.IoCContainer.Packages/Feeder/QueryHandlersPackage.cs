@@ -4,7 +4,6 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Queries.Categories;
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Tournaments;
@@ -16,8 +15,7 @@
             container.Register<IQueryDispatcher, QueryDispatcher>(Lifestyle.Singleton);
             container.Register(typeof(IQueryHandler<,>), typeof(EntitiesByIdQueryHandler<>), Lifestyle.Singleton);
             container.Register(typeof(IQueryHandler<,>), typeof(EntitiesByKeyQueryHandler<>), Lifestyle.Singleton);
-            container.Register<IQueryHandler<CategoryByNameQuery, Category>, CategoryByNameQueryHandler>(Lifestyle.Singleton);
-            container.Register<IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament>, TournamentByNameAndCategoryIdQueryHandler>(Lifestyle.Singleton);
+            container.Register<IQueryHandler<TournamentByNameQuery, Tournament>, TournamentByNameQueryHandler>(Lifestyle.Singleton);
         }
     }
 }

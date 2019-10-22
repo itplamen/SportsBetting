@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Feeder.Core.Providers.Tournaments
 {
-    using System.Linq;
     using System.Net;
 
     using HtmlAgilityPack;
@@ -14,8 +13,7 @@
         public TournamentFeedModel Get(HtmlNode matchInfo)
         {
             string name = WebUtility.HtmlDecode(matchInfo.FirstChild.FirstChild.InnerText);
-            string category = matchInfo.ChildNodes[1].InnerText.Split(',').FirstOrDefault();
-            TournamentFeedModel tournament = ObjectFactory.CreateTournament(name, category);
+            TournamentFeedModel tournament = ObjectFactory.CreateTournament(name);
 
             return tournament;
         }

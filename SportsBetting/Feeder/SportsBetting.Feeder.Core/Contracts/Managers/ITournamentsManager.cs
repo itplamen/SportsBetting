@@ -4,6 +4,6 @@
 
     public interface ITournamentsManager
     {
-        string Manage(TournamentFeedModel feedModel, string categoryId);
+        string Manage(TournamentFeedModel feedModel);
     }
 }

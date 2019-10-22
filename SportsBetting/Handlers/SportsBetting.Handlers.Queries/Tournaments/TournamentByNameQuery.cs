@@ -1,11 +1,11 @@
-﻿namespace SportsBetting.Handlers.Queries.Categories
+﻿namespace SportsBetting.Handlers.Queries.Tournaments
 {
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class CategoryByNameQuery : IQuery<Category>
+    public class TournamentByNameQuery : IQuery<Tournament>
     {
-        public CategoryByNameQuery(string name)
+        public TournamentByNameQuery(string name)
         {
             Name = name;
         }

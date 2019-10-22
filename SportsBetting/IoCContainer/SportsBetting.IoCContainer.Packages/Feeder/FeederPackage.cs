@@ -31,7 +31,6 @@
 
         private void RegisterManagers(Container container)
         {
-            container.Register<ICategoriesManager, CategoriesManager>(Lifestyle.Singleton);
             container.Register<ITournamentsManager, TournamentsManager>(Lifestyle.Singleton);
             container.Register<ITeamsManager, TeamsManager>(Lifestyle.Singleton);
             container.Register<IMatchesManager, MatchesManager>(Lifestyle.Singleton);

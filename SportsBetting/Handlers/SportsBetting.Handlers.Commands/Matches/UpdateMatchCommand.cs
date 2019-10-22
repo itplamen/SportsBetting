@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Handlers.Commands.Matches
 {
-    using System;
-
     using AutoMapper;
 
     using SportsBetting.Common.Infrastructure.Mapping;
@@ -13,8 +11,6 @@
     public class UpdateMatchCommand : ICommand, IMapFrom<MatchFeedModel>, IMapTo<Match>, IHaveCustomMappings
     {
         public string Id { get; set; }
-
-        public DateTime StartTime { get; set; }
 
         public string Score { get; set; }
 

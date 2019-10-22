@@ -15,25 +15,21 @@
     {
         private readonly ICache<Match> matchesCache;
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler;
 
         public AllMatchesQueryHandler(
             ICache<Match> matchesCache,
             IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler,
-            IQueryHandler<EntitiesByIdQuery<Category>, IEnumerable<Category>> categoriesHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler)
         {
             this.matchesCache = matchesCache;
             this.teamsHandler = teamsHandler;
-            this.categoriesHandler = categoriesHandler;
             this.tournamentsHandler = tournamentsHandler;
         }
 
         public IEnumerable<MatchResult> Handle(AllMatchesQuery query)
         {
             IEnumerable<Match> matches = matchesCache.All(_ => true).Take(query.Take);
-            IEnumerable<Category> categories = GetCategories(matches.Select(x => x.CategoryId));
             IEnumerable<Tournament> tournaments = GetTournaments(matches.Select(x => x.TournamentId));
             IEnumerable<Team> teams = GetTeams(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));
 
@@ -44,21 +40,12 @@
                 MatchResult matchResult = Mapper.Map<MatchResult>(match);
                 matchResult.HomeTeam = teams.First(x => x.Id == match.HomeTeamId).Name;
                 matchResult.AwayTeam = teams.First(x => x.Id == match.AwayTeamId).Name;
-                matchResult.Category = categories.First(x => x.Id == match.CategoryId).Name;
                 matchResult.Tournament = tournaments.First(x => x.Id == match.TournamentId).Name;
 
                 matchResults.Add(matchResult);
             }
 
             return matchResults;
-        }
-
-        private IEnumerable<Category> GetCategories(IEnumerable<string> categoryIds)
-        {
-            EntitiesByIdQuery<Category> query = new EntitiesByIdQuery<Category>(categoryIds.Distinct());
-            IEnumerable<Category> categories = categoriesHandler.Handle(query);
-
-            return categories;
         }
 
         private IEnumerable<Tournament> GetTournaments(IEnumerable<string> tournamentIds)

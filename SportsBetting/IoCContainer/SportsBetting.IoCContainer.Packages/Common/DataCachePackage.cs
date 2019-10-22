@@ -6,7 +6,7 @@
     using SportsBetting.Data.Cache;
     using SportsBetting.Data.Cache.Contracts;
 
-using SportsBetting.Data.Models;
+    using SportsBetting.Data.Models;
 
     public sealed class DataCachePackage : IPackage
     {
@@ -16,7 +16,6 @@ using SportsBetting.Data.Models;
 
             container.Register<ICacheLoader, CacheComposite>(Lifestyle.Singleton);
             container.Collection.Append<ICacheLoader, Cache<Sport>>(Lifestyle.Singleton);
-            container.Collection.Append<ICacheLoader, Cache<Category>>(Lifestyle.Singleton);
             container.Collection.Append<ICacheLoader, Cache<Tournament>>(Lifestyle.Singleton);
             container.Collection.Append<ICacheLoader, Cache<Team>>(Lifestyle.Singleton);
             container.Collection.Append<ICacheLoader, Cache<Match>>(Lifestyle.Singleton);

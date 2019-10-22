@@ -57,7 +57,6 @@
     <Compile Include="Contracts\Factories\IWebDriverFactory.cs" />
     <Compile Include="Contracts\Managers\IUnprocessedFeedManager.cs" />
     <Compile Include="Contracts\Managers\IFeedManager.cs" />
-    <Compile Include="Contracts\Managers\ICategoriesManager.cs" />
     <Compile Include="Contracts\Managers\IMarketsManager.cs" />
     <Compile Include="Contracts\Managers\IMatchesManager.cs" />
     <Compile Include="Contracts\Managers\IOddsManager.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="LoggingSynchronizer.cs" />
     <Compile Include="Managers\FeedManager.cs" />
-    <Compile Include="Managers\CategoriesManager.cs" />
     <Compile Include="Managers\MarketsManager.cs" />
     <Compile Include="Managers\MatchesManager.cs" />
     <Compile Include="Managers\OddsManager.cs" />

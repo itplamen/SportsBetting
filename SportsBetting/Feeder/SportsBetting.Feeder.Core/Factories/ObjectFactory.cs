@@ -53,12 +53,11 @@
             };
         }
 
-        public static TournamentFeedModel CreateTournament(string name, string category)
+        public static TournamentFeedModel CreateTournament(string name)
         {
             return new TournamentFeedModel()
             {
-                Name = name,
-                Category = category
+                Name = name
             };
         }
     }

@@ -21,10 +21,10 @@
             this.commandDispatcher = commandDispatcher;
         }
 
-        public string Manage(TournamentFeedModel feedModel, string categoryId)
+        public string Manage(TournamentFeedModel feedModel)
         {
-            TournamentByNameAndCategoryIdQuery query = new TournamentByNameAndCategoryIdQuery(feedModel.Name, categoryId);
-            Tournament tournament = queryDispatcher.Dispatch<TournamentByNameAndCategoryIdQuery, Tournament>(query);
+            TournamentByNameQuery query = new TournamentByNameQuery(feedModel.Name);
+            Tournament tournament = queryDispatcher.Dispatch<TournamentByNameQuery, Tournament>(query);
 
             if (tournament != null)
             {
@@ -32,9 +32,9 @@
             }
 
             CreateTournamentCommand command = Mapper.Map<CreateTournamentCommand>(feedModel);
-            command.CategoryId = categoryId;
+            string tournamentId = commandDispatcher.Dispatch<CreateTournamentCommand, string>(command);
 
-            return commandDispatcher.Dispatch<CreateTournamentCommand, string>(command);
+            return tournamentId;
         }       
     }
 }

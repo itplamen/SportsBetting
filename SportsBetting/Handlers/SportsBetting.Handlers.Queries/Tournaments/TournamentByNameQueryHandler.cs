@@ -6,19 +6,19 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class TournamentByNameAndCategoryIdQueryHandler : IQueryHandler<TournamentByNameAndCategoryIdQuery, Tournament>
+    public class TournamentByNameQueryHandler : IQueryHandler<TournamentByNameQuery, Tournament>
     {
         private readonly ICache<Tournament> tournamentsCache;
 
-        public TournamentByNameAndCategoryIdQueryHandler(ICache<Tournament> tournamentsCache)
+        public TournamentByNameQueryHandler(ICache<Tournament> tournamentsCache)
         {
             this.tournamentsCache = tournamentsCache;
         }
 
-        public Tournament Handle(TournamentByNameAndCategoryIdQuery query)
+        public Tournament Handle(TournamentByNameQuery query)
         {
             Tournament tournament = tournamentsCache
-                .All(x => x.Name == query.Name && x.CategoryId == query.CategoryId)
+                .All(x => x.Name == query.Name)
                 .FirstOrDefault();
 
             return tournament;

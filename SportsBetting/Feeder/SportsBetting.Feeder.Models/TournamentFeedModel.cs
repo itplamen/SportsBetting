@@ -6,11 +6,9 @@
     {
         public string Name { get; set; }
 
-        public string Category { get; set; }
-
         protected override int GenerateKey()
         {
-            return Name.GetHashCode() ^ Category.GetHashCode();
+            return Name.GetHashCode();
         }
     }
 }

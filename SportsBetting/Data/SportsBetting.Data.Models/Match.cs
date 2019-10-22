@@ -8,8 +8,6 @@
 
         public string StreamURL { get; set; }
 
-        public string CategoryId { get; set; }
-
         public string TournamentId { get; set; }
 
         public string HomeTeamId { get; set; }

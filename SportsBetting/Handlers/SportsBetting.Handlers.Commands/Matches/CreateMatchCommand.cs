@@ -1,7 +1,5 @@
 ﻿namespace SportsBetting.Handlers.Commands.Matches
 {
-    using System;
-
     using AutoMapper;
 
     using SportsBetting.Common.Infrastructure.Mapping;
@@ -14,13 +12,9 @@
     {
         public int Key { get; set; }
 
-        public DateTime StartTime { get; set; }
-
         public string Score { get; set; }
 
         public string StreamURL { get; set; }
-
-        public string CategoryId { get; set; }
 
         public string TournamentId { get; set; }
 

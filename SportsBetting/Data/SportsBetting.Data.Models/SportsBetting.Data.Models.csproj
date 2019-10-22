@@ -67,7 +67,6 @@
     <Compile Include="Base\IAuditInfo.cs" />
     <Compile Include="Base\IDeletableEntity.cs" />
     <Compile Include="Bet.cs" />
-    <Compile Include="Category.cs" />
     <Compile Include="Market.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchType.cs" />

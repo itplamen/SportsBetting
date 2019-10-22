@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Server.Api.Models.Matches
 {
-    using System;
     using System.Collections.Generic;
 
     using SportsBetting.Common.Infrastructure.Mapping;
@@ -11,11 +10,7 @@
     {
         public string Id { get; set; }
 
-        public DateTime StartTime { get; set; }
-
         public string Score { get; set; }
-
-        public string Category { get; set; }
 
         public string Tournament { get; set; }
 

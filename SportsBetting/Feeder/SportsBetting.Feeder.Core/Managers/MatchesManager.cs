@@ -24,7 +24,7 @@
             this.commandDispatcher = commandDispatcher;
         }
 
-        public string Manage(MatchFeedModel feedModel, string categoryId, string tournamentId, string homeTeamId, string awayTeamId)
+        public string Manage(MatchFeedModel feedModel, string tournamentId, string homeTeamId, string awayTeamId)
         {
             IEnumerable<int> keys = new List<int>() { feedModel.Key };
             EntitiesByKeyQuery<Match> matchQuery = new EntitiesByKeyQuery<Match>(keys);
@@ -39,7 +39,6 @@
             }
 
             CreateMatchCommand createCommand = Mapper.Map<CreateMatchCommand>(feedModel);
-            createCommand.CategoryId = categoryId;
             createCommand.TournamentId = tournamentId;
             createCommand.HomeTeamId = homeTeamId;
             createCommand.AwayTeamId = awayTeamId;

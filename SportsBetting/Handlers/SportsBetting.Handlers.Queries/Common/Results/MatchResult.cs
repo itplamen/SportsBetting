@@ -1,6 +1,5 @@
 ﻿namespace SportsBetting.Handlers.Queries.Common.Results
 {
-    using System;
     using System.Collections.Generic;
 
     using SportsBetting.Common.Infrastructure.Mapping;
@@ -13,10 +12,6 @@
         public string Score { get; set; }
 
         public MatchType Type { get; set; }
-
-        public DateTime StartTime { get; set; }
-
-        public string Category { get; set; }
 
         public string Tournament { get; set; }
 
