@@ -21,8 +21,10 @@
                 return null;
             }
 
-            TeamFeedModel homeTeam = BuildTeam(names.First(), TeamXPaths.HOME_TEAM_SCORE, matchContainer);
-            TeamFeedModel awayTeam = BuildTeam(names.Last(), TeamXPaths.AWAY_TEAM_SCORE, matchContainer);
+            IEnumerable<HtmlNode> scoreNodes = matchContainer.SelectNodes(TeamXPaths.SCORE);
+
+            TeamFeedModel homeTeam = BuildTeam(names.First(), scoreNodes?.First(), matchContainer);
+            TeamFeedModel awayTeam = BuildTeam(names.Last(), scoreNodes?.Last(), matchContainer);
 
             return new List<TeamFeedModel>() { homeTeam, awayTeam };
         }
@@ -37,9 +39,11 @@
             return teamNames;
         }
 
-        private TeamFeedModel BuildTeam(string name, string scoreXPath, HtmlNode matchContainer)
+        private TeamFeedModel BuildTeam(string name, HtmlNode scoreNode, HtmlNode matchContainer)
         {
-            int? score = GetScore(matchContainer, scoreXPath);
+            int score;
+            int.TryParse(scoreNode?.InnerText, out score);
+
             TeamFeedModel team = ObjectFactory.CreateTeam(name, score);
 
             return team;

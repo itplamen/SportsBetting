@@ -10,7 +10,7 @@
 
         public const int ESPORT_KEY = 1;
 
-        public const string WAIT_FOR_MATCH_CONTAINER = "Match__container___fpI_d";
+        public const string WAIT_FOR_MATCH_CONTAINER = "promoMatchBody__container___1tzoA";
 
         public const string WAIT_FOR_SCROLL_CONTAINER = "ScrollToTop__container___37xDi";
     }

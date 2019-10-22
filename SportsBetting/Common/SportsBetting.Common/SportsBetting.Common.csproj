@@ -60,6 +60,7 @@
     <Compile Include="XPaths\MatchXPaths.cs" />
     <Compile Include="XPaths\OddXPaths.cs" />
     <Compile Include="XPaths\TeamXPaths.cs" />
+    <Compile Include="XPaths\TournamentXPaths.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

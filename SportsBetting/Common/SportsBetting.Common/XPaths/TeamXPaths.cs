@@ -2,10 +2,8 @@
 {
     public static class TeamXPaths
     {
-        public const string NAME = ".//div[starts-with(@class,'TeamHeader__name___3cKcj')]";
+        public const string NAME = ".//div[starts-with(@class,'__app-PromoMatchBody-competitor-name promoMatchBody__competitor-name___3IM6A')]";
 
-        public const string HOME_TEAM_SCORE = ".//div[starts-with(@class,'LivematchHeader__home')]";
-
-        public const string AWAY_TEAM_SCORE = ".//div[starts-with(@class,'LivematchHeader__away')]";
+        public const string SCORE = ".//div[starts-with(@class,'promoMatchBody__score-point___12e83')]";
     }
 }
