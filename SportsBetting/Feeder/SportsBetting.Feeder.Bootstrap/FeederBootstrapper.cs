@@ -1,8 +1,6 @@
 ﻿namespace SportsBetting.Feeder.Bootstrap
 {
     using System.Reflection;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     using SimpleInjector;
     using SimpleInjector.Packaging;
@@ -16,9 +14,6 @@
 
     public class FeederBootstrapper
     {
-        private readonly static CancellationTokenSource source = new CancellationTokenSource();
-
-        private readonly CancellationToken token;
         private readonly ICacheLoader cacheLoader;
         private readonly ISynchronizer synchronizer;
 
@@ -34,22 +29,17 @@
             this.cacheLoader = container.GetInstance<ICacheLoader>();
             this.cacheLoader.Init();
 
-            this.token = source.Token;
             this.synchronizer = container.GetInstance<ISynchronizer>();
         }
 
         public void Start()
         {
-            Task task = new Task(() => RefreshCaches(cacheLoader));
-            task.Start();
-
+            cacheLoader.Refresh();
             synchronizer.Sync();
         }
 
         public void Stop()
         {
-            source.Cancel();
-
             synchronizer.Stop();
         }
 
@@ -83,14 +73,6 @@
         {
             const string MAPPING_ASSEMBLY = "SportsBetting.Handlers.Commands";
             AutoMapperConfig.RegisterMappings(Assembly.Load(MAPPING_ASSEMBLY));
-        }
-
-        private void RefreshCaches(ICacheLoader cacheLoader)
-        {
-            while (!token.IsCancellationRequested)
-            {
-                cacheLoader.Refresh();
-            }
         }
     }
 }

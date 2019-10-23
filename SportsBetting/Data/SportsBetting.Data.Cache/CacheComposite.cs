@@ -3,19 +3,20 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
-    using System.Threading.Tasks;
 
     using SportsBetting.Data.Cache.Contracts;
 
     public class CacheComposite : ICacheLoader
     {
-        private const int TIMEOUT = 1000 * 3;
+        private const int TIME_INTERVAL = 1000 * 3;
 
+        private readonly ManualResetEvent resetEvent;
         private readonly IEnumerable<ICacheLoader> caches;
 
         public CacheComposite(IEnumerable<ICacheLoader> caches)
         {
             this.caches = caches;
+            this.resetEvent = new ManualResetEvent(false);
         }
 
         public void Init()
@@ -25,10 +26,12 @@
 
         public void Refresh()
         {
-            List<Task> task = caches.Select(x => new Task(() => x.Refresh())).ToList();
-            task.ForEach(x => x.Start());
-
-            Thread.Sleep(TIMEOUT);
+            ThreadPool.RegisterWaitForSingleObject(
+                resetEvent,
+                new WaitOrTimerCallback((x, y) => caches.ToList().ForEach(z => z.Refresh())),
+                null,
+                TIME_INTERVAL,
+                false);
         }
     }
 }
