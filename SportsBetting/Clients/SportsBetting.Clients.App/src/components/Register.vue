@@ -30,10 +30,9 @@
 <script>
 import enums from '../common/constants/enums';
 import registrationValidator from '../validators/registrationValidator';
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
-  computed: mapGetters(['getAccount']),
   data() {
     return {
       registerModel: {

@@ -14,16 +14,10 @@ const state = {
 const getters = {
   getAccount: (state) => state.account,
   isLoggedIn: (state) => {
-    let authentication = localStorage.authentication;
-
-    if (authentication) {
-      let expirationDate = new Date(authentication.split('|')[1]);
-      let dateNow = new Date();
-
-      return expirationDate > dateNow;
-    }
-
-    return false;
+    let expirationDate = new Date(state.account.expiration);
+    let dateNow = new Date();
+    
+    return expirationDate > dateNow;
   }
 };
 
@@ -47,8 +41,6 @@ const mutations = {
     state.account.balance = account.Balance;
     state.account.loginToken = account.LoginToken;
     state.account.expiration = account.Expiration;
-
-    localStorage.authentication = `${state.account.loginToken}|${state.account.expiration}`;
   }
 };
 

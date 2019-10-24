@@ -3,20 +3,35 @@
     <div id="nav">
       <router-link to="/">eSports</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="" v-b-modal.RegisterModal>Register</router-link>
+      <span v-if="!isLoggedIn">
+        <router-link to="" v-b-modal.LoginModal>Login</router-link> |
+        <router-link to="" v-b-modal.RegisterModal>Register</router-link>
+          
+          <Login />
+          <Register />
+      </span>
+      <span v-else>
+        <router-link to="">Logout</router-link>
+      </span>
     </div>
     <router-view/>
-    <Register />
   </div>
 </template>
 
 <script>
-import Register from './components/Register'
+import Login from './components/Login';
+import Register from './components/Register';
+import { mapGetters } from 'vuex';
 import { truncate } from 'fs';
 
 export default {
+  computed: mapGetters(['isLoggedIn']),
   components: {
+    Login,
     Register
+  },
+  created() {
+    this.$store.watch((state, getters) => getters.isLoggedIn, (newValue, oldValue) => {})
   }
 }
 </script>
