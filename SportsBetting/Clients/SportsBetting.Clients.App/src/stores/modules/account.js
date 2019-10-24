@@ -28,10 +28,15 @@ const getters = {
 };
 
 const actions = {
-  async registerAccount ({ commit }, request) {
+  async registerAccount({ commit }, request) {
     const response = await axios.post(endpoints.REGISTER_ACCOUNT, request);
     
     commit('setAccount', response.data);    
+  },
+  async loginAccount({ commit }, request) {
+    const response = await axios.post(endpoints.LOGIN_ACCOUNT, request);
+    
+    commit('setAccount', response.data); 
   }
 };
 
