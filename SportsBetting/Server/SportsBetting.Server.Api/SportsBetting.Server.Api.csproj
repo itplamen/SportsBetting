@@ -130,6 +130,7 @@
     <Compile Include="App_Start\SimpleInjectorConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BetsController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Extensions\MapperExtensions.cs" />
     <Compile Include="Extensions\ModelStateExtension.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Models\Account\AccountResponseModel.cs" />
     <Compile Include="Models\Account\LoginRequestModel.cs" />
     <Compile Include="Models\Account\RegisterRequestModel.cs" />
+    <Compile Include="Models\Bets\BetRequestModel.cs" />
     <Compile Include="Models\Markets\MarketResponseModel.cs" />
     <Compile Include="Models\Matches\MatchResponseModel.cs" />
     <Compile Include="Models\Odds\OddResponseModel.cs" />
