@@ -69,16 +69,21 @@
   <ItemGroup>
     <Compile Include="Accounts\CommandHandlers\AuthenticateAccountCommandHandler.cs" />
     <Compile Include="Accounts\CommandHandlers\LogoutCommandHandler.cs" />
+    <Compile Include="Accounts\CommandHandlers\UpdatedAccountCommandHandler.cs" />
     <Compile Include="Accounts\Commands\LoginCommand.cs" />
     <Compile Include="Accounts\Commands\LogoutCommand.cs" />
     <Compile Include="Accounts\Commands\RegisterCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
+    <Compile Include="Accounts\Commands\UpdatedAccountCommand.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanLogoutValidationHandler.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanRegisterValidationHandler.cs" />
     <Compile Include="Accounts\Commands\PasswordCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanLoginValidationHandler.cs" />
+    <Compile Include="Bets\CommandHandlers\PlaceBetCommandHandler.cs" />
+    <Compile Include="Bets\Commands\PlaceBetCommand.cs" />
+    <Compile Include="Bets\ValidationHandlers\CanPlaceBetValidationCommand.cs" />
     <Compile Include="Common\CommandDispatcher.cs" />
     <Compile Include="Common\DeleteEntitiesCommand.cs" />
     <Compile Include="Common\DeleteEntitiesCommandHandler.cs" />

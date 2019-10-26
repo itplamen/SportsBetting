@@ -8,6 +8,8 @@
     using SportsBetting.Handlers.Commands.Accounts.CommandHandlers;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Accounts.ValidationHandlers;
+    using SportsBetting.Handlers.Commands.Bets.Commands;
+    using SportsBetting.Handlers.Commands.Bets.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;
 
@@ -24,6 +26,7 @@
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<RegisterCommand>, CanRegisterValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<PlaceBetCommand>, CanPlaceBetValidationCommand>(new WebRequestLifestyle());
         }
     }
 }
