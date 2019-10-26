@@ -8,6 +8,7 @@
     using SportsBetting.Handlers.Commands.Accounts.CommandHandlers;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Accounts.ValidationHandlers;
+    using SportsBetting.Handlers.Commands.Bets.CommandHandlers;
     using SportsBetting.Handlers.Commands.Bets.Commands;
     using SportsBetting.Handlers.Commands.Bets.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
@@ -23,6 +24,7 @@
             container.Register<ICommandHandler<PasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<LoginCommand, Authentication>, AuthenticateAccountCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<UpdateAccountCommand>, UpdateAccountCommandHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<PlaceBetCommand>, PlaceBetCommandHandler>(new WebRequestLifestyle());
 
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
