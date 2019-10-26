@@ -12,7 +12,7 @@
       </b-row>
     </b-container>
     <b-jumbotron >
-      <b-container v-for="market in match.Markets">
+      <b-container v-bind:key="market.Id" v-for="market in match.Markets">
           <Market :market=market v-on:showBetslip="showBetslipInfo" />
       </b-container>
     </b-jumbotron>
@@ -47,7 +47,6 @@ export default {
   methods: {
     showBetslipInfo(odd, marketName) {
       this.odd = odd;
-      console.log(this.odd.Id)
       this.marketName = marketName;
       this.$bvToast.show('BetslipToast');
     }

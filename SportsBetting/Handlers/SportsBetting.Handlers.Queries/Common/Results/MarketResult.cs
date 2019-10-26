@@ -7,6 +7,8 @@
 
     public class MarketResult : IMapFrom<Market>
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public IEnumerable<OddResult> Odds { get; set; }
