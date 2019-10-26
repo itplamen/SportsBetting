@@ -47,6 +47,7 @@ export default {
   methods: {
     showBetslipInfo(odd, marketName) {
       this.odd = odd;
+      console.log(this.odd.Id)
       this.marketName = marketName;
       this.$bvToast.show('BetslipToast');
     }
