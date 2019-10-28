@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Queries.Matches
+﻿namespace SportsBetting.Handlers.Queries.Matches.QueryHandlers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -9,6 +9,7 @@
     using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Matches.Queries;
 
     public class MatchByIdQueryHandler : IQueryHandler<MatchByIdQuery, MatchResult>
     {

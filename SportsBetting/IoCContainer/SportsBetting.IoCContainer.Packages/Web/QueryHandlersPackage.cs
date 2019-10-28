@@ -12,7 +12,8 @@
     using SportsBetting.Handlers.Queries.Common.QueryHandlers;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Handlers.Queries.Matches;
+    using SportsBetting.Handlers.Queries.Matches.Queries;
+    using SportsBetting.Handlers.Queries.Matches.QueryHandlers;
 
     public sealed class QueryHandlersPackage : IPackage
     {

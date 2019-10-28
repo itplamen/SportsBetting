@@ -8,7 +8,7 @@
 
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
-    using SportsBetting.Handlers.Queries.Matches;
+    using SportsBetting.Handlers.Queries.Matches.Queries;
     using SportsBetting.Server.Api.Models.Matches;
 
     [EnableCors("*", "*", "*")]

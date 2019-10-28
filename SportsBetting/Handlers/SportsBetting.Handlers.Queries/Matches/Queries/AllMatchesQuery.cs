@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Queries.Matches
+﻿namespace SportsBetting.Handlers.Queries.Matches.Queries
 {
     using System.Collections.Generic;
 

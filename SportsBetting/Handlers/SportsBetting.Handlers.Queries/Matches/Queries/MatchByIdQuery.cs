@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Queries.Matches
+﻿namespace SportsBetting.Handlers.Queries.Matches.Queries
 {
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
