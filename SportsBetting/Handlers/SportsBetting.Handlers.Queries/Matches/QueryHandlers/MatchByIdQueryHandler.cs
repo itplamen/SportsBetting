@@ -9,21 +9,23 @@
     using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Markets.Queries;
     using SportsBetting.Handlers.Queries.Matches.Queries;
+    using SportsBetting.Handlers.Queries.Odds.Queries;
 
     public class MatchByIdQueryHandler : IQueryHandler<MatchByIdQuery, MatchResult>
     {
-        private readonly IQueryHandler<EntitiesByIdQuery<Odd>, IEnumerable<Odd>> oddsHandler;
+        private readonly IQueryHandler<OddsByMarketIdQuery, IEnumerable<Odd>> oddsHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Match>, IEnumerable<Match>> matchesHandler;
-        private readonly IQueryHandler<EntitiesByIdQuery<Market>, IEnumerable<Market>> marketsHandler;
+        private readonly IQueryHandler<MarketsByMatchIdQuery, IEnumerable<Market>> marketsHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler;
 
         public MatchByIdQueryHandler(
-            IQueryHandler<EntitiesByIdQuery<Odd>, IEnumerable<Odd>> oddsHandler,
+            IQueryHandler<OddsByMarketIdQuery, IEnumerable<Odd>> oddsHandler,
             IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler,
             IQueryHandler<EntitiesByIdQuery<Match>, IEnumerable<Match>> matchesHandler,
-            IQueryHandler<EntitiesByIdQuery<Market>, IEnumerable<Market>> marketsHandler,
+            IQueryHandler<MarketsByMatchIdQuery, IEnumerable<Market>> marketsHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler)
         {
             this.oddsHandler = oddsHandler;
@@ -43,11 +45,11 @@
             }
 
             ICollection<MarketResult> marketResults = new List<MarketResult>();
-            IEnumerable<Market> markets = GetMarkets(match.Id);
+            IEnumerable<Market> markets = marketsHandler.Handle(new MarketsByMatchIdQuery(match.Id));
 
             foreach (var market in markets)
             {
-                IEnumerable<Odd> odds = GetOdds(market.Id);
+                IEnumerable<Odd> odds = oddsHandler.Handle(new OddsByMarketIdQuery(market.Id));
 
                 if (odds.Any())
                 {
@@ -92,26 +94,6 @@
             Team team = teamsHandler.Handle(teamByIdQuery).FirstOrDefault();
 
             return team;
-        }
-
-        private IEnumerable<Market> GetMarkets(string matchId)
-        {
-            IEnumerable<string> matchIds = new List<string>() { matchId };
-            EntitiesByIdQuery<Market> marketsByMatchIdQuery = new EntitiesByIdQuery<Market>(matchIds, x => matchIds.Contains(x.MatchId));
-            IEnumerable<Market> markets = marketsHandler.Handle(marketsByMatchIdQuery);
-
-            return markets;
-        }
-
-        private IEnumerable<Odd> GetOdds(string marketId)
-        {
-            IEnumerable<string> marketIds = new List<string>() { marketId };
-            EntitiesByIdQuery<Odd> oddsByMarketIdQuery = new EntitiesByIdQuery<Odd>(marketIds, x => marketIds.Contains(x.MarketId));
-            IEnumerable<Odd> odds = oddsHandler.Handle(oddsByMarketIdQuery)
-                .OrderBy(x => x.Header)
-                .ThenBy(x => x.Rank);
-
-            return odds;
         }
     }
 }
