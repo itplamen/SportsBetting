@@ -39,6 +39,13 @@ const actions = {
     const response = await axios.post(endpoints.LOGIN_ACCOUNT, request);
     
     commit('setAccount', response.data); 
+  },
+  async logoutAccount({ commit }) {
+    const response = await axios.post(endpoints.LOGOUT_ACCOUNT, { LoginToken: state.account.loginToken });
+    
+    console.log(response.data);
+
+    commit('setAccount', response.data); 
   }
 };
 

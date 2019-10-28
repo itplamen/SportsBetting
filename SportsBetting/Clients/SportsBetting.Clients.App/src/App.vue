@@ -3,15 +3,17 @@
     <div id="nav">
       <router-link to="/">eSports</router-link> |
       <router-link to="/about">About</router-link> |
-      <span v-if="!isLoggedIn">
+      <span  >
         <router-link to="" v-b-modal.LoginModal>Login</router-link> |
         <router-link to="" v-b-modal.RegisterModal>Register</router-link>
           
           <Login />
           <Register />
       </span>
-      <span v-else>
-        <router-link to="">Logout</router-link>
+      <span >
+        <router-link to="" v-on:click.native="logoutAccount()">
+          Logout
+        </router-link>
       </span>
     </div>
     <router-view/>
@@ -21,18 +23,19 @@
 <script>
 import Login from './components/Login';
 import Register from './components/Register';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { truncate } from 'fs';
 
 export default {
-  computed: mapGetters(['isLoggedIn']),
   components: {
     Login,
     Register
   },
+  computed: mapGetters(['isLoggedIn']),
   created() {
     this.$store.watch((state, getters) => getters.isLoggedIn, (newValue, oldValue) => {})
-  }
+  },
+  methods: mapActions(['logoutAccount'])
 }
 </script>
 
