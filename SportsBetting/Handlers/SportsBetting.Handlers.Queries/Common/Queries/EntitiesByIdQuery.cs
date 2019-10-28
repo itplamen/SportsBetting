@@ -15,14 +15,6 @@
             Ids = ids;
         }
 
-        public EntitiesByIdQuery(IEnumerable<string> ids, Expression<Func<TEntity, bool>> expression)
-        {
-            Ids = ids;
-            Expression = expression;
-        }
-
         public IEnumerable<string> Ids { get; set; }
-
-        public Expression<Func<TEntity, bool>> Expression { get; set; }
     }
 }
