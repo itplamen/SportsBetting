@@ -87,6 +87,8 @@
     <Compile Include="Matches\QueryHandlers\AllMatchesQueryHandler.cs" />
     <Compile Include="Matches\Queries\MatchByIdQuery.cs" />
     <Compile Include="Matches\QueryHandlers\MatchByIdQueryHandler.cs" />
+    <Compile Include="Odds\Queries\OddsByMarketIdQuery.cs" />
+    <Compile Include="Odds\QueryHandlers\OddsByMarketIdQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tournaments\TournamentByNameQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameQueryHandler.cs" />
