@@ -23,6 +23,7 @@
             Authentication authentication = new Authentication();
             authentication.AccountId = command.AccountId;
             authentication.Expiration = CalculateExpirationDate(command.RememberMe);
+            authentication.CreatedOn = DateTime.UtcNow;
 
             dbContext.GetCollection<Authentication>().InsertOne(authentication);
 

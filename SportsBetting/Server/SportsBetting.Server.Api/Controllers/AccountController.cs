@@ -8,6 +8,7 @@
 
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
     using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
@@ -42,8 +43,8 @@
                     AccountCommand accountCommand = new AccountCommand(requestModel.Username, requestModel.Password);
                     Account account = commandDispatcher.Dispatch<AccountCommand, Account>(accountCommand);
 
-                    AccountCommand loginCommand = new AccountCommand(requestModel.Username, requestModel.Password);
-                    Authentication authentication = commandDispatcher.Dispatch<AccountCommand, Authentication>(loginCommand);
+                    AuthCommand authCommand = new AuthCommand(account.Id, false);
+                    Authentication authentication = commandDispatcher.Dispatch<AuthCommand, Authentication>(authCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
