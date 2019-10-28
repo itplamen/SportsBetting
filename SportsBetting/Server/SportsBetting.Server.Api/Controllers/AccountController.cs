@@ -8,8 +8,6 @@
 
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
-    using SportsBetting.Handlers.Commands.Auth.Commands;
     using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
@@ -44,8 +42,8 @@
                     AccountCommand accountCommand = new AccountCommand(requestModel.Username, requestModel.Password);
                     Account account = commandDispatcher.Dispatch<AccountCommand, Account>(accountCommand);
 
-                    LoginCommand loginCommand = new LoginCommand(requestModel.Username, requestModel.Password);
-                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);
+                    AccountCommand loginCommand = new AccountCommand(requestModel.Username, requestModel.Password);
+                    Authentication authentication = commandDispatcher.Dispatch<AccountCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
@@ -73,8 +71,8 @@
                     AccountByUsernameQuery query = new AccountByUsernameQuery(requestModel.Username);
                     Account account = queryDispatcher.Dispatch<AccountByUsernameQuery, Account>(query);
 
-                    LoginCommand loginCommand = new LoginCommand(requestModel.Username, requestModel.Password);
-                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);
+                    AccountCommand loginCommand = new AccountCommand(requestModel.Username, requestModel.Password);
+                    Authentication authentication = commandDispatcher.Dispatch<AccountCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)

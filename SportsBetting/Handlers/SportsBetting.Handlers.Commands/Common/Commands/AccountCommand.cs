@@ -1,7 +1,5 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.Commands
+﻿namespace SportsBetting.Handlers.Commands.Common.Commands
 {
-    using SportsBetting.Handlers.Commands.Common.Commands;
-
     public class AccountCommand : PasswordCommand
     {
         public AccountCommand(string username, string password)

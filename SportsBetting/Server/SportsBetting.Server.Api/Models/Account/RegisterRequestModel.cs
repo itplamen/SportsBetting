@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using SportsBetting.Common.Infrastructure.Mapping;
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Common.Commands;
 
     public class RegisterRequestModel : AccountRequestModel, IMapTo<AccountCommand>
     {

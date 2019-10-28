@@ -31,7 +31,7 @@
             container.Register<ICommandHandler<UpdateAccountCommand>, UpdateAccountCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<PlaceBetCommand>, PlaceBetCommandHandler>(new WebRequestLifestyle());
 
-            container.Register<IValidationHandler<LoginCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<PlaceBetCommand>, CanPlaceBetValidationCommand>(new WebRequestLifestyle());
             container.Register<IValidationHandler<UsernameCommand>, UniqueUsernameValidationHandler>(new WebRequestLifestyle());
