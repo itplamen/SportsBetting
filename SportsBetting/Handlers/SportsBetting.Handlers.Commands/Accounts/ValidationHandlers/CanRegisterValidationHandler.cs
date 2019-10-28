@@ -12,16 +12,16 @@
 
     public class CanRegisterValidationHandler : IValidationHandler<AccountCommand>
     {
-        private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
+        private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByExpressionHandler;
 
-        public CanRegisterValidationHandler(IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
+        public CanRegisterValidationHandler(IQueryHandler<AccountByUsernameQuery, Account> accountByExpressionHandler)
         {
             this.accountByExpressionHandler = accountByExpressionHandler;
         }
 
         public IEnumerable<ValidationResult> Validate(AccountCommand command)
         {
-            AccountByExpressionQuery byUsernameQuery = new AccountByExpressionQuery(x => x.Username == command.Username);
+            AccountByUsernameQuery byUsernameQuery = new AccountByUsernameQuery(command.Username);
             Account accountByUsername = accountByExpressionHandler.Handle(byUsernameQuery);
 
             if (accountByUsername != null)

@@ -13,11 +13,11 @@
     public class CanLoginValidationHandler : IValidationHandler<AccountCommand>
     {
         private readonly ICommandHandler<PasswordCommand, string> encryptPasswordHandler;
-        private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
+        private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByExpressionHandler;
 
         public CanLoginValidationHandler(
             ICommandHandler<PasswordCommand, string> encryptPasswordHandler, 
-            IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler)
+            IQueryHandler<AccountByUsernameQuery, Account> accountByExpressionHandler)
         {
             this.encryptPasswordHandler = encryptPasswordHandler;
             this.accountByExpressionHandler = accountByExpressionHandler;
@@ -25,7 +25,7 @@
 
         public IEnumerable<ValidationResult> Validate(AccountCommand command)
         {
-            AccountByExpressionQuery query = new AccountByExpressionQuery(x => x.Username == command.Username);
+            AccountByUsernameQuery query = new AccountByUsernameQuery(command.Username);
             Account account = accountByExpressionHandler.Handle(query);
 
             if (account == null)

@@ -67,8 +67,8 @@
 
                 if (ModelState.IsValid)
                 {
-                    AccountByExpressionQuery query = new AccountByExpressionQuery(x => x.Username == requestModel.Username);
-                    Account account = queryDispatcher.Dispatch<AccountByExpressionQuery, Account>(query);
+                    AccountByUsernameQuery query = new AccountByUsernameQuery(requestModel.Username);
+                    Account account = queryDispatcher.Dispatch<AccountByUsernameQuery, Account>(query);
 
                     LoginCommand loginCommand = new LoginCommand(account.Id, requestModel.RememberMe);
                     Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);

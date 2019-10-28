@@ -22,7 +22,7 @@
             container.Register(typeof(IQueryHandler<>), typeof(WithDeletedEntitiesHandler<>), new WebRequestLifestyle());
             container.Register<IQueryHandler<MatchByIdQuery, MatchResult>, MatchByIdQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
-            container.Register<IQueryHandler<AccountByExpressionQuery, Account>, AccountByExpressionQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
         }
     }
 }

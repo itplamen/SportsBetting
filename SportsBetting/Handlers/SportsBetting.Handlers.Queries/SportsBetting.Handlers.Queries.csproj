@@ -67,8 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts\AccountByExpressionQuery.cs" />
-    <Compile Include="Accounts\AccountByExpressionQueryHandler.cs" />
+    <Compile Include="Accounts\AccountByUsernameQuery.cs" />
+    <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
     <Compile Include="Common\EntitiesByKeyQuery.cs" />
     <Compile Include="Common\EntitiesByKeyQueryHandler.cs" />
     <Compile Include="Common\QueryDispatcher.cs" />

@@ -8,19 +8,19 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class AccountByExpressionQueryHandler : IQueryHandler<AccountByExpressionQuery, Account>
+    public class AccountByUsernameQueryHandler : IQueryHandler<AccountByUsernameQuery, Account>
     {
         private readonly ISportsBettingDbContext dbContext;
 
-        public AccountByExpressionQueryHandler(ISportsBettingDbContext dbContext)
+        public AccountByUsernameQueryHandler(ISportsBettingDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public Account Handle(AccountByExpressionQuery query)
+        public Account Handle(AccountByUsernameQuery query)
         {
             Account account = dbContext.GetCollection<Account>()
-                .Find(query.Expression)
+                .Find(x => x.Username == query.Username)
                 .FirstOrDefault();
 
             return account;
