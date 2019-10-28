@@ -9,6 +9,7 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.QueryHandlers;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Matches;

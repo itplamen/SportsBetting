@@ -10,6 +10,7 @@
     using SportsBetting.Handlers.Commands.Common;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class UnprocessedFeedManager : IUnprocessedFeedManager

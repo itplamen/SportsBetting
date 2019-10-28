@@ -7,8 +7,8 @@
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Auth.Commands;
-    using SportsBetting.Handlers.Commands.Contracts;
-    using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Commands.Contracts;    
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class CanLogoutValidationHandler : IValidationHandler<LogoutCommand>

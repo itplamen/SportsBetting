@@ -69,15 +69,15 @@
   <ItemGroup>
     <Compile Include="Accounts\AccountByUsernameQuery.cs" />
     <Compile Include="Accounts\AccountByUsernameQueryHandler.cs" />
-    <Compile Include="Common\EntitiesByKeyQuery.cs" />
-    <Compile Include="Common\EntitiesByKeyQueryHandler.cs" />
+    <Compile Include="Common\Queries\EntitiesByKeyQuery.cs" />
+    <Compile Include="Common\QueryHandlers\EntitiesByKeyQueryHandler.cs" />
     <Compile Include="Common\QueryDispatcher.cs" />
     <Compile Include="Common\Results\MarketResult.cs" />
     <Compile Include="Common\Results\MatchResult.cs" />
     <Compile Include="Common\Results\OddResult.cs" />
-    <Compile Include="Common\WithDeletedEntitiesHandler.cs" />
-    <Compile Include="Common\EntitiesByIdQuery.cs" />
-    <Compile Include="Common\EntitiesByIdQueryHandler.cs" />
+    <Compile Include="Common\QueryHandlers\WithDeletedEntitiesHandler.cs" />
+    <Compile Include="Common\Queries\EntitiesByIdQuery.cs" />
+    <Compile Include="Common\QueryHandlers\EntitiesByIdQueryHandler.cs" />
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryDispatcher.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />

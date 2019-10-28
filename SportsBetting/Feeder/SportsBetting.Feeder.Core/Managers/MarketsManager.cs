@@ -10,7 +10,7 @@
     using SportsBetting.Feeder.Models;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Markets;
-    using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class MarketsManager : IMarketsManager

@@ -7,7 +7,7 @@
 
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
 

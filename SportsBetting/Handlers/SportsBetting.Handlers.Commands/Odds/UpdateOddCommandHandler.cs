@@ -10,7 +10,7 @@
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Contracts;
-    using SportsBetting.Handlers.Queries.Common;
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class UpdateOddCommandHandler : ICommandHandler<UpdateOddCommand, string>

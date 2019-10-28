@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Queries.Common
+﻿namespace SportsBetting.Handlers.Queries.Common.Queries
 {
     using System;
     using System.Collections.Generic;

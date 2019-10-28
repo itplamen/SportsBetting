@@ -1,27 +1,28 @@
-﻿namespace SportsBetting.Handlers.Queries.Common
+﻿namespace SportsBetting.Handlers.Queries.Common.QueryHandlers
 {
     using System.Collections.Generic;
     using System.Linq;
 
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Models.Base;
+    using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class EntitiesByKeyQueryHandler<TEntity> : IQueryHandler<EntitiesByKeyQuery<TEntity>, IEnumerable<TEntity>>
+    public class EntitiesByIdQueryHandler<TEntity> : IQueryHandler<EntitiesByIdQuery<TEntity>, IEnumerable<TEntity>>
         where TEntity : BaseModel
     {
         private readonly ICache<TEntity> cache;
 
-        public EntitiesByKeyQueryHandler(ICache<TEntity> cache)
+        public EntitiesByIdQueryHandler(ICache<TEntity> cache)
         {
             this.cache = cache;
         }
 
-        public IEnumerable<TEntity> Handle(EntitiesByKeyQuery<TEntity> query)
+        public IEnumerable<TEntity> Handle(EntitiesByIdQuery<TEntity> query)
         {
             if (query.Expression == null)
             {
-                return cache.All(x => query.Keys.Contains(x.Key));
+                return cache.All(x => query.Ids.Contains(x.Id));
             }
 
             return cache.All(query.Expression);
