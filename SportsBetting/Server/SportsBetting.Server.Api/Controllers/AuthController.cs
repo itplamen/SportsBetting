@@ -44,8 +44,8 @@
                     AccountByUsernameQuery query = new AccountByUsernameQuery(requestModel.Username);
                     Account account = queryDispatcher.Dispatch<AccountByUsernameQuery, Account>(query);
 
-                    AccountCommand loginCommand = new AccountCommand(requestModel.Username, requestModel.Password);
-                    Authentication authentication = commandDispatcher.Dispatch<AccountCommand, Authentication>(loginCommand);
+                    AuthCommand loginCommand = new AuthCommand(account.Id, requestModel.RememberMe);
+                    Authentication authentication = commandDispatcher.Dispatch<AuthCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
