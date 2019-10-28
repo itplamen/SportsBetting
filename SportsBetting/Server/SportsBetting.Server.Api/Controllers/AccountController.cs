@@ -9,6 +9,8 @@
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
+    using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
@@ -32,17 +34,18 @@
         {
             if (ModelState.IsValid)
             {
-                AccountCommand registerCommand = Mapper.Map<AccountCommand>(requestModel);
-                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(registerCommand);
+                UsernameCommand uniqueUsernameCommand = new UsernameCommand(requestModel.Username);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(uniqueUsernameCommand);
 
                 ModelState.AddModelErrors(validations);
 
                 if (ModelState.IsValid)
                 {
-                    Account account = commandDispatcher.Dispatch<AccountCommand, Account>(registerCommand);
-                    LoginCommand authCommand = new LoginCommand(account.Id, false);
+                    AccountCommand accountCommand = new AccountCommand(requestModel.Username, requestModel.Password);
+                    Account account = commandDispatcher.Dispatch<AccountCommand, Account>(accountCommand);
 
-                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(authCommand);
+                    LoginCommand loginCommand = new LoginCommand(requestModel.Username, requestModel.Password);
+                    Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper
                         .Map<AccountResponseModel>(authentication)
@@ -70,7 +73,7 @@
                     AccountByUsernameQuery query = new AccountByUsernameQuery(requestModel.Username);
                     Account account = queryDispatcher.Dispatch<AccountByUsernameQuery, Account>(query);
 
-                    LoginCommand loginCommand = new LoginCommand(account.Id, requestModel.RememberMe);
+                    LoginCommand loginCommand = new LoginCommand(requestModel.Username, requestModel.Password);
                     Authentication authentication = commandDispatcher.Dispatch<LoginCommand, Authentication>(loginCommand);
 
                     AccountResponseModel responseModel = Mapper

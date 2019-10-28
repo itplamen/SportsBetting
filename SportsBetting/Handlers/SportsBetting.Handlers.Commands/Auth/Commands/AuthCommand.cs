@@ -1,10 +1,10 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.Commands
+﻿namespace SportsBetting.Handlers.Commands.Auth.Commands
 {
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class LoginCommand : ICommand
+    public class AuthCommand : ICommand
     {
-        public LoginCommand(string accountId, bool rememberMe)
+        public AuthCommand(string accountId, bool rememberMe)
         {
             AccountId = accountId;
             RememberMe = rememberMe;

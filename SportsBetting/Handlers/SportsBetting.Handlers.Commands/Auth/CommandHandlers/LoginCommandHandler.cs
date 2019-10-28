@@ -1,24 +1,24 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.CommandHandlers
+﻿namespace SportsBetting.Handlers.Commands.Auth.CommandHandlers
 {
     using System;
 
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
-    public class AuthenticateAccountCommandHandler : ICommandHandler<LoginCommand, Authentication>
+    public class LoginCommandHandler : ICommandHandler<AuthCommand, Authentication>
     {
         private const int EXPIRATION_TIME = 30;
 
         private readonly ISportsBettingDbContext dbContext;
 
-        public AuthenticateAccountCommandHandler(ISportsBettingDbContext dbContext)
+        public LoginCommandHandler(ISportsBettingDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public Authentication Handle(LoginCommand command)
+        public Authentication Handle(AuthCommand command)
         {
             Authentication authentication = new Authentication();
             authentication.AccountId = command.AccountId;

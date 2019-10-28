@@ -67,18 +67,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts\CommandHandlers\AuthenticateAccountCommandHandler.cs" />
+    <Compile Include="Auth\CommandHandlers\LoginCommandHandler.cs" />
     <Compile Include="Auth\CommandHandlers\LogoutCommandHandler.cs" />
     <Compile Include="Accounts\CommandHandlers\UpdateAccountCommandHandler.cs" />
     <Compile Include="Accounts\Commands\UpdateAccountCommand.cs" />
-    <Compile Include="Accounts\Commands\LoginCommand.cs" />
+    <Compile Include="Auth\Commands\LoginCommand.cs" />
+    <Compile Include="Auth\Commands\AuthCommand.cs" />
     <Compile Include="Auth\Commands\LogoutCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Auth\ValidationHandlers\CanLogoutValidationHandler.cs" />
     <Compile Include="Common\Commands\PasswordCommand.cs" />
     <Compile Include="Common\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
-    <Compile Include="Accounts\ValidationHandlers\CanLoginValidationHandler.cs" />
+    <Compile Include="Auth\ValidationHandlers\CanLoginValidationHandler.cs" />
     <Compile Include="Bets\CommandHandlers\PlaceBetCommandHandler.cs" />
     <Compile Include="Bets\Commands\PlaceBetCommand.cs" />
     <Compile Include="Bets\ValidationHandlers\CanPlaceBetValidationCommand.cs" />
