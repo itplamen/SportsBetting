@@ -15,6 +15,7 @@
     using SportsBetting.Handlers.Commands.Bets.Commands;
     using SportsBetting.Handlers.Commands.Bets.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
+    using SportsBetting.Handlers.Commands.Common.CommandHandlers;
     using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Common.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Contracts;

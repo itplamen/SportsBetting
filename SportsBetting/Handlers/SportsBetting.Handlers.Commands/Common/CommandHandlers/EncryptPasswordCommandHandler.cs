@@ -1,9 +1,9 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.CommandHandlers
+﻿namespace SportsBetting.Handlers.Commands.Common.CommandHandlers
 {
     using System.Security.Cryptography;
     using System.Text;
 
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class EncryptPasswordCommandHandler : ICommandHandler<PasswordCommand, string>

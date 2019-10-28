@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.Commands
+﻿namespace SportsBetting.Handlers.Commands.Common.Commands
 {
     using SportsBetting.Handlers.Commands.Contracts;
 

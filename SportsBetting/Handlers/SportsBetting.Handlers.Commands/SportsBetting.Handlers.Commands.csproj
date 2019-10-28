@@ -75,8 +75,8 @@
     <Compile Include="Auth\Commands\LogoutCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Auth\ValidationHandlers\CanLogoutValidationHandler.cs" />
-    <Compile Include="Accounts\Commands\PasswordCommand.cs" />
-    <Compile Include="Accounts\CommandHandlers\EncryptPasswordCommandHandler.cs" />
+    <Compile Include="Common\Commands\PasswordCommand.cs" />
+    <Compile Include="Common\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanLoginValidationHandler.cs" />
     <Compile Include="Bets\CommandHandlers\PlaceBetCommandHandler.cs" />

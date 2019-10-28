@@ -7,6 +7,7 @@
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class RegisterCommandHandler : ICommandHandler<AccountCommand, Account>
