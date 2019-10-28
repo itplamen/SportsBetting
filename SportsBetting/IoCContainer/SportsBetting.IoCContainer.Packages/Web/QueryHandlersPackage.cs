@@ -26,6 +26,7 @@
         public void RegisterServices(Container container)
         {
             container.Register<IQueryDispatcher, QueryDispatcher>(new WebRequestLifestyle());
+            container.Register(typeof(IQueryHandler<>), typeof(EntityByIdQueryHandler<>), new WebRequestLifestyle());
             container.Register(typeof(IQueryHandler<,>), typeof(EntitiesByIdQueryHandler<>), new WebRequestLifestyle());
             container.Register(typeof(IQueryHandler<>), typeof(WithDeletedEntitiesHandler<>), new WebRequestLifestyle());
             container.Register<IQueryHandler<MatchByIdQuery, MatchResult>, MatchByIdQueryHandler>(new WebRequestLifestyle());

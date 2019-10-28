@@ -1,8 +1,6 @@
 ﻿namespace SportsBetting.Handlers.Queries.Common.Queries
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq.Expressions;
 
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Handlers.Queries.Contracts;
