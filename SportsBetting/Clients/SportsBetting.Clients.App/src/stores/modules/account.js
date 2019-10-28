@@ -1,6 +1,14 @@
 import axios from 'axios'
 import endpoints from '../../common/constants/endpoints'
 
+const saveAccountToStorage = (storage, account) => {
+  storage.id = account.Id;
+  storage.username = account.Username;
+  storage.balance = account.Balance;
+  storage.loginToken = account.LoginToken;
+  storage.expiration = account.Expiration;
+};
+
 const state = {
   account: {
     id: '',
@@ -36,11 +44,8 @@ const actions = {
 
 const mutations = {
   setAccount: (state, account) => {
-    state.account.id = account.Id;
-    state.account.username = account.Username;
-    state.account.balance = account.Balance;
-    state.account.loginToken = account.LoginToken;
-    state.account.expiration = account.Expiration;
+    saveAccountToStorage(state.account, account);
+    saveAccountToStorage(localStorage, account);
   }
 };
 
