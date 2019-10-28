@@ -15,6 +15,8 @@
     using SportsBetting.Handlers.Commands.Bets.Commands;
     using SportsBetting.Handlers.Commands.Bets.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Common;
+    using SportsBetting.Handlers.Commands.Common.Commands;
+    using SportsBetting.Handlers.Commands.Common.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public sealed class CommandHandlersPackage : IPackage
@@ -32,6 +34,7 @@
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<PlaceBetCommand>, CanPlaceBetValidationCommand>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<UsernameCommand>, UniqueUsernameValidationHandler>(new WebRequestLifestyle());
         }
     }
 }

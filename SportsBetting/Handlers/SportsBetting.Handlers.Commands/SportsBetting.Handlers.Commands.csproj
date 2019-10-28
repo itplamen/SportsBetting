@@ -75,7 +75,6 @@
     <Compile Include="Auth\Commands\LogoutCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Auth\ValidationHandlers\CanLogoutValidationHandler.cs" />
-    <Compile Include="Accounts\ValidationHandlers\CanRegisterValidationHandler.cs" />
     <Compile Include="Accounts\Commands\PasswordCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\EncryptPasswordCommandHandler.cs" />
     <Compile Include="Accounts\Commands\AccountCommand.cs" />
@@ -86,6 +85,8 @@
     <Compile Include="Common\CommandDispatcher.cs" />
     <Compile Include="Common\Commands\DeleteEntitiesCommand.cs" />
     <Compile Include="Common\CommandHandlers\DeleteEntitiesCommandHandler.cs" />
+    <Compile Include="Common\Commands\UsernameCommand.cs" />
+    <Compile Include="Common\ValidationHandlers\UniqueUsernameValidationHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandDispatcher.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />
