@@ -81,6 +81,8 @@
     <Compile Include="Contracts\IQuery.cs" />
     <Compile Include="Contracts\IQueryDispatcher.cs" />
     <Compile Include="Contracts\IQueryHandler.cs" />
+    <Compile Include="Markets\Queries\MarketsByMatchIdQuery.cs" />
+    <Compile Include="Markets\QueryHandlers\MarketsByMatchIdQueryHandler.cs" />
     <Compile Include="Matches\Queries\AllMatchesQuery.cs" />
     <Compile Include="Matches\QueryHandlers\AllMatchesQueryHandler.cs" />
     <Compile Include="Matches\Queries\MatchByIdQuery.cs" />

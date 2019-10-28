@@ -12,6 +12,8 @@
     using SportsBetting.Handlers.Queries.Common.QueryHandlers;
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
+    using SportsBetting.Handlers.Queries.Markets.Queries;
+    using SportsBetting.Handlers.Queries.Markets.QueryHandlers;
     using SportsBetting.Handlers.Queries.Matches.Queries;
     using SportsBetting.Handlers.Queries.Matches.QueryHandlers;
 
@@ -25,6 +27,7 @@
             container.Register<IQueryHandler<MatchByIdQuery, MatchResult>, MatchByIdQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<MarketsByMatchIdQuery, IEnumerable<Market>>, MarketsByMatchIdQueryHandler>(new WebRequestLifestyle());
         }
     }
 }
