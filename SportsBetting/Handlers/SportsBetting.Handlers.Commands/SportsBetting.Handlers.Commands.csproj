@@ -73,7 +73,6 @@
     <Compile Include="Accounts\Commands\UpdateAccountCommand.cs" />
     <Compile Include="Accounts\Commands\LoginCommand.cs" />
     <Compile Include="Auth\Commands\LogoutCommand.cs" />
-    <Compile Include="Accounts\Commands\RegisterCommand.cs" />
     <Compile Include="Accounts\CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Auth\ValidationHandlers\CanLogoutValidationHandler.cs" />
     <Compile Include="Accounts\ValidationHandlers\CanRegisterValidationHandler.cs" />

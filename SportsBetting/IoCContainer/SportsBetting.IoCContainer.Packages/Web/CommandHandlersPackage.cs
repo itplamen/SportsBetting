@@ -22,7 +22,7 @@
         public void RegisterServices(Container container)
         {
             container.Register<ICommandDispatcher, CommandDispatcher>(new WebRequestLifestyle());
-            container.Register<ICommandHandler<RegisterCommand, Account>, RegisterCommandHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<AccountCommand, Account>, RegisterCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<LogoutCommand>, LogoutCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<PasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<LoginCommand, Authentication>, AuthenticateAccountCommandHandler>(new WebRequestLifestyle());
@@ -31,7 +31,7 @@
 
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
-            container.Register<IValidationHandler<RegisterCommand>, CanRegisterValidationHandler>(new WebRequestLifestyle());
+            container.Register<IValidationHandler<AccountCommand>, CanRegisterValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<PlaceBetCommand>, CanPlaceBetValidationCommand>(new WebRequestLifestyle());
         }
     }

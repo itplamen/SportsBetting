@@ -10,7 +10,7 @@
     using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
 
-    public class CanRegisterValidationHandler : IValidationHandler<RegisterCommand>
+    public class CanRegisterValidationHandler : IValidationHandler<AccountCommand>
     {
         private readonly IQueryHandler<AccountByExpressionQuery, Account> accountByExpressionHandler;
 
@@ -19,7 +19,7 @@
             this.accountByExpressionHandler = accountByExpressionHandler;
         }
 
-        public IEnumerable<ValidationResult> Validate(RegisterCommand command)
+        public IEnumerable<ValidationResult> Validate(AccountCommand command)
         {
             AccountByExpressionQuery byUsernameQuery = new AccountByExpressionQuery(x => x.Username == command.Username);
             Account accountByUsername = accountByExpressionHandler.Handle(byUsernameQuery);
@@ -27,14 +27,6 @@
             if (accountByUsername != null)
             {
                 yield return new ValidationResult(nameof(command.Username), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Username).ToLower()));
-            }
-
-            AccountByExpressionQuery byEmailQuery = new AccountByExpressionQuery(x => x.Email == command.Email);
-            Account accountByEmail = accountByExpressionHandler.Handle(byEmailQuery);
-
-            if (accountByEmail != null)
-            {
-                yield return new ValidationResult(nameof(command.Email), string.Format(MessageConstants.ALREADY_REGISTERED, nameof(command.Email).ToLower()));
             }
         }
     }

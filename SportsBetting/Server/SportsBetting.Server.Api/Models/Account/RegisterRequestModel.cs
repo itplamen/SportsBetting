@@ -5,9 +5,8 @@
     using SportsBetting.Common.Infrastructure.Mapping;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
 
-    public class RegisterRequestModel : AccountRequestModel, IMapTo<RegisterCommand>
+    public class RegisterRequestModel : AccountRequestModel, IMapTo<AccountCommand>
     {
-
         [Required(ErrorMessage = "Confirm your password")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
@@ -15,10 +14,5 @@
             nameof(Password),
             ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "{0} is required")]
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
-        public string Email { get; set; }
     }
 }

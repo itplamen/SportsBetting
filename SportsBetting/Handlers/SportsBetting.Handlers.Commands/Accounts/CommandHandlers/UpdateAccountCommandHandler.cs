@@ -24,7 +24,6 @@
             UpdateDefinition<Account> update = Builders<Account>.Update
                .Set(x => x.Username, command.Username)
                .Set(x => x.Password, command.Password)
-               .Set(x => x.Email, command.Email)
                .Set(x => x.Balance, command.Balance)
                .Set(x => x.IsVerified, command.IsVerified)
                .Set(x => x.ModifiedOn, DateTime.UtcNow);

@@ -23,21 +23,6 @@ const validateFields = (registerModel) => {
   return validations;
 }
 
-const validateEmail = (email) => {
-  const regex = /\S+@\S+\.\S+/;
-  let validation = {
-    message: '',
-    state: enums.REGISTER_STATE.VALID
-  };
-
-  if (!regex.test(email)) {
-    validation.state = enums.REGISTER_STATE.INVALID;
-    validation.message = messageConstants.REGISTER_MESSAGE.INVALID_EMAIL;
-  }
-
-  return validation;
-};
-
 const validatePasswordMatching = (password, confirmPassword) => {
   let validation = {
     message: '',
@@ -53,7 +38,6 @@ const validatePasswordMatching = (password, confirmPassword) => {
 };
 
 export default {
-  validateEmail,
   validateFields,
   validatePasswordMatching
 };

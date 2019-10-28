@@ -6,11 +6,6 @@
         <div class="invalid-feedback">{{registerModel.username.message}}</div>
       </b-form-group>
 
-      <b-form-group :state="registerModel.email.state" label="Email" label-for="EmailInput">
-        <b-form-input :state="registerModel.email.state" v-model="registerModel.email.value" id="EmailInput" required></b-form-input>
-        <div class="invalid-feedback">{{registerModel.email.message}}</div>
-      </b-form-group>
-
       <b-form-group :state="registerModel.password.state" label="Password" label-for="PasswordInput">
         <b-form-input :state="registerModel.password.state" v-model="registerModel.password.value" id="PasswordInput" type="password" required></b-form-input>
         <div class="invalid-feedback">{{registerModel.password.message}}</div>
@@ -50,11 +45,6 @@ export default {
           value: '',
           state: '',
           message: ''
-        },
-        email: {
-          value: '',
-          state: '',
-          message: ''
         }
       }
     }
@@ -66,8 +56,7 @@ export default {
         this.registerAccount({
           username: this.registerModel.username.value,
           password: this.registerModel.password.value,
-          confirmPassword: this.registerModel.confirmPassword.value,
-          email: this.registerModel.email.value
+          confirmPassword: this.registerModel.confirmPassword.value
         })
         .then(res => this.$bvModal.hide('RegisterModal'))
         .catch(err => this.showModelStateErrors(err.response.data));
@@ -75,7 +64,6 @@ export default {
     },
     isRegisterValid() {
       return this.areAllFieldsFilled() && 
-        this.isEmailValid() && 
         this.isPasswordConfirmed() &&
         this.$refs.form.checkValidity();
     },
@@ -89,14 +77,6 @@ export default {
       });
 
       return validations.every(x => x.state == enums.REGISTER_STATE.VALID);
-    },
-    isEmailValid() {
-      let validation = registrationValidator.validateEmail(this.registerModel.email.value);
-      
-      this.registerModel.email.state = validation.state;
-      this.registerModel.email.message = validation.message;
-
-      return validation.state == enums.REGISTER_STATE.VALID;
     },
     isPasswordConfirmed() {
       let validation = registrationValidator.validatePasswordMatching(
