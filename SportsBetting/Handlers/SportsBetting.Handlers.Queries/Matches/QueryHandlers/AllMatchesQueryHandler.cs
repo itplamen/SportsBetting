@@ -32,7 +32,9 @@
         public IEnumerable<MatchResult> Handle(AllMatchesQuery query)
         {
             IEnumerable<Match> matches = matchesCache.All(_ => true).OrderBy(x => x.Type).Take(query.Take);
-            IEnumerable<Tournament> tournaments = GetTournaments(matches.Select(x => x.TournamentId));
+
+            EntitiesByIdQuery<Tournament> tournamentsQuery = new EntitiesByIdQuery<Tournament>(matches.Select(x => x.TournamentId).Distinct());
+            IEnumerable<Tournament> tournaments = tournamentsHandler.Handle(tournamentsQuery);
 
             TeamsByIdsQuery teamsQuery = new TeamsByIdsQuery(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));
             IEnumerable<Team> teams = teamsHandler.Handle(teamsQuery);
@@ -50,14 +52,6 @@
             }
 
             return matchResults;
-        }
-
-        private IEnumerable<Tournament> GetTournaments(IEnumerable<string> tournamentIds)
-        {
-            EntitiesByIdQuery<Tournament> query = new EntitiesByIdQuery<Tournament>(tournamentIds.Distinct());
-            IEnumerable<Tournament> tournaments = tournamentsHandler.Handle(query);
-
-            return tournaments;
         }
     }
 }
