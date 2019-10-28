@@ -8,6 +8,9 @@
     using SportsBetting.Handlers.Commands.Accounts.CommandHandlers;
     using SportsBetting.Handlers.Commands.Accounts.Commands;
     using SportsBetting.Handlers.Commands.Accounts.ValidationHandlers;
+    using SportsBetting.Handlers.Commands.Auth.CommandHandlers;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
+    using SportsBetting.Handlers.Commands.Auth.ValidationHandlers;
     using SportsBetting.Handlers.Commands.Bets.CommandHandlers;
     using SportsBetting.Handlers.Commands.Bets.Commands;
     using SportsBetting.Handlers.Commands.Bets.ValidationHandlers;

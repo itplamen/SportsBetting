@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.CommandHandlers
+﻿namespace SportsBetting.Handlers.Commands.Auth.CommandHandlers
 {
     using System;
 
@@ -6,7 +6,7 @@
 
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class LogoutCommandHandler : ICommandHandler<LogoutCommand>
@@ -21,7 +21,7 @@
         public void Handle(LogoutCommand command)
         {
             FilterDefinition<Authentication> filter = Builders<Authentication>.Filter
-                .Eq(x => x.Id, command.LoginToken);
+                .Eq(x => x.Id, command.Id);
 
             UpdateDefinition<Authentication> update = Builders<Authentication>.Update
                .Set(x => x.DeletedOn, DateTime.UtcNow)

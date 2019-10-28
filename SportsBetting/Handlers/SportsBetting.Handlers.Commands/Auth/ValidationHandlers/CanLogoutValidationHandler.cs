@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Accounts.ValidationHandlers
+﻿namespace SportsBetting.Handlers.Commands.Auth.ValidationHandlers
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
 
     using SportsBetting.Common.Results;
     using SportsBetting.Data.Models;
-    using SportsBetting.Handlers.Commands.Accounts.Commands;
+    using SportsBetting.Handlers.Commands.Auth.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Contracts;
@@ -22,7 +22,7 @@
 
         public IEnumerable<ValidationResult> Validate(LogoutCommand command)
         {
-            IEnumerable<string> ids = new List<string>() { command.LoginToken };
+            IEnumerable<string> ids = new List<string>() { command.Id };
             EntitiesByIdQuery<Authentication> query = new EntitiesByIdQuery<Authentication>(ids);
 
             IEnumerable<Authentication> authentications = queryHandler.Handle(query);
@@ -31,7 +31,7 @@
             {
                 return new List<ValidationResult>()
                 {
-                    new ValidationResult(nameof(command.LoginToken), "Could not find login record!")
+                    new ValidationResult(nameof(command.Id), "Could not find login record!")
                 };
             }
 
@@ -39,7 +39,7 @@
             {
                 return new List<ValidationResult>()
                 {
-                    new ValidationResult(nameof(command.LoginToken), "Login expired!")
+                    new ValidationResult(nameof(command.Id), "Login expired!")
                 };
             }
 
