@@ -61,16 +61,19 @@
         [HttpPost]
         public IHttpActionResult Logout(LogoutRequestModel requestModel)
         {
-            LogoutCommand logoutCommand = new LogoutCommand(requestModel.LoginToken);
-            IEnumerable<ValidationResult> validations = commandDispatcher.Validate(logoutCommand);
-
-            ModelState.AddModelErrors(validations);
-
             if (ModelState.IsValid)
             {
-                commandDispatcher.Dispatch(logoutCommand);
+                LogoutCommand logoutCommand = new LogoutCommand(requestModel.LoginToken);
+                IEnumerable<ValidationResult> validations = commandDispatcher.Validate(logoutCommand);
 
-                return Ok();
+                ModelState.AddModelErrors(validations);
+
+                if (ModelState.IsValid)
+                {
+                    commandDispatcher.Dispatch(logoutCommand);
+
+                    return Ok();
+                }
             }
 
             return BadRequest(ModelState);

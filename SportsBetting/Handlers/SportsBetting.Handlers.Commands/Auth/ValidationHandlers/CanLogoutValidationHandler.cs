@@ -13,21 +13,18 @@
 
     public class CanLogoutValidationHandler : IValidationHandler<LogoutCommand>
     {
-        private readonly IQueryHandler<EntitiesByIdQuery<Authentication>, IEnumerable<Authentication>> queryHandler;
+        private readonly IQueryHandler<EntityByIdQuery<Authentication>, Authentication> queryHandler;
 
-        public CanLogoutValidationHandler(IQueryHandler<EntitiesByIdQuery<Authentication>, IEnumerable<Authentication>> queryHandler)
+        public CanLogoutValidationHandler(IQueryHandler<EntityByIdQuery<Authentication>, Authentication> queryHandler)
         {
             this.queryHandler = queryHandler;
         }
 
         public IEnumerable<ValidationResult> Validate(LogoutCommand command)
         {
-            IEnumerable<string> ids = new List<string>() { command.Id };
-            EntitiesByIdQuery<Authentication> query = new EntitiesByIdQuery<Authentication>(ids);
+            Authentication authentications = queryHandler.Handle(new EntityByIdQuery<Authentication>(command.Id));
 
-            IEnumerable<Authentication> authentications = queryHandler.Handle(query);
-
-            if (authentications == null || !authentications.Any())
+            if (authentications == null)
             {
                 return new List<ValidationResult>()
                 {
@@ -35,7 +32,7 @@
                 };
             }
 
-            if (authentications.First().Expiration < DateTime.UtcNow)
+            if (authentications.Expiration < DateTime.UtcNow)
             {
                 return new List<ValidationResult>()
                 {
