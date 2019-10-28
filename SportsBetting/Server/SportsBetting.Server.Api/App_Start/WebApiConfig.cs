@@ -21,13 +21,7 @@
             config.Routes.MapHttpRoute(
                 name: "Register",
                 routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "Account", action = "Register" } 
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "Login",
-                routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "Account", action = "Login" } 
+                defaults: new { controller = "Account", action = "Register" }
             );
 
             config.Routes.MapHttpRoute(
@@ -38,9 +32,17 @@
             );
 
             config.Routes.MapHttpRoute(
+                name: "Login",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { controller = "Auth", action = "Login" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "Logout",
                 routeTemplate: "api/{controller}/{action}/{loginToken}",
-                defaults: new { controller = "Auth", action = "Logout" }
+                defaults: new { controller = "Auth", action = "Logout" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
         }
     }
