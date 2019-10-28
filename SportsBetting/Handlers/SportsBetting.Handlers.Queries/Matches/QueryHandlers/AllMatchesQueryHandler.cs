@@ -11,16 +11,17 @@
     using SportsBetting.Handlers.Queries.Common.Results;
     using SportsBetting.Handlers.Queries.Contracts;
     using SportsBetting.Handlers.Queries.Matches.Queries;
+    using SportsBetting.Handlers.Queries.Teams.Queries;
 
     public class AllMatchesQueryHandler : IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>
     {
         private readonly ICache<Match> matchesCache;
-        private readonly IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler;
+        private readonly IQueryHandler<TeamsByIdsQuery, IEnumerable<Team>> teamsHandler;
         private readonly IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler;
 
         public AllMatchesQueryHandler(
             ICache<Match> matchesCache,
-            IQueryHandler<EntitiesByIdQuery<Team>, IEnumerable<Team>> teamsHandler,
+            IQueryHandler<TeamsByIdsQuery, IEnumerable<Team>> teamsHandler,
             IQueryHandler<EntitiesByIdQuery<Tournament>, IEnumerable<Tournament>> tournamentsHandler)
         {
             this.matchesCache = matchesCache;
@@ -32,7 +33,9 @@
         {
             IEnumerable<Match> matches = matchesCache.All(_ => true).OrderBy(x => x.Type).Take(query.Take);
             IEnumerable<Tournament> tournaments = GetTournaments(matches.Select(x => x.TournamentId));
-            IEnumerable<Team> teams = GetTeams(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));
+
+            TeamsByIdsQuery teamsQuery = new TeamsByIdsQuery(matches.Select(x => x.HomeTeamId), matches.Select(x => x.AwayTeamId));
+            IEnumerable<Team> teams = teamsHandler.Handle(teamsQuery);
 
             ICollection<MatchResult> matchResults = new List<MatchResult>();
 
@@ -55,19 +58,6 @@
             IEnumerable<Tournament> tournaments = tournamentsHandler.Handle(query);
 
             return tournaments;
-        }
-
-        private IEnumerable<Team> GetTeams(IEnumerable<string> homeTeamIds, IEnumerable<string> awayTeamIds)
-        {
-            List<string> teamIds = new List<string>();
-            teamIds.AddRange(homeTeamIds);
-            teamIds.AddRange(awayTeamIds);
-            teamIds.Distinct();
-
-            EntitiesByIdQuery<Team> query = new EntitiesByIdQuery<Team>(teamIds);
-            IEnumerable<Team> teams = teamsHandler.Handle(query);
-
-            return teams;
         }
     }
 }

@@ -90,6 +90,8 @@
     <Compile Include="Odds\Queries\OddsByMarketIdQuery.cs" />
     <Compile Include="Odds\QueryHandlers\OddsByMarketIdQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Teams\Queries\TeamsByIdsQuery.cs" />
+    <Compile Include="Teams\QueryHandlers\TeamsByIdsQueryHandler.cs" />
     <Compile Include="Tournaments\TournamentByNameQuery.cs" />
     <Compile Include="Tournaments\TournamentByNameQueryHandler.cs" />
   </ItemGroup>

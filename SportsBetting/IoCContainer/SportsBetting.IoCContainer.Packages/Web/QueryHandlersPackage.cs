@@ -18,6 +18,8 @@
     using SportsBetting.Handlers.Queries.Matches.QueryHandlers;
     using SportsBetting.Handlers.Queries.Odds.Queries;
     using SportsBetting.Handlers.Queries.Odds.QueryHandlers;
+    using SportsBetting.Handlers.Queries.Teams.Queries;
+    using SportsBetting.Handlers.Queries.Teams.QueryHandlers;
 
     public sealed class QueryHandlersPackage : IPackage
     {
@@ -30,6 +32,7 @@
             container.Register<IQueryHandler<AllMatchesQuery, IEnumerable<MatchResult>>, AllMatchesQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<AccountByUsernameQuery, Account>, AccountByUsernameQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<OddsByMarketIdQuery, IEnumerable<Odd>>, OddsByMarketIdQueryHandler>(new WebRequestLifestyle());
+            container.Register<IQueryHandler<TeamsByIdsQuery, IEnumerable<Team>>, TeamsByIdsQueryHandler>(new WebRequestLifestyle());
             container.Register<IQueryHandler<MarketsByMatchIdQuery, IEnumerable<Market>>, MarketsByMatchIdQueryHandler>(new WebRequestLifestyle());
         }
     }

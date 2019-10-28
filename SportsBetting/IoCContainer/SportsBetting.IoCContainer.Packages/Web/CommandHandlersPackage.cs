@@ -31,7 +31,6 @@
 
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
-            container.Register<IValidationHandler<AccountCommand>, CanRegisterValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<PlaceBetCommand>, CanPlaceBetValidationCommand>(new WebRequestLifestyle());
         }
     }
