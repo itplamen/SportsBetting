@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Common
+﻿namespace SportsBetting.Handlers.Commands.Common.Commands
 {
     using System.Collections.Generic;
 

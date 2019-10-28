@@ -7,9 +7,8 @@
     using SportsBetting.Data.Models.Base;
     using SportsBetting.Feeder.Core.Contracts.Managers;
     using SportsBetting.Feeder.Models;
-    using SportsBetting.Handlers.Commands.Common;
+    using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
-    using SportsBetting.Handlers.Queries.Common;
     using SportsBetting.Handlers.Queries.Common.Queries;
     using SportsBetting.Handlers.Queries.Contracts;
 

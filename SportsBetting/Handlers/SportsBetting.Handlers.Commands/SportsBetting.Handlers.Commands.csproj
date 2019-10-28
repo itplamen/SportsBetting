@@ -84,8 +84,8 @@
     <Compile Include="Bets\Commands\PlaceBetCommand.cs" />
     <Compile Include="Bets\ValidationHandlers\CanPlaceBetValidationCommand.cs" />
     <Compile Include="Common\CommandDispatcher.cs" />
-    <Compile Include="Common\DeleteEntitiesCommand.cs" />
-    <Compile Include="Common\DeleteEntitiesCommandHandler.cs" />
+    <Compile Include="Common\Commands\DeleteEntitiesCommand.cs" />
+    <Compile Include="Common\CommandHandlers\DeleteEntitiesCommandHandler.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandDispatcher.cs" />
     <Compile Include="Contracts\ICommandHandler.cs" />

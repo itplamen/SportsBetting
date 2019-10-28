@@ -4,6 +4,7 @@
     using SimpleInjector.Packaging;
 
     using SportsBetting.Handlers.Commands.Common;
+    using SportsBetting.Handlers.Commands.Common.CommandHandlers;
     using SportsBetting.Handlers.Commands.Contracts;
     using SportsBetting.Handlers.Commands.Markets;
     using SportsBetting.Handlers.Commands.Matches;

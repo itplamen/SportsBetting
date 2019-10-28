@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Handlers.Commands.Common
+﻿namespace SportsBetting.Handlers.Commands.Common.CommandHandlers
 {
     using System;
 
@@ -7,6 +7,7 @@
     using SportsBetting.Data.Cache.Contracts;
     using SportsBetting.Data.Contracts;
     using SportsBetting.Data.Models.Base;
+    using SportsBetting.Handlers.Commands.Common.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
 
     public class DeleteEntitiesCommandHandler<TEntity> : ICommandHandler<DeleteEntitiesCommand<TEntity>>
