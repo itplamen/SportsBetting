@@ -31,6 +31,12 @@
             );
 
             config.Routes.MapHttpRoute(
+                name: "Logout",
+                routeTemplate: "api/{controller}/{action}/{loginToken}",
+                defaults: new { controller = "Auth", action = "Logout" } 
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "AllMatches",
                 routeTemplate: "api/{controller}/{action}/{take}",
                 defaults: new { controller = "Matches", action = "All" },
