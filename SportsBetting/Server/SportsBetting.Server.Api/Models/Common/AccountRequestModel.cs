@@ -1,4 +1,4 @@
-﻿namespace SportsBetting.Server.Api.Models.Account
+﻿namespace SportsBetting.Server.Api.Models.Common
 {
     using System.ComponentModel.DataAnnotations;
 
