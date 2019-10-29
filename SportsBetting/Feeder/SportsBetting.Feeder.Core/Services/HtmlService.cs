@@ -36,18 +36,6 @@
             return container;
         }
 
-        public HtmlNode GetMarketContainer(HtmlNode marketNode)
-        {
-            HtmlNodeCollection containerNodes = marketNode.SelectNodes(ContainerXPaths.MARKET);
-
-            if (containerNodes != null)
-            {
-                return containerNodes.FirstOrDefault();
-            }
-
-            return null;
-        }
-
         public int GetTwoWayOddsCount(HtmlNode marketNode)
         {
             HtmlNode marketContainer = GetMarketContainer(marketNode);
@@ -111,6 +99,18 @@
             bool isSuspended = OddXPaths.SUSPENDED.Any(x => oddNode.GetAttributeValue("class", string.Empty).Contains(x));
 
             return isDeactivated && isSuspended;
+        }
+
+        private HtmlNode GetMarketContainer(HtmlNode marketNode)
+        {
+            HtmlNodeCollection containerNodes = marketNode.SelectNodes(ContainerXPaths.MARKET);
+
+            if (containerNodes != null)
+            {
+                return containerNodes.FirstOrDefault();
+            }
+
+            return null;
         }
 
         private IEnumerable<string> GetUrls(string pageSource, string xpath, IEnumerable<HtmlNode> htmlNodes)

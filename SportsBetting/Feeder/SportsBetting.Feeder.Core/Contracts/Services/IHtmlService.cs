@@ -14,8 +14,6 @@
 
         HtmlNode GetMatchContainer(string xpath, string pageSource);
 
-        HtmlNode GetMarketContainer(HtmlNode marketNode);
-
         int GetTwoWayOddsCount(HtmlNode marketNode);
 
         int GetOddsCount(HtmlNode marketNode);
