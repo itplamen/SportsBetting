@@ -22,7 +22,15 @@ const state = {
 const getters = {
   getAccount: (state) => state.account,
   isLoggedIn: (state) => {
-    let expirationDate = new Date(state.account.expiration);
+    let expirationDate;
+
+    if (state.account.expiration) {
+      expirationDate = new Date(state.account.expiration);
+    }
+    else {
+      expirationDate = new Date(localStorage.expiration);
+    }
+
     let dateNow = new Date();
     
     return expirationDate > dateNow;
