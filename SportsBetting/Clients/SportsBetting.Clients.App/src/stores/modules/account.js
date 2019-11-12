@@ -20,7 +20,17 @@ const state = {
 };
 
 const getters = {
-  getAccount: (state) => state.account,
+  getAccount: (state) => {
+    if (!state.account.id) {
+      state.account.id = localStorage.id;
+      state.account.username = localStorage.username;
+      state.account.balance = localStorage.balance;
+      state.account.loginToken = localStorage.loginToken;
+      state.account.expiration = localStorage.expiration;
+    }
+
+    return state.account;
+  },
   isLoggedIn: (state) => {
     let expirationDate;
 
@@ -51,8 +61,6 @@ const actions = {
   async logoutAccount({ commit }) {
     const response = await axios.post(endpoints.LOGOUT_ACCOUNT, { LoginToken: state.account.loginToken });
     
-    console.log(response.data);
-
     commit('setAccount', response.data); 
   }
 };

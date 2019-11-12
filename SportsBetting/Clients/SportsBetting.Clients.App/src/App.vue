@@ -13,6 +13,7 @@
         <router-link to="" v-on:click.native="logoutAccount()">
           Logout
         </router-link>
+        <Account />
       </span>
     </div>
     <router-view/>
@@ -22,13 +23,15 @@
 <script>
 import Login from './components/Login';
 import Register from './components/Register';
+import Account from './components/Account';
 import { mapGetters, mapActions } from 'vuex';
 import { truncate } from 'fs';
 
 export default {
   components: {
     Login,
-    Register
+    Register,
+    Account
   },
   computed: mapGetters(['isLoggedIn']),
   created() {
