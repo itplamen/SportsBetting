@@ -3,14 +3,13 @@
     <div id="nav">
       <router-link to="/">eSports</router-link> |
       <router-link to="/about">About</router-link> |
-      <span  >
+      <span v-if="!isLoggedIn">
         <router-link to="" v-b-modal.LoginModal>Login</router-link> |
         <router-link to="" v-b-modal.RegisterModal>Register</router-link>
-          
           <Login />
           <Register />
       </span>
-      <span >
+      <span v-else>
         <router-link to="" v-on:click.native="logoutAccount()">
           Logout
         </router-link>
