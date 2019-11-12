@@ -7,8 +7,8 @@
 ## Technologies
 
 * ASP.NET Web API
-* ASP.NET SignalR
-* Vue.js, Vuex
+* Vue.js
+* Vuex
 * MongoDB
 * CQS
 
