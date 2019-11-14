@@ -24,7 +24,7 @@ const getters = {
     if (!state.account.id) {
       state.account.id = localStorage.id;
       state.account.username = localStorage.username;
-      state.account.balance = localStorage.balance;
+      state.account.balance = parseInt(localStorage.balance);
       state.account.loginToken = localStorage.loginToken;
       state.account.expiration = localStorage.expiration;
     }
@@ -62,6 +62,14 @@ const actions = {
     const response = await axios.post(endpoints.LOGOUT_ACCOUNT, { LoginToken: state.account.loginToken });
     
     commit('setAccount', response.data); 
+  },
+  async placeBet({ commit }, request) {
+    const response = await axios.post(endpoints.PLACE_BET, request);
+    
+    let account = getters.getAccount;
+    account.balance -= request.stake;
+
+    commit('setAccount', account); 
   }
 };
 

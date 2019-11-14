@@ -24,6 +24,7 @@ import axios from 'axios'
 import $ from 'jquery'
 import Market from './Market'
 import Betslip from './Betslip'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -37,6 +38,7 @@ export default {
       marketName: ''
     }
   },
+  computed: mapGetters(['getAccount']),
   created() {
     $(window).off('scroll');
 
@@ -46,9 +48,14 @@ export default {
   },
   methods: {
     showBetslipInfo(odd, marketName) {
-      this.odd = odd;
-      this.marketName = marketName;
-      this.$bvToast.show('BetslipToast');
+      if (this.getAccount.id) {
+        this.odd = odd;
+        this.marketName = marketName;
+        this.$bvToast.show('BetslipToast');
+      }
+      else {
+        alert('Log in to place bet!')
+      }
     }
   }
 }

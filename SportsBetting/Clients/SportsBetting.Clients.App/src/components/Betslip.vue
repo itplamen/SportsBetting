@@ -10,15 +10,15 @@
       <div id="BettingName">{{getOddName()}}</div>
       <div>
         <span id='BettingValue'>{{odd.Value}}</span>
-        <input id="Stake" type="number" min="0" placeholder="0.00" />
-        <button id="PlaceBetBtn" class="place-bet-btn" @click="placeBet()">Place Bet</button>
+        <input id="Stake" type="number" v-model="stake" min="0" placeholder="0.00" />
+        <button id="PlaceBetBtn" class="place-bet-btn" @click="createTicket()">Place Bet</button>
       </div>
     </b-toast>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -27,10 +27,13 @@ export default {
   },
   data() {
     return {
-        match: {}
+        match: {},
+        stake: 0
     }
   },
+  computed: mapGetters(['getAccount']),
   methods: {
+    ...mapActions(['placeBet']),
     getOddName() {
       let oddName = this.odd.Name;
 
@@ -43,15 +46,19 @@ export default {
       
       return oddName;
     },
-    placeBet() {
-      axios.post('http://localhost:64399/api/Bets', {
-        username: this.registerModel.username.value,
-        password: this.registerModel.password.value,
-        confirmPassword: this.registerModel.confirmPassword.value,
-        email: this.registerModel.email.value
-      })
-      .then(res => console.log(res.data))
-      .catch(err => this.showModelStateErrors(err.response.data));
+    createTicket() {
+      if(this.getAccount.balance >= this.stake) {
+        this.placeBet({
+          oddId: this.odd.Id,
+          stake: this.stake,
+          username: this.getAccount.username
+        })
+        .then(res => console.log(res.data))
+        .catch(err => alert(err));
+      }
+      else {
+        alert('Not enough balance!');
+      }
     }
   }
 }
