@@ -118,6 +118,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bets\BetResponseModel.cs" />
     <Compile Include="Models\Common\AccountRequestModel.cs" />
     <Compile Include="Models\Account\AccountResponseModel.cs" />
     <Compile Include="Models\Auth\LoginRequestModel.cs" />
