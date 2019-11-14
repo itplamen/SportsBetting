@@ -11,6 +11,8 @@
 
     public class RegisterCommandHandler : ICommandHandler<AccountCommand, Account>
     {
+        private const decimal DEFAULT_BALANCE = 100;
+
         private readonly ISportsBettingDbContext dbContext;
         private readonly ICommandHandler<PasswordCommand, string> encryptPasswordHandler;
 
@@ -28,6 +30,7 @@
             string password = encryptPasswordHandler.Handle(encryptPasswordCommand);
 
             Account account = Mapper.Map<Account>(command);
+            account.Balance = DEFAULT_BALANCE;
             account.Password = password;
             account.CreatedOn = DateTime.UtcNow;
 
