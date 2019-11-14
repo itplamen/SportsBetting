@@ -8,6 +8,6 @@
 
         public string OddId { get; set; }
 
-        public string AccountId { get; set; }
+        public string Username { get; set; }
     }
 }

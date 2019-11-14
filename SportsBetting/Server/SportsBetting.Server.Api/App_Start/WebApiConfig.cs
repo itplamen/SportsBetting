@@ -12,10 +12,17 @@
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-               name: "DefaultApi",
+               name: "DefaultGet",
                routeTemplate: "api/{controller}/{id}",
                defaults: new { id = RouteParameter.Optional },
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+           );
+
+            config.Routes.MapHttpRoute(
+               name: "DefaultPost",
+               routeTemplate: "api/{controller}/{action}",
+               defaults: new { action = "Post" },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
            );
 
             config.Routes.MapHttpRoute(
@@ -44,6 +51,8 @@
                 defaults: new { controller = "Auth", action = "Logout" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
+
+            
         }
     }
 }

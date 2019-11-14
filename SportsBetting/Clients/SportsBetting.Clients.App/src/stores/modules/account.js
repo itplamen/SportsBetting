@@ -65,11 +65,10 @@ const actions = {
   },
   async placeBet({ commit }, request) {
     const response = await axios.post(endpoints.PLACE_BET, request);
-    
-    let account = getters.getAccount;
-    account.balance -= request.stake;
 
-    commit('setAccount', account); 
+    commit('placeBet', request.stake);
+
+    return response.data;
   }
 };
 
@@ -77,6 +76,10 @@ const mutations = {
   setAccount: (state, account) => {
     saveAccountToStorage(state.account, account);
     saveAccountToStorage(localStorage, account);
+  },
+  placeBet: (state, stake) => {
+    state.account.balance -= stake;
+    localStorage.balance -= stake;
   }
 };
 

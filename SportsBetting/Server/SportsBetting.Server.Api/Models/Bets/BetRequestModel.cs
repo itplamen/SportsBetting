@@ -14,6 +14,6 @@
         public string OddId { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
-        public string AccountId { get; set; }
+        public string Username { get; set; }
     }
 }

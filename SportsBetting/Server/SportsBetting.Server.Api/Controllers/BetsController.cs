@@ -34,9 +34,10 @@
 
                 if (ModelState.IsValid)
                 {
-                    commandDispatcher.Dispatch(placeBetCommand);
+                    BetResponseModel responseModel = new BetResponseModel();
+                    responseModel.TicketId = commandDispatcher.Dispatch<PlaceBetCommand, string>(placeBetCommand);
 
-                    return Ok();
+                    return Ok(responseModel);
                 }
             }
 

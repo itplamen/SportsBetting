@@ -7,30 +7,28 @@
     using SportsBetting.Data.Models;
     using SportsBetting.Handlers.Commands.Bets.Commands;
     using SportsBetting.Handlers.Commands.Contracts;
-    using SportsBetting.Handlers.Queries.Common.Queries;
+    using SportsBetting.Handlers.Queries.Accounts;
     using SportsBetting.Handlers.Queries.Contracts;
 
     public class CanPlaceBetValidationCommand : IValidationHandler<PlaceBetCommand>
     {
-        private readonly IQueryHandler<EntitiesByIdQuery<Account>, IEnumerable<Account>> accountByIdHandler;
+        private readonly IQueryHandler<AccountByUsernameQuery, Account> accountByUsernameHandler;
 
-        public CanPlaceBetValidationCommand(IQueryHandler<EntitiesByIdQuery<Account>, IEnumerable<Account>> accountByIdHandler)
+        public CanPlaceBetValidationCommand(IQueryHandler<AccountByUsernameQuery, Account> accountByIdHandler)
         {
-            this.accountByIdHandler = accountByIdHandler;
+            this.accountByUsernameHandler = accountByIdHandler;
         }
 
         public IEnumerable<ValidationResult> Validate(PlaceBetCommand command)
         {
-            IEnumerable<string> accountId = new List<string>() { command.AccountId };
-            EntitiesByIdQuery<Account> accountQuery = new EntitiesByIdQuery<Account>(accountId);
-
-            Account account = accountByIdHandler.Handle(accountQuery).FirstOrDefault();
+            AccountByUsernameQuery accountQuery = new AccountByUsernameQuery(command.Username);
+            Account account = accountByUsernameHandler.Handle(accountQuery);
 
             if (account == null)
             {
                 return new List<ValidationResult>()
                 {
-                    new ValidationResult(nameof(command.AccountId), "Could not find account with such Id!")
+                    new ValidationResult(nameof(command.Username), "Could not find account with such username!")
                 };
             }
 

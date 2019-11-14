@@ -53,8 +53,8 @@ export default {
           stake: this.stake,
           username: this.getAccount.username
         })
-        .then(res => console.log(res.data))
-        .catch(err => alert(err));
+        .then(res => alert('Ticket Id: ' + res.TicketId))
+        .catch(err => console.log(err));
       }
       else {
         alert('Not enough balance!');

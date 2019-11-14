@@ -29,7 +29,7 @@
             container.Register<ICommandHandler<PasswordCommand, string>, EncryptPasswordCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<AuthCommand, Authentication>, LoginCommandHandler>(new WebRequestLifestyle());
             container.Register<ICommandHandler<UpdateAccountCommand>, UpdateAccountCommandHandler>(new WebRequestLifestyle());
-            container.Register<ICommandHandler<PlaceBetCommand>, PlaceBetCommandHandler>(new WebRequestLifestyle());
+            container.Register<ICommandHandler<PlaceBetCommand, string>, PlaceBetCommandHandler>(new WebRequestLifestyle());
 
             container.Register<IValidationHandler<AccountCommand>, CanLoginValidationHandler>(new WebRequestLifestyle());
             container.Register<IValidationHandler<LogoutCommand>, CanLogoutValidationHandler>(new WebRequestLifestyle());
