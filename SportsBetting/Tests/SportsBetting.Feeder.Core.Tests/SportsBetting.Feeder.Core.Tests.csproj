@@ -70,12 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvidersTests\Teams\TeamsProviderTests.cs" />
     <Compile Include="ProvidersTests\Tournaments\TournametsProviderTests.cs" />
     <Compile Include="ServicesTests\HtmlServiceTests.cs" />
     <Compile Include="ServicesTests\WebPagesServiceTests.cs" />
     <Compile Include="TestObjects\HtmlNodes\HtmlNodesLoader.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\HtmlServiceStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\NavigationStub.cs" />
+    <Compile Include="TestObjects\HtmlNodes\Stubs\TeamsProviderStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\WebDriverStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\WebElementStub.cs" />
   </ItemGroup>

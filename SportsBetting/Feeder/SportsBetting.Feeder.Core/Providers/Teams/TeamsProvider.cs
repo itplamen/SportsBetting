@@ -16,7 +16,7 @@
         {
             IEnumerable<string> names = ParseNames(matchContainer);
 
-            if (!names.Any())
+            if (!HasTeamNames(names))
             {
                 return null;
             }
@@ -32,9 +32,9 @@
         private IEnumerable<string> ParseNames(HtmlNode matchContainer)
         {
             IEnumerable<string> teamNames = matchContainer
-                .SelectNodes(TeamXPaths.NAME)
-                .Select(x => x.InnerText.Trim())
-                .ToList();
+                ?.SelectNodes(TeamXPaths.NAME)
+                ?.Select(x => x.InnerText.Trim())
+                ?.ToList();
 
             return teamNames;
         }
@@ -60,6 +60,11 @@
             }
 
             return null;
+        }
+
+        private bool HasTeamNames(IEnumerable<string> names)
+        {
+            return names != null && names.Count(name => !string.IsNullOrEmpty(name)) >= 2;
         }
     }
 }
