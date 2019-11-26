@@ -9,12 +9,13 @@
 
     using SportsBetting.Feeder.Core.Contracts.Services;
 
-    public class WebPagesService : IWebPagesService
+    public class WebPagesService<TDriver> : IWebPagesService<TDriver>
+        where TDriver : IWebDriver, IJavaScriptExecutor, IHasSessionId
     {
         private const double PAGE_LOAD_TIMEOUT = 7;
         private const int PAGE_LOAD_MAX_RETRIES = 3;
 
-        public bool Load(RemoteWebDriver webDriver, string url, string waitForElement)
+        public bool Load(TDriver webDriver, string url, string waitForElement)
         {
             if (webDriver.Url == url)
             {
@@ -26,7 +27,7 @@
             return EnsureIsLoaded(webDriver, waitForElement);
         }
 
-        public void ScrollToBottom(RemoteWebDriver webDriver)
+        public void ScrollToBottom(TDriver webDriver)
         {
             string currentUrl = string.Empty;
 
@@ -39,7 +40,7 @@
             }
         }
 
-        private bool EnsureIsLoaded(RemoteWebDriver webDriver, string waitForElement)
+        private bool EnsureIsLoaded(TDriver webDriver, string waitForElement)
         {
             int retries = 1;
 
@@ -57,7 +58,7 @@
             return false;
         }
 
-        private bool IsLoaded(RemoteWebDriver webDriver, string waitForElement)
+        private bool IsLoaded(TDriver webDriver, string waitForElement)
         {
             WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(PAGE_LOAD_TIMEOUT));
             IWebElement webElement = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(waitForElement)));

@@ -20,17 +20,17 @@
         private readonly IFeedManager feedManager;
         private readonly IHtmlService htmlService;
         private readonly RemoteWebDriver webDriver;
-        private readonly IWebPagesService webPagesService;
         private readonly IMatchesProvider matchesProvider;
         private readonly IUnprocessedFeedManager unprocessedFeedManager;
+        private readonly IWebPagesService<RemoteWebDriver> webPagesService;
 
         public FeedSynchronizer(
             IFeedManager feedManager, 
-            IHtmlService htmlService, 
-            IWebPagesService webPagesService,
+            IHtmlService htmlService,
             IMatchesProvider matchesProvider,
             IWebDriverFactory webDriverFactory,
-            IUnprocessedFeedManager unprocessedFeedManager)
+            IUnprocessedFeedManager unprocessedFeedManager,
+            IWebPagesService<RemoteWebDriver> webPagesService)
         {
             this.feedManager = feedManager;
             this.htmlService = htmlService;

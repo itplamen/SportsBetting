@@ -47,7 +47,7 @@
 
         private void RegisterFeederServices(Container container)
         {
-            container.Register<IWebPagesService, WebPagesService>(Lifestyle.Singleton);
+            container.Register(typeof(IWebPagesService<>), typeof(WebPagesService<>), Lifestyle.Singleton);
             container.Register<IHtmlService, HtmlService>(Lifestyle.Singleton);
         }
 
