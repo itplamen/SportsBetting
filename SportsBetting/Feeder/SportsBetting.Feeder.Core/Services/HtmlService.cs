@@ -16,7 +16,7 @@
         {
             HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAMES);
 
-            return oddNodes.Select(x => x.InnerText).ToList();
+            return oddNodes?.Select(x => x.InnerText)?.ToList();
         }
 
         public IEnumerable<string> GetMatchUrls(string xpath, string pageSource)
@@ -25,7 +25,7 @@
             IEnumerable<HtmlNode> htmlNodes = document.DocumentNode.SelectNodes(xpath);
             IEnumerable<string> urls = GetUrls(pageSource, MatchXPaths.EVENT_URL, htmlNodes);
 
-            return urls;            
+            return urls;
         }
 
         public HtmlNode GetMatchContainer(string xpath, string pageSource)
@@ -42,7 +42,6 @@
 
             if (marketContainer != null && marketContainer.ChildNodes.Any())
             {
-
                 IEnumerable<HtmlNode> oddNodes = marketContainer.SelectNodes(OddXPaths.NODE);
 
                 if (oddNodes != null)
@@ -68,7 +67,7 @@
 
         public OddResultFeedStatus GetOddResultStatus(HtmlNode oddNode)
         {
-            HtmlNode resultedNode = oddNode.SelectSingleNode(OddXPaths.RESULTED_STATUS);
+            HtmlNode resultedNode = oddNode?.SelectSingleNode(OddXPaths.RESULTED_STATUS);
 
             if (resultedNode != null)
             {
@@ -88,22 +87,22 @@
 
         public bool HasHeader(HtmlNode marketNode)
         {
-            HtmlNodeCollection headerNodes = marketNode.SelectNodes(OddXPaths.HEADER);
+            HtmlNodeCollection headerNodes = marketNode?.SelectNodes(OddXPaths.HEADER);
 
             return headerNodes != null && headerNodes.Any();
         }
 
         public bool IsSuspended(HtmlNode oddNode)
         {
-            bool isDeactivated = oddNode.GetAttributeValue("title", string.Empty) == "Deactivated";
-            bool isSuspended = OddXPaths.SUSPENDED.Any(x => oddNode.GetAttributeValue("class", string.Empty).Contains(x));
+            bool isDeactivated = oddNode?.GetAttributeValue("title", string.Empty) == "Deactivated";
+            bool isSuspended = OddXPaths.SUSPENDED.Any(x => oddNode?.GetAttributeValue("class", string.Empty).Contains(x) ?? false);
 
             return isDeactivated && isSuspended;
         }
 
         private HtmlNode GetMarketContainer(HtmlNode marketNode)
         {
-            HtmlNodeCollection containerNodes = marketNode.SelectNodes(ContainerXPaths.MARKET);
+            HtmlNodeCollection containerNodes = marketNode?.SelectNodes(ContainerXPaths.MARKET);
 
             if (containerNodes != null)
             {
