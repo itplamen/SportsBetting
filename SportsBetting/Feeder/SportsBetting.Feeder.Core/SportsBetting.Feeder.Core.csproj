@@ -67,7 +67,7 @@
     <Compile Include="Contracts\Providers\IMatchesProvider.cs" />
     <Compile Include="Contracts\Providers\IOddsProvider.cs" />
     <Compile Include="Contracts\Providers\ITeamsProvider.cs" />
-    <Compile Include="Contracts\Providers\ITournametsProvider.cs" />
+    <Compile Include="Contracts\Providers\ITournamentsProvider.cs" />
     <Compile Include="Contracts\Services\IHtmlService.cs" />
     <Compile Include="Contracts\Services\IWebPagesService.cs" />
     <Compile Include="Factories\ObjectFactory.cs" />
@@ -92,7 +92,7 @@
     <Compile Include="Providers\Odds\TotalLineOddsProvider.cs" />
     <Compile Include="Providers\Odds\TwoWayOddsProvider.cs" />
     <Compile Include="Providers\Teams\TeamsProvider.cs" />
-    <Compile Include="Providers\Tournaments\TournametsProvider.cs" />
+    <Compile Include="Providers\Tournaments\TournamentsProvider.cs" />
     <Compile Include="Services\HtmlService.cs" />
     <Compile Include="Services\WebPagesService.cs" />
     <Compile Include="SynchronizerComposite.cs" />

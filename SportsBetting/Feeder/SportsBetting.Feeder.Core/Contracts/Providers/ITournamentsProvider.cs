@@ -4,7 +4,7 @@
 
     using SportsBetting.Feeder.Models;
 
-    public interface ITournametsProvider
+    public interface ITournamentsProvider
     {
         TournamentFeedModel Get(HtmlNode matchInfo);
     }

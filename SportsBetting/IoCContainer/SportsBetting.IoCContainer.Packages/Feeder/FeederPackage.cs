@@ -55,7 +55,7 @@
         {
             container.Register<IMarketsProvider, MarketsProvider>(Lifestyle.Singleton);
             container.Register<ITeamsProvider, TeamsProvider>(Lifestyle.Singleton);
-            container.Register<ITournametsProvider, TournametsProvider>(Lifestyle.Singleton);
+            container.Register<ITournamentsProvider, TournamentsProvider>(Lifestyle.Singleton);
             container.Register<IMatchesProvider, MatchesProvider>(Lifestyle.Singleton);
             container.Register<IOddsProvider, HandicapOddsProvider>(Lifestyle.Singleton);
             container.RegisterDecorator<IOddsProvider, CorrectScoreOddsProvider>(Lifestyle.Singleton);

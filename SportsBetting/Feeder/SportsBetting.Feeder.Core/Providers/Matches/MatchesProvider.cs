@@ -14,13 +14,13 @@
     {
         private readonly ITeamsProvider teamsProvider;
         private readonly IMarketsProvider marketsProvider;
-        private readonly ITournametsProvider tournametsProvider;
+        private readonly ITournamentsProvider tournamentsProvider;
 
-        public MatchesProvider(ITeamsProvider teamsProvider, IMarketsProvider marketsProvider, ITournametsProvider tournametsProvider)
+        public MatchesProvider(ITeamsProvider teamsProvider, IMarketsProvider marketsProvider, ITournamentsProvider tournamentsProvider)
         {
             this.teamsProvider = teamsProvider;
             this.marketsProvider = marketsProvider;
-            this.tournametsProvider = tournametsProvider;
+            this.tournamentsProvider = tournamentsProvider;
         }
 
         public MatchFeedModel Get(HtmlNode matchContainer)
@@ -29,7 +29,7 @@
 
             MatchFeedType type = GetType(matchInfo);
             IEnumerable<TeamFeedModel> teams = teamsProvider.Get(matchContainer);
-            TournamentFeedModel tournament = tournametsProvider.Get(matchInfo);
+            TournamentFeedModel tournament = tournamentsProvider.Get(matchInfo);
 
             MatchFeedModel match = ObjectFactory.CreateMatch(type, teams.First(), teams.Last(), tournament);
             match.Markets = marketsProvider.Get(matchContainer, match);

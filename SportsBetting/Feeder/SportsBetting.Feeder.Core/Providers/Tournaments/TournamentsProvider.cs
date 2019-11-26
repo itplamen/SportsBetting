@@ -9,12 +9,12 @@
     using SportsBetting.Feeder.Core.Factories;
     using SportsBetting.Feeder.Models;
 
-    public class TournametsProvider : ITournametsProvider
+    public class TournamentsProvider : ITournamentsProvider
     {
         public TournamentFeedModel Get(HtmlNode matchInfo)
         {
-            HtmlNode node = matchInfo.SelectSingleNode(TournamentXPaths.NODE);
-            string name = WebUtility.HtmlDecode(node.InnerText);
+            HtmlNode node = matchInfo?.SelectSingleNode(TournamentXPaths.NODE);
+            string name = WebUtility.HtmlDecode(node?.InnerText);
 
             TournamentFeedModel tournament = ObjectFactory.CreateTournament(name);
 
