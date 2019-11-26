@@ -60,10 +60,17 @@
 
         private bool IsLoaded(TDriver webDriver, string waitForElement)
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(PAGE_LOAD_TIMEOUT));
-            IWebElement webElement = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(waitForElement)));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(PAGE_LOAD_TIMEOUT));
+                IWebElement webElement = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(waitForElement)));
 
-            return webElement.Displayed;
+                return webElement.Displayed;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
