@@ -8,10 +8,10 @@
     {
         public static HtmlNode Load(string html)
         {
-            html = Regex.Replace(html, @"\s*(<[^>]+>)\s*", "$1", RegexOptions.Singleline);
+            string result = Regex.Replace(html, @"\s*(<[^>]+>)\s*", "$1", RegexOptions.Singleline);
 
             HtmlDocument document = new HtmlDocument();
-            document.LoadHtml(html);
+            document.LoadHtml(result);
 
             return document.DocumentNode.FirstChild;
         }
