@@ -14,7 +14,7 @@
     {
         public IList<string> GetOddNames(HtmlNode marketNode)
         {
-            HtmlNodeCollection oddNodes = marketNode.SelectNodes(OddXPaths.NAMES);
+            HtmlNodeCollection oddNodes = marketNode?.SelectNodes(OddXPaths.NAMES);
 
             return oddNodes?.Select(x => x.InnerText)?.ToList();
         }

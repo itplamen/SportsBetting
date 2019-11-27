@@ -26,6 +26,14 @@
         }
 
         [TestMethod]
+        public void GetOddNamesShouldReturnNullWhenMarketNodeIsNull()
+        {
+            IEnumerable<string> oddNames = htmlService.GetOddNames(null);
+
+            Assert.IsTrue(oddNames == null);
+        }
+
+        [TestMethod]
         public void GetOddNamesShouldReturnNullWhenMarketNodeHasInvalidClass()
         {
             HtmlNode marketNode = HtmlNodesLoader.Load("<div></div>");
