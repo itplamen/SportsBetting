@@ -77,6 +77,7 @@
     <Compile Include="TestObjects\HtmlNodes\HtmlNodesLoader.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\HtmlServiceStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\NavigationStub.cs" />
+    <Compile Include="TestObjects\HtmlNodes\Stubs\OddsProviderStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\TeamsProviderStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\WebDriverStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\WebElementStub.cs" />
