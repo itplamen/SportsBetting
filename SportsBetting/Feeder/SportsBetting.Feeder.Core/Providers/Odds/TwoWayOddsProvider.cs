@@ -46,7 +46,7 @@
         protected override decimal GetValue(HtmlNode oddNode)
         {
             decimal value = 0;
-            decimal.TryParse(oddNode.LastChild.InnerText, out value);
+            decimal.TryParse(oddNode?.LastChild?.InnerText, out value);
 
             return value;
         }
