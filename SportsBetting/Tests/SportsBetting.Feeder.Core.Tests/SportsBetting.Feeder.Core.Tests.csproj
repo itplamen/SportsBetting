@@ -75,6 +75,8 @@
     <Compile Include="ServicesTests\HtmlServiceTests.cs" />
     <Compile Include="ServicesTests\WebPagesServiceTests.cs" />
     <Compile Include="TestObjects\HtmlNodes\HtmlNodesLoader.cs" />
+    <Compile Include="TestObjects\HtmlNodes\Mocks\ProvidersMock.cs" />
+    <Compile Include="TestObjects\HtmlNodes\Mocks\ServicesMock.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\HtmlServiceStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\NavigationStub.cs" />
     <Compile Include="TestObjects\HtmlNodes\Stubs\OddsProviderStub.cs" />
