@@ -511,5 +511,169 @@
 
             return HtmlNodesLoader.Load(html);
         }
+
+        public static HtmlNode GetCorrectScoreMarketNodeWithValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='marketTable__header___mSHxT' title='Correct map score'>Correct map score</div>
+                    </div>
+                    <div class='scoreMarketRow__container___1n55P_correct_score_with_values'>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='2:1'>2:1</div>
+                                    <button class='__app-Odd-button odd__button___2eiZg'>
+                                        <div class='__app-Odd-inner odd__inner___3F_cm'>
+                                            <div class='odd__ellipsis___3b4Yk'>2.25</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='1:2'>1:2</div>
+                                    <button class='__app-Odd-button odd__button___2eiZg'>
+                                        <div class='__app-Odd-inner odd__inner___3F_cm'>
+                                            <div class='odd__ellipsis___3b4Yk'>1.6</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetCorrectScoreMarketNodeWithoutMarketName()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='marketTable__header___mSHxT' title='Correct map score'>Test Name</div>
+                    </div>
+                    <div class='scoreMarketRow__container___1n55P_correct_score_with_values'>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='2:1'>2:1</div>
+                                    <button class='__app-Odd-button odd__button___2eiZg'>
+                                        <div class='__app-Odd-inner odd__inner___3F_cm'>
+                                            <div class='odd__ellipsis___3b4Yk'>2.25</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='1:2'>1:2</div>
+                                    <button class='__app-Odd-button odd__button___2eiZg'>
+                                        <div class='__app-Odd-inner odd__inner___3F_cm'>
+                                            <div class='odd__ellipsis___3b4Yk'>1.6</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetCorrectScoreMarketNodeWithoutValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='marketTable__header___mSHxT' title='Correct map score'>Correct map score</div>
+                    </div>
+                    <div class='scoreMarketRow__container___1n55P_correct_score_with_values'>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='2:1'>2:1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='1:2'>1:2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetCorrectScoreMarketNodeWithOneSuspendedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='marketTable__header___mSHxT' title='Correct map score'>Correct map score</div>
+                    </div>
+                    <div class='scoreMarketRow__container___1n55P_correct_score_with_values'>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='2:1'>2:1</div>
+                                    <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                        <div title='Deactivated' class='__app-Odd-is-disabled odd__is-disabled___bCpHE'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='1:2'>1:2</div>
+                                    <button class='__app-Odd-button odd__button___2eiZg'>
+                                        <div class='__app-Odd-inner odd__inner___3F_cm'>
+                                            <div class='odd__ellipsis___3b4Yk'>1.6</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetCorrectScoreMarketNodeWithOneResultedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='marketTable__header___mSHxT' title='Correct map score'>Correct map score</div>
+                    </div>
+                    <div class='scoreMarketRow__container___1n55P'>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='2:1'>2:1</div>
+                                    <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                        <div class='odd__result___1K5vV'>Win</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='scoreMarketRow__column___2OuUC'>
+                            <div class='scoreMarketRow__odd-wrapper___3g5qT'>
+                                <div class='__app-Odd-title odd__title___1kZ6V' title='1:2'>1:2</div>
+                                    <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                        <div class='odd__result___1K5vV'>Loss</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
     }
 }

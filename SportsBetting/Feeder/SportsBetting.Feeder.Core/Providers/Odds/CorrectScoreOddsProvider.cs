@@ -57,7 +57,9 @@
 
         protected override bool ShouldGet(HtmlNode marketNode, IList<string> oddNames)
         {
-            return oddNames.Count == ODDS_COUNT && marketNode.FirstChild.FirstChild.InnerText.ToLower().Contains("score");
+            bool isNameValid = marketNode?.FirstChild?.FirstChild?.InnerText?.ToLower()?.Contains("score") ?? false;
+
+            return oddNames.Count == ODDS_COUNT && isNameValid;
         }
 
         protected override bool IsSuspended(HtmlNode oddNode)
