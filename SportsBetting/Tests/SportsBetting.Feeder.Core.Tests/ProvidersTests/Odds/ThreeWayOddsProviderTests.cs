@@ -38,7 +38,7 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenOddNamesAreMissing()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithValues(), new List<string>());
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithValues(), new List<string>());
 
             Assert.IsFalse(odds.Any());
         }
@@ -46,7 +46,7 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenThereIsOnlyOneOddName()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithValues(), new List<string>() { "TestName" });
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithValues(), new List<string>() { "TestName" });
 
             Assert.IsFalse(odds.Any());
         }
@@ -62,7 +62,7 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenMarketNodeContainsMoreThanThreeOdds()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithMoreThanThreeOddsAndValues(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithMoreThanThreeOddsAndValues(), validOddNames);
 
             Assert.IsFalse(odds.Any());
         }
@@ -70,13 +70,13 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenMarketNodeContainsThreeOddsWithHeaders()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithHeaders(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithHeaders(), validOddNames);
 
             Assert.IsFalse(odds.Any());
         }
 
         [TestMethod]
-        public void GetShouldReturnThreeOddsWithoutValuesWhenMarkedtNodeContainsThreeOddsWithoutValues()
+        public void GetShouldReturnThreeOddsWithoutValuesWhenMarketNodeContainsThreeOddsWithoutValues()
         {
             IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithoutValues(), validOddNames);
 
@@ -85,7 +85,7 @@
         }
 
         [TestMethod]
-        public void GetShouldReturnOneSuspendedOddWhenMarkedtNodeContainsThreeOddsWithOneSuspended()
+        public void GetShouldReturnOneSuspendedOddWhenMarketNodeContainsThreeOddsWithOneSuspended()
         {
             IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithOneSuspendedOdd(), validOddNames);
 
@@ -94,7 +94,7 @@
         }
 
         [TestMethod]
-        public void GetShouldReturnOddsWithWinAndLossStatusWhenMarkedtNodeContainsThreeResultedOdds()
+        public void GetShouldReturnOddsWithWinAndLossStatusWhenMarketNodeContainsThreeResultedOdds()
         {
             IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithThreeResultedOdds(), validOddNames);
 
@@ -104,9 +104,9 @@
         }
 
         [TestMethod]
-        public void GetShouldReturnThreeOddsWithValuesWhenMarkedtNodeContainsThreeValidOdds()
+        public void GetShouldReturnThreeOddsWithValuesWhenMarketNodeContainsThreeValidOdds()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithValues(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithValues(), validOddNames);
 
             Assert.AreEqual(3, odds.Count());
             Assert.IsTrue(odds.All(x => x.Value > 0));

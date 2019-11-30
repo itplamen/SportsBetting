@@ -107,7 +107,7 @@
             return HtmlNodesLoader.Load(html);
         }
 
-        public static HtmlNode GetThreeWayMarketContainerWithValues()
+        public static HtmlNode GetThreeWayMarketNodeWithValues()
         {
             string html = @"
                 <div>
@@ -129,7 +129,7 @@
             return HtmlNodesLoader.Load(html);
         }
 
-        public static HtmlNode GetThreeWayMarketContainerWithMoreThanThreeOddsAndValues()
+        public static HtmlNode GetThreeWayMarketNodeWithMoreThanThreeOddsAndValues()
         {
             string html = @"
                 <div>
@@ -170,7 +170,7 @@
             return HtmlNodesLoader.Load(html);
         }
 
-        public static HtmlNode GetThreeWayMarketContainerWithHeaders()
+        public static HtmlNode GetThreeWayMarketNodeWithHeaders()
         {
             string html = @"
                 <div>
@@ -231,6 +231,101 @@
                             </div>
                             <div class='tableMarketRow__odd-wrapper___3nnKr'>
                                 <div class='odd__result___1K5vV'>Loss</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetTotalLineMarketNodeWithValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_total_line_values'>
+                            <div title='3.5' class='tableMarketRow__specifier-value___3S715'>3.5</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>2.32</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>1.33</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetTotalLineMarketNodeWithoutHeader()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_total_line_without_header'>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>2.32</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>1.33</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetTotalLineMarketNodeWithoutValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_total_line_no_values'>
+                            <div title='3.5' class='tableMarketRow__specifier-value___3S715'>3.5</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetTotalLineMarketNodeWithSuspendedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_total_line_suspended'>
+                            <div title='3.5' class='tableMarketRow__specifier-value___3S715'>3.5</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>2.25</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div title='Deactivated' class='__app-Odd-is-disabled odd__is-disabled___bCpHE'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetTotalLineMarketNodeWithResultedOdds()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_total_line_resulted'>
+                            <div title='3.5' class='tableMarketRow__specifier-value___3S715'>3.5</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>Loss</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>Win</div>
                             </div>
                         </div>
                     </div>

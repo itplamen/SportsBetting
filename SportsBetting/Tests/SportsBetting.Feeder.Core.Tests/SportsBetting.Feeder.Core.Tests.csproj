@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidersTests\Odds\ThreeWayOddsProviderTests.cs" />
+    <Compile Include="ProvidersTests\Odds\TotalLineOddsProviderTests.cs" />
     <Compile Include="ProvidersTests\Odds\TwoWayOddsProviderTests.cs" />
     <Compile Include="ProvidersTests\Teams\TeamsProviderTests.cs" />
     <Compile Include="ProvidersTests\Tournaments\TournametsProviderTests.cs" />

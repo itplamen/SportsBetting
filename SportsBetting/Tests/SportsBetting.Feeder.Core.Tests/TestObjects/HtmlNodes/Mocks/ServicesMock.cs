@@ -59,6 +59,36 @@
                         y.InnerHtml.Contains("tableMarketRow__container___3jeni_four_odds_values"))))
                 .Returns(4);
 
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_values"))))
+                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_without_header"))))
+                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_no_values"))))
+                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_suspended"))))
+                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_resulted"))))
+                .Returns(3);
+
             htmlService.Setup(x => x.HasHeader(
                     It.Is<HtmlNode>(y => y == null)))
                 .Returns(false);
@@ -74,6 +104,24 @@
                         y != null &&
                         y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds_values_header"))))
                 .Returns(true);
+
+            htmlService.Setup(x => x.HasHeader(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_without_header"))))
+                .Returns(false);
+
+            htmlService.Setup(x => x.HasHeader(
+                   It.Is<HtmlNode>(y =>
+                       y != null &&
+                       y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_values"))))
+               .Returns(true);
+
+            htmlService.Setup(x => x.HasHeader(
+                   It.Is<HtmlNode>(y =>
+                       y != null &&
+                       y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_no_values"))))
+               .Returns(true);
 
             htmlService.Setup(x => x.IsSuspended(
                     It.Is<HtmlNode>(y =>
