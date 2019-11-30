@@ -44,7 +44,7 @@
         }
 
         [TestMethod]
-        public void GetShouldReturnEmptyCollectionWhenThereIsOnlyOneOdd()
+        public void GetShouldReturnEmptyCollectionWhenThereIsOnlyOneOddName()
         {
             IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTwoWayMarketNodeWithValues(), new List<string>() { "TestName" });
 
@@ -62,7 +62,7 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenMarketNodeContainsMoreThanTwoOdds()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNode(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketContainerWithValues(), validOddNames);
 
             Assert.IsFalse(odds.Any());
         }

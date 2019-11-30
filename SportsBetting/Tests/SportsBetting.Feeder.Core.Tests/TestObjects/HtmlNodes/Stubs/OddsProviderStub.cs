@@ -107,15 +107,131 @@
             return HtmlNodesLoader.Load(html);
         }
 
-        public static HtmlNode GetThreeWayMarketNode()
+        public static HtmlNode GetThreeWayMarketContainerWithValues()
         {
             string html = @"
                 <div>
                     <div>
-                        <div class='tableMarketRow__container___3jeni_three_odd'>
+                        <div class='tableMarketRow__container___3jeni_three_odds_values'>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetThreeWayMarketContainerWithMoreThanThreeOddsAndValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_four_odds_values'>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetThreeWayMarketNodeWithoutValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_three_odds_no_values'>
                             <div class='tableMarketRow__odd-wrapper___3nnKr'></div>
                             <div class='tableMarketRow__odd-wrapper___3nnKr'></div>
                             <div class='tableMarketRow__odd-wrapper___3nnKr'></div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetThreeWayMarketContainerWithHeaders()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_three_odds_values_header'>
+                            <div title='1' class='tableMarketRow__specifier-value___3S715'>1</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div title='2' class='tableMarketRow__specifier-value___3S715'>2</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div title='3' class='tableMarketRow__specifier-value___3S715'>3</div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetThreeWayMarketNodeWithOneSuspendedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_three_odds_values'>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div title='Deactivated' class='__app-Odd-is-disabled odd__is-disabled___bCpHE'></div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div>2.23</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetThreeWayMarketNodeWithThreeResultedOdds()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div class='tableMarketRow__container___3jeni_three_odds_values'>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>Win</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>Loss</div>
+                            </div>
+                            <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                <div class='odd__result___1K5vV'>Loss</div>
+                            </div>
                         </div>
                     </div>
                 </div>";

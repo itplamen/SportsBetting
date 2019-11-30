@@ -32,8 +32,32 @@
             htmlService.Setup(x => x.GetTwoWayOddsCount(
                    It.Is<HtmlNode>(y =>
                         y != null &&
-                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds"))))
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds_values"))))
+               .Returns(0);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                   It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds_values"))))
                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_one_odd"))))
+                .Returns(1); 
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds_no_values"))))
+                .Returns(3);
+
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_four_odds_values"))))
+                .Returns(4);
 
             htmlService.Setup(x => x.HasHeader(
                     It.Is<HtmlNode>(y => y == null)))
@@ -43,6 +67,12 @@
                     It.Is<HtmlNode>(y => 
                         y != null &&
                         y.InnerHtml.Contains("tableMarketRow__specifier-value___3S715"))))
+                .Returns(true);
+
+            htmlService.Setup(x => x.HasHeader(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_three_odds_values_header"))))
                 .Returns(true);
 
             htmlService.Setup(x => x.IsSuspended(

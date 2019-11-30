@@ -53,13 +53,13 @@
 
         protected override bool IsSuspended(HtmlNode oddNode)
         {
-            return htmlService.IsSuspended(oddNode.FirstChild);
+            return htmlService.IsSuspended(oddNode?.FirstChild);
         }
 
         protected override decimal GetValue(HtmlNode oddNode)
         {
             decimal value = 0;
-            decimal.TryParse(oddNode.LastChild.InnerText, out value);
+            decimal.TryParse(oddNode?.LastChild?.InnerText, out value);
 
             return value;
         }
