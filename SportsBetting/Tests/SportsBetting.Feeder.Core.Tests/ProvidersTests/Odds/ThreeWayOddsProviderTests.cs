@@ -82,6 +82,13 @@
 
             Assert.AreEqual(3, odds.Count());
             Assert.IsTrue(odds.All(x => x.Value == 0));
+            Assert.AreEqual(0, odds.First().Rank);
+            Assert.AreEqual(1, odds.Skip(1).First().Rank);
+            Assert.AreEqual(2, odds.Last().Rank);
+            Assert.IsFalse(odds.All(x => x.IsSuspended));
+            Assert.IsTrue(odds.All(x => x.Header == 0));
+            Assert.IsTrue(odds.All(x => string.IsNullOrEmpty(x.Symbol)));
+            Assert.IsFalse(odds.All(x => string.IsNullOrEmpty(x.Name)));
         }
 
         [TestMethod]
@@ -90,7 +97,17 @@
             IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetThreeWayMarketNodeWithOneSuspendedOdd(), validOddNames);
 
             Assert.AreEqual(3, odds.Count());
-            Assert.AreEqual(1, odds.Count(x => x.IsSuspended));
+            Assert.IsTrue(odds.First().IsSuspended);
+            Assert.IsTrue(odds.First().Value == 0);
+            Assert.IsTrue(odds.Skip(1).First().Value > 0);
+            Assert.IsTrue(odds.Last().Value > 0);
+            Assert.AreEqual(0, odds.First().Rank);
+            Assert.AreEqual(1, odds.Skip(1).First().Rank);
+            Assert.AreEqual(2, odds.Last().Rank);
+            Assert.IsFalse(odds.All(x => x.IsSuspended));
+            Assert.IsTrue(odds.All(x => x.Header == 0));
+            Assert.IsTrue(odds.All(x => string.IsNullOrEmpty(x.Symbol)));
+            Assert.IsFalse(odds.All(x => string.IsNullOrEmpty(x.Name)));
         }
 
         [TestMethod]
@@ -101,6 +118,14 @@
             Assert.AreEqual(3, odds.Count());
             Assert.AreEqual(1, odds.Count(x => x.ResultStatus == OddResultFeedStatus.Win));
             Assert.AreEqual(2, odds.Count(x => x.ResultStatus == OddResultFeedStatus.Loss));
+            Assert.IsTrue(odds.All(x => x.Value == 0));
+            Assert.AreEqual(0, odds.First().Rank);
+            Assert.AreEqual(1, odds.Skip(1).First().Rank);
+            Assert.AreEqual(2, odds.Last().Rank);
+            Assert.IsFalse(odds.All(x => x.IsSuspended));
+            Assert.IsTrue(odds.All(x => x.Header == 0));
+            Assert.IsTrue(odds.All(x => string.IsNullOrEmpty(x.Symbol)));
+            Assert.IsFalse(odds.All(x => string.IsNullOrEmpty(x.Name)));
         }
 
         [TestMethod]
@@ -110,6 +135,13 @@
 
             Assert.AreEqual(3, odds.Count());
             Assert.IsTrue(odds.All(x => x.Value > 0));
+            Assert.AreEqual(0, odds.First().Rank);
+            Assert.AreEqual(1, odds.Skip(1).First().Rank);
+            Assert.AreEqual(2, odds.Last().Rank);
+            Assert.IsFalse(odds.All(x => x.IsSuspended));
+            Assert.IsTrue(odds.All(x => x.Header == 0));
+            Assert.IsTrue(odds.All(x => string.IsNullOrEmpty(x.Symbol)));
+            Assert.IsFalse(odds.All(x => string.IsNullOrEmpty(x.Name)));
         }
     }
 }
