@@ -333,5 +333,183 @@
 
             return HtmlNodesLoader.Load(html);
         }
+
+        public static HtmlNode GetHandicapMarketNodeWithValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div>
+                            <div class='marketTable__header___mSHxT' title='Map handicap'>Map handicap</div>
+                        </div>
+                        <div class='tableMarketRow__container___3jeni_handicap_with_values'>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <span>-1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <button class='__app-Odd-button odd__button___2eiZg'>5.18</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='1.5'>
+                                        <span>1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <button class='__app-Odd-button odd__button___2eiZg'>1.18</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetHandicapMarketNodeWithMissingMarketName()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div>
+                            <div class='marketTable__header___mSHxT' title='Map handicap'>Test Name</div>
+                        </div>
+                        <div class='tableMarketRow__container___3jeni_handicap_with_values'>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <span>-1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <button class='__app-Odd-button odd__button___2eiZg'>5.18</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='1.5'>
+                                        <span>1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <button class='__app-Odd-button odd__button___2eiZg'>1.18</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetHandicapMarketNodeWithoutValues()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div>
+                            <div class='marketTable__header___mSHxT' title='Map handicap'>Map handicap</div>
+                        </div>
+                        <div class='tableMarketRow__container___3jeni_handicap_with_values'>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <span>-1.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='1.5'>
+                                        <span>1.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetHandicapMarketNodeWithSuspendedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div>
+                            <div class='marketTable__header___mSHxT' title='Map handicap'>Map handicap</div>
+                        </div>
+                        <div class='tableMarketRow__container___3jeni_handicap_with_values'>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <span>-1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <div title='Deactivated' class='__app-Odd-is-disabled odd__is-disabled___bCpHE'></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <span>-1.5</span>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <button class='__app-Odd-button odd__button___2eiZg'>1.18</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
+
+        public static HtmlNode GetHandicapMarketNodeWithResultedOdd()
+        {
+            string html = @"
+                <div>
+                    <div>
+                        <div>
+                            <div class='marketTable__header___mSHxT' title='Map handicap'>Map handicap</div>
+                        </div>
+                        <div class='tableMarketRow__container___3jeni_handicap_with_values'>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <div>-1.5</div>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                            <div class='odd__result___1K5vV'>Win</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='tableMarketRow__column___2kCi8'>
+                                <div class='marketRowOddTable__container___TfWHU'>
+                                    <div class='marketRowOddTable__title-wrapper___1JryI' title='-1.5'>
+                                        <div>-1.5</div>
+                                    </div>
+                                    <div class='marketRowOddTable__odd-wrapper___lWDBZ'>
+                                        <div class='tableMarketRow__odd-wrapper___3nnKr'>
+                                            <div class='odd__result___1K5vV'>Loss</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+
+            return HtmlNodesLoader.Load(html);
+        }
     }
 }

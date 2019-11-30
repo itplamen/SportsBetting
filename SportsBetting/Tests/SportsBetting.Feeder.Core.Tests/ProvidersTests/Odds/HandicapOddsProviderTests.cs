@@ -12,7 +12,7 @@
     using SportsBetting.Feeder.Models;
 
     [TestClass]
-    public class TotalLineOddsProviderTests
+    public class HandicapOddsProviderTests
     {
         private IOddsProvider oddsProvider;
         private IList<string> validOddNames;
@@ -20,11 +20,8 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            oddsProvider = new TotalLineOddsProvider(
-                ServicesMock.GetHtmlService(),
-                ProvidersMock.GetOddsProvider());
-
-            validOddNames = new List<string>() { "FirstTestName", "SecondTestName", "ThirdTesName" };
+            oddsProvider = new HandicapOddsProvider(ServicesMock.GetHtmlService());
+            validOddNames = new List<string>() { "FirstTestName", "SecondTestName" };
         }
 
         [TestMethod]
@@ -38,7 +35,7 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenOddNamesAreMissing()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithValues(), new List<string>());
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithValues(), new List<string>());
 
             Assert.IsFalse(odds.Any());
         }
@@ -46,7 +43,15 @@
         [TestMethod]
         public void GetShouldReturnEmptyCollectionWhenThereIsOnlyOneOddName()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithValues(), new List<string>() { "TestName" });
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithValues(), new List<string>() { "TestName" });
+
+            Assert.IsFalse(odds.Any());
+        }
+
+        [TestMethod]
+        public void GetShouldReturnEmptyCollectionWhenMarketNodeDoesNotContainMarketName()
+        {
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithMissingMarketName(), validOddNames);
 
             Assert.IsFalse(odds.Any());
         }
@@ -68,17 +73,9 @@
         }
 
         [TestMethod]
-        public void GetShouldReturnEmptyCollectionWhenMarketNodeContainsTwoOddsWithoutHeaders()
-        {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithoutHeader(), validOddNames);
-
-            Assert.IsFalse(odds.Any());
-        }
-
-        [TestMethod]
         public void GetShouldReturnTwoOddsWithoutValuesWhenMarketNodeContainsTwoOddsWithoutValues()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithoutValues(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithoutValues(), validOddNames);
 
             Assert.AreEqual(2, odds.Count());
             Assert.IsTrue(odds.All(x => x.Value == 0));
@@ -88,7 +85,7 @@
         [TestMethod]
         public void GetShouldReturnOneSuspendedOddWhenMarketNodeContainsTwoOddsWithOneSuspended()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithSuspendedOdd(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithSuspendedOdd(), validOddNames);
 
             Assert.AreEqual(2, odds.Count());
             Assert.AreEqual(1, odds.Count(x => x.IsSuspended));
@@ -98,7 +95,7 @@
         [TestMethod]
         public void GetShouldReturnOddsWithWinAndLossStatusWhenMarketNodeContainsTwoResultedOdds()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithResultedOdds(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithResultedOdd(), validOddNames);
 
             Assert.AreEqual(2, odds.Count());
             Assert.IsTrue(odds.Any(x => x.ResultStatus == OddResultFeedStatus.Win));
@@ -109,7 +106,7 @@
         [TestMethod]
         public void GetShouldReturnTwoOddsWithValuesWhenMarketNodeContainsTwoValidOdds()
         {
-            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetTotalLineMarketNodeWithValues(), validOddNames);
+            IEnumerable<OddFeedModel> odds = oddsProvider.Get(OddsProviderStub.GetHandicapMarketNodeWithValues(), validOddNames);
 
             Assert.AreEqual(2, odds.Count());
             Assert.IsTrue(odds.All(x => x.Value > 0));

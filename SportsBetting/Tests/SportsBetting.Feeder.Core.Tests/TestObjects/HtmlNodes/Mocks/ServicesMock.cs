@@ -89,6 +89,12 @@
                         y.InnerHtml.Contains("tableMarketRow__container___3jeni_total_line_resulted"))))
                 .Returns(3);
 
+            htmlService.Setup(x => x.GetOddsCount(
+                    It.Is<HtmlNode>(y =>
+                        y != null &&
+                        y.InnerHtml.Contains("tableMarketRow__container___3jeni_handicap_with_values"))))
+                .Returns(2);
+
             htmlService.Setup(x => x.HasHeader(
                     It.Is<HtmlNode>(y => y == null)))
                 .Returns(false);
@@ -131,11 +137,11 @@
                 .Returns(true);
 
             htmlService.Setup(x => x.GetOddResultStatus(
-                    It.Is<HtmlNode>(y => y != null && y.InnerText == "Win")))
+                    It.Is<HtmlNode>(y => y != null && y.InnerText.Contains("Win"))))
                 .Returns(OddResultFeedStatus.Win);
 
             htmlService.Setup(x => x.GetOddResultStatus(
-                    It.Is<HtmlNode>(y => y != null && y.InnerText == "Loss")))
+                    It.Is<HtmlNode>(y => y != null && y.InnerText.Contains("Loss"))))
                 .Returns(OddResultFeedStatus.Loss);
 
             return htmlService.Object;
